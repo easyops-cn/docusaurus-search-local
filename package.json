@@ -1,0 +1,52 @@
+{
+  "name": "@easyops-cn/docusaurus-search-local",
+  "version": "0.5.0",
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rimraf dist",
+    "build": "tsc --project tsconfig.client.json && tsc --project tsconfig.server.json",
+    "postbuild": "copyfiles -f src/client/theme/SearchBar/SearchBar.css dist/client/client/theme/SearchBar",
+    "release": "standard-version"
+  },
+  "main": "dist/server/server/index.js",
+  "dependencies": {
+    "autocomplete.js": "^0.38.0",
+    "cheerio": "^1.0.0-rc.3",
+    "debug": "^4.2.0",
+    "klaw-sync": "^6.0.0",
+    "lunr": "^2.3.9",
+    "lunr-languages": "^1.4.0",
+    "nodejieba": "^2.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@types/debug": "^4.1.5",
+    "@types/enzyme": "^3.10.7",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.14",
+    "@types/klaw-sync": "^6.0.0",
+    "@types/lunr": "^2.3.3",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "babel-jest": "^26.5.2",
+    "copyfiles": "^2.4.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "husky": "^4.3.0",
+    "jest": "^26.5.3",
+    "lint-staged": "^10.4.1",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.3"
+  }
+}
