@@ -6,7 +6,8 @@
     "prebuild": "rimraf dist",
     "build": "tsc --project tsconfig.client.json && tsc --project tsconfig.server.json",
     "postbuild": "copyfiles -f src/client/theme/SearchBar/SearchBar.css dist/client/client/theme/SearchBar",
-    "release": "standard-version"
+    "release": "standard-version",
+    "coveralls": "coveralls < .coverage/lcov.info"
   },
   "main": "dist/server/server/index.js",
   "files": [
