@@ -2,4 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.5.1...v0.5.2) (2020-10-18)
+
+### Bug Fixes
+
+- fix consecutive Chinese words are not matched ([db8541e](https://github.com/easyops-cn/docusaurus-search-local/commit/db8541e6598e2e99b230374b403622f8d3b8a9d3))
+
 ### 0.5.1 (2020-10-18)
