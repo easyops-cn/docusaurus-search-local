@@ -1,6 +1,6 @@
 {
   "name": "@easyops-cn/docusaurus-search-local",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "test": "jest",
     "prebuild": "rimraf dist",
