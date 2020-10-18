@@ -9,7 +9,6 @@ import {
   iconAction,
   iconTreeInter,
   iconTreeLast,
-  iconNoResults,
 } from "./icons";
 
 export function SuggestionTemplate({
@@ -20,13 +19,7 @@ export function SuggestionTemplate({
   tokens,
   isInterOfTree,
   isLastOfTree,
-}: SearchResult): string {
-  const fieldSet = new Set();
-  for (const match of Object.values(metadata)) {
-    for (const field of Object.keys(match)) {
-      fieldSet.add(field);
-    }
-  }
+}: Omit<SearchResult, "score" | "index">): string {
   const isTitle = type === 0;
   const isHeading = type === 1;
   const tree: string[] = [];
@@ -49,6 +42,7 @@ export function SuggestionTemplate({
     wrapped.push(
       `<span class="doc-search-hit-path">${highlight(
         (page as SearchDocument).t ||
+          // Todo(weareoutman): This is for EasyOps only.
           (document.u.startsWith("/docs/api-reference/")
             ? "API Reference"
             : ""),
@@ -65,12 +59,4 @@ export function SuggestionTemplate({
     "</span>",
     action,
   ].join("");
-}
-
-export function EmptyTemplate(): string {
-  if (process.env.NODE_ENV === "production") {
-    return `<span class="doc-search-empty"><span class="doc-search-empty-icon">${iconNoResults}</span><span class="doc-search-empty-text">No results.</span></span>`;
-  } else {
-    return `<span class="doc-search-empty">⚠️ The search index is only available when you run docusaurus build!</span>`;
-  }
 }

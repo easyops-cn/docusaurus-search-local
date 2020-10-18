@@ -3,10 +3,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useHistory } from "@docusaurus/router";
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
-import {
-  EmptyTemplate,
-  SuggestionTemplate,
-} from "../../utils/SuggestionTemplate.js";
+import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
+import { EmptyTemplate } from "../../utils/EmptyTemplate.js";
 import { SearchResult } from "../../../shared/interfaces";
 
 import "./SearchBar.css";

@@ -1,3 +1,4 @@
+// istanbul ignore file
 import * as lunr from "lunr";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
