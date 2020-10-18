@@ -9,6 +9,10 @@
     "release": "standard-version"
   },
   "main": "dist/server/server/index.js",
+  "files": [
+    "/dist",
+    "!/dist/generated.js"
+  ],
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "cheerio": "^1.0.0-rc.3",
@@ -47,6 +51,7 @@
     "lint-staged": "^10.4.1",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
+    "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
   }
 }

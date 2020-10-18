@@ -26,3 +26,7 @@ module.exports = {
   ],
 };
 ```
+
+## Contributing
+
+See [contributing guide](CONTRIBUTING.md).
