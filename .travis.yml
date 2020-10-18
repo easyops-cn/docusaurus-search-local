@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - v12
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - yarn
+script:
+  - yarn test
+  - yarn build
+after_success:
+  - yarn coveralls
