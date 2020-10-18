@@ -6,8 +6,8 @@ import lunr from "lunr";
 import klawSync from "klaw-sync";
 import _debug from "debug";
 
-import { html2text } from "./parse";
-import { tokenizer } from "./tokenizer";
+import { parse } from "./utils/parse";
+import { tokenizer } from "./utils/tokenizer";
 import { SearchDocument } from "../shared/interfaces";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -40,7 +40,10 @@ function urlMatchesPrefix(url: string, prefix: string) {
   return url === prefix || url.startsWith(`${prefix}/`);
 }
 
-module.exports = function (context: any, options: any) {
+module.exports = function DocusaurusSearchLocalPlugin(
+  context: any,
+  options: any
+): any {
   let blogBasePath =
     options.blogRouteBasePath !== undefined
       ? options.blogRouteBasePath
@@ -160,8 +163,9 @@ module.exports = function (context: any, options: any) {
       await Promise.all(
         data.map(async ({ file, url, type }) => {
           debug(`Parsing ${type} file ${file}`, { url });
+
           const html = await readFileAsync(file, { encoding: "utf8" });
-          const { pageTitle, sections } = html2text(html, type, url);
+          const { pageTitle, sections } = parse(html, type, url);
 
           const titleId = getNextDocId();
 

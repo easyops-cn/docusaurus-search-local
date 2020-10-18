@@ -4,6 +4,7 @@ module.exports = {
   },
   collectCoverage: true,
   coverageDirectory: "<rootDir>/.coverage",
-  setupFilesAfterEnv: ["<rootDir>/__jest__/setup.js"],
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}"],
+  // setupFilesAfterEnv: ["<rootDir>/__jest__/setup.js"],
+  // snapshotSerializers: ["enzyme-to-json/serializer"],
 };

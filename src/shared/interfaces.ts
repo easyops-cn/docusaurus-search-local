@@ -74,3 +74,14 @@ export interface WrappedIndex {
   index: lunr.Index;
   type: SearchDocumentType;
 }
+
+export interface ParsedDocument {
+  pageTitle: string;
+  sections: ParsedDocumentSection[];
+}
+
+export interface ParsedDocumentSection {
+  title: string;
+  hash: string;
+  content: string;
+}

@@ -1,36 +1,30 @@
 import * as lunr from "lunr";
 import nodejieba from "nodejieba";
-import { MatchMetadata } from "../shared/interfaces";
+import { MatchMetadata } from "../../shared/interfaces";
+import { cutWordByUnderscore } from "./cutWordByUnderscore";
 
 // https://zhuanlan.zhihu.com/p/33335629
 const RegExpConsecutiveWord = /\w+|\p{Unified_Ideograph}+/u;
 
 nodejieba.load();
 
-const splitRegExp = [/(_)([^_])/g, /([^_])(_)/g];
-
-function cutByUnderscore(input: string) {
-  return splitRegExp
-    .reduce((carry, re) => carry.replace(re, "$1\0$2"), input)
-    .split("\0");
-}
-
 export function tokenizer(
-  obj: string | string[],
+  input: string | string[] | null | undefined,
   metadata: MatchMetadata
 ): lunr.Token[] {
-  if (obj == null || obj == undefined) {
+  if (input == null) {
     return [];
   }
-  if (Array.isArray(obj)) {
-    return obj.map(function (t) {
+  if (Array.isArray(input)) {
+    return input.map(function (t) {
       return new lunr.Token(
         lunr.utils.asString(t).toLowerCase(),
         (lunr.utils as any).clone(metadata)
       );
     });
   }
-  const content = obj.toString().toLowerCase();
+
+  const content = input.toString().toLowerCase();
   const tokens: lunr.Token[] = [];
   let start = 0;
   let text = content;
@@ -51,7 +45,7 @@ export function tokenizer(
       );
 
       // Try to cut `api_gateway` to `api` and `gateway`.
-      const subWords = cutByUnderscore(word);
+      const subWords = cutWordByUnderscore(word);
       if (subWords.length > 1) {
         let i = 0;
         for (const subWord of subWords) {
