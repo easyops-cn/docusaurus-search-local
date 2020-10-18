@@ -3,7 +3,7 @@ import nodejieba from "nodejieba";
 import { MatchMetadata } from "../shared/interfaces";
 
 // https://zhuanlan.zhihu.com/p/33335629
-const singleMatchOfWord = /\w+|\p{Unified_Ideograph}/u;
+const RegExpConsecutiveWord = /\w+|\p{Unified_Ideograph}+/u;
 
 nodejieba.load();
 
@@ -35,7 +35,7 @@ export function tokenizer(
   let start = 0;
   let text = content;
   while (text.length > 0) {
-    const match = text.match(singleMatchOfWord);
+    const match = text.match(RegExpConsecutiveWord);
     if (!match) {
       break;
     }
