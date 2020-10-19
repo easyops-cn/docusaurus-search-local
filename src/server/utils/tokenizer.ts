@@ -1,4 +1,4 @@
-import * as lunr from "lunr";
+import lunr from "lunr";
 import nodejieba from "nodejieba";
 import { MatchMetadata } from "../../shared/interfaces";
 import { cutWordByUnderscore } from "./cutWordByUnderscore";

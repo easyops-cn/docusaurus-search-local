@@ -1,4 +1,4 @@
-import * as lunr from "lunr";
+import lunr from "lunr";
 
 export interface SmartQuery {
   tokens: string[];

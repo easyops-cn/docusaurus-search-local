@@ -1,20 +1,7 @@
-export function lunrLanguageZh(lunr: any, tokenizer: any): void {
-  lunr.trimmerSupport.generateTrimmer = function (wordCharacters: string) {
-    const startRegex = new RegExp("^[^" + wordCharacters + "]+", "u");
-    const endRegex = new RegExp("[^" + wordCharacters + "]+$", "u");
+import { generateTrimmer } from "./generateTrimmer";
 
-    return function (token: any) {
-      // for lunr version 2
-      if (typeof token.update === "function") {
-        return token.update(function (s: string) {
-          return s.replace(startRegex, "").replace(endRegex, "");
-        });
-      } else {
-        // for lunr version 1
-        return token.replace(startRegex, "").replace(endRegex, "");
-      }
-    };
-  };
+export function lunrLanguageZh(lunr: any, tokenizer?: any): void {
+  lunr.trimmerSupport.generateTrimmer = generateTrimmer;
 
   lunr.zh = function () {
     this.pipeline.reset();
@@ -34,8 +21,8 @@ export function lunrLanguageZh(lunr: any, tokenizer: any): void {
   lunr.zh.trimmer = lunr.trimmerSupport.generateTrimmer(lunr.zh.wordCharacters);
   lunr.Pipeline.registerFunction(lunr.zh.trimmer, "trimmer-zh");
 
-  lunr.zh.stemmer = function (word: string) {
-    return word;
+  lunr.zh.stemmer = function (token: lunr.Token) {
+    return token;
   };
   lunr.Pipeline.registerFunction(lunr.zh.stemmer, "stemmer-zh");
 

@@ -15,6 +15,8 @@ async function fetchAutoCompleteJS(): Promise<any> {
   return autoComplete.default;
 }
 
+const SEARCH_RESULT_LIMITS = 8;
+
 export default function SearchBar(props: any): ReactElement {
   const { isSearchBarExpanded, handleSearchBarToggle } = props;
   const {
@@ -49,7 +51,11 @@ export default function SearchBar(props: any): ReactElement {
       },
       [
         {
-          source: SearchSourceFactory(wrappedIndexes, zhDictionary),
+          source: SearchSourceFactory(
+            wrappedIndexes,
+            zhDictionary,
+            SEARCH_RESULT_LIMITS
+          ),
           templates: {
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,

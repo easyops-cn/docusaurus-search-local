@@ -13,7 +13,7 @@ import { SearchDocument } from "../shared/interfaces";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("lunr-languages/lunr.stemmer.support")(lunr);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require("../shared/lunr-language-zh").lunrLanguageZh(lunr, tokenizer);
+require("../shared/lunrLanguageZh").lunrLanguageZh(lunr, tokenizer);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("lunr-languages/lunr.multi")(lunr);
 

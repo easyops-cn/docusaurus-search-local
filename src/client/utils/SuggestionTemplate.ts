@@ -43,6 +43,7 @@ export function SuggestionTemplate({
       `<span class="doc-search-hit-path">${highlight(
         (page as SearchDocument).t ||
           // Todo(weareoutman): This is for EasyOps only.
+          // istanbul ignore next
           (document.u.startsWith("/docs/api-reference/")
             ? "API Reference"
             : ""),
