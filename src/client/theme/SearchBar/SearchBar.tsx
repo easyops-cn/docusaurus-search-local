@@ -17,8 +17,7 @@ async function fetchAutoCompleteJS(): Promise<any> {
 
 const SEARCH_RESULT_LIMITS = 8;
 
-export default function SearchBar(props: any): ReactElement {
-  const { isSearchBarExpanded, handleSearchBarToggle } = props;
+export default function SearchBar(): ReactElement {
   const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
@@ -80,10 +79,6 @@ export default function SearchBar(props: any): ReactElement {
     loadIndex();
   };
 
-  const onInputBlur = () => {
-    handleSearchBarToggle(!isSearchBarExpanded);
-  };
-
   const onInputMouseEnter = () => {
     loadIndex();
   };
@@ -96,7 +91,6 @@ export default function SearchBar(props: any): ReactElement {
         className="navbar__search-input"
         onMouseEnter={onInputMouseEnter}
         onFocus={onInputFocus}
-        onBlur={onInputBlur}
         ref={searchBarRef}
       />
     </div>

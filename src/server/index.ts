@@ -8,7 +8,8 @@ import _debug from "debug";
 
 import { parse } from "./utils/parse";
 import { tokenizer } from "./utils/tokenizer";
-import { SearchDocument } from "../shared/interfaces";
+import { DocInfo, SearchDocument } from "../shared/interfaces";
+import { scanDocuments } from "./utils/scanDocuments";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("lunr-languages/lunr.stemmer.support")(lunr);
@@ -110,7 +111,7 @@ module.exports = function DocusaurusSearchLocalPlugin(
     }) {
       debug("Gathering documents");
 
-      const data = flatMap(routesPaths, (url: string): any => {
+      const data: DocInfo[] = flatMap(routesPaths, (url: string): any => {
         const route = url.substr(baseUrl.length);
         if (!url.startsWith(baseUrl)) {
           throw new Error(
@@ -139,9 +140,9 @@ module.exports = function DocusaurusSearchLocalPlugin(
         }
         return [];
       }).map(({ route, url, type }: any) => {
-        const file = path.join(outDir, route, "index.html");
+        const filePath = path.join(outDir, route, "index.html");
         return {
-          file,
+          filePath,
           url,
           type,
         };
@@ -150,50 +151,7 @@ module.exports = function DocusaurusSearchLocalPlugin(
       debug("Parsing documents");
 
       // Give every index entry a unique id so that the index does not need to store long URLs.
-      let nextDocId = 0;
-      const getNextDocId = () => {
-        return (nextDocId += 1);
-      };
-
-      const titleDocuments: SearchDocument[] = [];
-      const headingDocuments: SearchDocument[] = [];
-      const contentDocuments: SearchDocument[] = [];
-      const allDocuments = [titleDocuments, headingDocuments, contentDocuments];
-
-      await Promise.all(
-        data.map(async ({ file, url, type }) => {
-          debug(`Parsing ${type} file ${file}`, { url });
-
-          const html = await readFileAsync(file, { encoding: "utf8" });
-          const { pageTitle, sections } = parse(html, type, url);
-
-          const titleId = getNextDocId();
-
-          titleDocuments.push({
-            i: titleId,
-            t: pageTitle,
-            u: url,
-          });
-
-          for (const section of sections) {
-            if (section.title !== pageTitle) {
-              headingDocuments.push({
-                i: getNextDocId(),
-                t: section.title,
-                u: url + section.hash,
-                p: titleId,
-              });
-            }
-
-            contentDocuments.push({
-              i: getNextDocId(),
-              t: section.content,
-              u: url + section.hash,
-              p: titleId,
-            });
-          }
-        })
-      );
+      const allDocuments = await scanDocuments(data);
 
       debug("Building index");
 

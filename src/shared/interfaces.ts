@@ -85,3 +85,11 @@ export interface ParsedDocumentSection {
   hash: string;
   content: string;
 }
+
+export interface DocInfo {
+  filePath: string;
+  url: string;
+  type: DocInfoType;
+}
+
+export type DocInfoType = "docs" | "blog" | "page";
