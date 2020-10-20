@@ -1,6 +1,6 @@
 import fs from "fs";
 import { parse } from "./parse";
-import { DocInfo } from "../../shared/interfaces";
+import { DocInfoWithFilePath } from "../../shared/interfaces";
 
 jest.mock("./parse");
 jest.spyOn(fs, "readFile").mockImplementation((((
@@ -19,7 +19,7 @@ const mockParse = parse as jest.MockedFunction<typeof parse>;
 
 describe("scanDocuments", () => {
   test("should work", async () => {
-    const docInfoList: DocInfo[] = [
+    const DocInfoWithFilePathList: DocInfoWithFilePath[] = [
       {
         filePath: "/tmp/1",
         url: "/1",
@@ -61,7 +61,7 @@ describe("scanDocuments", () => {
         };
       }
     });
-    const allDocuments = await scanDocuments(docInfoList);
+    const allDocuments = await scanDocuments(DocInfoWithFilePathList);
     expect(allDocuments).toMatchInlineSnapshot(`
       Array [
         Array [

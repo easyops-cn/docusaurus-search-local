@@ -14,6 +14,9 @@
     "/dist",
     "!/dist/generated.js"
   ],
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "cheerio": "^1.0.0-rc.3",

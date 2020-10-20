@@ -86,10 +86,45 @@ export interface ParsedDocumentSection {
   content: string;
 }
 
-export interface DocInfo {
+export interface DocInfoWithRoute {
+  route: string;
+  url: string;
+  type: DocInfoType;
+}
+
+export interface DocInfoWithFilePath {
   filePath: string;
   url: string;
   type: DocInfoType;
 }
 
 export type DocInfoType = "docs" | "blog" | "page";
+
+export type SupportedLanguage = "en" | "zh";
+
+export interface PluginOptions {
+  indexDocs?: boolean;
+  indexBlog?: boolean;
+  indexPages?: boolean;
+  docsBasePath?: string;
+  blogBasePath?: string;
+  language?: SupportedLanguage | SupportedLanguage[];
+  hashed?: boolean;
+  docsDir?: string;
+  blogDir?: string;
+  removeDefaultStopWordFilter?: boolean;
+}
+
+export type ProcessedPluginOptions = Required<PluginOptions> & {
+  language: SupportedLanguage[];
+};
+
+export interface PostBuildData {
+  routesPaths: string[];
+  outDir: string;
+  baseUrl: string;
+}
+
+export interface DocusaurusContext {
+  siteDir: string;
+}

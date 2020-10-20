@@ -1,7 +1,7 @@
 import fs from "fs";
 import util from "util";
 import _debug from "debug";
-import { DocInfo, SearchDocument } from "../../shared/interfaces";
+import { DocInfoWithFilePath, SearchDocument } from "../../shared/interfaces";
 import { parse } from "./parse";
 
 const readFileAsync = util.promisify(fs.readFile);
@@ -13,7 +13,7 @@ const getNextDocId = () => {
 };
 
 export async function scanDocuments(
-  docInfoList: DocInfo[]
+  DocInfoWithFilePathList: DocInfoWithFilePath[]
 ): Promise<SearchDocument[][]> {
   const titleDocuments: SearchDocument[] = [];
   const headingDocuments: SearchDocument[] = [];
@@ -21,7 +21,7 @@ export async function scanDocuments(
   const allDocuments = [titleDocuments, headingDocuments, contentDocuments];
 
   await Promise.all(
-    docInfoList.map(async ({ filePath, url, type }) => {
+    DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
       debug(`Parsing ${type} file ${filePath}`, { url });
 
       const html = await readFileAsync(filePath, { encoding: "utf8" });

@@ -1,5 +1,7 @@
 import { generateTrimmer } from "./generateTrimmer";
 
+// `lunr-languages/lunr.stemmer.support` is required.
+
 export function lunrLanguageZh(lunr: any, tokenizer?: any): void {
   lunr.trimmerSupport.generateTrimmer = generateTrimmer;
 

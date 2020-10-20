@@ -18,5 +18,5 @@ declare module "autocomplete.js" {
 }
 
 declare module "*/generated.js" {
-  export const indexHash: string;
+  export const indexHash: string | undefined;
 }
