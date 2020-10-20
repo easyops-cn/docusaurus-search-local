@@ -2,37 +2,49 @@
   left: auto !important;
   right: 0 !important;
 
-  background: #f5f6f7;
-  background: var(--docsearch-modal-background);
+  background: var(--search-local-modal-background, #f5f6f7);
   border-radius: 6px;
-  box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5), 0 3px 8px 0 #555a64;
-  box-shadow: var(--docsearch-modal-shadow);
+  box-shadow: var(
+    --search-local-modal-shadow,
+    inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5),
+    0 3px 8px 0 #555a64
+  );
   margin-top: 8px;
   width: 560px;
-  width: var(--docsearch-modal-width);
+  width: var(--search-local-modal-width, 560px);
   position: relative;
 
-  padding: var(--docsearch-spacing);
+  padding: var(--search-local-spacing, 12px);
+}
+
+html[data-theme="dark"] .doc-search-bar .aa-dropdown-menu {
+  background: var(--search-local-modal-background, var(--ifm-background-color));
+  box-shadow: var(
+    --search-local-modal-shadow,
+    inset 1px 1px 0 0 #2c2e40,
+    0 3px 8px 0 #000309
+  );
 }
 
 .doc-search-bar .aa-dropdown-menu .aa-suggestion {
   cursor: pointer;
-  background: #fff;
-  background: var(--docsearch-hit-background);
+  background: var(--search-local-hit-background, #fff);
   border-radius: 4px;
-  box-shadow: 0 1px 3px 0 #d4d9e1;
-  box-shadow: var(--docsearch-hit-shadow);
-  padding: 0 12px;
-  padding: 0 var(--docsearch-spacing);
+  box-shadow: var(--search-local-hit-shadow, 0 1px 3px 0 #d4d9e1);
+  padding: 0 var(--search-local-spacing, 12px);
   width: 100%;
 
   align-items: center;
-  color: #444950;
-  color: var(--docsearch-hit-color);
+  color: var(--search-local-hit-color, #444950);
   display: flex;
   flex-direction: row;
-  height: 56px;
-  height: var(--docsearch-hit-height);
+  height: var(--search-local-hit-height, 56px);
+}
+
+html[data-theme="dark"] .aa-dropdown-menu .aa-suggestion {
+  background: var(--search-local-hit-background, var(--ifm-color-emphasis-100));
+  box-shadow: var(--search-local-hit-shadow, none);
+  color: var(--search-local-hit-color, var(--ifm-font-color-base));
 }
 
 .doc-search-bar .aa-dropdown-menu .aa-suggestion:not(:last-child) {
@@ -40,30 +52,39 @@
 }
 
 .doc-search-bar .aa-dropdown-menu .aa-suggestion.aa-cursor {
-  background-color: #5468ff;
-  background-color: var(--docsearch-highlight-color);
+  background-color: var(
+    --search-local-highlight-color,
+    var(--ifm-color-primary)
+  );
 }
 
 .doc-search-bar .aa-dropdown-menu .aa-suggestion-empty::after {
   content: "No results";
 }
 
+.doc-search-hit-tree,
+.doc-search-hit-icon,
+.doc-search-hit-path,
+.doc-search-empty-icon {
+  color: var(--search-local-muted-color, #969faf);
+}
+
+html[data-theme="dark"] .doc-search-hit-tree,
+html[data-theme="dark"] .doc-search-hit-icon,
+html[data-theme="dark"] .doc-search-hit-path,
+html[data-theme="dark"] .doc-search-empty-icon {
+  color: var(--search-local-muted-color, var(--ifm-color-secondary-darkest));
+}
+
 .doc-search-hit-tree {
-  color: #969faf;
-  color: var(--docsearch-muted-color);
-  height: 56px;
-  height: var(--docsearch-hit-height);
+  height: var(--search-local-hit-height, 56px);
   opacity: 0.5;
-  stroke-width: 1.4;
-  stroke-width: var(--docsearch-icon-stroke-width);
+  stroke-width: var(--search-local-icon-stroke-width, 1.4);
   width: 24px;
 }
 
 .doc-search-hit-icon {
-  color: #969faf;
-  color: var(--docsearch-muted-color);
-  stroke-width: 1.4;
-  stroke-width: var(--docsearch-icon-stroke-width);
+  stroke-width: var(--search-local-icon-stroke-width, 1.4);
 
   height: 20px;
   width: 20px;
@@ -82,8 +103,7 @@
 
 .doc-search-hit-wrapper mark {
   background: none;
-  color: #5468ff;
-  color: var(--docsearch-highlight-color);
+  color: var(--search-local-highlight-color, var(--ifm-color-primary));
 }
 
 .doc-search-hit-title {
@@ -94,8 +114,6 @@
 }
 
 .doc-search-hit-path {
-  color: #969faf;
-  color: var(--docsearch-muted-color);
   font-size: 0.75em;
 }
 
@@ -117,8 +135,6 @@
 }
 
 .doc-search-empty-icon {
-  color: #969faf;
-  color: var(--docsearch-muted-color);
   margin-bottom: 12px;
 }
 
@@ -130,8 +146,10 @@
 .aa-suggestion.aa-cursor mark,
 .aa-suggestion.aa-cursor .doc-search-hit-icon,
 .aa-suggestion.aa-cursor .doc-search-hit-path {
-  color: #fff !important;
-  color: var(--docsearch-hit-active-color) !important;
+  color: var(
+    --search-local-hit-active-color,
+    var(--ifm-color-white)
+  ) !important;
 }
 
 .aa-suggestion.aa-cursor mark {

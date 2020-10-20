@@ -5,7 +5,7 @@
 
 > Original forked from [cmfcmf/docusaurus-search-local](https://github.com/cmfcmf/docusaurus-search-local).
 >
-> Then later fully rewritten with TypeScript, styles polished, language of Chinese supported, and tests covered.
+> Then later fully rewritten with TypeScript 💪, styles polished 💅, language of Chinese supported 🇨🇳, and tests covered ✅.
 
 ## Installation
 
@@ -55,6 +55,38 @@ module.exports = {
 | docsDir                     | string             | -         | The dir of docs to get the content hash, it's relative to the siteDir of Docusaurus, defaults to `docsBasePath`.               |
 | blogDir                     | string             | -         | Just like the `docsDir` but applied to blog.                                                                                   |
 | removeDefaultStopWordFilter | boolean            | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs. |
+
+## Custom Styles
+
+This plugin is shipped with polished styles just like the Algolia Search on the Docusaurus V2 website. Feel free to override these css custom properties (css variables) below.
+
+| Var                              | Default (light)                                                        | Default (dark)                                          |
+| -------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------- |
+| --search-local-modal-background  | `#f5f6f7`                                                              | `var(--ifm-background-color)`                           |
+| --search-local-modal-shadow      | `inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5),`<br />`0 3px 8px 0 #555a64` | `inset 1px 1px 0 0 #2c2e40,`<br />`0 3px 8px 0 #000309` |
+| --search-local-modal-width       | `560px`                                                                | -                                                       |
+| --search-local-spacing           | `12px`                                                                 | -                                                       |
+| --search-local-hit-background    | `#fff`                                                                 | `var(--ifm-color-emphasis-100)`                         |
+| --search-local-hit-shadow        | `0 1px 3px 0 #d4d9e1`                                                  | `none`                                                  |
+| --search-local-hit-color         | `#444950`                                                              | `var(--ifm-font-color-base)`                            |
+| --search-local-hit-height        | `56px`                                                                 | -                                                       |
+| --search-local-highlight-color   | `var(--ifm-color-primary)`                                             | -                                                       |
+| --search-local-muted-color       | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
+| --search-local-icon-stroke-width | `1.4`                                                                  | -                                                       |
+| --search-local-hit-active-color  | `var(--ifm-color-white)`                                               | -                                                       |
+
+E.g.:
+
+```css
+:root {
+  --search-local-modal-width: 480px;
+  --search-local-highlight-color: #5468ff;
+}
+
+html[data-theme="dark"] {
+  --search-local-highlight-color: #d23669;
+}
+```
 
 ## Contributing
 
