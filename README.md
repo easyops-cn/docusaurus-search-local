@@ -7,6 +7,14 @@
 >
 > Then later fully rewritten with TypeScript 💪, styles polished 💅, language of Chinese supported 🇨🇳, and tests covered ✅.
 
+Live demo: https://easyops-cn.github.io/docusaurus-search-example/
+
+## Screen Shots
+
+![Screen Shot EN](screen-shots/screen-shot-en.png)
+
+![Screen Shot ZH](screen-shots/screen-shot-zh.png)
+
 ## Installation
 
 ```shell
