@@ -1,6 +1,7 @@
-import React, { ReactElement, useCallback, useRef } from "react";
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useHistory } from "@docusaurus/router";
+import clsx from "clsx";
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
@@ -31,6 +32,8 @@ export default function SearchBar({
   const indexState = useRef("empty"); // empty, loaded, done
   // Should the input be focused after the index is loaded?
   const focusAfterIndexLoaded = useRef(false);
+  const [loading, setLoading] = useState(false);
+  const [inputChanged, setInputChanged] = useState(false);
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -38,13 +41,14 @@ export default function SearchBar({
       return;
     }
     indexState.current = "loading";
+    setLoading(true);
 
     const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
       fetchIndexes(baseUrl),
       fetchAutoCompleteJS(),
     ]);
 
-    autoComplete(
+    const search = autoComplete(
       searchBarRef.current,
       {
         hint: false,
@@ -73,10 +77,16 @@ export default function SearchBar({
       history.push(document.u);
     });
 
-    if (focusAfterIndexLoaded.current) {
-      (searchBarRef.current as HTMLInputElement).focus();
-    }
     indexState.current = "done";
+    setLoading(false);
+
+    if (focusAfterIndexLoaded.current) {
+      const input = searchBarRef.current as HTMLInputElement;
+      if (input.value) {
+        search.autocomplete.open();
+      }
+      input.focus();
+    }
   }, [baseUrl, history]);
 
   const onInputFocus = useCallback(() => {
@@ -93,8 +103,21 @@ export default function SearchBar({
     loadIndex();
   }, [loadIndex]);
 
+  const onInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.value) {
+        setInputChanged(true);
+      }
+    },
+    []
+  );
+
   return (
-    <div className="navbar__search">
+    <div
+      className={clsx("navbar__search", {
+        "search-index-loading": loading && inputChanged,
+      })}
+    >
       <input
         placeholder="Search"
         aria-label="Search"
@@ -102,8 +125,15 @@ export default function SearchBar({
         onMouseEnter={onInputMouseEnter}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
+        onChange={onInputChange}
         ref={searchBarRef}
       />
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 }

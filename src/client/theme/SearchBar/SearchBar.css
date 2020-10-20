@@ -164,3 +164,67 @@ html[data-theme="dark"] .doc-search-empty-icon {
 .aa-suggestion.aa-cursor mark {
   text-decoration: underline;
 }
+
+/* Start: pure CSS loaders */
+/* https://loading.io/css/ */
+.lds-ring {
+  display: none;
+  position: absolute;
+  left: calc(var(--ifm-navbar-padding-horizontal) + 10px);
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  opacity: var(--search-local-loading-icon-opacity, 0.5);
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+  border: 2px solid
+    var(--search-load-loading-icon-color, var(--ifm-navbar-search-input-color));
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(
+      --search-load-loading-icon-color,
+      var(--ifm-navbar-search-input-color)
+    )
+    transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* End: pure CSS loaders */
+
+.navbar__search {
+  position: relative;
+}
+
+.search-index-loading .navbar__search-input {
+  background-image: none;
+}
+
+.search-index-loading .lds-ring {
+  display: inline-block;
+}
