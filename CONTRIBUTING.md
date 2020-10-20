@@ -17,7 +17,6 @@ yarn test
 
 ```shell
 yarn release
-git push --follow-tags origin master
-yarn build
-npm publish
+git push --follow-tags --atomic
+yarn build && npm publish
 ```
