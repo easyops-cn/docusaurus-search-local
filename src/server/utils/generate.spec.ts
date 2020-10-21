@@ -25,6 +25,15 @@ describe("generate", () => {
       ],
     ],
     [
+      ["es"],
+      [
+        'import lunr from "lunr";',
+        'require("lunr-languages/lunr.stemmer.support")(lunr);',
+        'require("lunr-languages/lunr.es")(lunr);',
+        'export const indexHash = "abc";',
+      ],
+    ],
+    [
       ["en", "zh"],
       [
         'import lunr from "lunr";',

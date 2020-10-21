@@ -7,7 +7,7 @@ export function generate(config: ProcessedPluginOptions): void {
   const { language } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = ['import lunr from "lunr";'];
-  if (language.length > 1 || language.includes("zh")) {
+  if (language.length > 1 || language.some((item) => item !== "en")) {
     contents.push('require("lunr-languages/lunr.stemmer.support")(lunr);');
   }
   for (const lang of language.filter(

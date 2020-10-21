@@ -10,7 +10,7 @@ export function buildIndex(
   allDocuments: SearchDocument[][],
   { language, removeDefaultStopWordFilter }: ProcessedPluginOptions
 ): Omit<WrappedIndex, "type">[] {
-  if (language.length > 1 || language.includes("zh")) {
+  if (language.length > 1 || language.some((item) => item !== "en")) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("lunr-languages/lunr.stemmer.support")(lunr);
   }
