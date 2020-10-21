@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.1...v0.6.2) (2020-10-21)
+
+### Bug Fixes
+
+- fix styles on mobile screen ([1cc6850](https://github.com/easyops-cn/docusaurus-search-local/commit/1cc6850402cd7eced043736d4b826f97bd2498f0))
+
 ### [0.6.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.0...v0.6.1) (2020-10-21)
 
 ### Bug Fixes
