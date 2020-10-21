@@ -30,11 +30,6 @@ export function processPluginOptions(
   } else {
     config.blogDir = path.resolve(siteDir, config.blogBasePath);
   }
-  // if (Array.isArray(config.language)) {
-  //   if (config.language.some(lang => lang !== "en" && lang !== "zh")) {
-  //     throw new Error(`Currently only language "en" and "zh" are supported, but received ${JSON.stringify(config.language)}`);
-  //   }
-  // }
   if (!Array.isArray(config.language)) {
     config.language = [config.language];
   }

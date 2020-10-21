@@ -100,15 +100,13 @@ export interface DocInfoWithFilePath {
 
 export type DocInfoType = "docs" | "blog" | "page";
 
-export type SupportedLanguage = "en" | "zh";
-
 export interface PluginOptions {
   indexDocs?: boolean;
   indexBlog?: boolean;
   indexPages?: boolean;
   docsBasePath?: string;
   blogBasePath?: string;
-  language?: SupportedLanguage | SupportedLanguage[];
+  language?: string | string[];
   hashed?: boolean;
   docsDir?: string;
   blogDir?: string;
@@ -116,7 +114,7 @@ export interface PluginOptions {
 }
 
 export type ProcessedPluginOptions = Required<PluginOptions> & {
-  language: SupportedLanguage[];
+  language: string[];
 };
 
 export interface PostBuildData {

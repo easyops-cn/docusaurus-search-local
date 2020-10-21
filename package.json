@@ -17,6 +17,7 @@
   "engines": {
     "node": ">=12"
   },
+  "license": "MIT",
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "cheerio": "^1.0.0-rc.3",
