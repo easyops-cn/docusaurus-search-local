@@ -7,7 +7,9 @@
 >
 > Then later fully rewritten with TypeScript 💪, styles polished 💅, language of Chinese supported 🇨🇳, and tests covered ✅.
 
-Live demo: https://easyops-cn.github.io/docusaurus-search-example/
+## Live demo
+
+https://easyops-cn.github.io/docusaurus-search-example/
 
 ## Screen Shots
 
@@ -43,11 +45,22 @@ module.exports = {
         // ```
         // language: ["en", "zh"],
         // ```
+        // When applying `zh` in language, please install `nodejieba` in your project.
       },
     ],
   ],
 };
 ````
+
+> Notice!
+>
+> When applying `"zh"` in language, please also install `nodejieba` in your project, it became a peer dependency since v0.7.0.
+
+```shell
+npm install nodejieba
+# or
+yarn add nodejieba
+```
 
 ## Plugin Options
 

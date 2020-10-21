@@ -24,8 +24,7 @@
     "debug": "^4.2.0",
     "klaw-sync": "^6.0.0",
     "lunr": "^2.3.9",
-    "lunr-languages": "^1.4.0",
-    "nodejieba": "^2.4.1"
+    "lunr-languages": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -55,9 +54,13 @@
     "husky": "^4.3.0",
     "jest": "^26.5.3",
     "lint-staged": "^10.4.1",
+    "nodejieba": "^2.4.1",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
+  },
+  "peerDependencies": {
+    "nodejieba": "^2.4.1"
   }
 }
