@@ -10,26 +10,26 @@ export function processPluginOptions(
       indexDocs: true,
       indexBlog: true,
       indexPages: false,
-      docsBasePath: "/docs",
-      blogBasePath: "/blog",
+      docsRouteBasePath: "/docs",
+      blogRouteBasePath: "/blog",
       language: "en",
       hashed: false,
+      docsDir: "docs",
+      blogDir: "blog",
       removeDefaultStopWordFilter: false,
     },
     options
   ) as ProcessedPluginOptions;
-  config.docsBasePath = (config.docsBasePath as string).replace(/^\//, "");
-  config.blogBasePath = (config.blogBasePath as string).replace(/^\//, "");
-  if (config.docsDir) {
-    config.docsDir = path.resolve(siteDir, config.docsDir);
-  } else {
-    config.docsDir = path.resolve(siteDir, config.docsBasePath);
-  }
-  if (config.blogDir) {
-    config.blogDir = path.resolve(siteDir, config.blogDir);
-  } else {
-    config.blogDir = path.resolve(siteDir, config.blogBasePath);
-  }
+  config.docsRouteBasePath = (config.docsRouteBasePath as string).replace(
+    /^\//,
+    ""
+  );
+  config.blogRouteBasePath = (config.blogRouteBasePath as string).replace(
+    /^\//,
+    ""
+  );
+  config.docsDir = path.resolve(siteDir, config.docsDir);
+  config.blogDir = path.resolve(siteDir, config.blogDir);
   if (!Array.isArray(config.language)) {
     config.language = [config.language];
   }

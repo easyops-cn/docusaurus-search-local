@@ -104,8 +104,8 @@ export interface PluginOptions {
   indexDocs?: boolean;
   indexBlog?: boolean;
   indexPages?: boolean;
-  docsBasePath?: string;
-  blogBasePath?: string;
+  docsRouteBasePath?: string;
+  blogRouteBasePath?: string;
   language?: string | string[];
   hashed?: boolean;
   docsDir?: string;

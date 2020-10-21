@@ -12,8 +12,8 @@ export function processDocInfos(
     indexDocs,
     indexBlog,
     indexPages,
-    docsBasePath,
-    blogBasePath,
+    docsRouteBasePath,
+    blogRouteBasePath,
   }: ProcessedPluginOptions
 ): DocInfoWithFilePath[] {
   return routesPaths
@@ -28,17 +28,17 @@ export function processDocInfos(
         // Do not index error page.
         return;
       }
-      if (indexBlog && urlMatchesPrefix(route, blogBasePath)) {
+      if (indexBlog && urlMatchesPrefix(route, blogRouteBasePath)) {
         if (
-          route === blogBasePath ||
-          urlMatchesPrefix(route, `${blogBasePath}/tags`)
+          route === blogRouteBasePath ||
+          urlMatchesPrefix(route, `${blogRouteBasePath}/tags`)
         ) {
           // Do not index list of blog posts and tags filter pages
           return;
         }
         return { route, url, type: "blog" };
       }
-      if (indexDocs && urlMatchesPrefix(route, docsBasePath)) {
+      if (indexDocs && urlMatchesPrefix(route, docsRouteBasePath)) {
         return { route, url, type: "docs" };
       }
       if (indexPages) {

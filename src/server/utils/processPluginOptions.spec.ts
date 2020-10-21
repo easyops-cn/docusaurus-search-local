@@ -8,9 +8,9 @@ describe("processPluginOptions", () => {
     [
       undefined,
       {
-        blogBasePath: "blog",
+        blogRouteBasePath: "blog",
         blogDir: "/tmp/blog",
-        docsBasePath: "docs",
+        docsRouteBasePath: "docs",
         docsDir: "/tmp/docs",
         hashed: false,
         indexBlog: true,
@@ -23,9 +23,9 @@ describe("processPluginOptions", () => {
     [
       { language: ["en", "zh"] },
       {
-        blogBasePath: "blog",
+        blogRouteBasePath: "blog",
         blogDir: "/tmp/blog",
-        docsBasePath: "docs",
+        docsRouteBasePath: "docs",
         docsDir: "/tmp/docs",
         hashed: false,
         indexBlog: true,
@@ -41,9 +41,9 @@ describe("processPluginOptions", () => {
         blogDir: "src/blog",
       },
       {
-        blogBasePath: "blog",
+        blogRouteBasePath: "blog",
         blogDir: "/tmp/src/blog",
-        docsBasePath: "docs",
+        docsRouteBasePath: "docs",
         docsDir: "/tmp/src/docs",
         hashed: false,
         indexBlog: true,
