@@ -73,6 +73,7 @@ This plugin is shipped with polished styles just like the Algolia Search on the 
 | --search-local-modal-background  | `#f5f6f7`                                                              | `var(--ifm-background-color)`                           |
 | --search-local-modal-shadow      | `inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5),`<br />`0 3px 8px 0 #555a64` | `inset 1px 1px 0 0 #2c2e40,`<br />`0 3px 8px 0 #000309` |
 | --search-local-modal-width       | `560px`                                                                | -                                                       |
+| --search-local-modal-width-sm    | `340px`                                                                | -                                                       |
 | --search-local-spacing           | `12px`                                                                 | -                                                       |
 | --search-local-hit-background    | `#fff`                                                                 | `var(--ifm-color-emphasis-100)`                         |
 | --search-local-hit-shadow        | `0 1px 3px 0 #d4d9e1`                                                  | `none`                                                  |

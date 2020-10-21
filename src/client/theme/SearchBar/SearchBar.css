@@ -10,11 +10,20 @@
     0 3px 8px 0 #555a64
   );
   margin-top: 8px;
-  width: 560px;
   width: var(--search-local-modal-width, 560px);
   position: relative;
 
   padding: var(--search-local-spacing, 12px);
+}
+
+@media (max-width: 576px) {
+  .navbar__search-input:not(:focus) {
+    width: 2rem;
+  }
+
+  .doc-search-bar .aa-dropdown-menu {
+    width: var(--search-local-modal-width-sm, 340px);
+  }
 }
 
 html[data-theme="dark"] .doc-search-bar .aa-dropdown-menu {
