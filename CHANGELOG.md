@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.7.0...v0.7.1) (2020-10-21)
+
+### Bug Fixes
+
+- fix nodejieba is still required ([78e4d67](https://github.com/easyops-cn/docusaurus-search-local/commit/78e4d677a5bccb0ae3aff0fc16c43ac031b911a3))
+
 ## [0.7.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.2...v0.7.0) (2020-10-21)
 
 ### ⚠ BREAKING CHANGES
