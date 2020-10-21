@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.0...v0.6.1) (2020-10-21)
+
+### Bug Fixes
+
+- languages of non-en require stemmer support ([bc8e451](https://github.com/easyops-cn/docusaurus-search-local/commit/bc8e451cfd65024d48f08c481f2cd4850c2d0dbd))
+
 ## [0.6.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.5.2...v0.6.0) (2020-10-20)
 
 ### ⚠ BREAKING CHANGES
