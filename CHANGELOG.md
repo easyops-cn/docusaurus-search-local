@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.2...v0.7.0) (2020-10-21)
+
+### ⚠ BREAKING CHANGES
+
+- users need to install `nodejieba` if using language of zh.
+
+### Features
+
+- make nodejieba as a peer dependency ([956b3b5](https://github.com/easyops-cn/docusaurus-search-local/commit/956b3b563c8662c8d8cb867ef174548221865754))
+
 ### [0.6.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.1...v0.6.2) (2020-10-21)
 
 ### Bug Fixes
