@@ -18,12 +18,12 @@ export function processDocInfos(
 ): DocInfoWithFilePath[] {
   return routesPaths
     .map<DocInfoWithRoute | undefined>((url: string) => {
-      const route = url.substr(baseUrl.length);
       if (!url.startsWith(baseUrl)) {
         throw new Error(
-          `The route must start with the baseUrl ${baseUrl}, but was ${route}. This is a bug, please report it.`
+          `The route must start with the baseUrl ${baseUrl}, but was ${url}. This is a bug, please report it.`
         );
       }
+      const route = url.substr(baseUrl.length);
       if (route === "404.html") {
         // Do not index error page.
         return;

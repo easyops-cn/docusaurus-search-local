@@ -1,16 +1,13 @@
 import path from "path";
 
-import {
-  DocusaurusContext,
-  ProcessedPluginOptions,
-} from "../shared/interfaces";
+import { DocusaurusContext, PluginOptions } from "../shared/interfaces";
 import { processPluginOptions } from "./utils/processPluginOptions";
 import { postBuildFactory } from "./utils/postBuildFactory";
 import { generate } from "./utils/generate";
 
 module.exports = function DocusaurusSearchLocalPlugin(
   context: DocusaurusContext,
-  options: ProcessedPluginOptions
+  options?: PluginOptions
 ): any {
   const config = processPluginOptions(options, context.siteDir);
 

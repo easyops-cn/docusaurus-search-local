@@ -21,10 +21,7 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
   if (files.length > 0) {
     const md5sum = crypto.createHash("md5");
     for (const item of files) {
-      const filePath = item.path;
-      if (filePath.endsWith(".md")) {
-        md5sum.update(fs.readFileSync(filePath));
-      }
+      md5sum.update(fs.readFileSync(item.path));
     }
     return md5sum.digest("hex").substring(0, 8);
   }

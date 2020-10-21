@@ -8,6 +8,7 @@ jest.mock("./getIndexHash");
 const mockWriteFileSync = jest
   .spyOn(fs, "writeFileSync")
   .mockImplementation(() => void 0);
+
 (getIndexHash as jest.MockedFunction<typeof getIndexHash>).mockReturnValue(
   "abc"
 );
@@ -54,7 +55,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
       ],
     ],
-  ])("", (language, contents) => {
+  ])("generate({ language: %j }) should work", (language, contents) => {
     generate({ language } as ProcessedPluginOptions);
     expect(mockWriteFileSync).toBeCalledWith(
       expect.stringContaining("generated.js"),

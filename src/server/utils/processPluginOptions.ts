@@ -2,7 +2,7 @@ import path from "path";
 import { PluginOptions, ProcessedPluginOptions } from "../../shared/interfaces";
 
 export function processPluginOptions(
-  options: PluginOptions,
+  options: PluginOptions | undefined,
   siteDir: string
 ): ProcessedPluginOptions {
   const config = Object.assign(
