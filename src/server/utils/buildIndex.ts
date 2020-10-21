@@ -4,7 +4,6 @@ import {
   SearchDocument,
   WrappedIndex,
 } from "../../shared/interfaces";
-import { tokenizer } from "./tokenizer";
 
 export function buildIndex(
   allDocuments: SearchDocument[][],
@@ -22,7 +21,11 @@ export function buildIndex(
   }
   if (language.includes("zh")) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require("../../shared/lunrLanguageZh").lunrLanguageZh(lunr, tokenizer);
+    require("../../shared/lunrLanguageZh").lunrLanguageZh(
+      lunr,
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      require("./tokenizer").tokenizer
+    );
   }
   if (language.length > 1) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
