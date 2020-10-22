@@ -76,6 +76,7 @@ yarn add nodejieba
 | docsDir                     | string             | `"docs"`  | The dir of docs to get the content hash, it's relative to the dir of your project.                                             |
 | blogDir                     | string             | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                   |
 | removeDefaultStopWordFilter | boolean            | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs. |
+| searchResultLimits          | number             | `8`       | Limit the search results.                                                                                                      |
 
 ## Custom Styles
 

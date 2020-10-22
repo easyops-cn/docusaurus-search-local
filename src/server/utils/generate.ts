@@ -4,7 +4,7 @@ import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
 export function generate(config: ProcessedPluginOptions): void {
-  const { language } = config;
+  const { language, searchResultLimits } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = ['import lunr from "lunr";'];
   if (language.length > 1 || language.some((item) => item !== "en")) {
@@ -24,6 +24,9 @@ export function generate(config: ProcessedPluginOptions): void {
     contents.push('require("lunr-languages/lunr.multi")(lunr);');
   }
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
+  contents.push(
+    `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`
+  );
 
   fs.writeFileSync(
     path.resolve(__dirname, "../../../generated.js"),

@@ -7,6 +7,9 @@ import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
 import { EmptyTemplate } from "../../utils/EmptyTemplate.js";
 import { SearchResult } from "../../../shared/interfaces";
 
+// This file is auto generated while building.
+import { searchResultLimits } from "../../../../generated.js";
+
 import "./SearchBar.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
@@ -14,8 +17,6 @@ async function fetchAutoCompleteJS(): Promise<any> {
   autoComplete.noConflict();
   return autoComplete.default;
 }
-
-const SEARCH_RESULT_LIMITS = 8;
 
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
@@ -60,7 +61,7 @@ export default function SearchBar({
           source: SearchSourceFactory(
             wrappedIndexes,
             zhDictionary,
-            SEARCH_RESULT_LIMITS
+            searchResultLimits
           ),
           templates: {
             suggestion: SuggestionTemplate,

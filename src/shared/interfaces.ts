@@ -111,6 +111,7 @@ export interface PluginOptions {
   docsDir?: string;
   blogDir?: string;
   removeDefaultStopWordFilter?: boolean;
+  searchResultLimits?: number;
 }
 
 export type ProcessedPluginOptions = Required<PluginOptions> & {

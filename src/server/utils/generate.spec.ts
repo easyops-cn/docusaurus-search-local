@@ -15,7 +15,14 @@ const mockWriteFileSync = jest
 
 describe("generate", () => {
   test.each<[string[], string[]]>([
-    [["en"], ['import lunr from "lunr";', 'export const indexHash = "abc";']],
+    [
+      ["en"],
+      [
+        'import lunr from "lunr";',
+        'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
+      ],
+    ],
     [
       ["zh"],
       [
@@ -23,6 +30,7 @@ describe("generate", () => {
         'require("lunr-languages/lunr.stemmer.support")(lunr);',
         'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
       ],
     ],
     [
@@ -32,6 +40,7 @@ describe("generate", () => {
         'require("lunr-languages/lunr.stemmer.support")(lunr);',
         'require("lunr-languages/lunr.es")(lunr);',
         'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
       ],
     ],
     [
@@ -42,6 +51,7 @@ describe("generate", () => {
         'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'require("lunr-languages/lunr.multi")(lunr);',
         'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
       ],
     ],
     [
@@ -53,10 +63,11 @@ describe("generate", () => {
         'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'require("lunr-languages/lunr.multi")(lunr);',
         'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
       ],
     ],
   ])("generate({ language: %j }) should work", (language, contents) => {
-    generate({ language } as ProcessedPluginOptions);
+    generate({ language, searchResultLimits: 8 } as ProcessedPluginOptions);
     expect(mockWriteFileSync).toBeCalledWith(
       expect.stringContaining("generated.js"),
       contents.join("\n")
