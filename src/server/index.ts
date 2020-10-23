@@ -7,7 +7,7 @@ import { generate } from "./utils/generate";
 
 const PLUGIN_NAME = "@easyops-cn/docusaurus-search-local";
 
-module.exports = function DocusaurusSearchLocalPlugin(
+export default function DocusaurusSearchLocalPlugin(
   context: DocusaurusContext,
   options?: PluginOptions
 ): any {
@@ -24,4 +24,6 @@ module.exports = function DocusaurusSearchLocalPlugin(
     },
     postBuild: postBuildFactory(config),
   };
-};
+}
+
+export { validateOptions } from "./utils/validateOptions";

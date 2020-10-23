@@ -115,7 +115,9 @@ export interface PluginOptions {
   searchResultContextMaxLength?: number;
 }
 
-export type ProcessedPluginOptions = Required<PluginOptions> & {
+export type ProcessedPluginOptions = Required<
+  Omit<PluginOptions, "language">
+> & {
   language: string[];
 };
 
