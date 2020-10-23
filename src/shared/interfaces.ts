@@ -127,4 +127,5 @@ export interface PostBuildData {
 
 export interface DocusaurusContext {
   siteDir: string;
+  generatedFilesDir: string;
 }

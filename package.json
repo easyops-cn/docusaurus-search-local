@@ -24,6 +24,7 @@
     "autocomplete.js": "^0.38.0",
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.2.0",
+    "fs-extra": "^9.0.1",
     "klaw-sync": "^6.0.0",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0"
@@ -36,6 +37,7 @@
     "@types/debug": "^4.1.5",
     "@types/enzyme": "^3.10.7",
     "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/fs-extra": "^9.0.2",
     "@types/jest": "^26.0.14",
     "@types/klaw-sync": "^6.0.0",
     "@types/lunr": "^2.3.3",
