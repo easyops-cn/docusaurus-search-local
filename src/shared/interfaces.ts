@@ -112,6 +112,7 @@ export interface PluginOptions {
   blogDir?: string;
   removeDefaultStopWordFilter?: boolean;
   searchResultLimits?: number;
+  searchResultContextMaxLength?: number;
 }
 
 export type ProcessedPluginOptions = Required<PluginOptions> & {

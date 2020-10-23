@@ -2,13 +2,8 @@ import lunr from "lunr";
 import { fetchIndexes } from "./fetchIndexes";
 
 jest.mock("lunr");
-jest.mock(
-  "../../../../generated.js",
-  () => ({
-    indexHash: "abc",
-  }),
-  { virtual: true }
-);
+jest.mock("../../utils/proxiedGenerated");
+
 const mockLunrIndexLoad = (jest.spyOn(
   lunr.Index,
   "load"

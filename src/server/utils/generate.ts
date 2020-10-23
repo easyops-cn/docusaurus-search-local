@@ -4,7 +4,7 @@ import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
 export function generate(config: ProcessedPluginOptions): void {
-  const { language, searchResultLimits } = config;
+  const { language, searchResultLimits, searchResultContextMaxLength } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = ['import lunr from "lunr";'];
   if (language.length > 1 || language.some((item) => item !== "en")) {
@@ -25,7 +25,10 @@ export function generate(config: ProcessedPluginOptions): void {
   }
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
   contents.push(
-    `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`
+    `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
+    `export const searchResultContextMaxLength = ${JSON.stringify(
+      searchResultContextMaxLength
+    )};`
   );
 
   fs.writeFileSync(

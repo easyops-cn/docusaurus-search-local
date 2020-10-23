@@ -18,6 +18,7 @@ export function processPluginOptions(
       blogDir: "blog",
       removeDefaultStopWordFilter: false,
       searchResultLimits: 8,
+      searchResultContextMaxLength: 50,
     },
     options
   ) as ProcessedPluginOptions;

@@ -1,6 +1,7 @@
 import { SuggestionTemplate } from "./SuggestionTemplate";
 
 jest.mock("./icons");
+jest.mock("./proxiedGenerated");
 
 describe("SuggestionTemplate", () => {
   test("page title", () => {

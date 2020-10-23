@@ -5,6 +5,8 @@ import {
 } from "../../shared/interfaces";
 import { highlightStemmed, splitIntoChunks } from "./highlightStemmed";
 
+jest.mock("./proxiedGenerated");
+
 describe("highlightStemmed", () => {
   test.each<[string, MetadataPosition[], string[], number | undefined, string]>(
     [
@@ -158,7 +160,7 @@ describe("splitIntoChunks", () => {
   ])(
     "splitIntoChunks('%s', %j, %j, 0, 0) should return %j",
     (text, positions, tokens, chunks, chunkIndex) => {
-      const chunkIndexRef: ChunkIndexRef = {};
+      const chunkIndexRef = {} as ChunkIndexRef;
       expect(
         splitIntoChunks(text, positions, tokens, 0, 0, chunkIndexRef)
       ).toEqual(chunks);

@@ -8,8 +8,7 @@ import { EmptyTemplate } from "../../utils/EmptyTemplate.js";
 import { SearchResult } from "../../../shared/interfaces";
 
 // This file is auto generated while building.
-import { searchResultLimits } from "../../../../generated.js";
-
+import { searchResultLimits } from "../../utils/proxiedGenerated";
 import "./SearchBar.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {

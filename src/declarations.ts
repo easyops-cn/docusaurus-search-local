@@ -20,4 +20,5 @@ declare module "autocomplete.js" {
 declare module "*/generated.js" {
   export const indexHash: string | undefined;
   export const searchResultLimits: number;
+  export const searchResultContextMaxLength: number;
 }

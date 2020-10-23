@@ -19,6 +19,7 @@ describe("processPluginOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
       },
     ],
     [
@@ -35,6 +36,7 @@ describe("processPluginOptions", () => {
         language: ["en", "zh"],
         removeDefaultStopWordFilter: false,
         searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
       },
     ],
     [
@@ -42,6 +44,7 @@ describe("processPluginOptions", () => {
         docsDir: "src/docs",
         blogDir: "src/blog",
         searchResultLimits: 5,
+        searchResultContextMaxLength: 30,
       },
       {
         blogRouteBasePath: "blog",
@@ -55,6 +58,7 @@ describe("processPluginOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         searchResultLimits: 5,
+        searchResultContextMaxLength: 30,
       },
     ],
   ])("processPluginOptions(...) should work", (options, config) => {
