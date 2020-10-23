@@ -1,7 +1,10 @@
 # @easyops-cn/docusaurus-search-local
 
+![Npm Version](https://img.shields.io/npm/v/@easyops-cn/docusaurus-search-local)
 [![Build Status](https://travis-ci.com/easyops-cn/docusaurus-search-local.svg?branch=master)](https://travis-ci.com/easyops-cn/docusaurus-search-local)
 [![Coverage Status](https://coveralls.io/repos/github/easyops-cn/docusaurus-search-local/badge.svg?branch=master)](https://coveralls.io/github/easyops-cn/docusaurus-search-local?branch=master)
+
+An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/).
 
 > Original forked from [cmfcmf/docusaurus-search-local](https://github.com/cmfcmf/docusaurus-search-local).
 >
@@ -81,7 +84,7 @@ yarn add nodejieba
 
 ## Custom Styles
 
-This plugin is shipped with polished styles just like the Algolia Search on the Docusaurus V2 website. Feel free to override these css custom properties (css variables) below.
+This plugin is shipped with polished styles just like the Algolia Search on the Docusaurus v2 website. Feel free to override these css custom properties (css variables) below.
 
 | Var                              | Default (light)                                                        | Default (dark)                                          |
 | -------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------- |
