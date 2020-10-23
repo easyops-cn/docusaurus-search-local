@@ -3,25 +3,39 @@ import path from "path";
 import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
-export function generate(config: ProcessedPluginOptions): void {
+export function generate(config: ProcessedPluginOptions, dir: string): void {
   const { language, searchResultLimits, searchResultContextMaxLength } = config;
   const indexHash = getIndexHash(config);
-  const contents: string[] = ['import lunr from "lunr";'];
+  const contents: string[] = [
+    `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
+  ];
   if (language.length > 1 || language.some((item) => item !== "en")) {
-    contents.push('require("lunr-languages/lunr.stemmer.support")(lunr);');
+    contents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/lunr.stemmer.support")
+      )})(lunr);`
+    );
   }
   for (const lang of language.filter(
     (item) => item !== "en" && item !== "zh"
   )) {
-    contents.push(`require("lunr-languages/lunr.${lang}")(lunr);`);
+    contents.push(
+      `require(${JSON.stringify(
+        require.resolve(`lunr-languages/lunr.${lang}`)
+      )})(lunr);`
+    );
   }
   if (language.includes("zh")) {
     contents.push(
-      'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);'
+      'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);'
     );
   }
   if (language.length > 1) {
-    contents.push('require("lunr-languages/lunr.multi")(lunr);');
+    contents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/lunr.multi")
+      )})(lunr);`
+    );
   }
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
   contents.push(
@@ -31,8 +45,5 @@ export function generate(config: ProcessedPluginOptions): void {
     )};`
   );
 
-  fs.writeFileSync(
-    path.resolve(__dirname, "../../../generated.js"),
-    contents.join("\n")
-  );
+  fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 }

@@ -14,11 +14,11 @@ const mockWriteFileSync = jest
 );
 
 describe("generate", () => {
-  test.each<[string[], string[]]>([
+  test.each<[string[], any[]]>([
     [
       ["en"],
       [
-        'import lunr from "lunr";',
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -27,9 +27,11 @@ describe("generate", () => {
     [
       ["zh"],
       [
-        'import lunr from "lunr";',
-        'require("lunr-languages/lunr.stemmer.support")(lunr);',
-        'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+        ),
+        'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -38,9 +40,13 @@ describe("generate", () => {
     [
       ["es"],
       [
-        'import lunr from "lunr";',
-        'require("lunr-languages/lunr.stemmer.support")(lunr);',
-        'require("lunr-languages/lunr.es")(lunr);',
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+        ),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
+        ),
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -49,10 +55,14 @@ describe("generate", () => {
     [
       ["en", "zh"],
       [
-        'import lunr from "lunr";',
-        'require("lunr-languages/lunr.stemmer.support")(lunr);',
-        'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
-        'require("lunr-languages/lunr.multi")(lunr);',
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+        ),
+        'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
+        ),
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -61,25 +71,38 @@ describe("generate", () => {
     [
       ["en", "es", "zh"],
       [
-        'import lunr from "lunr";',
-        'require("lunr-languages/lunr.stemmer.support")(lunr);',
-        'require("lunr-languages/lunr.es")(lunr);',
-        'require("./client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
-        'require("lunr-languages/lunr.multi")(lunr);',
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+        ),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
+        ),
+        'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
+        ),
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
       ],
     ],
-  ])("generate({ language: %j }) should work", (language, contents) => {
-    generate({
-      language,
-      searchResultLimits: 8,
-      searchResultContextMaxLength: 50,
-    } as ProcessedPluginOptions);
-    expect(mockWriteFileSync).toBeCalledWith(
-      expect.stringContaining("generated.js"),
-      contents.join("\n")
+  ])("generate({ language: %j }, dir) should work", (language, contents) => {
+    generate(
+      {
+        language,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      } as ProcessedPluginOptions,
+      "/tmp"
     );
+    expect(mockWriteFileSync).toBeCalledWith(
+      "/tmp/generated.js",
+      expect.any(String)
+    );
+    const calledContents = (mockWriteFileSync.mock.calls[0][1] as string).split(
+      "\n"
+    );
+    expect(calledContents).toEqual(contents);
   });
 });

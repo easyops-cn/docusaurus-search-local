@@ -1,23 +1,29 @@
 import path from "path";
-
+import fs from "fs-extra";
 import { DocusaurusContext, PluginOptions } from "../shared/interfaces";
 import { processPluginOptions } from "./utils/processPluginOptions";
 import { postBuildFactory } from "./utils/postBuildFactory";
 import { generate } from "./utils/generate";
 
-module.exports = function DocusaurusSearchLocalPlugin(
+const PLUGIN_NAME = "@easyops-cn/docusaurus-search-local";
+
+export default function DocusaurusSearchLocalPlugin(
   context: DocusaurusContext,
   options?: PluginOptions
 ): any {
   const config = processPluginOptions(options, context.siteDir);
 
-  generate(config);
+  const dir = path.join(context.generatedFilesDir, PLUGIN_NAME, "default");
+  fs.ensureDirSync(dir);
+  generate(config, dir);
 
   return {
-    name: "@easyops-cn/docusaurus-search-local",
+    name: PLUGIN_NAME,
     getThemePath() {
       return path.resolve(__dirname, "../../client/client/theme");
     },
     postBuild: postBuildFactory(config),
   };
-};
+}
+
+export { validateOptions } from "./utils/validateOptions";

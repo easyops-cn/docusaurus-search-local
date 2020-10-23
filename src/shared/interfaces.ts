@@ -115,7 +115,9 @@ export interface PluginOptions {
   searchResultContextMaxLength?: number;
 }
 
-export type ProcessedPluginOptions = Required<PluginOptions> & {
+export type ProcessedPluginOptions = Required<
+  Omit<PluginOptions, "language">
+> & {
   language: string[];
 };
 
@@ -127,4 +129,5 @@ export interface PostBuildData {
 
 export interface DocusaurusContext {
   siteDir: string;
+  generatedFilesDir: string;
 }
