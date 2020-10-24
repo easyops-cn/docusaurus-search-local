@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.9.0...v0.9.1) (2020-10-24)
+
+
+### Bug Fixes
+
+* check dir before create content hash ([faf9cf7](https://www.github.com/easyops-cn/docusaurus-search-local/commit/faf9cf7e338a0fbc6de06a42a8cf4148c0ff0bab))
+
 ## [0.9.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.8.0...v0.9.0) (2020-10-23)
 
 
