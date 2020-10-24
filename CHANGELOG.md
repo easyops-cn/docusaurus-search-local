@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.8.0...v0.9.0) (2020-10-23)
+
+
+### Features
+
+* add a plugin option `searchResultLimits` ([0bdec39](https://www.github.com/easyops-cn/docusaurus-search-local/commit/0bdec39951a78d86d31e9885fd9e91ffad25a5f4))
+* add a plugin option of `searchResultContextMaxLength` ([3313552](https://www.github.com/easyops-cn/docusaurus-search-local/commit/33135529c277431db78ed374eb83de23667ecc38))
+* validate options using Joi ([0b1361a](https://www.github.com/easyops-cn/docusaurus-search-local/commit/0b1361a5d7e3ca9c5dd35fc89d64098c8670e7d1))
+
 ## [0.8.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.6.0...v0.8.0) (2020-10-21)
 
 ### ⚠ BREAKING CHANGES
