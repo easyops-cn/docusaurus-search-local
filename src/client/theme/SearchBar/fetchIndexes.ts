@@ -4,8 +4,6 @@ import {
   SearchDocumentType,
   WrappedIndex,
 } from "../../../shared/interfaces";
-
-// This file is auto generated while building.
 import { indexHash } from "../../utils/proxiedGenerated";
 
 interface SerializedIndex {

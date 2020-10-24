@@ -8,16 +8,31 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
     return null;
   }
   const files: klawSync.Item[] = [];
-  if (config.indexDocs) {
-    files.push(
-      ...klawSync(config.docsDir, { nodir: true, filter: markdownFilter })
-    );
-  }
-  if (config.indexBlog) {
-    files.push(
-      ...klawSync(config.blogDir, { nodir: true, filter: markdownFilter })
-    );
-  }
+
+  const scanFiles = (
+    flagField: "indexDocs" | "indexBlog",
+    dirField: "docsDir" | "blogDir"
+  ): void => {
+    if (config[flagField]) {
+      if (!fs.existsSync(config[dirField])) {
+        console.warn(
+          `Warn: \`${dirField}\` doesn't exist: "${config[dirField]}".`
+        );
+      } else if (!fs.lstatSync(config[dirField]).isDirectory()) {
+        console.warn(
+          `Warn: \`${dirField}\` is not a directory: "${config[dirField]}".`
+        );
+      } else {
+        files.push(
+          ...klawSync(config[dirField], { nodir: true, filter: markdownFilter })
+        );
+      }
+    }
+  };
+
+  scanFiles("indexDocs", "docsDir");
+  scanFiles("indexBlog", "blogDir");
+
   if (files.length > 0) {
     const md5sum = crypto.createHash("md5");
     for (const item of files) {

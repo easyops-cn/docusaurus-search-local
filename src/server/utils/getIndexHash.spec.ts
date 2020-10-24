@@ -5,6 +5,9 @@ import { getIndexHash } from "./getIndexHash";
 
 jest.mock("klaw-sync");
 jest.mock("fs");
+const mockConsoleWarn = jest
+  .spyOn(console, "warn")
+  .mockImplementation(() => void 0);
 
 (klawSync as jest.MockedFunction<typeof klawSync>).mockImplementation(
   (root, options) => {
@@ -27,12 +30,33 @@ jest.mock("fs");
   throw new Error(`Unknown file: ${filePath}`);
 });
 
+(fs.existsSync as jest.MockedFunction<typeof fs.existsSync>).mockImplementation(
+  (filePath: string) => {
+    return filePath.startsWith("/tmp/");
+  }
+);
+
+(fs.lstatSync as jest.MockedFunction<typeof fs.lstatSync>).mockImplementation(
+  (filePath: string) => {
+    return {
+      isDirectory: () => !filePath.includes("."),
+    } as fs.Stats;
+  }
+);
+
 describe("getIndexHash", () => {
-  test.each<[Partial<ProcessedPluginOptions>, string | null]>([
-    [{ hashed: false }, null],
-    [{ hashed: true, indexDocs: true, docsDir: "/tmp/docs" }, "a387bd69"],
-    [{ hashed: true, indexBlog: true, blogDir: "/tmp/blog" }, null],
-  ])("getIndexHash(%j) should return '%s'", (config, hash) => {
+  test.each<[Partial<ProcessedPluginOptions>, string | null, number]>([
+    [{ hashed: false }, null, 0],
+    [{ hashed: true, indexDocs: true, docsDir: "/tmp/docs" }, "a387bd69", 0],
+    [{ hashed: true, indexBlog: true, blogDir: "/tmp/blog" }, null, 0],
+    [
+      { hashed: true, indexDocs: true, docsDir: "/does-not-exist/docs" },
+      null,
+      1,
+    ],
+    [{ hashed: true, indexDocs: true, docsDir: "/tmp/index.js" }, null, 1],
+  ])("getIndexHash(%j) should return '%s'", (config, hash, warnCount) => {
     expect(getIndexHash(config as ProcessedPluginOptions)).toBe(hash);
+    expect(mockConsoleWarn).toBeCalledTimes(warnCount);
   });
 });
