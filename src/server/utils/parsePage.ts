@@ -1,13 +1,10 @@
 import { ParsedDocument } from "../../shared/interfaces";
+import { debugWarn } from "./debug";
 import { getCondensedText } from "./getCondensedText";
-import _debug from "debug";
-
-const debug = _debug("search-local");
 
 export function parsePage($: cheerio.Root, url: string): ParsedDocument {
   $("a[aria-hidden=true]").remove();
 
-  $("a[aria-hidden=true]").remove();
   let $pageTitle = $("h1").first();
   if ($pageTitle.length === 0) {
     $pageTitle = $("title");
@@ -17,8 +14,8 @@ export function parsePage($: cheerio.Root, url: string): ParsedDocument {
 
   const $main = $("main");
   if ($main.length === 0) {
-    debug(
-      "Page has no <main>, therefore no content was indexed for this page '%s'.",
+    debugWarn(
+      "page has no <main>, therefore no content was indexed for this page %o",
       url
     );
   }

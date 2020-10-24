@@ -1,11 +1,11 @@
 import fs from "fs";
+import path from "path";
 import util from "util";
-import _debug from "debug";
 import { DocInfoWithFilePath, SearchDocument } from "../../shared/interfaces";
 import { parse } from "./parse";
+import { debugVerbose } from "./debug";
 
 const readFileAsync = util.promisify(fs.readFile);
-const debug = _debug("search-local");
 
 let nextDocId = 0;
 const getNextDocId = () => {
@@ -22,7 +22,12 @@ export async function scanDocuments(
 
   await Promise.all(
     DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
-      debug(`Parsing ${type} file ${filePath}`, { url });
+      debugVerbose(
+        `parsing %s file %o of %o`,
+        type,
+        path.relative(process.cwd(), filePath),
+        url
+      );
 
       const html = await readFileAsync(filePath, { encoding: "utf8" });
       const { pageTitle, sections } = parse(html, type, url);

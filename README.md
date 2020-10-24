@@ -115,6 +115,15 @@ html[data-theme="dark"] {
 }
 ```
 
+## Trouble Shooting
+
+When building your docs project, Set the env `DEBUG=search-local:*` to enable [debug](https://github.com/visionmedia/debug) logs.
+
+```shell
+# In your docs project:
+DEBUG=search-local:* yarn build
+```
+
 ## Contributing
 
 See [contributing guide](CONTRIBUTING.md).
