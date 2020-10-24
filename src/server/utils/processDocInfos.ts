@@ -18,9 +18,10 @@ export function processDocInfos(
 ): DocInfoWithFilePath[] {
   return routesPaths
     .map<DocInfoWithRoute | undefined>((url: string) => {
+      // istanbul ignore next
       if (!url.startsWith(baseUrl)) {
         throw new Error(
-          `The route must start with the baseUrl ${baseUrl}, but was ${url}. This is a bug, please report it.`
+          `The route must start with the baseUrl "${baseUrl}", but was "${url}". This is a bug, please report it.`
         );
       }
       const route = url.substr(baseUrl.length);

@@ -6,8 +6,6 @@ import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
 import { EmptyTemplate } from "../../utils/EmptyTemplate.js";
 import { SearchResult } from "../../../shared/interfaces";
-
-// This file is auto generated while building.
 import { searchResultLimits } from "../../utils/proxiedGenerated";
 import "./SearchBar.css";
 

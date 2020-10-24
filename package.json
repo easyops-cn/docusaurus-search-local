@@ -5,8 +5,13 @@
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
   "scripts": {
     "test": "jest",
+    "start": "concurrently -k -n client,server \"npm run start:client\" \"npm run start:server\"",
+    "start:client": "tsc --watch --project tsconfig.client.json",
+    "start:server": "tsc --watch --project tsconfig.server.json",
     "prebuild": "rimraf dist",
-    "build": "tsc --project tsconfig.client.json && tsc --project tsconfig.server.json",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "tsc --project tsconfig.client.json",
+    "build:server": "tsc --project tsconfig.server.json",
     "postbuild": "copyfiles -f src/client/theme/SearchBar/SearchBar.css dist/client/client/theme/SearchBar",
     "release": "standard-version",
     "coveralls": "coveralls < .coverage/lcov.info"
@@ -48,6 +53,7 @@
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
     "babel-jest": "^26.5.2",
+    "concurrently": "^5.3.0",
     "copyfiles": "^2.4.0",
     "coveralls": "^3.1.0",
     "enzyme": "^3.11.0",
