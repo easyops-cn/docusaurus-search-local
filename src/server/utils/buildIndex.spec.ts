@@ -19,6 +19,10 @@ describe("buildIndex", () => {
         i: 3,
         t: "Hola Mundo",
       },
+      {
+        i: 4,
+        t: "私は電車が好きです。",
+      },
     ],
   ];
   let buildIndex: typeof _buildIndex;
@@ -90,6 +94,37 @@ describe("buildIndex", () => {
     expect(wrappedIndexes[0].index.search("hola")).toEqual([
       expect.objectContaining({
         ref: "3",
+      }),
+    ]);
+  });
+
+  test('should work for ["ja"]', () => {
+    const wrappedIndexes = buildIndex(
+      allDocuments as SearchDocument[][],
+      {
+        language: ["ja"],
+        removeDefaultStopWordFilter: false,
+      } as ProcessedPluginOptions
+    );
+
+    expect(wrappedIndexes[0].index.search("hello")).toEqual([
+      expect.objectContaining({
+        ref: "1",
+      }),
+    ]);
+    expect(wrappedIndexes[0].index.search("世界")).toEqual([
+      expect.objectContaining({
+        ref: "2",
+      }),
+    ]);
+    expect(wrappedIndexes[0].index.search("hola")).toEqual([
+      expect.objectContaining({
+        ref: "3",
+      }),
+    ]);
+    expect(wrappedIndexes[0].index.search("好き")).toEqual([
+      expect.objectContaining({
+        ref: "4",
       }),
     ]);
   });

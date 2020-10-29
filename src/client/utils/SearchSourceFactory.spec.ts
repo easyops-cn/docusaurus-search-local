@@ -1,10 +1,8 @@
 import lunr from "lunr";
-import {
-  SearchDocument,
-  SearchResult,
-  WrappedIndex,
-} from "../../shared/interfaces";
+import { SearchDocument } from "../../shared/interfaces";
 import { SearchSourceFactory } from "./SearchSourceFactory";
+
+jest.mock("./proxiedGenerated");
 
 describe("SearchSourceFactory", () => {
   const documentsOfTitles: SearchDocument[] = [

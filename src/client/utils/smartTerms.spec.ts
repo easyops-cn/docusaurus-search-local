@@ -25,6 +25,7 @@ describe("smartTerms", () => {
       ],
     ],
     [["hello", "world", "命"], []],
+    [["alfabetização"], [["alfabetização"]]],
   ])("smartTerms(%j, zhDictionary) should return %j", (tokens, queries) => {
     expect(smartTerms(tokens, zhDictionary)).toEqual(queries);
   });

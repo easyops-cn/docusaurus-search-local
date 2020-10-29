@@ -13,6 +13,10 @@ export function buildIndex(
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("lunr-languages/lunr.stemmer.support")(lunr);
   }
+  if (language.includes("ja") || language.includes("jp")) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require("lunr-languages/tinyseg")(lunr);
+  }
   for (const lang of language.filter(
     (item) => item !== "en" && item !== "zh"
   )) {

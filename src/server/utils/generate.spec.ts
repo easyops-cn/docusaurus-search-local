@@ -19,6 +19,7 @@ describe("generate", () => {
       ["en"],
       [
         expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        'export const language = ["en"];',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -32,6 +33,7 @@ describe("generate", () => {
           /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
+        'export const language = ["zh"];',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -47,6 +49,26 @@ describe("generate", () => {
         expect.stringMatching(
           /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
         ),
+        'export const language = ["es"];',
+        'export const indexHash = "abc";',
+        "export const searchResultLimits = 8;",
+        "export const searchResultContextMaxLength = 50;",
+      ],
+    ],
+    [
+      ["ja"],
+      [
+        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+        ),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/tinyseg\.js"\)\(lunr\);$/
+        ),
+        expect.stringMatching(
+          /^require\(".+\/lunr-languages\/lunr\.ja\.js"\)\(lunr\);$/
+        ),
+        'export const language = ["ja"];',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -63,6 +85,7 @@ describe("generate", () => {
         expect.stringMatching(
           /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
         ),
+        'export const language = ["en","zh"];',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -82,6 +105,7 @@ describe("generate", () => {
         expect.stringMatching(
           /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
         ),
+        'export const language = ["en","es","zh"];',
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",

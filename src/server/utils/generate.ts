@@ -16,6 +16,13 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
       )})(lunr);`
     );
   }
+  if (language.includes("ja") || language.includes("jp")) {
+    contents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/tinyseg")
+      )})(lunr);`
+    );
+  }
   for (const lang of language.filter(
     (item) => item !== "en" && item !== "zh"
   )) {
@@ -37,6 +44,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
       )})(lunr);`
     );
   }
+  contents.push(`export const language = ${JSON.stringify(language)};`);
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
   contents.push(
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
