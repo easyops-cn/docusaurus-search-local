@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.9.2...v0.9.3) (2020-10-29)
+
+
+### Bug Fixes
+
+* fix languages other than en and zh ([f43fd4b](https://www.github.com/easyops-cn/docusaurus-search-local/commit/f43fd4b6a261338da70556396a9c810884674e17)), closes [#9](https://www.github.com/easyops-cn/docusaurus-search-local/issues/9)
+
 ### [0.9.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.9.1...v0.9.2) (2020-10-24)
 
 
