@@ -34,7 +34,7 @@ export async function fetchIndexes(
 
     const zhDictionary = json.reduce((acc, item) => {
       for (const tuple of item.index.invertedIndex) {
-        if (!/\w/.test(tuple[0][0])) {
+        if (/\p{Unified_Ideograph}/u.test(tuple[0][0])) {
           acc.add(tuple[0]);
         }
       }

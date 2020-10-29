@@ -49,6 +49,7 @@ describe("fetchIndexes", () => {
             index: {
               invertedIndex: [
                 ["hello"],
+                ["alfabetização"],
                 ["世界"],
                 ["和平"],
                 ["世界"],

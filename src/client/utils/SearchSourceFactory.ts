@@ -9,6 +9,7 @@ import {
 } from "../../shared/interfaces";
 import { sortSearchResults } from "./sortSearchResults";
 import { processTreeStatusOfSearchResults } from "./processTreeStatusOfSearchResults";
+import { language } from "./proxiedGenerated";
 
 export function SearchSourceFactory(
   wrappedIndexes: WrappedIndex[],
@@ -19,7 +20,7 @@ export function SearchSourceFactory(
     input: string,
     callback: (results: SearchResult[]) => void
   ): void {
-    const rawTokens = tokenize(input);
+    const rawTokens = tokenize(input, language);
     if (rawTokens.length === 0) {
       callback([]);
       return;

@@ -115,6 +115,19 @@ describe("smartQueries", () => {
         },
       ],
     ],
+    [
+      ["termos", "alfabetização"],
+      [
+        {
+          tokens: ["termos", "alfabetização"],
+          keyword: "+termos +alfabetização",
+        },
+        {
+          tokens: ["termos", "alfabetização"],
+          keyword: "+termos +alfabetização*",
+        },
+      ],
+    ],
   ])("smartQueries(%j, zhDictionary) should return %j", (tokens, queries) => {
     expect(smartQueries(tokens, zhDictionary)).toEqual(queries);
   });
