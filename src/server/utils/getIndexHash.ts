@@ -1,7 +1,9 @@
 import fs from "fs";
+import path from "path";
 import crypto from "crypto";
 import klawSync from "klaw-sync";
 import { ProcessedPluginOptions } from "../../shared/interfaces";
+import { debugInfo } from "./debug";
 
 export function getIndexHash(config: ProcessedPluginOptions): string | null {
   if (!config.hashed) {
@@ -35,10 +37,25 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
 
   if (files.length > 0) {
     const md5sum = crypto.createHash("md5");
+
+    // The version of this plugin should be counted in hash,
+    // since the index maybe changed between versions.
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const pluginVersion = require(path.resolve(
+      __dirname,
+      "../../../../package.json"
+    )).version;
+    debugInfo("using @easyops-cn/docusaurus-search-local v%s", pluginVersion);
+    md5sum.update(pluginVersion, "utf8");
+
     for (const item of files) {
       md5sum.update(fs.readFileSync(item.path));
     }
-    return md5sum.digest("hex").substring(0, 8);
+
+    const indexHash = md5sum.digest("hex").substring(0, 8);
+    debugInfo("the index hash is %j", indexHash);
+    return indexHash;
   }
   return null;
 }
