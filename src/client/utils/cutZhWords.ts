@@ -1,4 +1,4 @@
-import { SmartTerm } from "../../shared/interfaces";
+import { SmartTerm, WrappedTerm } from "../../shared/interfaces";
 
 /**
  * Get all possible terms for a string of consecutive Chinese words,
@@ -22,7 +22,9 @@ export function cutZhWords(token: string, zhDictionary: string[]): SmartTerm[] {
       if (subToken.substr(0, words.length) === words) {
         const nextCarry = {
           missed: carry.missed,
-          term: carry.term.concat(words),
+          term: carry.term.concat({
+            value: words,
+          }),
         };
         if (subToken.length > words.length) {
           cut(subToken.substr(words.length), nextCarry);
@@ -41,7 +43,10 @@ export function cutZhWords(token: string, zhDictionary: string[]): SmartTerm[] {
             matchedLastIndex = lastIndex;
             const nextCarry = {
               missed: carry.missed,
-              term: carry.term.concat(`${subWords}*`),
+              term: carry.term.concat({
+                value: subWords,
+                trailing: true,
+              }),
             };
             if (subToken.length > lastIndex) {
               cut(subToken.substr(lastIndex), nextCarry);
@@ -81,9 +86,4 @@ export function cutZhWords(token: string, zhDictionary: string[]): SmartTerm[] {
       return a.term.length - b.term.length;
     })
     .map((item) => item.term);
-}
-
-interface WrappedTerm {
-  missed: number;
-  term: SmartTerm;
 }

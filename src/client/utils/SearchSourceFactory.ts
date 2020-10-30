@@ -29,11 +29,18 @@ export function SearchSourceFactory(
     const queries = smartQueries(rawTokens, zhDictionary);
     const results: InitialSearchResult[] = [];
 
-    search: for (const { keyword, tokens } of queries) {
+    search: for (const { term, tokens } of queries) {
       for (const { documents, index, type } of wrappedIndexes) {
         results.push(
           ...index
-            .search(keyword)
+            .query((query) => {
+              for (const item of term) {
+                query.term(item.value, {
+                  wildcard: item.wildcard,
+                  presence: item.presence,
+                });
+              }
+            })
             .slice(0, resultsLimit)
             // Remove duplicated results.
             .filter(

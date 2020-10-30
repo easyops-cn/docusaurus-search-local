@@ -4,7 +4,12 @@ import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
 export function generate(config: ProcessedPluginOptions, dir: string): void {
-  const { language, searchResultLimits, searchResultContextMaxLength } = config;
+  const {
+    language,
+    removeDefaultStopWordFilter,
+    searchResultLimits,
+    searchResultContextMaxLength,
+  } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
     `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
@@ -45,6 +50,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     );
   }
   contents.push(`export const language = ${JSON.stringify(language)};`);
+  contents.push(
+    `export const removeDefaultStopWordFilter = ${JSON.stringify(
+      removeDefaultStopWordFilter
+    )};`
+  );
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
   contents.push(
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
