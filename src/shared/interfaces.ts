@@ -60,6 +60,12 @@ export interface SearchDocument {
 
   /** Doc parent ID. */
   p?: number;
+
+  /** Doc breadcrumb. */
+  b?: string[];
+
+  /** Doc section title */
+  s?: string;
 }
 
 export type SearchDocumentType = 0 | 1 | 2;
@@ -92,6 +98,7 @@ export interface WrappedIndex {
 export interface ParsedDocument {
   pageTitle: string;
   sections: ParsedDocumentSection[];
+  breadcrumb: string[];
 }
 
 export interface ParsedDocumentSection {
@@ -125,8 +132,22 @@ export interface PluginOptions {
   docsDir?: string;
   blogDir?: string;
   removeDefaultStopWordFilter?: boolean;
+
   searchResultLimits?: number;
   searchResultContextMaxLength?: number;
+  // searchInputPlaceholder?: string;
+  // searchNoResults?: string;
+  // searchSeeAllResults?: string;
+  // searchSeeAllResultsPlural?: string;
+
+  // searchPageResultLimits?: number;
+  // searchPageResultContextMaxLength?: number;
+  // searchPageInputPlaceholder?: string;
+  // searchPageNoResults?: string;
+  // searchPageDefaultTitle?: string;
+  // searchPageTitleWithKeyword?: string;
+  // searchPageResultSummary?: string;
+  // searchPageResultSummaryPlural?: string;
 }
 
 export type ProcessedPluginOptions = Required<
@@ -142,6 +163,7 @@ export interface PostBuildData {
 }
 
 export interface DocusaurusContext {
+  baseUrl: string;
   siteDir: string;
   generatedFilesDir: string;
 }

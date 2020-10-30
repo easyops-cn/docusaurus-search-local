@@ -30,5 +30,6 @@ export function parsePage($: cheerio.Root, url: string): ParsedDocument {
           $main.length > 0 ? getCondensedText($main.get(0), $).trim() : "",
       },
     ],
+    breadcrumb: [],
   };
 }

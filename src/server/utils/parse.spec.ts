@@ -28,6 +28,7 @@ describe("parse", () => {
             content: "Peace. Code.",
           },
         ],
+        breadcrumb: [],
       },
     ],
     [
@@ -52,6 +53,7 @@ describe("parse", () => {
             content: "Peace.",
           },
         ],
+        breadcrumb: [],
       },
     ],
   ])("parse(...) should work", (html, type, doc) => {

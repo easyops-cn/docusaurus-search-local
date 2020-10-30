@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": false,
-    "strict": true
+    "strict": true,
+    "types": ["node", "@docusaurus/module-type-aliases"]
   },
   "include": ["src"],
   "exclude": ["**/*.spec.ts"]

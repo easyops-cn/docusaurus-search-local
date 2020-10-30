@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs-extra";
+import { normalizeUrl } from "@docusaurus/utils";
 import { DocusaurusContext, PluginOptions } from "../shared/interfaces";
 import { processPluginOptions } from "./utils/processPluginOptions";
 import { postBuildFactory } from "./utils/postBuildFactory";
@@ -17,12 +18,29 @@ export default function DocusaurusSearchLocalPlugin(
   fs.ensureDirSync(dir);
   generate(config, dir);
 
+  const themePage = path.resolve(__dirname, "../../client/client/theme");
+  const pagePath = path.join(themePage, "SearchPage/index.js");
+
   return {
     name: PLUGIN_NAME,
+
     getThemePath() {
-      return path.resolve(__dirname, "../../client/client/theme");
+      return themePage;
     },
+
     postBuild: postBuildFactory(config),
+
+    getPathsToWatch() {
+      return [pagePath];
+    },
+
+    async contentLoaded({ actions: { addRoute } }: any) {
+      addRoute({
+        path: normalizeUrl([context.baseUrl, "search"]),
+        component: pagePath,
+        exact: true,
+      });
+    },
   };
 }
 

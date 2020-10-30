@@ -6,6 +6,27 @@ describe("parseDocument", () => {
   test.each<[string, ParsedDocument]>([
     [
       `<body>
+        <nav>
+          <a class="navbar__link navbar__link--active">
+            Docs
+          <a>
+        </nav>
+        <div class="main-wrapper">
+          <div class="menu">
+            <a class="menu__link menu__link--sublist">
+              API
+            </a>
+            <a class="menu__link menu__link--sublist menu__link--active">
+              Guide
+            </a>
+            <a class="menu__link menu__link--sublist menu__link--active">
+              Advanced
+            </a>
+            <a class="menu__link menu__link--active">
+              First Doc
+            </a>
+          </div>
+        </div>
         <article>
           <header>
             <h1>Hello World</h1>
@@ -41,6 +62,7 @@ describe("parseDocument", () => {
             content: "",
           },
         ],
+        breadcrumb: ["Docs", "Guide", "Advanced"],
       },
     ],
     [
@@ -86,6 +108,7 @@ describe("parseDocument", () => {
             content: "",
           },
         ],
+        breadcrumb: [],
       },
     ],
   ])("parseDocument(...) should work", (html, doc) => {

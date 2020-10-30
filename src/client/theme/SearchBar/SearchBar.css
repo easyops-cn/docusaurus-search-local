@@ -74,7 +74,8 @@ html[data-theme="dark"] .aa-dropdown-menu .aa-suggestion {
 .doc-search-hit-tree,
 .doc-search-hit-icon,
 .doc-search-hit-path,
-.doc-search-empty-icon {
+.doc-search-empty-icon,
+.doc-search-hit-footer a {
   color: var(--search-local-muted-color, #969faf);
 }
 
@@ -117,13 +118,17 @@ html[data-theme="dark"] .doc-search-empty-icon {
 
 .doc-search-hit-title {
   font-size: 0.9em;
-  white-space: nowrap;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
 }
 
 .doc-search-hit-path {
   font-size: 0.75em;
+}
+
+.doc-search-hit-path,
+.doc-search-hit-title {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .doc-search-hit-action {
@@ -140,11 +145,21 @@ html[data-theme="dark"] .doc-search-empty-icon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 0;
+  padding: var(--search-local-spacing, 12px) 0;
 }
 
 .doc-search-empty-icon {
-  margin-bottom: 12px;
+  margin-bottom: var(--search-local-spacing, 12px);
+}
+
+.doc-search-hit-footer {
+  text-align: center;
+  margin-top: var(--search-local-spacing, 12px);
+  font-size: 0.85em;
+}
+
+.doc-search-hit-footer a {
+  text-decoration: underline;
 }
 
 .aa-cursor .doc-search-hit-action-icon {

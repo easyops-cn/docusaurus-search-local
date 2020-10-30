@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useRef, useState } from "react";
+import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useHistory } from "@docusaurus/router";
-import clsx from "clsx";
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
@@ -67,6 +67,26 @@ export default function SearchBar({
           templates: {
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
+            footer: ({ query, isEmpty }: any) => {
+              if (isEmpty) {
+                return;
+              }
+              const a = document.createElement("a");
+              const url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
+              a.href = url;
+              a.textContent = "See all results";
+              a.addEventListener("click", (e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  search.autocomplete.close();
+                  history.push(url);
+                }
+              });
+              const div = document.createElement("div");
+              div.className = "doc-search-hit-footer";
+              div.appendChild(a);
+              return div;
+            },
           },
         },
       ]
