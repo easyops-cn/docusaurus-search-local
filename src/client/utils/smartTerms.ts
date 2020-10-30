@@ -29,7 +29,9 @@ export function smartTerms(
         cutMixedWords(subTokens.slice(1), nextCarry);
       }
     } else {
-      const nextCarry = carry.concat(token);
+      const nextCarry = carry.concat({
+        value: token,
+      });
       cutMixedWords(subTokens.slice(1), nextCarry);
     }
   }

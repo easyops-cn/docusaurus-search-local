@@ -1,10 +1,9 @@
-import { SmartTerm } from "../../shared/interfaces";
 import { cutZhWords } from "./cutZhWords";
 
 const zhDictionary = ["研究生", "研究", "生命", "科学", "生命科学"];
 
 describe("cutZhWords", () => {
-  test.each<[string, SmartTerm[]]>([
+  test.each<[string, string[][]]>([
     [
       "研究生命科学",
       [
@@ -33,7 +32,11 @@ describe("cutZhWords", () => {
     ["研究生我", [["研究生"], ["研究", "生*"]]],
     ["我", []],
     ["命", []],
-  ])("cutZhWords('%s', zhDictionary) should return %j", (token, queries) => {
-    expect(cutZhWords(token, zhDictionary)).toEqual(queries);
+  ])("cutZhWords('%s', zhDictionary) should work", (token, terms) => {
+    expect(
+      cutZhWords(token, zhDictionary).map((term) =>
+        term.map((item) => `${item.value}${item.trailing ? "*" : ""}`)
+      )
+    ).toEqual(terms);
   });
 });

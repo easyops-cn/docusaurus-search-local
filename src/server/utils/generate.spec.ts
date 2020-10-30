@@ -20,6 +20,7 @@ describe("generate", () => {
       [
         expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
         'export const language = ["en"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -34,6 +35,7 @@ describe("generate", () => {
         ),
         'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'export const language = ["zh"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -50,6 +52,7 @@ describe("generate", () => {
           /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
         ),
         'export const language = ["es"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -69,6 +72,7 @@ describe("generate", () => {
           /^require\(".+\/lunr-languages\/lunr\.ja\.js"\)\(lunr\);$/
         ),
         'export const language = ["ja"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -86,6 +90,7 @@ describe("generate", () => {
           /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
         ),
         'export const language = ["en","zh"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -106,6 +111,7 @@ describe("generate", () => {
           /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
         ),
         'export const language = ["en","es","zh"];',
+        "export const removeDefaultStopWordFilter = false;",
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
@@ -115,6 +121,7 @@ describe("generate", () => {
     generate(
       {
         language,
+        removeDefaultStopWordFilter: false,
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
       } as ProcessedPluginOptions,

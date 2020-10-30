@@ -1,11 +1,25 @@
 import lunr from "lunr";
 
-export interface SmartQuery {
-  tokens: string[];
-  keyword: string;
+export type SmartTerm = SmartTermItem[];
+
+export interface SmartTermItem {
+  value: string;
+  trailing?: boolean;
+  maybeTyping?: boolean;
 }
 
-export type SmartTerm = string[];
+export interface SmartQuery {
+  tokens: string[];
+  term: QueryTerm;
+}
+
+export type QueryTerm = QueryTermItem[];
+
+export interface QueryTermItem {
+  value: string;
+  presence: lunr.Query.presence;
+  wildcard: lunr.Query.wildcard;
+}
 
 export interface WrappedTerm {
   missed: number;

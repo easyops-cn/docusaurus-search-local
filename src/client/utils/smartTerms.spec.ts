@@ -1,10 +1,9 @@
-import { SmartTerm } from "../../shared/interfaces";
 import { smartTerms } from "./smartTerms";
 
 const zhDictionary = ["研究生", "研究", "生命", "科学", "生命科学"];
 
 describe("smartTerms", () => {
-  test.each<[string[], SmartTerm[]]>([
+  test.each<[string[], string[][]]>([
     [["hello"], [["hello"]]],
     [["hello", "world"], [["hello", "world"]]],
     [
@@ -26,7 +25,11 @@ describe("smartTerms", () => {
     ],
     [["hello", "world", "命"], []],
     [["alfabetização"], [["alfabetização"]]],
-  ])("smartTerms(%j, zhDictionary) should return %j", (tokens, queries) => {
-    expect(smartTerms(tokens, zhDictionary)).toEqual(queries);
+  ])("smartTerms(%j, zhDictionary) should work", (tokens, terms) => {
+    expect(
+      smartTerms(tokens, zhDictionary).map((term) =>
+        term.map((item) => `${item.value}${item.trailing ? "*" : ""}`)
+      )
+    ).toEqual(terms);
   });
 });

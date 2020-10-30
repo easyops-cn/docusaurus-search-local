@@ -7,7 +7,7 @@ export function lunrLanguageZh(lunr: any, tokenizer?: any): void {
 
   lunr.zh = function () {
     this.pipeline.reset();
-    this.pipeline.add(lunr.zh.trimmer, lunr.zh.stopWordFilter, lunr.zh.stemmer);
+    this.pipeline.add(lunr.zh.trimmer, lunr.zh.stopWordFilter);
 
     if (tokenizer) {
       this.tokenizer = tokenizer;
@@ -24,11 +24,6 @@ export function lunrLanguageZh(lunr: any, tokenizer?: any): void {
     "\\u3400-\\u4DBF\\u4E00-\\u9FFC\\uFA0E\\uFA0F\\uFA11\\uFA13\\uFA14\\uFA1F\\uFA21\\uFA23\\uFA24\\uFA27-\\uFA29\\u{20000}-\\u{2A6DD}\\u{2A700}-\\u{2B734}\\u{2B740}-\\u{2B81D}\\u{2B820}-\\u{2CEA1}\\u{2CEB0}-\\u{2EBE0}\\u{30000}-\\u{3134A}";
   lunr.zh.trimmer = lunr.trimmerSupport.generateTrimmer(lunr.zh.wordCharacters);
   lunr.Pipeline.registerFunction(lunr.zh.trimmer, "trimmer-zh");
-
-  lunr.zh.stemmer = function (token: lunr.Token) {
-    return token;
-  };
-  lunr.Pipeline.registerFunction(lunr.zh.stemmer, "stemmer-zh");
 
   /* lunr stop word filter. see https://www.ranks.nl/stopwords/chinese-stopwords */
   lunr.zh.stopWordFilter = lunr.generateStopWordFilter(
