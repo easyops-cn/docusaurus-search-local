@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.10.0...v0.10.1) (2020-10-30)
+
+
+### Bug Fixes
+
+* process stop words for search keyword ([df3d789](https://www.github.com/easyops-cn/docusaurus-search-local/commit/df3d789a09b98ebe20f43c51619e8fa780a85e7f))
+
 ## [0.10.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.9.4...v0.10.0) (2020-10-29)
 
 
