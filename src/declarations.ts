@@ -1,18 +1,3 @@
-// declare module "*.module.css" {
-//   const classes: { [key: string]: string };
-//   export default classes;
-// }
-
-// declare module "@docusaurus/useDocusaurusContext" {
-//   const useDocusaurusContext: () => {
-//     baseUrl: string;
-//     siteConfig: {
-//       baseUrl: string;
-//     };
-//   };
-//   export default useDocusaurusContext;
-// }
-
 declare module "@docusaurus/router" {
   export const useHistory: () => {
     push: (url: string) => void;

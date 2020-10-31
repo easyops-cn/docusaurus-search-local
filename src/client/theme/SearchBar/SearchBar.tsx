@@ -2,13 +2,16 @@ import React, { ReactElement, useCallback, useRef, useState } from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useHistory } from "@docusaurus/router";
+
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
-import { SuggestionTemplate } from "../../utils/SuggestionTemplate.js";
-import { EmptyTemplate } from "../../utils/EmptyTemplate.js";
+import { SuggestionTemplate } from "./SuggestionTemplate";
+import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
 import { searchResultLimits } from "../../utils/proxiedGenerated";
-import "./SearchBar.css";
+import LoadingRing from "../LoadingRing/LoadingRing";
+
+import styles from "./SearchBar.module.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
   const autoComplete = await import("autocomplete.js");
@@ -53,8 +56,18 @@ export default function SearchBar({
       {
         hint: false,
         autoselect: true,
+        debug: true,
         cssClasses: {
-          root: "doc-search-bar",
+          root: styles.searchBar,
+          noPrefix: true,
+          dropdownMenu: styles.dropdownMenu,
+          input: styles.input,
+          hint: styles.hint,
+          suggestions: styles.suggestions,
+          suggestion: styles.suggestion,
+          cursor: styles.cursor,
+          dataset: styles.dataset,
+          empty: styles.empty,
         },
       },
       [
@@ -83,7 +96,7 @@ export default function SearchBar({
                 }
               });
               const div = document.createElement("div");
-              div.className = "doc-search-hit-footer";
+              div.className = styles.hitFooter;
               div.appendChild(a);
               return div;
             },
@@ -134,8 +147,8 @@ export default function SearchBar({
 
   return (
     <div
-      className={clsx("navbar__search", {
-        "search-index-loading": loading && inputChanged,
+      className={clsx("navbar__search", styles.searchBarContainer, {
+        [styles.searchIndexLoading]: loading && inputChanged,
       })}
     >
       <input
@@ -148,12 +161,7 @@ export default function SearchBar({
         onChange={onInputChange}
         ref={searchBarRef}
       />
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <LoadingRing className={styles.searchBarLoadingRing} />
     </div>
   );
 }

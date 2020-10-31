@@ -1,7 +1,7 @@
-import { SearchDocument, SearchResult } from "../../shared/interfaces";
-import { highlight } from "./highlight";
-import { highlightStemmed } from "./highlightStemmed";
-import { getStemmedPositions } from "./getStemmedPositions";
+import { SearchDocument, SearchResult } from "../../../shared/interfaces";
+import { highlight } from "../../utils/highlight";
+import { highlightStemmed } from "../../utils/highlightStemmed";
+import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import {
   iconTitle,
   iconHeading,
@@ -10,6 +10,7 @@ import {
   iconTreeInter,
   iconTreeLast,
 } from "./icons";
+import styles from "./SearchBar.module.css";
 
 export function SuggestionTemplate({
   document,
@@ -28,11 +29,14 @@ export function SuggestionTemplate({
   } else if (isLastOfTree) {
     tree.push(iconTreeLast);
   }
-  const icon = `<span class="doc-search-hit-icon">${
+  const treeWrapper = tree.map(
+    (item) => `<span class="${styles.hitTree}">${item}</span>`
+  );
+  const icon = `<span class="${styles.hitIcon}">${
     isTitle ? iconTitle : isHeading ? iconHeading : iconContent
   }</span>`;
   const wrapped = [
-    `<span class="doc-search-hit-title">${highlightStemmed(
+    `<span class="${styles.hitTitle}">${highlightStemmed(
       document.t,
       getStemmedPositions(metadata, "t"),
       tokens
@@ -40,7 +44,7 @@ export function SuggestionTemplate({
   ];
   if (!isTitle) {
     wrapped.push(
-      `<span class="doc-search-hit-path">${highlight(
+      `<span class="${styles.hitPath}">${highlight(
         (page as SearchDocument).t ||
           // Todo(weareoutman): This is for EasyOps only.
           // istanbul ignore next
@@ -51,11 +55,11 @@ export function SuggestionTemplate({
       )}</span>`
     );
   }
-  const action = `<span class="doc-search-hit-action">${iconAction}</span>`;
+  const action = `<span class="${styles.hitAction}">${iconAction}</span>`;
   return [
-    ...tree,
+    ...treeWrapper,
     icon,
-    '<span class="doc-search-hit-wrapper">',
+    `<span class="${styles.hitWrapper}">`,
     ...wrapped,
     "</span>",
     action,

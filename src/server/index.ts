@@ -18,14 +18,14 @@ export default function DocusaurusSearchLocalPlugin(
   fs.ensureDirSync(dir);
   generate(config, dir);
 
-  const themePage = path.resolve(__dirname, "../../client/client/theme");
-  const pagePath = path.join(themePage, "SearchPage/index.js");
+  const themePath = path.resolve(__dirname, "../../client/client/theme");
+  const pagePath = path.join(themePath, "SearchPage/index.js");
 
   return {
     name: PLUGIN_NAME,
 
     getThemePath() {
-      return themePage;
+      return themePath;
     },
 
     postBuild: postBuildFactory(config),
@@ -37,7 +37,7 @@ export default function DocusaurusSearchLocalPlugin(
     async contentLoaded({ actions: { addRoute } }: any) {
       addRoute({
         path: normalizeUrl([context.baseUrl, "search"]),
-        component: pagePath,
+        component: "@theme/SearchPage",
         exact: true,
       });
     },

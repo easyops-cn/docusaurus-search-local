@@ -27,6 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@docusaurus/utils": "^2.0.0-alpha.66",
     "@hapi/joi": "^17.1.1",
     "autocomplete.js": "^0.38.0",
     "cheerio": "^1.0.0-rc.3",
@@ -43,7 +44,6 @@
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
     "@docusaurus/module-type-aliases": "^2.0.0-alpha.66",
-    "@docusaurus/utils": "^2.0.0-alpha.66",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/debug": "^4.1.5",
     "@types/enzyme": "^3.10.7",
@@ -71,6 +71,7 @@
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.5.3",
     "lint-staged": "^10.4.1",
     "nodejieba": "^2.4.1",
@@ -80,7 +81,6 @@
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
-    "@docusaurus/utils": "^2.0.0-alpha.66",
     "nodejieba": "^2.4.1"
   }
 }

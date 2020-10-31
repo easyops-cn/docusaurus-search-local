@@ -3,15 +3,17 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import useSearchQuery from "../hooks/useSearchQuery";
 
-import styles from "./SearchPage.module.css";
+import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SearchDocument, SearchResult } from "../../../shared/interfaces";
 import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
+import LoadingRing from "../LoadingRing/LoadingRing";
+
+import styles from "./SearchPage.module.css";
 
 export default function SearchPage(): React.ReactElement {
   const {
@@ -97,12 +99,7 @@ export default function SearchPage(): React.ReactElement {
 
         {!searchSource && searchQuery && (
           <div>
-            <div className={styles.ldsRing}>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <LoadingRing />
           </div>
         )}
 
