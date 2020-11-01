@@ -1,15 +1,7 @@
-declare module "@docusaurus/useDocusaurusContext" {
-  const useDocusaurusContext: () => {
-    siteConfig: {
-      baseUrl: string;
-    };
-  };
-  export default useDocusaurusContext;
-}
-
 declare module "@docusaurus/router" {
   export const useHistory: () => {
     push: (url: string) => void;
+    replace: (args: any) => void;
   };
 }
 
@@ -27,3 +19,5 @@ declare module "*/generated.js" {
   export const __setLanguage: (value: string[]) => void;
   export const __setRemoveDefaultStopWordFilter: (value: boolean) => void;
 }
+
+declare module "@docusaurus/Head";

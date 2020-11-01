@@ -174,6 +174,36 @@ describe("smartQueries", () => {
       ],
     ],
     [
+      ["hello", "a"],
+      [
+        {
+          tokens: ["hello", "a"],
+          keyword: "+hello +a",
+        },
+        {
+          tokens: ["hello"],
+          keyword: "+hello",
+        },
+        {
+          tokens: ["hello", "a"],
+          keyword: "+hello +a*",
+        },
+      ],
+    ],
+    [
+      ["a"],
+      [
+        {
+          tokens: ["a"],
+          keyword: "+a",
+        },
+        {
+          tokens: ["a"],
+          keyword: "+a*",
+        },
+      ],
+    ],
+    [
       ["hello", "world", "命"],
       [
         {

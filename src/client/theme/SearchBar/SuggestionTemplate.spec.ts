@@ -1,7 +1,7 @@
 import { SuggestionTemplate } from "./SuggestionTemplate";
 
 jest.mock("./icons");
-jest.mock("./proxiedGenerated");
+jest.mock("../../utils/proxiedGenerated");
 
 describe("SuggestionTemplate", () => {
   test("page title", () => {
@@ -28,17 +28,17 @@ describe("SuggestionTemplate", () => {
     expect(div).toMatchInlineSnapshot(`
       <div>
         <span
-          class="doc-search-hit-icon"
+          class="hitIcon"
         >
           <svg
             class="icon-title"
           />
         </span>
         <span
-          class="doc-search-hit-wrapper"
+          class="hitWrapper"
         >
           <span
-            class="doc-search-hit-title"
+            class="hitTitle"
           >
             <mark>
               Hello
@@ -47,7 +47,7 @@ describe("SuggestionTemplate", () => {
           </span>
         </span>
         <span
-          class="doc-search-hit-action"
+          class="hitAction"
         >
           <svg
             class="icon-action"
@@ -84,21 +84,25 @@ describe("SuggestionTemplate", () => {
     });
     expect(div).toMatchInlineSnapshot(`
       <div>
-        <svg
-          class="icon-tree-inner"
-        />
         <span
-          class="doc-search-hit-icon"
+          class="hitTree"
+        >
+          <svg
+            class="icon-tree-inner"
+          />
+        </span>
+        <span
+          class="hitIcon"
         >
           <svg
             class="icon-heading"
           />
         </span>
         <span
-          class="doc-search-hit-wrapper"
+          class="hitWrapper"
         >
           <span
-            class="doc-search-hit-title"
+            class="hitTitle"
           >
             <mark>
               Hello
@@ -106,13 +110,13 @@ describe("SuggestionTemplate", () => {
              fruits.
           </span>
           <span
-            class="doc-search-hit-path"
+            class="hitPath"
           >
             Hello world
           </span>
         </span>
         <span
-          class="doc-search-hit-action"
+          class="hitAction"
         >
           <svg
             class="icon-action"
@@ -149,21 +153,25 @@ describe("SuggestionTemplate", () => {
     });
     expect(div).toMatchInlineSnapshot(`
       <div>
-        <svg
-          class="icon-tree-last"
-        />
         <span
-          class="doc-search-hit-icon"
+          class="hitTree"
+        >
+          <svg
+            class="icon-tree-last"
+          />
+        </span>
+        <span
+          class="hitIcon"
         >
           <svg
             class="icon-content"
           />
         </span>
         <span
-          class="doc-search-hit-wrapper"
+          class="hitWrapper"
         >
           <span
-            class="doc-search-hit-title"
+            class="hitTitle"
           >
             <mark>
               Goodbye
@@ -171,13 +179,13 @@ describe("SuggestionTemplate", () => {
              fruits.
           </span>
           <span
-            class="doc-search-hit-path"
+            class="hitPath"
           >
             Hello world
           </span>
         </span>
         <span
-          class="doc-search-hit-action"
+          class="hitAction"
         >
           <svg
             class="icon-action"

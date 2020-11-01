@@ -30,7 +30,7 @@ export async function scanDocuments(
       );
 
       const html = await readFileAsync(filePath, { encoding: "utf8" });
-      const { pageTitle, sections } = parse(html, type, url);
+      const { pageTitle, sections, breadcrumb } = parse(html, type, url);
 
       const titleId = getNextDocId();
 
@@ -38,6 +38,7 @@ export async function scanDocuments(
         i: titleId,
         t: pageTitle,
         u: url,
+        b: breadcrumb,
       });
 
       for (const section of sections) {
@@ -54,6 +55,7 @@ export async function scanDocuments(
           contentDocuments.push({
             i: getNextDocId(),
             t: section.content,
+            s: section.title || pageTitle,
             u: url + section.hash,
             p: titleId,
           });

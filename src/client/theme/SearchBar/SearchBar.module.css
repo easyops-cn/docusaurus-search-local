@@ -1,4 +1,4 @@
-.doc-search-bar .aa-dropdown-menu {
+.searchBar .dropdownMenu {
   left: auto !important;
   right: 0 !important;
 
@@ -17,16 +17,16 @@
 }
 
 @media (max-width: 576px) {
-  .navbar__search-input:not(:focus) {
+  :global(.navbar__search-input):not(:focus) {
     width: 2rem;
   }
 
-  .doc-search-bar .aa-dropdown-menu {
+  .searchBar .dropdownMenu {
     width: var(--search-local-modal-width-sm, 340px);
   }
 }
 
-html[data-theme="dark"] .doc-search-bar .aa-dropdown-menu {
+html[data-theme="dark"] .searchBar .dropdownMenu {
   background: var(--search-local-modal-background, var(--ifm-background-color));
   box-shadow: var(
     --search-local-modal-shadow,
@@ -35,7 +35,7 @@ html[data-theme="dark"] .doc-search-bar .aa-dropdown-menu {
   );
 }
 
-.doc-search-bar .aa-dropdown-menu .aa-suggestion {
+.searchBar .dropdownMenu .suggestion {
   cursor: pointer;
   background: var(--search-local-hit-background, #fff);
   border-radius: 4px;
@@ -50,56 +50,58 @@ html[data-theme="dark"] .doc-search-bar .aa-dropdown-menu {
   height: var(--search-local-hit-height, 56px);
 }
 
-html[data-theme="dark"] .aa-dropdown-menu .aa-suggestion {
+html[data-theme="dark"] .dropdownMenu .suggestion {
   background: var(--search-local-hit-background, var(--ifm-color-emphasis-100));
   box-shadow: var(--search-local-hit-shadow, none);
   color: var(--search-local-hit-color, var(--ifm-font-color-base));
 }
 
-.doc-search-bar .aa-dropdown-menu .aa-suggestion:not(:last-child) {
+.searchBar .dropdownMenu .suggestion:not(:last-child) {
   margin-bottom: 4px;
 }
 
-.doc-search-bar .aa-dropdown-menu .aa-suggestion.aa-cursor {
+.searchBar .dropdownMenu .suggestion.cursor {
   background-color: var(
     --search-local-highlight-color,
     var(--ifm-color-primary)
   );
 }
 
-.doc-search-bar .aa-dropdown-menu .aa-suggestion-empty::after {
-  content: "No results";
-}
-
-.doc-search-hit-tree,
-.doc-search-hit-icon,
-.doc-search-hit-path,
-.doc-search-empty-icon {
+.hitTree,
+.hitIcon,
+.hitPath,
+.noResultsIcon,
+.hitFooter a {
   color: var(--search-local-muted-color, #969faf);
 }
 
-html[data-theme="dark"] .doc-search-hit-tree,
-html[data-theme="dark"] .doc-search-hit-icon,
-html[data-theme="dark"] .doc-search-hit-path,
-html[data-theme="dark"] .doc-search-empty-icon {
+html[data-theme="dark"] .hitTree,
+html[data-theme="dark"] .hitIcon,
+html[data-theme="dark"] .hitPath,
+html[data-theme="dark"] .noResultsIcon {
   color: var(--search-local-muted-color, var(--ifm-color-secondary-darkest));
 }
 
-.doc-search-hit-tree {
+.hitTree {
+  display: flex;
+  align-items: center;
+}
+
+.hitTree > svg {
   height: var(--search-local-hit-height, 56px);
   opacity: 0.5;
   stroke-width: var(--search-local-icon-stroke-width, 1.4);
   width: 24px;
 }
 
-.doc-search-hit-icon {
+.hitIcon {
   stroke-width: var(--search-local-icon-stroke-width, 1.4);
 
   height: 20px;
   width: 20px;
 }
 
-.doc-search-hit-wrapper {
+.hitWrapper {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -110,121 +112,104 @@ html[data-theme="dark"] .doc-search-empty-icon {
   width: 80%;
 }
 
-.doc-search-hit-wrapper mark {
+.hitWrapper mark {
   background: none;
   color: var(--search-local-highlight-color, var(--ifm-color-primary));
 }
 
-.doc-search-hit-title {
+.hitTitle {
   font-size: 0.9em;
+}
+
+.hitPath {
+  font-size: 0.75em;
+}
+
+.hitPath,
+.hitTitle {
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
 
-.doc-search-hit-path {
-  font-size: 0.75em;
-}
-
-.doc-search-hit-action {
+.hitAction {
   height: 20px;
   width: 20px;
 }
 
-.doc-search-hit-action-icon {
+.hideAction > svg {
   display: none;
 }
 
-.doc-search-empty {
+.noResults {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 0;
+  padding: var(--search-local-spacing, 12px) 0;
 }
 
-.doc-search-empty-icon {
-  margin-bottom: 12px;
+.noResultsIcon {
+  margin-bottom: var(--search-local-spacing, 12px);
 }
 
-.aa-cursor .doc-search-hit-action-icon {
+.hitFooter {
+  text-align: center;
+  margin-top: var(--search-local-spacing, 12px);
+  font-size: 0.85em;
+}
+
+.hitFooter a {
+  text-decoration: underline;
+}
+
+.cursor .hideAction > svg {
   display: block;
 }
 
-.aa-suggestion.aa-cursor,
-.aa-suggestion.aa-cursor mark,
-.aa-suggestion.aa-cursor .doc-search-hit-icon,
-.aa-suggestion.aa-cursor .doc-search-hit-path {
+.suggestion.cursor,
+.suggestion.cursor mark,
+.suggestion.cursor .hitTree,
+.suggestion.cursor .hitIcon,
+.suggestion.cursor .hitPath {
   color: var(
     --search-local-hit-active-color,
     var(--ifm-color-white)
   ) !important;
 }
 
-.aa-suggestion.aa-cursor mark {
+.suggestion.cursor mark {
   text-decoration: underline;
 }
 
-/* Start: pure CSS loaders */
-/* https://loading.io/css/ */
-.lds-ring {
+.searchBarContainer .searchBarLoadingRing {
   display: none;
   position: absolute;
   left: calc(var(--ifm-navbar-padding-horizontal) + 10px);
   top: 6px;
-  width: 20px;
-  height: 20px;
-  opacity: var(--search-local-loading-icon-opacity, 0.5);
 }
 
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  margin: 2px;
-  border: 2px solid
-    var(--search-load-loading-icon-color, var(--ifm-navbar-search-input-color));
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: var(
-      --search-load-loading-icon-color,
-      var(--ifm-navbar-search-input-color)
-    )
-    transparent transparent transparent;
-}
-
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-/* End: pure CSS loaders */
-
-.navbar__search {
+:global(.navbar__search) {
   position: relative;
 }
 
-.search-index-loading .navbar__search-input {
+.searchIndexLoading :global(.navbar__search-input) {
   background-image: none;
 }
 
-.search-index-loading .lds-ring {
+.searchIndexLoading .searchBarLoadingRing {
   display: inline-block;
 }
+
+/* For autocomplete.js only. */
+.input {
+}
+.hint {
+}
+.suggestions {
+}
+.dataset {
+}
+.empty {
+}
+/**/

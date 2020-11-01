@@ -25,6 +25,7 @@ describe("parsePage", () => {
             content: "Peace.",
           },
         ],
+        breadcrumb: [],
       },
     ],
     [
@@ -46,6 +47,7 @@ describe("parsePage", () => {
             content: "Peace.",
           },
         ],
+        breadcrumb: [],
       },
     ],
     [
@@ -69,6 +71,7 @@ describe("parsePage", () => {
             content: "",
           },
         ],
+        breadcrumb: [],
       },
     ],
   ])("parsePage(...) should work", (html, url, doc) => {

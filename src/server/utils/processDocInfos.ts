@@ -25,8 +25,8 @@ export function processDocInfos(
         );
       }
       const route = url.substr(baseUrl.length);
-      if (route === "404.html") {
-        // Do not index error page.
+      if (route === "404.html" || route === "search/index.html") {
+        // Do not index error page and search page.
         return;
       }
       if (indexBlog && urlMatchesPrefix(route, blogRouteBasePath)) {

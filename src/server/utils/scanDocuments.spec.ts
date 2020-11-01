@@ -47,6 +47,7 @@ describe("scanDocuments", () => {
               content: "First content.",
             },
           ],
+          breadcrumb: ["Docs"],
         };
       } else {
         return {
@@ -58,6 +59,7 @@ describe("scanDocuments", () => {
               content: "",
             },
           ],
+          breadcrumb: [],
         };
       }
     });
@@ -66,11 +68,15 @@ describe("scanDocuments", () => {
       Array [
         Array [
           Object {
+            "b": Array [
+              "Docs",
+            ],
             "i": 1,
             "t": "Hello First Docs",
             "u": "/1",
           },
           Object {
+            "b": Array [],
             "i": 5,
             "t": "Hello First Page",
             "u": "/2",
@@ -88,12 +94,14 @@ describe("scanDocuments", () => {
           Object {
             "i": 2,
             "p": 1,
+            "s": "Hello First Docs",
             "t": "Leading content.",
             "u": "/1",
           },
           Object {
             "i": 4,
             "p": 1,
+            "s": "First heading",
             "t": "First content.",
             "u": "/1#first-heading",
           },
