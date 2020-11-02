@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.0...v0.11.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* remove debug flag ([7238af2](https://www.github.com/easyops-cn/docusaurus-search-local/commit/7238af2fa9063327e338acdb2420505435c07308))
+
 ## [0.11.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.10.1...v0.11.0) (2020-11-01)
 
 
