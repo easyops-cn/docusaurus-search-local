@@ -56,7 +56,6 @@ export default function SearchBar({
       {
         hint: false,
         autoselect: true,
-        debug: true,
         cssClasses: {
           root: styles.searchBar,
           noPrefix: true,
