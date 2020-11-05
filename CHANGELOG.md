@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.1...v0.11.2) (2020-11-05)
+
+
+### Bug Fixes
+
+* fix errors in development mode ([2331b73](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2331b7322a32d351634667fcdd20fb4b62e80b61))
+* show tips in search page in development mode ([4666bee](https://www.github.com/easyops-cn/docusaurus-search-local/commit/4666bee02c68c6b24844369e717c31f19c23dfda))
+
 ### [0.11.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.0...v0.11.1) (2020-11-02)
 
 
