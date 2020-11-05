@@ -14,7 +14,7 @@ import LoadingRing from "../LoadingRing/LoadingRing";
 import styles from "./SearchBar.module.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
-  const autoComplete = await import("autocomplete.js");
+  const autoComplete = await import("@easyops-cn/autocomplete.js");
   autoComplete.noConflict();
   return autoComplete.default;
 }
