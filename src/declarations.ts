@@ -5,7 +5,7 @@ declare module "@docusaurus/router" {
   };
 }
 
-declare module "autocomplete.js" {
+declare module "@easyops-cn/autocomplete.js" {
   export const noConflict: () => void;
 }
 

@@ -109,8 +109,13 @@ export default function SearchPage(): React.ReactElement {
               {searchResults.length} document
               {searchResults.length === 1 ? "" : "s"} found
             </p>
-          ) : (
+          ) : process.env.NODE_ENV === "production" ? (
             <p>No documents were found</p>
+          ) : (
+            <p>
+              ⚠️ The search index is only available when you run docusaurus
+              build!
+            </p>
           ))}
 
         <section>
