@@ -124,6 +124,10 @@ When building your docs project, Set the env `DEBUG=search-local:*` to enable [d
 DEBUG=search-local:* yarn build
 ```
 
+## Further Reading
+
+- [多语言全文搜索](https://wangshenwei.com/multilingual-full-text-search/)
+
 ## Contributing
 
 See [contributing guide](CONTRIBUTING.md).
