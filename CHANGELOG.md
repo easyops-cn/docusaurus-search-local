@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.2...v0.12.0) (2020-11-14)
+
+
+### Features
+
+* support multiple docs and blog folders [#24](https://www.github.com/easyops-cn/docusaurus-search-local/issues/24) ([d90f4ad](https://www.github.com/easyops-cn/docusaurus-search-local/commit/d90f4ad707bd0924e027c7484e6f246d4df9423a))
+
 ### [0.11.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.1...v0.11.2) (2020-11-05)
 
 
