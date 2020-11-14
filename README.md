@@ -72,12 +72,12 @@ yarn add nodejieba
 | indexDocs                    | boolean            | `true`    | Whether to index docs.                                                                                                         |
 | indexBlog                    | boolean            | `true`    | Whether to index blog.                                                                                                         |
 | indexPages                   | boolean            | `false`   | Whether to index pages.                                                                                                        |
-| docsRouteBasePath            | string             | `"/docs"` | Base route path of docs. Slash at beginning is not required.                                                                   |
-| blogRouteBasePath            | string             | `"/blog"` | Base route path of blog. Slash at beginning is not required.                                                                   |
+| docsRouteBasePath            | string \| string[] | `"/docs"` | Base route path of docs. Slash at beginning is not required.                                                                   |
+| blogRouteBasePath            | string \| string[] | `"/blog"` | Base route path of blog. Slash at beginning is not required.                                                                   |
 | language                     | string \| string[] | `"en"`    | All [lunr-languages](https://github.com/MihaiValentin/lunr-languages) supported languages, + `zh` 🔥.                          |
 | hashed                       | boolean            | `false`   | Whether to add a hashed query when fetching index (based on the content hash of all `*.md`)                                    |
-| docsDir                      | string             | `"docs"`  | The dir of docs to get the content hash, it's relative to the dir of your project.                                             |
-| blogDir                      | string             | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                   |
+| docsDir                      | string \| string[] | `"docs"`  | The dir of docs to get the content hash, it's relative to the dir of your project.                                             |
+| blogDir                      | string \| string[] | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                   |
 | removeDefaultStopWordFilter  | boolean            | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs. |
 | searchResultLimits           | number             | `8`       | Limit the search results.                                                                                                      |
 | searchResultContextMaxLength | number             | `50`      | Set the max length of characters of each search result to show. results.                                                       |

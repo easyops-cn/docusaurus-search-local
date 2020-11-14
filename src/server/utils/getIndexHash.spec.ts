@@ -57,14 +57,14 @@ jest.mock(
 describe("getIndexHash", () => {
   test.each<[Partial<ProcessedPluginOptions>, string | null, number]>([
     [{ hashed: false }, null, 0],
-    [{ hashed: true, indexDocs: true, docsDir: "/tmp/docs" }, "87def35c", 0],
-    [{ hashed: true, indexBlog: true, blogDir: "/tmp/blog" }, null, 0],
+    [{ hashed: true, indexDocs: true, docsDir: ["/tmp/docs"] }, "87def35c", 0],
+    [{ hashed: true, indexBlog: true, blogDir: ["/tmp/blog"] }, null, 0],
     [
-      { hashed: true, indexDocs: true, docsDir: "/does-not-exist/docs" },
+      { hashed: true, indexDocs: true, docsDir: ["/does-not-exist/docs"] },
       null,
       1,
     ],
-    [{ hashed: true, indexDocs: true, docsDir: "/tmp/index.js" }, null, 1],
+    [{ hashed: true, indexDocs: true, docsDir: ["/tmp/index.js"] }, null, 1],
   ])("getIndexHash(%j) should return '%s'", (config, hash, warnCount) => {
     expect(getIndexHash(config as ProcessedPluginOptions)).toBe(hash);
     expect(mockConsoleWarn).toBeCalledTimes(warnCount);

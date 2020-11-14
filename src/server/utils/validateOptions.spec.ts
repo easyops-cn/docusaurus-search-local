@@ -7,7 +7,9 @@ describe("validateOptions", () => {
     schema: Joi.Schema,
     options: PluginOptions | undefined
   ): Required<PluginOptions> {
-    const { error, value } = schema.validate(options);
+    const { error, value } = schema.validate(options, {
+      convert: false,
+    });
     if (error) {
       throw error;
     }
@@ -18,10 +20,10 @@ describe("validateOptions", () => {
     [
       undefined,
       {
-        blogRouteBasePath: "blog",
-        blogDir: "blog",
-        docsRouteBasePath: "docs",
-        docsDir: "docs",
+        blogRouteBasePath: ["blog"],
+        blogDir: ["blog"],
+        docsRouteBasePath: ["docs"],
+        docsDir: ["docs"],
         hashed: false,
         indexBlog: true,
         indexDocs: true,
@@ -35,10 +37,10 @@ describe("validateOptions", () => {
     [
       { language: ["en", "zh"] },
       {
-        blogRouteBasePath: "blog",
-        blogDir: "blog",
-        docsRouteBasePath: "docs",
-        docsDir: "docs",
+        blogRouteBasePath: ["blog"],
+        blogDir: ["blog"],
+        docsRouteBasePath: ["docs"],
+        docsDir: ["docs"],
         hashed: false,
         indexBlog: true,
         indexDocs: true,
@@ -58,9 +60,9 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 30,
       },
       {
-        blogRouteBasePath: "blog",
+        blogRouteBasePath: ["blog"],
         blogDir: "src/blog",
-        docsRouteBasePath: "docs",
+        docsRouteBasePath: ["docs"],
         docsDir: "src/docs",
         hashed: false,
         indexBlog: true,
@@ -70,6 +72,46 @@ describe("validateOptions", () => {
         removeDefaultStopWordFilter: false,
         searchResultLimits: 5,
         searchResultContextMaxLength: 30,
+      },
+    ],
+    [
+      {
+        docsRouteBasePath: "/dev/docs",
+        blogRouteBasePath: "/dev/blog",
+      },
+      {
+        blogRouteBasePath: "/dev/blog",
+        blogDir: ["blog"],
+        docsRouteBasePath: "/dev/docs",
+        docsDir: ["docs"],
+        hashed: false,
+        indexBlog: true,
+        indexDocs: true,
+        indexPages: false,
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      },
+    ],
+    [
+      {
+        docsRouteBasePath: ["/dev/docs"],
+        blogRouteBasePath: ["/dev/blog"],
+      },
+      {
+        blogRouteBasePath: ["/dev/blog"],
+        blogDir: ["blog"],
+        docsRouteBasePath: ["/dev/docs"],
+        docsDir: ["docs"],
+        hashed: false,
+        indexBlog: true,
+        indexDocs: true,
+        indexPages: false,
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

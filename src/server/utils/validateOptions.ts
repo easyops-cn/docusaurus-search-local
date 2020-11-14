@@ -6,18 +6,21 @@ type ValidateFn = (
   options: PluginOptions | undefined
 ) => Required<PluginOptions>;
 
+const isStringOrArrayOfStrings = Joi.alternatives().try(
+  Joi.string(),
+  Joi.array().items(Joi.string())
+);
+
 const schema = Joi.object({
   indexDocs: Joi.boolean().default(true),
   indexBlog: Joi.boolean().default(true),
   indexPages: Joi.boolean().default(false),
-  docsRouteBasePath: Joi.string().replace(/^\//, "").default("docs"),
-  blogRouteBasePath: Joi.string().replace(/^\//, "").default("blog"),
-  language: Joi.alternatives()
-    .try(Joi.string(), Joi.array().items(Joi.string()))
-    .default(["en"]),
+  docsRouteBasePath: isStringOrArrayOfStrings.default(["docs"]),
+  blogRouteBasePath: isStringOrArrayOfStrings.default(["blog"]),
+  language: isStringOrArrayOfStrings.default(["en"]),
   hashed: Joi.boolean().default(false),
-  docsDir: Joi.string().default("docs"),
-  blogDir: Joi.string().default("blog"),
+  docsDir: isStringOrArrayOfStrings.default(["docs"]),
+  blogDir: isStringOrArrayOfStrings.default(["blog"]),
   removeDefaultStopWordFilter: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),

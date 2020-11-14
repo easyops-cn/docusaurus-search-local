@@ -34,8 +34,8 @@ describe("processDocInfos", () => {
         indexDocs: true,
         indexBlog: true,
         indexPages: true,
-        docsRouteBasePath: "docs",
-        blogRouteBasePath: "blog",
+        docsRouteBasePath: ["docs"],
+        blogRouteBasePath: ["blog"],
       },
       [
         {

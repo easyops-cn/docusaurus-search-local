@@ -29,17 +29,25 @@ export function processDocInfos(
         // Do not index error page and search page.
         return;
       }
-      if (indexBlog && urlMatchesPrefix(route, blogRouteBasePath)) {
+      if (
+        indexBlog &&
+        blogRouteBasePath.some((basePath) => urlMatchesPrefix(route, basePath))
+      ) {
         if (
-          route === blogRouteBasePath ||
-          urlMatchesPrefix(route, `${blogRouteBasePath}/tags`)
+          blogRouteBasePath.some(
+            (basePath) =>
+              route === basePath || urlMatchesPrefix(route, `${basePath}/tags`)
+          )
         ) {
           // Do not index list of blog posts and tags filter pages
           return;
         }
         return { route, url, type: "blog" };
       }
-      if (indexDocs && urlMatchesPrefix(route, docsRouteBasePath)) {
+      if (
+        indexDocs &&
+        docsRouteBasePath.some((basePath) => urlMatchesPrefix(route, basePath))
+      ) {
         return { route, url, type: "docs" };
       }
       if (indexPages) {

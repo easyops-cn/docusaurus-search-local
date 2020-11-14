@@ -6,10 +6,24 @@ export function processPluginOptions(
   siteDir: string
 ): ProcessedPluginOptions {
   const config = { ...options } as ProcessedPluginOptions;
-  config.docsDir = path.resolve(siteDir, config.docsDir);
-  config.blogDir = path.resolve(siteDir, config.blogDir);
-  if (!Array.isArray(config.language)) {
-    config.language = [config.language];
-  }
+  ensureArray(config, "docsRouteBasePath");
+  ensureArray(config, "blogRouteBasePath");
+  ensureArray(config, "language");
+  ensureArray(config, "docsDir");
+  ensureArray(config, "blogDir");
+  config.docsRouteBasePath = config.docsRouteBasePath.map((basePath) =>
+    basePath.replace(/^\//, "")
+  );
+  config.blogRouteBasePath = config.blogRouteBasePath.map((basePath) =>
+    basePath.replace(/^\//, "")
+  );
+  config.docsDir = config.docsDir.map((dir) => path.resolve(siteDir, dir));
+  config.blogDir = config.blogDir.map((dir) => path.resolve(siteDir, dir));
   return config;
+}
+
+function ensureArray<T>(object: T, key: keyof T): void {
+  if (!Array.isArray(object[key])) {
+    (object as any)[key] = [object[key]];
+  }
 }

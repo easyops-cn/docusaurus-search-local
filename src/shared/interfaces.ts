@@ -125,12 +125,12 @@ export interface PluginOptions {
   indexDocs?: boolean;
   indexBlog?: boolean;
   indexPages?: boolean;
-  docsRouteBasePath?: string;
-  blogRouteBasePath?: string;
+  docsRouteBasePath?: string | string[];
+  blogRouteBasePath?: string | string[];
   language?: string | string[];
   hashed?: boolean;
-  docsDir?: string;
-  blogDir?: string;
+  docsDir?: string | string[];
+  blogDir?: string | string[];
   removeDefaultStopWordFilter?: boolean;
 
   searchResultLimits?: number;
@@ -151,9 +151,20 @@ export interface PluginOptions {
 }
 
 export type ProcessedPluginOptions = Required<
-  Omit<PluginOptions, "language">
+  Omit<
+    PluginOptions,
+    | "language"
+    | "docsRouteBasePath"
+    | "blogRouteBasePath"
+    | "docsDir"
+    | "blogDir"
+  >
 > & {
+  docsRouteBasePath: string[];
+  blogRouteBasePath: string[];
   language: string[];
+  docsDir: string[];
+  blogDir: string[];
 };
 
 export interface PostBuildData {
