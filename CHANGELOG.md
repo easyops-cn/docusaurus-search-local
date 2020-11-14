@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.12.0...v0.13.0) (2020-11-14)
+
+
+### Features
+
+* add an opt-in option `highlightSearchTermsOnTargetPage` ([e6621e8](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e6621e87007cb97b12deb4ed8d8264f52dee8791))
+
 ## [0.12.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.11.2...v0.12.0) (2020-11-14)
 
 
