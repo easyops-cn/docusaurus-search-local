@@ -1,14 +1,21 @@
-import React, { ReactElement, useCallback, useRef, useState } from "react";
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { useHistory } from "@docusaurus/router";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import { useHistory, useLocation } from "@docusaurus/router";
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import { searchResultLimits } from "../../utils/proxiedGenerated";
+import { searchResultLimits, Mark } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
@@ -18,6 +25,8 @@ async function fetchAutoCompleteJS(): Promise<any> {
   autoComplete.noConflict();
   return autoComplete.default;
 }
+
+const SEARCH_PARAM_HIGHLIGHT = "_highlight";
 
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
@@ -31,6 +40,7 @@ export default function SearchBar({
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
   const history = useHistory();
+  const location = useLocation();
   const searchBarRef = useRef<HTMLInputElement>(null);
   const indexState = useRef("empty"); // empty, loaded, done
   // Should the input be focused after the index is loaded?
@@ -104,9 +114,20 @@ export default function SearchBar({
       ]
     ).on("autocomplete:selected", function (
       event: any,
-      { document }: SearchResult
+      { document: { u, h }, tokens }: SearchResult
     ) {
-      history.push(document.u);
+      let url = u;
+      if (Mark && tokens.length > 0) {
+        const params = new URLSearchParams();
+        for (const token of tokens) {
+          params.append(SEARCH_PARAM_HIGHLIGHT, token);
+        }
+        url += `?${params.toString()}`;
+      }
+      if (h) {
+        url += h;
+      }
+      history.push(url);
     });
 
     indexState.current = "done";
@@ -120,6 +141,24 @@ export default function SearchBar({
       input.focus();
     }
   }, [baseUrl, history]);
+
+  useEffect(() => {
+    if (!Mark) {
+      return;
+    }
+    const keywords = ExecutionEnvironment.canUseDOM
+      ? new URLSearchParams(location.search).getAll(SEARCH_PARAM_HIGHLIGHT)
+      : [];
+    if (keywords.length === 0) {
+      return;
+    }
+    const root = document.querySelector("article");
+    if (!root) {
+      return;
+    }
+    const mark = new Mark(root);
+    mark.mark(keywords);
+  }, [location.search]);
 
   const onInputFocus = useCallback(() => {
     focusAfterIndexLoaded.current = true;

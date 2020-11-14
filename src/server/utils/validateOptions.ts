@@ -22,6 +22,7 @@ const schema = Joi.object({
   docsDir: isStringOrArrayOfStrings.default(["docs"]),
   blogDir: isStringOrArrayOfStrings.default(["blog"]),
   removeDefaultStopWordFilter: Joi.boolean().default(false),
+  highlightSearchTermsOnTargetPage: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),
 });
