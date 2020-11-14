@@ -7,25 +7,33 @@ describe("processPluginOptions", () => {
   test.each<[PluginOptions, Partial<ProcessedPluginOptions>]>([
     [
       {
+        docsRouteBasePath: "docs",
+        blogRouteBasePath: "/blog",
         docsDir: "docs",
         blogDir: "blog",
         language: "en",
       },
       {
-        blogDir: "/tmp/blog",
-        docsDir: "/tmp/docs",
+        docsRouteBasePath: ["docs"],
+        blogRouteBasePath: ["blog"],
+        blogDir: ["/tmp/blog"],
+        docsDir: ["/tmp/docs"],
         language: ["en"],
       },
     ],
     [
       {
+        docsRouteBasePath: ["docs"],
+        blogRouteBasePath: ["/blog"],
         docsDir: "docs",
         blogDir: "blog",
         language: ["en", "zh"],
       },
       {
-        blogDir: "/tmp/blog",
-        docsDir: "/tmp/docs",
+        docsRouteBasePath: ["docs"],
+        blogRouteBasePath: ["blog"],
+        blogDir: ["/tmp/blog"],
+        docsDir: ["/tmp/docs"],
         language: ["en", "zh"],
       },
     ],

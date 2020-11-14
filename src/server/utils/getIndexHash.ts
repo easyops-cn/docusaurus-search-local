@@ -16,18 +16,14 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
     dirField: "docsDir" | "blogDir"
   ): void => {
     if (config[flagField]) {
-      if (!fs.existsSync(config[dirField])) {
-        console.warn(
-          `Warn: \`${dirField}\` doesn't exist: "${config[dirField]}".`
-        );
-      } else if (!fs.lstatSync(config[dirField]).isDirectory()) {
-        console.warn(
-          `Warn: \`${dirField}\` is not a directory: "${config[dirField]}".`
-        );
-      } else {
-        files.push(
-          ...klawSync(config[dirField], { nodir: true, filter: markdownFilter })
-        );
+      for (const dir of config[dirField]) {
+        if (!fs.existsSync(dir)) {
+          console.warn(`Warn: \`${dirField}\` doesn't exist: "${dir}".`);
+        } else if (!fs.lstatSync(dir).isDirectory()) {
+          console.warn(`Warn: \`${dirField}\` is not a directory: "${dir}".`);
+        } else {
+          files.push(...klawSync(dir, { nodir: true, filter: markdownFilter }));
+        }
       }
     }
   };
