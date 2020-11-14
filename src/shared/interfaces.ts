@@ -58,6 +58,9 @@ export interface SearchDocument {
   /** Doc URL. */
   u: string;
 
+  /** Doc hash. */
+  h?: string;
+
   /** Doc parent ID. */
   p?: number;
 
@@ -68,6 +71,11 @@ export interface SearchDocument {
   s?: string;
 }
 
+/**
+ * - 0: Doc title
+ * - 1: Doc heading
+ * - 2: Doc content
+ */
 export type SearchDocumentType = 0 | 1 | 2;
 
 export interface SearchResultBase {
@@ -132,6 +140,7 @@ export interface PluginOptions {
   docsDir?: string | string[];
   blogDir?: string | string[];
   removeDefaultStopWordFilter?: boolean;
+  highlightSearchTermsOnTargetPage?: boolean;
 
   searchResultLimits?: number;
   searchResultContextMaxLength?: number;

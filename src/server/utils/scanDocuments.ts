@@ -46,7 +46,8 @@ export async function scanDocuments(
           headingDocuments.push({
             i: getNextDocId(),
             t: section.title,
-            u: url + section.hash,
+            u: url,
+            h: section.hash,
             p: titleId,
           });
         }
@@ -56,7 +57,8 @@ export async function scanDocuments(
             i: getNextDocId(),
             t: section.content,
             s: section.title || pageTitle,
-            u: url + section.hash,
+            u: url,
+            h: section.hash,
             p: titleId,
           });
         }

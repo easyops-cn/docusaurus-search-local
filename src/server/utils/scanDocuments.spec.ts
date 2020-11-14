@@ -84,14 +84,16 @@ describe("scanDocuments", () => {
         ],
         Array [
           Object {
+            "h": "#first-heading",
             "i": 3,
             "p": 1,
             "t": "First heading",
-            "u": "/1#first-heading",
+            "u": "/1",
           },
         ],
         Array [
           Object {
+            "h": "",
             "i": 2,
             "p": 1,
             "s": "Hello First Docs",
@@ -99,11 +101,12 @@ describe("scanDocuments", () => {
             "u": "/1",
           },
           Object {
+            "h": "#first-heading",
             "i": 4,
             "p": 1,
             "s": "First heading",
             "t": "First content.",
-            "u": "/1#first-heading",
+            "u": "/1",
           },
         ],
       ]

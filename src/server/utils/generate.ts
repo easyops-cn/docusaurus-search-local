@@ -7,6 +7,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   const {
     language,
     removeDefaultStopWordFilter,
+    highlightSearchTermsOnTargetPage,
     searchResultLimits,
     searchResultContextMaxLength,
   } = config;
@@ -55,6 +56,15 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
       removeDefaultStopWordFilter
     )};`
   );
+  if (highlightSearchTermsOnTargetPage) {
+    contents.push(
+      `export { default as Mark } from ${JSON.stringify(
+        require.resolve("mark.js")
+      )}`
+    );
+  } else {
+    contents.push("export const Mark = null;");
+  }
   contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
   contents.push(
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
