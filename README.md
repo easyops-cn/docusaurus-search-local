@@ -10,7 +10,16 @@ An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), w
 >
 > Then later fully rewritten with TypeScript 💪, styles polished 💅, language of Chinese supported 🇨🇳, and tests covered ✅.
 
-## Live demo
+- [Live Demo](#live-demo)
+- [Screen Shots](#screen-shots)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Plugin Options](#plugin-options)
+- [Trouble Shooting](#trouble-shooting)
+- [Further Reading](#further-reading)
+- [Contributing](#contributing)
+
+## Live Demo
 
 https://easyops-cn.github.io/docusaurus-search-example/
 
