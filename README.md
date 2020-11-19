@@ -15,6 +15,7 @@ An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), w
 - [Installation](#installation)
 - [Usage](#usage)
 - [Plugin Options](#plugin-options)
+- [Custom Styles](#custom-styles)
 - [Trouble Shooting](#trouble-shooting)
 - [Further Reading](#further-reading)
 - [Contributing](#contributing)
