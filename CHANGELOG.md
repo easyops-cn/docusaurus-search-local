@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.14.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.0...v0.14.1) (2020-11-19)
+
+
+### Bug Fixes
+
+* fix search bar loading style ([59464c4](https://www.github.com/easyops-cn/docusaurus-search-local/commit/59464c41dd668ace4546e78d47d5098d606d3a0e))
+
 ## [0.14.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.13.1...v0.14.0) (2020-11-19)
 
 
