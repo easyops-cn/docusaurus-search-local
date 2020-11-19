@@ -125,6 +125,12 @@ When building your docs project, Set the env `DEBUG=search-local:*` to enable [d
 DEBUG=search-local:* yarn build
 ```
 
+In case some specific errors occurred:
+
+- `Error: Cannot mix different versions of joi schemas`:
+  - Try using @easyops-cn/docusaurus-search-local >= v0.14.0 with Docusaurus >= v2.0.0-alpha.68
+  - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66
+
 ## Further Reading
 
 - [多语言全文搜索](https://wangshenwei.com/multilingual-full-text-search/)
