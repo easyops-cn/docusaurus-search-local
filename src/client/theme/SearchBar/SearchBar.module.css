@@ -197,7 +197,7 @@ html[data-theme="dark"] .noResultsIcon {
   background-image: none;
 }
 
-.searchIndexLoading .searchBarLoadingRing {
+.searchBarContainer.searchIndexLoading .searchBarLoadingRing {
   display: inline-block;
 }
 
