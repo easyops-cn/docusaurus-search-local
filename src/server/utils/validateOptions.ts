@@ -1,4 +1,4 @@
-import Joi from "@hapi/joi";
+import Joi from "joi";
 import { PluginOptions } from "../../shared/interfaces";
 
 type ValidateFn = (
