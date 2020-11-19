@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
+* compatible with docusaurus v2.0.0-alhpa.68
 * migrate from @hapi/joi to joi after upgraded docusaurus v2 alpha.68 ([e33ce5b](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e33ce5bbadb6401960a12a2dfab5fa2e441c1a0a)), closes [#31](https://www.github.com/easyops-cn/docusaurus-search-local/issues/31)
 
 ### [0.13.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.13.0...v0.13.1) (2020-11-17)
