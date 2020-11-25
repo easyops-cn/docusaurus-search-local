@@ -34,7 +34,7 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       // Remove elements that are marked as aria-hidden.
       // This is mainly done to remove anchors like this:
       // <a aria-hidden="true" tabindex="-1" class="hash-link" href="#first-subheader" title="Direct link to heading">#</a>
-      const title = $h.contents().not("a[aria-hidden=true]").text().trim();
+      const title = $h.contents().not("a.hash-link").text().trim();
       const hash = $h.find("a.hash-link").attr("href") || "";
 
       let $sectionElements;
