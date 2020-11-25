@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.14.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.1...v0.14.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* fix trailing hash not trimmed after upgraded docusaurus v2.0.0-alpha.69 ([2750ef6](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2750ef606b231a6a1dad4be9b8bd79c155c30ed2))
+
 ### [0.14.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.0...v0.14.1) (2020-11-19)
 
 
