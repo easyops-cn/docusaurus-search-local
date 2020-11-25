@@ -43,7 +43,7 @@ describe("parseDocument", () => {
             </ul>
             <h3>
               Goodbye fruits.
-              <a aria-hidden="true" tabindex="-1" class="hash-link" href="#goodbye-fruits" title="Direct link to heading">#</a>
+              <a tabindex="-1" class="hash-link" href="#goodbye-fruits" title="Direct link to heading">#</a>
             </h3>
           </div>
         </article>

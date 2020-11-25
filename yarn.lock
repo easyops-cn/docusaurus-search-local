@@ -960,30 +960,30 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@docusaurus/module-type-aliases@^2.0.0-alpha.68":
-  version "2.0.0-alpha.68"
-  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-alpha.68.tgz#d8cde3f968069eb4ce8aa98a3341789c9697ffe8"
-  integrity sha512-O2l6xBmooDBz8aLbh/ypc9oPlf2MPcscqKk4p8ovyHq3+nqYiXtoraud4/mTvpLFR77usU7NTuulAL1rTBsRIw==
+"@docusaurus/module-type-aliases@^2.0.0-alpha.69":
+  version "2.0.0-alpha.69"
+  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-alpha.69.tgz#eb46ee531cab6e1ac8e9c148c4cffc8151f36751"
+  integrity sha512-4aYZ0KrydLe2t5Ae4LWF2QHhEu4mDJOwwpEf3kEsmZU+OBrWoMlN3W4QGPIt9rJmxrRk5pniz3o+XATSFXZNNQ==
 
-"@docusaurus/types@2.0.0-alpha.68":
-  version "2.0.0-alpha.68"
-  resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-2.0.0-alpha.68.tgz#8709de8b7e6a535f3e835ef20b04b6f12bf328af"
-  integrity sha512-UcUuwJx2cjwbWBeXi2vNgpNn8XK1UheQ9v+DPWkHwcYHK4fgNuihf2BoA/PYmd8faclZTYuYV14waje31zmxbA==
+"@docusaurus/types@2.0.0-alpha.69":
+  version "2.0.0-alpha.69"
+  resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-2.0.0-alpha.69.tgz#05d1a28f325600185b3cb4088326c865fb4b54a9"
+  integrity sha512-8TgHmUMH5q+5D93nyugk/dtUeGPblRE++gxxrwjNYnJucRUNDKRC8kJhEozODGcSfXddTeMalPvbRKSz9Pxj2g==
   dependencies:
     "@types/webpack" "^4.41.0"
     commander "^4.0.1"
     querystring "0.2.0"
     webpack-merge "^4.2.2"
 
-"@docusaurus/utils@^2.0.0-alpha.68":
-  version "2.0.0-alpha.68"
-  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.68.tgz#2c806521edb0ef27c612c0d6380319cb9d8ded4a"
-  integrity sha512-Lp4LV2j4wkZtG2GofL3fnLF+Fmj+NAZjt3i0EyPE0dAyW6SW0oyoZQFtoZoEcxFGVViEM3VhXtsHdJxA6TDlFw==
+"@docusaurus/utils@^2.0.0-alpha.69":
+  version "2.0.0-alpha.69"
+  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.69.tgz#9532cd489742beede570575ab70265dacecb3f24"
+  integrity sha512-RpxqcjPT0L+MxLyS/4QOHp/2hlKPcPoDyvfqtTJiS9DPtUzkH573a5/yMbfzz8IbPeYWRCPL2qxWtmN7XCZ/sQ==
   dependencies:
-    "@docusaurus/types" "2.0.0-alpha.68"
+    "@docusaurus/types" "2.0.0-alpha.69"
     chalk "^3.0.0"
     escape-string-regexp "^2.0.0"
-    fs-extra "^8.1.0"
+    fs-extra "^9.0.1"
     gray-matter "^4.0.2"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
@@ -3524,15 +3524,6 @@ fs-access@^1.0.1:
   dependencies:
     null-check "^1.0.0"
 
-fs-extra@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
-  integrity sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==
-  dependencies:
-    graceful-fs "^4.2.0"
-    jsonfile "^4.0.0"
-    universalify "^0.1.0"
-
 fs-extra@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
@@ -4849,13 +4840,6 @@ json5@^2.1.2:
   integrity sha512-KXPvOm8K9IJKFM0bmdn8QXh7udDh1g/giieX0NLCaMnb4hEiVFqnop2ImTXCc5e0/oHz3LTqmHGtExn5hfMkOA==
   dependencies:
     minimist "^1.2.5"
-
-jsonfile@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
-  integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
-  optionalDependencies:
-    graceful-fs "^4.1.6"
 
 jsonfile@^6.0.1:
   version "6.0.1"
@@ -7409,11 +7393,6 @@ union-value@^1.0.0:
     get-value "^2.0.6"
     is-extendable "^0.1.1"
     set-value "^2.0.1"
-
-universalify@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
-  integrity sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==
 
 universalify@^1.0.0:
   version "1.0.0"
