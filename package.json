@@ -27,7 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@docusaurus/utils": "^2.0.0-alpha.69",
+    "@docusaurus/utils": "^2.0.0-alpha",
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "cheerio": "^1.0.0-rc.3",
     "clsx": "^1.1.1",
@@ -44,7 +44,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@docusaurus/module-type-aliases": "^2.0.0-alpha.69",
+    "@docusaurus/module-type-aliases": "^2.0.0-alpha",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/debug": "^4.1.5",
     "@types/enzyme": "^3.10.7",

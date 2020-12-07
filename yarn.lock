@@ -960,7 +960,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@docusaurus/module-type-aliases@^2.0.0-alpha.69":
+"@docusaurus/module-type-aliases@^2.0.0-alpha":
   version "2.0.0-alpha.69"
   resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-alpha.69.tgz#eb46ee531cab6e1ac8e9c148c4cffc8151f36751"
   integrity sha512-4aYZ0KrydLe2t5Ae4LWF2QHhEu4mDJOwwpEf3kEsmZU+OBrWoMlN3W4QGPIt9rJmxrRk5pniz3o+XATSFXZNNQ==
@@ -975,7 +975,7 @@
     querystring "0.2.0"
     webpack-merge "^4.2.2"
 
-"@docusaurus/utils@^2.0.0-alpha.69":
+"@docusaurus/utils@^2.0.0-alpha":
   version "2.0.0-alpha.69"
   resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.69.tgz#9532cd489742beede570575ab70265dacecb3f24"
   integrity sha512-RpxqcjPT0L+MxLyS/4QOHp/2hlKPcPoDyvfqtTJiS9DPtUzkH573a5/yMbfzz8IbPeYWRCPL2qxWtmN7XCZ/sQ==
