@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -32,20 +32,8 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: yarn test
-    - name: Coveralls Parallel
+    - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.github_token }}
         path-to-lcov: ./.coverage/lcov.info
-        flag-name: run-${{ matrix.node-version }}
-        parallel: true
-  finish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        path-to-lcov: ./.coverage/lcov.info
-        parallel-finished: true
