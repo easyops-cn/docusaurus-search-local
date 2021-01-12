@@ -157,6 +157,7 @@ export default function SearchBar({
       return;
     }
     const mark = new Mark(root);
+    mark.unmark();
     mark.mark(keywords);
   }, [location.search]);
 

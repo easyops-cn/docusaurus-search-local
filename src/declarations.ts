@@ -15,6 +15,7 @@ declare module "*/generated.js" {
   export class Mark {
     constructor(root: HTMLElement);
     mark: (terms: string[], options?: Record<string, unknown>) => void;
+    unmark: () => void;
   }
   export const indexHash: string | undefined;
   export const searchResultLimits: number;
