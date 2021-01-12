@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.14.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.2...v0.14.3) (2021-01-12)
+
+
+### Bug Fixes
+
+* fix highlight not cleared when researching ([37a1a10](https://www.github.com/easyops-cn/docusaurus-search-local/commit/37a1a104c72f6abded27573fb30a00fc312b4f05))
+
 ### [0.14.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.1...v0.14.2) (2020-11-25)
 
 
