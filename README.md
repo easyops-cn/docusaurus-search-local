@@ -140,6 +140,9 @@ In case some specific errors occurred:
 - `Error: Cannot mix different versions of joi schemas`:
   - Try using @easyops-cn/docusaurus-search-local >= v0.14.0 with Docusaurus >= v2.0.0-alpha.68
   - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66
+- `Error: Command failed with signal "SIGSEGV"`:
+  - This is probably caused by a [known issue](https://github.com/yanyiwu/nodejieba/issues/187) introduced by `nodejieba@2.5.2`, if you enabled language of zh.
+  - Try downgrading `nodejieba` to `2.4.2` and it will work again, see discussions in [#47](https://github.com/easyops-cn/docusaurus-search-local/issues/47).
 
 ## Further Reading
 
