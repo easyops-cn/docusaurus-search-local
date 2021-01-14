@@ -1,7 +1,7 @@
 # @easyops-cn/docusaurus-search-local
 
 [![Npm Version](https://img.shields.io/npm/v/@easyops-cn/docusaurus-search-local)](https://www.npmjs.com/package/@easyops-cn/docusaurus-search-local)
-[![Build Status](https://travis-ci.com/easyops-cn/docusaurus-search-local.svg?branch=master)](https://travis-ci.com/easyops-cn/docusaurus-search-local)
+[![CI Status](https://github.com/easyops-cn/docusaurus-search-local/workflows/CI/badge.svg?event=push)](https://github.com/easyops-cn/docusaurus-search-local/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/easyops-cn/docusaurus-search-local/badge.svg?branch=master)](https://coveralls.io/github/easyops-cn/docusaurus-search-local?branch=master)
 
 An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), which supports multiple languages, especially optimized for language of zh.
