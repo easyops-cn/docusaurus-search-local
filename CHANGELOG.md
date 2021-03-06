@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.4...v0.15.0) (2021-03-06)
+
+
+### Features
+
+* support translations in plugin options ([c6dc344](https://www.github.com/easyops-cn/docusaurus-search-local/commit/c6dc344d89f20bde0181ae164d3c27951befce11)), closes [#59](https://www.github.com/easyops-cn/docusaurus-search-local/issues/59)
+
 ### [0.14.4](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.3...v0.14.4) (2021-01-12)
 
 
