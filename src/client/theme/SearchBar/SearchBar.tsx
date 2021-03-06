@@ -15,7 +15,7 @@ import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import { searchResultLimits, Mark } from "../../utils/proxiedGenerated";
+import { searchResultLimits, Mark, translations } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
@@ -96,7 +96,7 @@ export default function SearchBar({
               const a = document.createElement("a");
               const url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
               a.href = url;
-              a.textContent = "See all results";
+              a.textContent = translations.see_all_results;
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
@@ -191,7 +191,7 @@ export default function SearchBar({
       })}
     >
       <input
-        placeholder="Search"
+        placeholder={translations.search_placeholder}
         aria-label="Search"
         className="navbar__search-input"
         onMouseEnter={onInputMouseEnter}
