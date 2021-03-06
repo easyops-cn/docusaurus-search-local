@@ -10,7 +10,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN_EVE }}
           release-type: node
           package-name: "@easyops-cn/docusaurus-search-local"
           bump-minor-pre-major: true
