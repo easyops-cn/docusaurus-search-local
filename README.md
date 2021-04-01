@@ -100,14 +100,17 @@ To make this plugin localized, pass a `translations` option which defaults to:
 
 ```json
 {
-  "search_placeholder": "Search",
-  "see_all_results": "See all results",
-  "no_results": "No results.",
-  "search_results_for": "Search results for \"{{ keyword }}\"",
-  "search_the_documentation": "Search the documentation",
-  "count_documents_found": "{{ count }} document found",
-  "count_documents_found_plural": "{{ count }} documents found",
-  "no_documents_were_found": "No documents were found"
+  "en": {
+    // put here the locale used in docusaurus
+    "search_placeholder": "Search",
+    "see_all_results": "See all results",
+    "no_results": "No results.",
+    "search_results_for": "Search results for \"{{ keyword }}\"",
+    "search_the_documentation": "Search the documentation",
+    "count_documents_found": "{{ count }} document found",
+    "count_documents_found_plural": "{{ count }} documents found",
+    "no_documents_were_found": "No documents were found"
+  }
 }
 ```
 

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { PluginOptions } from "../../shared/interfaces";
+import { PluginOptions, TranslationLocaleMap } from "../../shared/interfaces";
 
 type ValidateFn = (
   schema: Joi.Schema,
@@ -25,16 +25,43 @@ const schema = Joi.object<PluginOptions>({
   highlightSearchTermsOnTargetPage: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),
-  translations: Joi.object<TranslationMap>({
-    search_placeholder: Joi.string().default("Search"),
-    see_all_results: Joi.string().default("See all results"),
-    no_results: Joi.string().default("No results."),
-    search_results_for: Joi.string().default("Search results for \"{{ keyword }}\""),
-    search_the_documentation: Joi.string().default("Search the documentation"),
-    count_documents_found_plural: Joi.string().default((parent) => parent.count_documents_found ?? "{{ count }} documents found"),
-    count_documents_found: Joi.string().default("{{ count }} document found"),
-    no_documents_were_found: Joi.string().default("No documents were found"),
-  }).default().unknown(false),
+  translations: Joi.object<TranslationLocaleMap>()
+    .pattern(
+      Joi.string().min(2),
+      Joi.object({
+        search_placeholder: Joi.string().default("Search"),
+        see_all_results: Joi.string().default("See all results"),
+        no_results: Joi.string().default("No results."),
+        search_results_for: Joi.string().default(
+          'Search results for "{{ keyword }}"'
+        ),
+        search_the_documentation: Joi.string().default(
+          "Search the documentation"
+        ),
+        count_documents_found_plural: Joi.string().default(
+          (parent) =>
+            parent.count_documents_found ?? "{{ count }} documents found"
+        ),
+        count_documents_found: Joi.string().default(
+          "{{ count }} document found"
+        ),
+        no_documents_were_found: Joi.string().default(
+          "No documents were found"
+        ),
+      })
+    )
+    .default({
+      en: {
+        search_placeholder: "Search",
+        see_all_results: "See all results",
+        no_results: "No results.",
+        search_results_for: 'Search results for "{{ keyword }}"',
+        search_the_documentation: "Search the documentation",
+        count_documents_found: "{{ count }} document found",
+        count_documents_found_plural: "{{ count }} documents found",
+        no_documents_were_found: "No documents were found",
+      },
+    }),
 });
 
 export function validateOptions({

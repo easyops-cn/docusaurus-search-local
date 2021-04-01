@@ -137,10 +137,13 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         translations: {
-          "hello": "hola"
+          es: {
+            hello: "hola",
+          },
         },
       } as ProcessedPluginOptions,
-      "/tmp"
+      "/tmp",
+      "es"
     );
     expect(mockWriteFileSync).toBeCalledWith(
       "/tmp/generated.js",
@@ -161,10 +164,11 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         translations: {
-          "hello": "hola"
-        }
+          hello: "hola",
+        },
       } as ProcessedPluginOptions,
-      "/tmp"
+      "/tmp",
+      "es"
     );
 
     expect(mockWriteFileSync).toBeCalledWith(

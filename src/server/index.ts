@@ -16,7 +16,7 @@ export default function DocusaurusSearchLocalPlugin(
 
   const dir = path.join(context.generatedFilesDir, PLUGIN_NAME, "default");
   fs.ensureDirSync(dir);
-  generate(config, dir);
+  generate(config, dir, context.i18n.currentLocale);
 
   const themePath = path.resolve(__dirname, "../../client/client/theme");
   const pagePath = path.join(themePath, "SearchPage/index.js");

@@ -129,6 +129,8 @@ export interface DocInfoWithFilePath {
 
 export type DocInfoType = "docs" | "blog" | "page";
 
+export type TranslationLocaleMap = { [locale: string]: TranslationMap };
+
 export interface PluginOptions {
   indexDocs?: boolean;
   indexBlog?: boolean;
@@ -145,7 +147,7 @@ export interface PluginOptions {
   searchResultLimits?: number;
   searchResultContextMaxLength?: number;
 
-  translations?: TranslationMap;
+  translations?: TranslationLocaleMap;
 
   // searchInputPlaceholder?: string;
   // searchNoResults?: string;
@@ -189,4 +191,7 @@ export interface DocusaurusContext {
   baseUrl: string;
   siteDir: string;
   generatedFilesDir: string;
+  i18n: {
+    currentLocale: string;
+  };
 }
