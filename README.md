@@ -15,6 +15,7 @@ An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), w
 - [Installation](#installation)
 - [Usage](#usage)
 - [Plugin Options](#plugin-options)
+- [Translations](#translations)
 - [Custom Styles](#custom-styles)
 - [Trouble Shooting](#trouble-shooting)
 - [Further Reading](#further-reading)
@@ -77,22 +78,23 @@ yarn add nodejieba
 
 ## Plugin Options
 
-| Name                             | Type               | Default   | Description                                                                                                                                  |
-| -------------------------------- | ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| indexDocs                        | boolean            | `true`    | Whether to index docs.                                                                                                                       |
-| indexBlog                        | boolean            | `true`    | Whether to index blog.                                                                                                                       |
-| indexPages                       | boolean            | `false`   | Whether to index pages.                                                                                                                      |
-| docsRouteBasePath                | string \| string[] | `"/docs"` | Base route path(s) of docs. Slash at beginning is not required.                                                                              |
-| blogRouteBasePath                | string \| string[] | `"/blog"` | Base route path(s) of blog. Slash at beginning is not required.                                                                              |
-| language                         | string \| string[] | `"en"`    | All [lunr-languages](https://github.com/MihaiValentin/lunr-languages) supported languages, + `zh` 🔥.                                        |
-| hashed                           | boolean            | `false`   | Whether to add a hashed query when fetching index (based on the content hash of all indexed `*.md` in `docsDir` and `blogDir` if applicable) |
-| docsDir                          | string \| string[] | `"docs"`  | The dir(s) of docs to get the content hash, it's relative to the dir of your project.                                                        |
-| blogDir                          | string \| string[] | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                                 |
-| removeDefaultStopWordFilter      | boolean            | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs.               |
-| highlightSearchTermsOnTargetPage | boolean            | `false`   | Highlight search terms on target page.                                                                                                       |
-| searchResultLimits               | number             | `8`       | Limit the search results.                                                                                                                    |
-| searchResultContextMaxLength     | number             | `50`      | Set the max length of characters of each search result to show.                                                                              |
-| translations                     | TranslationMap     | -         | Set translations of this plugin, see [docs below](#translations).                                                                            |
+| Name                             | Type                 | Default   | Description                                                                                                                                  |
+| -------------------------------- | -------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| indexDocs                        | boolean              | `true`    | Whether to index docs.                                                                                                                       |
+| indexBlog                        | boolean              | `true`    | Whether to index blog.                                                                                                                       |
+| indexPages                       | boolean              | `false`   | Whether to index pages.                                                                                                                      |
+| docsRouteBasePath                | string \| string[]   | `"/docs"` | Base route path(s) of docs. Slash at beginning is not required.                                                                              |
+| blogRouteBasePath                | string \| string[]   | `"/blog"` | Base route path(s) of blog. Slash at beginning is not required.                                                                              |
+| language                         | string \| string[]   | `"en"`    | All [lunr-languages](https://github.com/MihaiValentin/lunr-languages) supported languages, + `zh` 🔥.                                        |
+| hashed                           | boolean              | `false`   | Whether to add a hashed query when fetching index (based on the content hash of all indexed `*.md` in `docsDir` and `blogDir` if applicable) |
+| docsDir                          | string \| string[]   | `"docs"`  | The dir(s) of docs to get the content hash, it's relative to the dir of your project.                                                        |
+| blogDir                          | string \| string[]   | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                                 |
+| removeDefaultStopWordFilter      | boolean              | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs.               |
+| highlightSearchTermsOnTargetPage | boolean              | `false`   | Highlight search terms on target page.                                                                                                       |
+| searchResultLimits               | number               | `8`       | Limit the search results.                                                                                                                    |
+| searchResultContextMaxLength     | number               | `50`      | Set the max length of characters of each search result to show.                                                                              |
+| translations                     | TranslationMap       | -         | Set translations of this plugin, see [docs below](#translations).                                                                            |
+| i18n                             | TranslationLocaleMap | -         | Allow to translate the plugin for more than one locale, see [docs below](#translations).                                                     |
 
 ### Translations
 
@@ -100,8 +102,24 @@ To make this plugin localized, pass a `translations` option which defaults to:
 
 ```json
 {
-  "en": {
-    // put here the locale used in docusaurus
+  "search_placeholder": "Search",
+  "see_all_results": "See all results",
+  "no_results": "No results.",
+  "search_results_for": "Search results for \"{{ keyword }}\"",
+  "search_the_documentation": "Search the documentation",
+  "count_documents_found": "{{ count }} document found",
+  "count_documents_found_plural": "{{ count }} documents found",
+  "no_documents_were_found": "No documents were found"
+}
+```
+
+Note that `*_plural` can be omitted if it is the same as singular.
+
+If you need to translate this plugin for more than one locale, you can pass an `i18n` object like this:
+
+```json
+{
+  "locale": {
     "search_placeholder": "Search",
     "see_all_results": "See all results",
     "no_results": "No results.",
@@ -114,7 +132,7 @@ To make this plugin localized, pass a `translations` option which defaults to:
 }
 ```
 
-Note that `*_plural` can be omitted if it is the same as singular.
+If some locale are not given or if some keys are not present, `translations` will be used as default.
 
 ## Custom Styles
 
