@@ -25,7 +25,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
     [
@@ -42,7 +42,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
     [
@@ -61,7 +61,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
     [
@@ -83,7 +83,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
     [
@@ -103,7 +103,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
     [
@@ -126,7 +126,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
-        'export const translations = {"hello":"hola"};',
+        'export const translations = {"hello":"hello","goodbye":"adiós"};',
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -137,8 +137,12 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         translations: {
+          hello: "hello",
+          goodbye: "goodbye",
+        },
+        i18n: {
           es: {
-            hello: "hola",
+            goodbye: "adiós",
           },
         },
       } as ProcessedPluginOptions,
@@ -166,6 +170,7 @@ describe("generate", () => {
         translations: {
           hello: "hola",
         },
+        i18n: {},
       } as ProcessedPluginOptions,
       "/tmp",
       "es"

@@ -15,7 +15,10 @@ export function generate(
     searchResultLimits,
     searchResultContextMaxLength,
     translations,
+    i18n,
   } = config;
+  const finalTranslations = { ...translations, ...i18n[locale] };
+
   const indexHash = getIndexHash(config);
   const contents: string[] = [
     `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
@@ -78,7 +81,7 @@ export function generate(
     )};`
   );
   contents.push(
-    `export const translations = ${JSON.stringify(translations[locale])};`
+    `export const translations = ${JSON.stringify(finalTranslations)};`
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
