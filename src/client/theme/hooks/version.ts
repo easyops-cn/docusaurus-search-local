@@ -27,7 +27,10 @@ export default function useDocusaurusDocsVersion() {
       const versionPath = locationUri.relativeTo(docsUri.toString());
       const maybeVersion = versionPath.segment(0);
       try {
+        /* eslint-disable */
+        // @ts-ignore
         const { default: knownVersions } = await import("@site/versions.json");
+        /* eslint-enable */
         const currentVersion = concat(knownVersions, "next").includes(
           maybeVersion
         )
