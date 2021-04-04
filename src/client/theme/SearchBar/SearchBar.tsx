@@ -99,7 +99,8 @@ export default function SearchBar({
                 return;
               }
               const a = document.createElement("a");
-              const url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
+              let url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
+              if (version) url += `&v=${encodeURIComponent(version)}`;
               a.href = url;
               a.textContent = translations.see_all_results;
               a.addEventListener("click", (e) => {

@@ -21,7 +21,7 @@ export default function SearchPage(): React.ReactElement {
   const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const { searchValue, updateSearchPath } = useSearchQuery();
+  const { searchValue, updateSearchPath, searchVersion } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const [searchSource, setSearchSource] = useState<
     (input: string, callback: (results: SearchResult[]) => void) => void
@@ -36,7 +36,8 @@ export default function SearchPage(): React.ReactElement {
         : translations.search_the_documentation,
     [searchQuery]
   );
-  const version = useDocusaurusDocsVersion();
+  const determinedVersion = useDocusaurusDocsVersion();
+  const version = searchVersion ? searchVersion : determinedVersion;
 
   useEffect(() => {
     updateSearchPath(searchQuery);
