@@ -13,16 +13,19 @@ export function parse(
   // Remove copy buttons from code boxes
   $('div[class^="mdxCodeBlock_"] button').remove();
 
+  let versionNumber = "";
   if (type === "docs") {
     // Remove version badges
-    $("span.badge")
+    const version = $("span.badge")
       .filter((_, element) => $(element).text().startsWith("Version:"))
-      .remove();
+      .first();
+    versionNumber = version.text().replace("Version: ", "");
+    version.remove();
   }
 
   if (type === "page") {
     return parsePage($, url);
   }
 
-  return parseDocument($);
+  return parseDocument($, versionNumber);
 }

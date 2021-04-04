@@ -58,6 +58,7 @@ export function buildIndex(
 
       this.ref("i");
       this.field("t");
+      this.field("v");
       this.metadataWhitelist = ["position"];
 
       documents.forEach((doc) => {

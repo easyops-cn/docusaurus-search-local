@@ -31,5 +31,6 @@ export function parsePage($: cheerio.Root, url: string): ParsedDocument {
       },
     ],
     breadcrumb: [],
+    version: undefined,
   };
 }

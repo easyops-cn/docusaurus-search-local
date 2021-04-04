@@ -69,6 +69,9 @@ export interface SearchDocument {
 
   /** Doc section title */
   s?: string;
+
+  /** Doc version */
+  v?: string;
 }
 
 /**
@@ -107,6 +110,7 @@ export interface ParsedDocument {
   pageTitle: string;
   sections: ParsedDocumentSection[];
   breadcrumb: string[];
+  version: string | undefined;
 }
 
 export interface ParsedDocumentSection {
