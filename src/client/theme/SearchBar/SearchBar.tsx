@@ -15,9 +15,13 @@ import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import { searchResultLimits, Mark, translations } from "../../utils/proxiedGenerated";
+import {
+  searchResultLimits,
+  Mark,
+  translations,
+} from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
-
+import useDocusaurusDocsVersion from "../hooks/version";
 import styles from "./SearchBar.module.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
@@ -47,6 +51,7 @@ export default function SearchBar({
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
   const [inputChanged, setInputChanged] = useState(false);
+  const version = useDocusaurusDocsVersion();
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -55,7 +60,6 @@ export default function SearchBar({
     }
     indexState.current = "loading";
     setLoading(true);
-
     const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
       fetchIndexes(baseUrl),
       fetchAutoCompleteJS(),
@@ -84,7 +88,8 @@ export default function SearchBar({
           source: SearchSourceFactory(
             wrappedIndexes,
             zhDictionary,
-            searchResultLimits
+            searchResultLimits,
+            version
           ),
           templates: {
             suggestion: SuggestionTemplate,
@@ -140,7 +145,7 @@ export default function SearchBar({
       }
       input.focus();
     }
-  }, [baseUrl, history]);
+  }, [baseUrl, history, version]);
 
   useEffect(() => {
     if (!Mark) {

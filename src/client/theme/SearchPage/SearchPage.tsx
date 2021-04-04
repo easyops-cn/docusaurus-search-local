@@ -14,7 +14,7 @@ import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { translations } from "../../utils/proxiedGenerated";
 import { simpleTemplate } from "../../utils/simpleTemplate";
-
+import useDocusaurusDocsVersion from "../hooks/version";
 import styles from "./SearchPage.module.css";
 
 export default function SearchPage(): React.ReactElement {
@@ -27,14 +27,16 @@ export default function SearchPage(): React.ReactElement {
     (input: string, callback: (results: SearchResult[]) => void) => void
   >();
   const [searchResults, setSearchResults] = useState<SearchResult[]>();
-
   const pageTitle = useMemo(
     () =>
       searchQuery
-        ? simpleTemplate(translations.search_results_for, { keyword: searchQuery })
+        ? simpleTemplate(translations.search_results_for, {
+            keyword: searchQuery,
+          })
         : translations.search_the_documentation,
     [searchQuery]
   );
+  const version = useDocusaurusDocsVersion();
 
   useEffect(() => {
     updateSearchPath(searchQuery);
@@ -67,11 +69,11 @@ export default function SearchPage(): React.ReactElement {
     async function doFetchIndexes() {
       const { wrappedIndexes, zhDictionary } = await fetchIndexes(baseUrl);
       setSearchSource(() =>
-        SearchSourceFactory(wrappedIndexes, zhDictionary, 100)
+        SearchSourceFactory(wrappedIndexes, zhDictionary, 100, version)
       );
     }
     doFetchIndexes();
-  }, [baseUrl]);
+  }, [baseUrl, version]);
 
   return (
     <Layout title={pageTitle}>
@@ -108,16 +110,14 @@ export default function SearchPage(): React.ReactElement {
         {searchResults &&
           (searchResults.length > 0 ? (
             <p>
-              {
-                simpleTemplate(
-                  searchResults.length === 1
+              {simpleTemplate(
+                searchResults.length === 1
                   ? translations.count_documents_found
                   : translations.count_documents_found_plural,
-                  {
-                    count: searchResults.length
-                  }
-                )
-              }
+                {
+                  count: searchResults.length,
+                }
+              )}
             </p>
           ) : process.env.NODE_ENV === "production" ? (
             <p>{translations.no_documents_were_found}</p>

@@ -10,11 +10,13 @@ import {
 import { sortSearchResults } from "./sortSearchResults";
 import { processTreeStatusOfSearchResults } from "./processTreeStatusOfSearchResults";
 import { language } from "./proxiedGenerated";
+import * as lunr from "lunr";
 
 export function SearchSourceFactory(
   wrappedIndexes: WrappedIndex[],
   zhDictionary: string[],
-  resultsLimit: number
+  resultsLimit: number,
+  version: string | null
 ) {
   return function searchSource(
     input: string,
@@ -34,8 +36,14 @@ export function SearchSourceFactory(
         results.push(
           ...index
             .query((query) => {
+              if (version)
+                query.term(version, {
+                  fields: ["v"],
+                  presence: lunr.Query.presence.REQUIRED,
+                });
               for (const item of term) {
                 query.term(item.value, {
+                  fields: ["t"],
                   wildcard: item.wildcard,
                   presence: item.presence,
                 });
