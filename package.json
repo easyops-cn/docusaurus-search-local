@@ -28,15 +28,18 @@
   "dependencies": {
     "@docusaurus/utils": "^2.0.0-alpha.69",
     "@easyops-cn/autocomplete.js": "^0.38.1",
+    "@types/lodash": "^4.14.168",
+    "@types/urijs": "^1.19.15",
     "cheerio": "^1.0.0-rc.3",
     "clsx": "^1.1.1",
     "debug": "^4.2.0",
     "fs-extra": "^9.0.1",
-    "joi": "^17.3.0",
     "klaw-sync": "^6.0.0",
+    "lodash": "^4.17.21",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0",
-    "mark.js": "^8.11.1"
+    "mark.js": "^8.11.1",
+    "urijs": "^1.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
