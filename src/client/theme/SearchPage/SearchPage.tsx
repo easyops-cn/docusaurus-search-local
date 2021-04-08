@@ -31,7 +31,9 @@ export default function SearchPage(): React.ReactElement {
   const pageTitle = useMemo(
     () =>
       searchQuery
-        ? simpleTemplate(translations.search_results_for, { keyword: searchQuery })
+        ? simpleTemplate(translations.search_results_for, {
+            keyword: searchQuery,
+          })
         : translations.search_the_documentation,
     [searchQuery]
   );
@@ -86,18 +88,16 @@ export default function SearchPage(): React.ReactElement {
       <div className="container margin-vert--lg">
         <h1>{pageTitle}</h1>
 
-        <form>
-          <input
-            type="search"
-            name="q"
-            className={styles.searchQueryInput}
-            aria-label="Search"
-            onChange={handleSearchInputChange}
-            value={searchQuery}
-            autoComplete="off"
-            autoFocus
-          />
-        </form>
+        <input
+          type="search"
+          name="q"
+          className={styles.searchQueryInput}
+          aria-label="Search"
+          onChange={handleSearchInputChange}
+          value={searchQuery}
+          autoComplete="off"
+          autoFocus
+        />
 
         {!searchSource && searchQuery && (
           <div>
@@ -108,16 +108,14 @@ export default function SearchPage(): React.ReactElement {
         {searchResults &&
           (searchResults.length > 0 ? (
             <p>
-              {
-                simpleTemplate(
-                  searchResults.length === 1
+              {simpleTemplate(
+                searchResults.length === 1
                   ? translations.count_documents_found
                   : translations.count_documents_found_plural,
-                  {
-                    count: searchResults.length
-                  }
-                )
-              }
+                {
+                  count: searchResults.length,
+                }
+              )}
             </p>
           ) : process.env.NODE_ENV === "production" ? (
             <p>{translations.no_documents_were_found}</p>
