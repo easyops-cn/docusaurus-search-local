@@ -3,7 +3,11 @@ import path from "path";
 import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
-export function generate(config: ProcessedPluginOptions, dir: string): void {
+export function generate(
+  config: ProcessedPluginOptions,
+  dir: string,
+  locale: string
+): void {
   const {
     language,
     removeDefaultStopWordFilter,
@@ -11,7 +15,10 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     searchResultLimits,
     searchResultContextMaxLength,
     translations,
+    i18n,
   } = config;
+  const finalTranslations = { ...translations, ...i18n[locale] };
+
   const indexHash = getIndexHash(config);
   const contents: string[] = [
     `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
@@ -74,7 +81,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     )};`
   );
   contents.push(
-    `export const translations = ${JSON.stringify(translations)};`
+    `export const translations = ${JSON.stringify(finalTranslations)};`
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
