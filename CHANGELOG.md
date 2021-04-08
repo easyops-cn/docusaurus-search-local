@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.15.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.15.0...v0.15.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* remove form from search page ([f208313](https://www.github.com/easyops-cn/docusaurus-search-local/commit/f208313335cd09e040259a946a6722e890b44546)), closes [#64](https://www.github.com/easyops-cn/docusaurus-search-local/issues/64)
+
 ## [0.15.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.14.4...v0.15.0) (2021-03-06)
 
 
