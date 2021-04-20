@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.16.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.15.1...v0.16.0) (2021-04-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires docusaurus ^2.0.0-alpha.73
+
+### Features
+
+* fix error of mixing of joi schemas ([2159902](https://www.github.com/easyops-cn/docusaurus-search-local/commit/21599028d7c571f56fa4d97149b703322c9752ad)), closes [#31](https://www.github.com/easyops-cn/docusaurus-search-local/issues/31)
+
 ### [0.15.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.15.0...v0.15.1) (2021-04-08)
 
 
