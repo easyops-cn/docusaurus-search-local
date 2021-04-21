@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.16.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.0...v0.16.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* fix search bar error with new docusaurus ([ed5db80](https://www.github.com/easyops-cn/docusaurus-search-local/commit/ed5db80b5fdd51bad01855c16f1feb84cad0a4f3)), closes [#77](https://www.github.com/easyops-cn/docusaurus-search-local/issues/77)
+
 ## [0.16.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.15.1...v0.16.0) (2021-04-20)
 
 
