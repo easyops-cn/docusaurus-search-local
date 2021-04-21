@@ -15,7 +15,11 @@ import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import { searchResultLimits, Mark, translations } from "../../utils/proxiedGenerated";
+import {
+  searchResultLimits,
+  Mark,
+  translations,
+} from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
@@ -30,7 +34,7 @@ const SEARCH_PARAM_HIGHLIGHT = "_highlight";
 
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
-  handleSearchBarToggle: (expanded: boolean) => void;
+  handleSearchBarToggle?: (expanded: boolean) => void;
 }
 
 export default function SearchBar({
@@ -164,11 +168,11 @@ export default function SearchBar({
   const onInputFocus = useCallback(() => {
     focusAfterIndexLoaded.current = true;
     loadIndex();
-    handleSearchBarToggle(true);
+    handleSearchBarToggle?.(true);
   }, [handleSearchBarToggle, loadIndex]);
 
   const onInputBlur = useCallback(() => {
-    handleSearchBarToggle(false);
+    handleSearchBarToggle?.(false);
   }, [handleSearchBarToggle]);
 
   const onInputMouseEnter = useCallback(() => {
