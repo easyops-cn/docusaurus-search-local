@@ -1,6 +1,6 @@
 {
   "name": "@easyops-cn/docusaurus-search-local",
-  "version": "0.15.0",
+  "version": "0.16.1",
   "description": "An offline/local search plugin for Docusaurus v2.",
   "repository": "https://github.com/easyops-cn/docusaurus-search-local",
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
@@ -27,6 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "@docusaurus/utils": "^2.0.0-alpha.73",
+    "@docusaurus/utils-validation": "^2.0.0-alpha.73",
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "cheerio": "^1.0.0-rc.3",
     "clsx": "^1.1.1",
@@ -45,7 +46,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@docusaurus/module-type-aliases": "^2.0.0-alpha.69",
+    "@docusaurus/module-type-aliases": "^2.0.0-alpha.73",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/debug": "^4.1.5",
     "@types/enzyme": "^3.10.7",

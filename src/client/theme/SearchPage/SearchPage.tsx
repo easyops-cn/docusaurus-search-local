@@ -89,18 +89,16 @@ export default function SearchPage(): React.ReactElement {
       <div className="container margin-vert--lg">
         <h1>{pageTitle}</h1>
 
-        <form>
-          <input
-            type="search"
-            name="q"
-            className={styles.searchQueryInput}
-            aria-label="Search"
-            onChange={handleSearchInputChange}
-            value={searchQuery}
-            autoComplete="off"
-            autoFocus
-          />
-        </form>
+        <input
+          type="search"
+          name="q"
+          className={styles.searchQueryInput}
+          aria-label="Search"
+          onChange={handleSearchInputChange}
+          value={searchQuery}
+          autoComplete="off"
+          autoFocus
+        />
 
         {!searchSource && searchQuery && (
           <div>

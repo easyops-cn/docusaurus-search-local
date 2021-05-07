@@ -158,7 +158,8 @@ DEBUG=search-local:* yarn build
 In case some specific errors occurred:
 
 - `Error: Cannot mix different versions of joi schemas`:
-  - Try using @easyops-cn/docusaurus-search-local >= v0.14.0 with Docusaurus >= v2.0.0-alpha.68
+  - Try using @easyops-cn/docusaurus-search-local >= v0.16.0 with Docusaurus >= v2.0.0-alpha.73
+  - Try using @easyops-cn/docusaurus-search-local between v0.14.0 and v0.15.1 with Docusaurus between v2.0.0-alpha.68 and v2.0.0-alpha.72
   - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66
 - `Error: Command failed with signal "SIGSEGV"`:
   - This is probably caused by a [known issue](https://github.com/yanyiwu/nodejieba/issues/187) introduced by `nodejieba@2.5.2`, if you enabled language of zh.

@@ -182,6 +182,10 @@ html[data-theme="dark"] .noResultsIcon {
   text-decoration: underline;
 }
 
+.searchBarContainer {
+  margin-left: 16px;
+}
+
 .searchBarContainer .searchBarLoadingRing {
   display: none;
   position: absolute;
