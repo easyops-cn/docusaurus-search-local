@@ -25,9 +25,16 @@ import LoadingRing from "../LoadingRing/LoadingRing";
 import styles from "./SearchBar.module.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
-  const autoComplete = await import("@easyops-cn/autocomplete.js");
-  autoComplete.noConflict();
-  return autoComplete.default;
+  const autoCompleteModule = await import("@easyops-cn/autocomplete.js");
+  const autoComplete = autoCompleteModule.default;
+  if (autoComplete.noConflict) {
+    // For webpack v5 since docusaurus v2.0.0-alpha.75
+    autoComplete.noConflict();
+  } else if (autoCompleteModule.noConflict) {
+    // For webpack v4 before docusaurus v2.0.0-alpha.74
+    autoCompleteModule.noConflict();
+  }
+  return autoComplete;
 }
 
 const SEARCH_PARAM_HIGHLIGHT = "_highlight";
