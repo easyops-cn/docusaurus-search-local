@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.16.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.2) (2021-05-13)
+
+
+### Bug Fixes
+
+* missing runtime dependency tslib ([2f9d553](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2f9d553b4a3a9596a0f738b80e25049b0a971d77))
+
 ### [0.16.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.2) (2021-05-08)
 
 ### Bug Fixes
