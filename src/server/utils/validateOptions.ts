@@ -11,6 +11,12 @@ const isStringOrArrayOfStrings = Joi.alternatives().try(
   Joi.array().items(Joi.string())
 );
 
+const isArrayOfStringsOrRegExpsOrStringOrRegExp = Joi.alternatives().try(
+  Joi.array().items(Joi.alternatives().try(Joi.string(), Joi.object().regex())),
+  Joi.string(),
+  Joi.object().regex()
+);
+
 const schema = Joi.object<PluginOptions>({
   indexDocs: Joi.boolean().default(true),
   indexBlog: Joi.boolean().default(true),
@@ -25,6 +31,8 @@ const schema = Joi.object<PluginOptions>({
   highlightSearchTermsOnTargetPage: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),
+  ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
+  // ignoreFiles: Joi.any(),
   translations: Joi.object<TranslationMap>({
     search_placeholder: Joi.string().default("Search"),
     see_all_results: Joi.string().default("See all results"),

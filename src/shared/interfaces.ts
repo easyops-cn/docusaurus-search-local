@@ -147,6 +147,8 @@ export interface PluginOptions {
 
   translations?: TranslationMap;
 
+  ignoreFiles?: string | RegExp | (string | RegExp)[];
+
   // searchInputPlaceholder?: string;
   // searchNoResults?: string;
   // searchSeeAllResults?: string;
@@ -170,6 +172,7 @@ export type ProcessedPluginOptions = Required<
     | "blogRouteBasePath"
     | "docsDir"
     | "blogDir"
+    | "ignoreFiles"
   >
 > & {
   docsRouteBasePath: string[];
@@ -177,6 +180,7 @@ export type ProcessedPluginOptions = Required<
   language: string[];
   docsDir: string[];
   blogDir: string[];
+  ignoreFiles: (string | RegExp)[];
 };
 
 export interface PostBuildData {
