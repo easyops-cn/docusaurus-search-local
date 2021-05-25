@@ -2,17 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.16.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.3) (2021-05-13)
+### [0.16.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.16.3...v0.16.4) (2021-05-25)
 
+### Features
+
+- ignore search files with config ([9aa94cc](https://github.com/easyops-cn/docusaurus-search-local/commit/9aa94cca73190b434bdf0046fed01b4e3fb1bf8b))
+
+### [0.16.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.3) (2021-05-13)
 
 ### Bug Fixes
 
-* missing runtime dependency tslib ([2f9d553](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2f9d553b4a3a9596a0f738b80e25049b0a971d77))
-
+- missing runtime dependency tslib ([2f9d553](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2f9d553b4a3a9596a0f738b80e25049b0a971d77))
 
 ### Miscellaneous Chores
 
-* release 0.16.3 ([b99a906](https://www.github.com/easyops-cn/docusaurus-search-local/commit/b99a9065af9a7dbfc4f52e52eec0935629ae13c5))
+- release 0.16.3 ([b99a906](https://www.github.com/easyops-cn/docusaurus-search-local/commit/b99a9065af9a7dbfc4f52e52eec0935629ae13c5))
 
 ### [0.16.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.2) (2021-05-08)
 
