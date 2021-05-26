@@ -28,7 +28,14 @@ export function processDocInfos(
       const route = url.substr(baseUrl.length);
 
       // ignore files
-      if (ignoreFiles?.some((reg: RegExp | string) => route.match(reg))) {
+      if (
+        ignoreFiles?.some((reg: RegExp | string) => {
+          if (typeof reg === "string") {
+            return route === reg;
+          }
+          return route.match(reg);
+        })
+      ) {
         return;
       }
 
