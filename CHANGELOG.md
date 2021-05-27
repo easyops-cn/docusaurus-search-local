@@ -2,12 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.16.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.16.3...v0.16.4) (2021-05-25)
-
-### Features
-
-- ignore search files with config ([9aa94cc](https://github.com/easyops-cn/docusaurus-search-local/commit/9aa94cca73190b434bdf0046fed01b4e3fb1bf8b))
-
 ### [0.16.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.3) (2021-05-13)
 
 ### Bug Fixes

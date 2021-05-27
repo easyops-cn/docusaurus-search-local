@@ -32,7 +32,6 @@ const schema = Joi.object<PluginOptions>({
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
-  // ignoreFiles: Joi.any(),
   translations: Joi.object<TranslationMap>({
     search_placeholder: Joi.string().default("Search"),
     see_all_results: Joi.string().default("See all results"),
