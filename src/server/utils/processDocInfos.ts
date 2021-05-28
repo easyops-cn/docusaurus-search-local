@@ -14,6 +14,7 @@ export function processDocInfos(
     indexPages,
     docsRouteBasePath,
     blogRouteBasePath,
+    ignoreFiles,
   }: ProcessedPluginOptions
 ): DocInfoWithFilePath[] {
   return routesPaths
@@ -25,6 +26,19 @@ export function processDocInfos(
         );
       }
       const route = url.substr(baseUrl.length);
+
+      // ignore files
+      if (
+        ignoreFiles?.some((reg: RegExp | string) => {
+          if (typeof reg === "string") {
+            return route === reg;
+          }
+          return route.match(reg);
+        })
+      ) {
+        return;
+      }
+
       if (route === "404.html" || route === "search/index.html") {
         // Do not index error page and search page.
         return;
