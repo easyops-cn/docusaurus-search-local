@@ -14,6 +14,8 @@ describe("processDocInfos", () => {
     "/base/blog/b",
     "/base/404.html",
     "/base/page",
+    "/base/__meta__.md",
+    "/base/file.md",
   ];
   const buildData: PostBuildData = {
     routesPaths,
@@ -26,6 +28,7 @@ describe("processDocInfos", () => {
         indexDocs: false,
         indexBlog: false,
         indexPages: false,
+        ignoreFiles: [],
       },
       [],
     ],
@@ -36,6 +39,7 @@ describe("processDocInfos", () => {
         indexPages: true,
         docsRouteBasePath: ["docs"],
         blogRouteBasePath: ["blog"],
+        ignoreFiles: [/^__meta__/, "file.md"],
       },
       [
         {
