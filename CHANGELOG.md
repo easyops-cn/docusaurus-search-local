@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.18.0...v0.18.1) (2021-06-05)
+
+
+### Bug Fixes
+
+* fix an issue of highlighting in code blocks ([3378b9c](https://www.github.com/easyops-cn/docusaurus-search-local/commit/3378b9c3a0db4e649184dd735b0761f991dc44f4)), closes [#92](https://www.github.com/easyops-cn/docusaurus-search-local/issues/92)
+
 ## [0.18.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.17.0...v0.18.0) (2021-06-05)
 
 
