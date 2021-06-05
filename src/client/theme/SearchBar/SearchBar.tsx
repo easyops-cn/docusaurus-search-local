@@ -163,13 +163,19 @@ export default function SearchBar({
     if (keywords.length === 0) {
       return;
     }
-    const root = document.querySelector("article");
-    if (!root) {
-      return;
-    }
-    const mark = new Mark(root);
-    mark.unmark();
-    mark.mark(keywords);
+    // A workaround to fix an issue of highlighting in code blocks.
+    // See https://github.com/easyops-cn/docusaurus-search-local/issues/92
+    // Code blocks will be re-rendered after this `useEffect` ran.
+    // So we make the marking run after a macro task.
+    setTimeout(() => {
+      const root = document.querySelector("article");
+      if (!root) {
+        return;
+      }
+      const mark = new Mark(root);
+      mark.unmark();
+      mark.mark(keywords);
+    });
   }, [location.search]);
 
   const onInputFocus = useCallback(() => {
