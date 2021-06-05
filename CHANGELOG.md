@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.17.0...v0.18.0) (2021-06-05)
+
+
+### Features
+
+* support docusaurus 2.0.0-beta.0 ([a144b7f](https://www.github.com/easyops-cn/docusaurus-search-local/commit/a144b7f35ebefc1791a6057a163056d9a902f736))
+
 ## [0.17.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.3...v0.17.0) (2021-05-28)
 
 
