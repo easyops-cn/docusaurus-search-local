@@ -15,6 +15,7 @@ describe("processDocInfos", () => {
       "/base/blog/tags",
       "/base/blog/b",
       "/base/404.html",
+      "/base/search",
       "/base/page",
       "/base/__meta__.md",
       "/base/file.md",
@@ -77,6 +78,7 @@ describe("processDocInfos", () => {
       "/base/blog/tags",
       "/base/blog/b",
       "/base/404.html",
+      "/base/search",
       "/base/page",
       "/base/__meta__.md",
       "/base/file.md",
@@ -142,6 +144,7 @@ describe("processDocInfos", () => {
       "/base/blog/b/",
       "/base/404.html",
       "/base/page/",
+      "/base/search",
       "/base/__meta__.md",
       "/base/file.md",
     ];
