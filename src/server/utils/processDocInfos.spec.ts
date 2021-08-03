@@ -1,3 +1,4 @@
+import { DocusaurusConfig } from "@docusaurus/types";
 import {
   DocInfoWithFilePath,
   PostBuildData,
@@ -6,67 +7,202 @@ import {
 import { processDocInfos } from "./processDocInfos";
 
 describe("processDocInfos", () => {
-  const routesPaths: string[] = [
-    "/base/",
-    "/base/docs/a",
-    "/base/blog",
-    "/base/blog/tags",
-    "/base/blog/b",
-    "/base/404.html",
-    "/base/page",
-    "/base/__meta__.md",
-    "/base/file.md",
-  ];
-  const buildData: PostBuildData = {
-    routesPaths,
-    outDir: "/build",
-    baseUrl: "/base/",
-  };
-  test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
-    [
-      {
-        indexDocs: false,
-        indexBlog: false,
-        indexPages: false,
-        ignoreFiles: [],
-      },
-      [],
-    ],
-    [
-      {
-        indexDocs: true,
-        indexBlog: true,
-        indexPages: true,
-        docsRouteBasePath: ["docs"],
-        blogRouteBasePath: ["blog"],
-        ignoreFiles: [/^__meta__/, "file.md"],
-      },
+  describe("trailingSlash defaults to undefined", () => {
+    const routesPaths: string[] = [
+      "/base/",
+      "/base/docs/a",
+      "/base/blog",
+      "/base/blog/tags",
+      "/base/blog/b",
+      "/base/404.html",
+      "/base/page",
+      "/base/__meta__.md",
+      "/base/file.md",
+    ];
+    const buildData: PostBuildData = {
+      routesPaths,
+      outDir: "/build",
+      baseUrl: "/base/",
+    };
+    test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
       [
         {
-          filePath: "/build/index.html",
-          type: "page",
-          url: "/base/",
+          indexDocs: false,
+          indexBlog: false,
+          indexPages: false,
+          ignoreFiles: [],
         },
-        {
-          filePath: "/build/docs/a/index.html",
-          type: "docs",
-          url: "/base/docs/a",
-        },
-        {
-          filePath: "/build/blog/b/index.html",
-          type: "blog",
-          url: "/base/blog/b",
-        },
-        {
-          filePath: "/build/page/index.html",
-          type: "page",
-          url: "/base/page",
-        },
+        [],
       ],
-    ],
-  ])("processDocInfos(...) should work", (config, result) => {
-    expect(
-      processDocInfos(buildData, config as ProcessedPluginOptions)
-    ).toEqual(result);
+      [
+        {
+          indexDocs: true,
+          indexBlog: true,
+          indexPages: true,
+          docsRouteBasePath: ["docs"],
+          blogRouteBasePath: ["blog"],
+          ignoreFiles: [/^__meta__/, "file.md"],
+        },
+        [
+          {
+            filePath: "/build/docs/a/index.html",
+            type: "docs",
+            url: "/base/docs/a",
+          },
+          {
+            filePath: "/build/blog/b/index.html",
+            type: "blog",
+            url: "/base/blog/b",
+          },
+          {
+            filePath: "/build/page/index.html",
+            type: "page",
+            url: "/base/page",
+          },
+        ],
+      ],
+    ])("processDocInfos(...) should work", (config, result) => {
+      expect(
+        processDocInfos(
+          buildData,
+          config as ProcessedPluginOptions,
+          {} as DocusaurusConfig
+        )
+      ).toEqual(result);
+    });
+  });
+
+  describe("trailingSlash set to false", () => {
+    const routesPaths: string[] = [
+      "/base/",
+      "/base/docs/a",
+      "/base/blog",
+      "/base/blog/tags",
+      "/base/blog/b",
+      "/base/404.html",
+      "/base/page",
+      "/base/__meta__.md",
+      "/base/file.md",
+    ];
+    const buildData: PostBuildData = {
+      routesPaths,
+      outDir: "/build",
+      baseUrl: "/base/",
+    };
+    test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
+      [
+        {
+          indexDocs: false,
+          indexBlog: false,
+          indexPages: false,
+          ignoreFiles: [],
+        },
+        [],
+      ],
+      [
+        {
+          indexDocs: true,
+          indexBlog: true,
+          indexPages: true,
+          docsRouteBasePath: ["docs"],
+          blogRouteBasePath: ["blog"],
+          ignoreFiles: [/^__meta__/, "file.md"],
+        },
+        [
+          {
+            filePath: "/build/docs/a.html",
+            type: "docs",
+            url: "/base/docs/a",
+          },
+          {
+            filePath: "/build/blog/b.html",
+            type: "blog",
+            url: "/base/blog/b",
+          },
+          {
+            filePath: "/build/page.html",
+            type: "page",
+            url: "/base/page",
+          },
+        ],
+      ],
+    ])("processDocInfos(...) should work", (config, result) => {
+      expect(
+        processDocInfos(
+          buildData,
+          config as ProcessedPluginOptions,
+          {
+            trailingSlash: false,
+          } as DocusaurusConfig
+        )
+      ).toEqual(result);
+    });
+  });
+
+  describe("trailingSlash set to true", () => {
+    const routesPaths: string[] = [
+      "/base/",
+      "/base/docs/a/",
+      "/base/blog/",
+      "/base/blog/tags/",
+      "/base/blog/b/",
+      "/base/404.html",
+      "/base/page/",
+      "/base/__meta__.md",
+      "/base/file.md",
+    ];
+    const buildData: PostBuildData = {
+      routesPaths,
+      outDir: "/build",
+      baseUrl: "/base/",
+    };
+    test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
+      [
+        {
+          indexDocs: false,
+          indexBlog: false,
+          indexPages: false,
+          ignoreFiles: [],
+        },
+        [],
+      ],
+      [
+        {
+          indexDocs: true,
+          indexBlog: true,
+          indexPages: true,
+          docsRouteBasePath: ["docs"],
+          blogRouteBasePath: ["blog"],
+          ignoreFiles: [/^__meta__/, "file.md"],
+        },
+        [
+          {
+            filePath: "/build/docs/a/index.html",
+            type: "docs",
+            url: "/base/docs/a/",
+          },
+          {
+            filePath: "/build/blog/b/index.html",
+            type: "blog",
+            url: "/base/blog/b/",
+          },
+          {
+            filePath: "/build/page/index.html",
+            type: "page",
+            url: "/base/page/",
+          },
+        ],
+      ],
+    ])("processDocInfos(...) should work", (config, result) => {
+      expect(
+        processDocInfos(
+          buildData,
+          config as ProcessedPluginOptions,
+          {
+            trailingSlash: true,
+          } as DocusaurusConfig
+        )
+      ).toEqual(result);
+    });
   });
 });

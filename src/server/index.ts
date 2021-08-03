@@ -28,7 +28,7 @@ export default function DocusaurusSearchLocalPlugin(
       return themePath;
     },
 
-    postBuild: postBuildFactory(config),
+    postBuild: postBuildFactory(config, context.siteConfig),
 
     getPathsToWatch() {
       return [pagePath];
