@@ -199,4 +199,102 @@ describe("processDocInfos", () => {
       ).toEqual(result);
     });
   });
+
+  describe("docs base path set to root", () => {
+    const routesPaths: string[] = [
+      "/base/",
+      "/base/docs-a",
+      "/base/docs-b/c",
+      "/base/404.html",
+      "/base/search",
+      "/base/page",
+    ];
+    const buildData: PostBuildData = {
+      routesPaths,
+      outDir: "/build",
+      baseUrl: "/base/",
+      siteConfig: {} as DocusaurusConfig,
+    };
+    test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
+      [
+        {
+          indexDocs: true,
+          indexBlog: false,
+          indexPages: false,
+          docsRouteBasePath: [""],
+          blogRouteBasePath: ["blog"],
+        },
+        [
+          {
+            filePath: "/build/docs-a/index.html",
+            type: "docs",
+            url: "/base/docs-a",
+          },
+          {
+            filePath: "/build/docs-b/c/index.html",
+            type: "docs",
+            url: "/base/docs-b/c",
+          },
+          {
+            filePath: "/build/page/index.html",
+            type: "docs",
+            url: "/base/page",
+          },
+        ],
+      ],
+    ])("processDocInfos(...) should work", (config, result) => {
+      expect(
+        processDocInfos(buildData, config as ProcessedPluginOptions)
+      ).toEqual(result);
+    });
+  });
+
+  describe("blog base path set to root", () => {
+    const routesPaths: string[] = [
+      "/base/",
+      "/base/blog-a",
+      "/base/blog-b/c",
+      "/base/404.html",
+      "/base/search",
+      "/base/page",
+    ];
+    const buildData: PostBuildData = {
+      routesPaths,
+      outDir: "/build",
+      baseUrl: "/base/",
+      siteConfig: {} as DocusaurusConfig,
+    };
+    test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
+      [
+        {
+          indexDocs: false,
+          indexBlog: true,
+          indexPages: false,
+          docsRouteBasePath: ["docs"],
+          blogRouteBasePath: [""],
+        },
+        [
+          {
+            filePath: "/build/blog-a/index.html",
+            type: "blog",
+            url: "/base/blog-a",
+          },
+          {
+            filePath: "/build/blog-b/c/index.html",
+            type: "blog",
+            url: "/base/blog-b/c",
+          },
+          {
+            filePath: "/build/page/index.html",
+            type: "blog",
+            url: "/base/page",
+          },
+        ],
+      ],
+    ])("processDocInfos(...) should work", (config, result) => {
+      expect(
+        processDocInfos(buildData, config as ProcessedPluginOptions)
+      ).toEqual(result);
+    });
+  });
 });

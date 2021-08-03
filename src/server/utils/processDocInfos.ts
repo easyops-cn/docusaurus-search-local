@@ -52,7 +52,7 @@ export function processDocInfos(
           blogRouteBasePath.some(
             (basePath) =>
               isSameRoute(route, basePath) ||
-              isSameOrSubRoute(route, `${basePath}/tags`)
+              isSameOrSubRoute(route, path.posix.join(basePath, "tags"))
           )
         ) {
           // Do not index list of blog posts and tags filter pages
@@ -89,7 +89,10 @@ function isSameRoute(routeA: string, routeB: string): boolean {
 }
 
 function isSameOrSubRoute(childRoute: string, parentRoute: string): boolean {
-  return addTrailingSlash(childRoute).startsWith(addTrailingSlash(parentRoute));
+  return (
+    parentRoute === "" ||
+    addTrailingSlash(childRoute).startsWith(addTrailingSlash(parentRoute))
+  );
 }
 
 // The input route must not end with a slash.
