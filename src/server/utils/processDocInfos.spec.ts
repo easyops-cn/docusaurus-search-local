@@ -23,6 +23,7 @@ describe("processDocInfos", () => {
       routesPaths,
       outDir: "/build",
       baseUrl: "/base/",
+      siteConfig: {} as DocusaurusConfig,
     };
     test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
       [
@@ -63,11 +64,7 @@ describe("processDocInfos", () => {
       ],
     ])("processDocInfos(...) should work", (config, result) => {
       expect(
-        processDocInfos(
-          buildData,
-          config as ProcessedPluginOptions,
-          {} as DocusaurusConfig
-        )
+        processDocInfos(buildData, config as ProcessedPluginOptions)
       ).toEqual(result);
     });
   });
@@ -88,6 +85,9 @@ describe("processDocInfos", () => {
       routesPaths,
       outDir: "/build",
       baseUrl: "/base/",
+      siteConfig: {
+        trailingSlash: false,
+      } as DocusaurusConfig,
     };
     test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
       [
@@ -128,13 +128,7 @@ describe("processDocInfos", () => {
       ],
     ])("processDocInfos(...) should work", (config, result) => {
       expect(
-        processDocInfos(
-          buildData,
-          config as ProcessedPluginOptions,
-          {
-            trailingSlash: false,
-          } as DocusaurusConfig
-        )
+        processDocInfos(buildData, config as ProcessedPluginOptions)
       ).toEqual(result);
     });
   });
@@ -155,6 +149,9 @@ describe("processDocInfos", () => {
       routesPaths,
       outDir: "/build",
       baseUrl: "/base/",
+      siteConfig: {
+        trailingSlash: true,
+      } as DocusaurusConfig,
     };
     test.each<[Partial<ProcessedPluginOptions>, DocInfoWithFilePath[]]>([
       [
@@ -195,13 +192,7 @@ describe("processDocInfos", () => {
       ],
     ])("processDocInfos(...) should work", (config, result) => {
       expect(
-        processDocInfos(
-          buildData,
-          config as ProcessedPluginOptions,
-          {
-            trailingSlash: true,
-          } as DocusaurusConfig
-        )
+        processDocInfos(buildData, config as ProcessedPluginOptions)
       ).toEqual(result);
     });
   });

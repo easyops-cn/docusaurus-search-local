@@ -1,4 +1,3 @@
-import { DocusaurusConfig } from "@docusaurus/types";
 import path from "path";
 import {
   DocInfoWithFilePath,
@@ -8,7 +7,7 @@ import {
 } from "../../shared/interfaces";
 
 export function processDocInfos(
-  { routesPaths, outDir, baseUrl }: PostBuildData,
+  { routesPaths, outDir, baseUrl, siteConfig }: PostBuildData,
   {
     indexDocs,
     indexBlog,
@@ -16,8 +15,7 @@ export function processDocInfos(
     docsRouteBasePath,
     blogRouteBasePath,
     ignoreFiles,
-  }: ProcessedPluginOptions,
-  siteConfig: DocusaurusConfig
+  }: ProcessedPluginOptions
 ): DocInfoWithFilePath[] {
   return routesPaths
     .map<DocInfoWithRoute | undefined>((url: string) => {
