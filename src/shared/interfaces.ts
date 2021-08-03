@@ -1,3 +1,4 @@
+import { DocusaurusConfig } from "@docusaurus/types";
 import lunr from "lunr";
 
 export type SmartTerm = SmartTermItem[];
@@ -193,4 +194,5 @@ export interface DocusaurusContext {
   baseUrl: string;
   siteDir: string;
   generatedFilesDir: string;
+  siteConfig: DocusaurusConfig;
 }
