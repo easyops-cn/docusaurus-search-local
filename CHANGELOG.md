@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.18.1...v0.19.0) (2021-08-03)
+
+
+### Features
+
+* depends on docusaurus 2.0.0-beta.4 ([69ea575](https://www.github.com/easyops-cn/docusaurus-search-local/commit/69ea5757d6b4ef6158033d1cf766abc65d5e76d4))
+
+
+### Bug Fixes
+
+* handle trailingSlash config ([16aa10f](https://www.github.com/easyops-cn/docusaurus-search-local/commit/16aa10f8117f1ceb5de4e1df3f18fe89c8b0c4ba)), closes [#100](https://www.github.com/easyops-cn/docusaurus-search-local/issues/100)
+
 ### [0.18.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.18.0...v0.18.1) (2021-06-05)
 
 
