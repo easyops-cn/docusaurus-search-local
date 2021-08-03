@@ -1,4 +1,3 @@
-import { DocusaurusConfig } from "@docusaurus/types";
 import fs from "fs";
 import path from "path";
 import util from "util";
@@ -10,14 +9,11 @@ import { scanDocuments } from "./scanDocuments";
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-export function postBuildFactory(
-  config: ProcessedPluginOptions,
-  siteConfig: DocusaurusConfig
-) {
+export function postBuildFactory(config: ProcessedPluginOptions) {
   return async function postBuild(buildData: PostBuildData): Promise<void> {
     debugInfo("gathering documents");
 
-    const data = processDocInfos(buildData, config, siteConfig);
+    const data = processDocInfos(buildData, config);
 
     debugInfo("parsing documents");
 

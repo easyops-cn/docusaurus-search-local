@@ -1,4 +1,3 @@
-import { DocusaurusConfig } from "@docusaurus/types";
 import path from "path";
 import {
   DocInfoWithFilePath,
@@ -8,7 +7,7 @@ import {
 } from "../../shared/interfaces";
 
 export function processDocInfos(
-  { routesPaths, outDir, baseUrl }: PostBuildData,
+  { routesPaths, outDir, baseUrl, siteConfig }: PostBuildData,
   {
     indexDocs,
     indexBlog,
@@ -16,8 +15,7 @@ export function processDocInfos(
     docsRouteBasePath,
     blogRouteBasePath,
     ignoreFiles,
-  }: ProcessedPluginOptions,
-  siteConfig: DocusaurusConfig
+  }: ProcessedPluginOptions
 ): DocInfoWithFilePath[] {
   return routesPaths
     .map<DocInfoWithRoute | undefined>((url: string) => {
@@ -30,14 +28,7 @@ export function processDocInfos(
       const route = url.substr(baseUrl.length).replace(/\/$/, "");
 
       // Do not index homepage, error page and search page.
-      if (
-        route === "" ||
-        route === "404.html" ||
-        route ===
-          (siteConfig.trailingSlash === false
-            ? "search.html"
-            : "search/index.html")
-      ) {
+      if (route === "" || route === "404.html" || route === "search") {
         return;
       }
 
@@ -61,7 +52,7 @@ export function processDocInfos(
           blogRouteBasePath.some(
             (basePath) =>
               isSameRoute(route, basePath) ||
-              isSameOrSubRoute(route, `${basePath}/tags`)
+              isSameOrSubRoute(route, path.posix.join(basePath, "tags"))
           )
         ) {
           // Do not index list of blog posts and tags filter pages
@@ -98,7 +89,10 @@ function isSameRoute(routeA: string, routeB: string): boolean {
 }
 
 function isSameOrSubRoute(childRoute: string, parentRoute: string): boolean {
-  return addTrailingSlash(childRoute).startsWith(addTrailingSlash(parentRoute));
+  return (
+    parentRoute === "" ||
+    addTrailingSlash(childRoute).startsWith(addTrailingSlash(parentRoute))
+  );
 }
 
 // The input route must not end with a slash.

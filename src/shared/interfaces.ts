@@ -188,11 +188,11 @@ export interface PostBuildData {
   routesPaths: string[];
   outDir: string;
   baseUrl: string;
+  siteConfig: DocusaurusConfig;
 }
 
 export interface DocusaurusContext {
   baseUrl: string;
   siteDir: string;
   generatedFilesDir: string;
-  siteConfig: DocusaurusConfig;
 }
