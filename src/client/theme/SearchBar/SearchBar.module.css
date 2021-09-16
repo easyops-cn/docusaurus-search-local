@@ -205,6 +205,24 @@ html[data-theme="dark"] .noResultsIcon {
   display: inline-block;
 }
 
+.search_hint_container {
+  display: inline-block;
+  background: white;
+  height: 2rem;
+  padding: 5px;
+}
+
+.search_hint {
+  color: #bec3c8;
+  margin: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+  .search_hint_container {
+    display: none;
+  }
+}
+
 /* For autocomplete.js only. */
 .input {
 }
