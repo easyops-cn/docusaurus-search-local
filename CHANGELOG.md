@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.19.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.19.0...v0.19.1) (2021-08-03)
+
+### Bug Fixes
+
+- fix docsRouteBasePath or blogRouteBasePath set to "/" ([a1b1df6](https://www.github.com/easyops-cn/docusaurus-search-local/commit/a1b1df6d59ab309ca68c18494ac72f8aa6a1b370))
+- fix search page ignore ([9841cc8](https://www.github.com/easyops-cn/docusaurus-search-local/commit/9841cc8b910d5a1b2ea9fe896ec5acdde0b2faf0))
+- refine get site config ([e215a1a](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e215a1a5ceef1751233996e5a48c57fa9ca25d1e))
+
+## [0.19.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.18.1...v0.19.0) (2021-08-03)
+
+### Features
+
+- depends on docusaurus 2.0.0-beta.4 ([69ea575](https://www.github.com/easyops-cn/docusaurus-search-local/commit/69ea5757d6b4ef6158033d1cf766abc65d5e76d4))
+
+### Bug Fixes
+
+- handle trailingSlash config ([16aa10f](https://www.github.com/easyops-cn/docusaurus-search-local/commit/16aa10f8117f1ceb5de4e1df3f18fe89c8b0c4ba)), closes [#100](https://www.github.com/easyops-cn/docusaurus-search-local/issues/100)
+
+### [0.18.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.18.0...v0.18.1) (2021-06-05)
+
+### Bug Fixes
+
+- fix an issue of highlighting in code blocks ([3378b9c](https://www.github.com/easyops-cn/docusaurus-search-local/commit/3378b9c3a0db4e649184dd735b0761f991dc44f4)), closes [#92](https://www.github.com/easyops-cn/docusaurus-search-local/issues/92)
+
+## [0.18.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.17.0...v0.18.0) (2021-06-05)
+
+### Features
+
+- support docusaurus 2.0.0-beta.0 ([a144b7f](https://www.github.com/easyops-cn/docusaurus-search-local/commit/a144b7f35ebefc1791a6057a163056d9a902f736))
+
+## [0.17.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.3...v0.17.0) (2021-05-28)
+
+### Features
+
+- ignore search files by config ([#88](https://www.github.com/easyops-cn/docusaurus-search-local/issues/88)) ([a7b1b3a](https://www.github.com/easyops-cn/docusaurus-search-local/commit/a7b1b3a98bda9c72859ebc762efa5eb874dbd7e9))
+
+### [0.16.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.3) (2021-05-13)
+
+### Bug Fixes
+
+- missing runtime dependency tslib ([2f9d553](https://www.github.com/easyops-cn/docusaurus-search-local/commit/2f9d553b4a3a9596a0f738b80e25049b0a971d77))
+
+### Miscellaneous Chores
+
+- release 0.16.3 ([b99a906](https://www.github.com/easyops-cn/docusaurus-search-local/commit/b99a9065af9a7dbfc4f52e52eec0935629ae13c5))
+
+### [0.16.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.16.1...v0.16.2) (2021-05-08)
+
+### Bug Fixes
+
+- support webpack v5 since docusaurus v2 alpha 75 ([5d1810b](https://github.com/easyops-cn/docusaurus-search-local/commit/5d1810b2e5288c9e4a73b2a2fd8b3c8e880e396c)), closes [#81](https://github.com/easyops-cn/docusaurus-search-local/issues/81)
+
 ### [0.16.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.16.0...v0.16.1) (2021-04-21)
 
 ### Bug Fixes

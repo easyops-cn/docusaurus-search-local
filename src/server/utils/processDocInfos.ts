@@ -7,13 +7,14 @@ import {
 } from "../../shared/interfaces";
 
 export function processDocInfos(
-  { routesPaths, outDir, baseUrl }: PostBuildData,
+  { routesPaths, outDir, baseUrl, siteConfig }: PostBuildData,
   {
     indexDocs,
     indexBlog,
     indexPages,
     docsRouteBasePath,
     blogRouteBasePath,
+    ignoreFiles,
   }: ProcessedPluginOptions
 ): DocInfoWithFilePath[] {
   return routesPaths
@@ -24,19 +25,34 @@ export function processDocInfos(
           `The route must start with the baseUrl "${baseUrl}", but was "${url}". This is a bug, please report it.`
         );
       }
-      const route = url.substr(baseUrl.length);
-      if (route === "404.html" || route === "search/index.html") {
-        // Do not index error page and search page.
+      const route = url.substr(baseUrl.length).replace(/\/$/, "");
+
+      // Do not index homepage, error page and search page.
+      if (route === "" || route === "404.html" || route === "search") {
         return;
       }
+
+      // ignore files
+      if (
+        ignoreFiles?.some((reg: RegExp | string) => {
+          if (typeof reg === "string") {
+            return route === reg;
+          }
+          return route.match(reg);
+        })
+      ) {
+        return;
+      }
+
       if (
         indexBlog &&
-        blogRouteBasePath.some((basePath) => urlMatchesPrefix(route, basePath))
+        blogRouteBasePath.some((basePath) => isSameOrSubRoute(route, basePath))
       ) {
         if (
           blogRouteBasePath.some(
             (basePath) =>
-              route === basePath || urlMatchesPrefix(route, `${basePath}/tags`)
+              isSameRoute(route, basePath) ||
+              isSameOrSubRoute(route, path.posix.join(basePath, "tags"))
           )
         ) {
           // Do not index list of blog posts and tags filter pages
@@ -46,7 +62,7 @@ export function processDocInfos(
       }
       if (
         indexDocs &&
-        docsRouteBasePath.some((basePath) => urlMatchesPrefix(route, basePath))
+        docsRouteBasePath.some((basePath) => isSameOrSubRoute(route, basePath))
       ) {
         return { route, url, type: "docs" };
       }
@@ -57,13 +73,29 @@ export function processDocInfos(
     })
     .filter<DocInfoWithRoute>(Boolean as any)
     .map(({ route, url, type }) => ({
-      filePath: path.join(outDir, route, "index.html"),
+      filePath: path.join(
+        outDir,
+        siteConfig.trailingSlash === false
+          ? `${route}.html`
+          : `${route}/index.html`
+      ),
       url,
       type,
     }));
 }
 
-function urlMatchesPrefix(url: string, prefix: string) {
-  const rightTrimmedPrefix = prefix.replace(/\/$/, "");
-  return url === rightTrimmedPrefix || url.startsWith(`${rightTrimmedPrefix}/`);
+function isSameRoute(routeA: string, routeB: string): boolean {
+  return addTrailingSlash(routeA) === addTrailingSlash(routeB);
+}
+
+function isSameOrSubRoute(childRoute: string, parentRoute: string): boolean {
+  return (
+    parentRoute === "" ||
+    addTrailingSlash(childRoute).startsWith(addTrailingSlash(parentRoute))
+  );
+}
+
+// The input route must not end with a slash.
+function addTrailingSlash(route: string): string {
+  return `${route}/`;
 }

@@ -12,6 +12,7 @@ describe("processPluginOptions", () => {
         docsDir: "docs",
         blogDir: "blog",
         language: "en",
+        ignoreFiles: "test",
       },
       {
         docsRouteBasePath: ["docs"],
@@ -19,6 +20,7 @@ describe("processPluginOptions", () => {
         blogDir: ["/tmp/blog"],
         docsDir: ["/tmp/docs"],
         language: ["en"],
+        ignoreFiles: ["test"],
       },
     ],
     [
@@ -28,6 +30,7 @@ describe("processPluginOptions", () => {
         docsDir: "docs",
         blogDir: "blog",
         language: ["en", "zh"],
+        ignoreFiles: [/__meta__$/],
       },
       {
         docsRouteBasePath: ["docs"],
@@ -35,6 +38,7 @@ describe("processPluginOptions", () => {
         blogDir: ["/tmp/blog"],
         docsDir: ["/tmp/docs"],
         language: ["en", "zh"],
+        ignoreFiles: [/__meta__$/],
       },
     ],
   ])("processPluginOptions(...) should work", (options, config) => {

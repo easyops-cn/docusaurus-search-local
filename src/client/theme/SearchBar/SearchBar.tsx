@@ -25,9 +25,16 @@ import useDocusaurusDocsVersion from "../hooks/version";
 import styles from "./SearchBar.module.css";
 
 async function fetchAutoCompleteJS(): Promise<any> {
-  const autoComplete = await import("@easyops-cn/autocomplete.js");
-  autoComplete.noConflict();
-  return autoComplete.default;
+  const autoCompleteModule = await import("@easyops-cn/autocomplete.js");
+  const autoComplete = autoCompleteModule.default;
+  if (autoComplete.noConflict) {
+    // For webpack v5 since docusaurus v2.0.0-alpha.75
+    autoComplete.noConflict();
+  } else if (autoCompleteModule.noConflict) {
+    // For webpack v4 before docusaurus v2.0.0-alpha.74
+    autoCompleteModule.noConflict();
+  }
+  return autoComplete;
 }
 
 const SEARCH_PARAM_HIGHLIGHT = "_highlight";
@@ -158,13 +165,19 @@ export default function SearchBar({
     if (keywords.length === 0) {
       return;
     }
-    const root = document.querySelector("article");
-    if (!root) {
-      return;
-    }
-    const mark = new Mark(root);
-    mark.unmark();
-    mark.mark(keywords);
+    // A workaround to fix an issue of highlighting in code blocks.
+    // See https://github.com/easyops-cn/docusaurus-search-local/issues/92
+    // Code blocks will be re-rendered after this `useEffect` ran.
+    // So we make the marking run after a macro task.
+    setTimeout(() => {
+      const root = document.querySelector("article");
+      if (!root) {
+        return;
+      }
+      const mark = new Mark(root);
+      mark.unmark();
+      mark.mark(keywords);
+    });
   }, [location.search]);
 
   const onInputFocus = useCallback(() => {
