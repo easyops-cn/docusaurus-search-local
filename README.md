@@ -67,7 +67,7 @@ module.exports = {
 
 > Notice!
 >
-> When applying `"zh"` in language, please also install `nodejieba` in your project, it became a peer dependency since v0.7.0.
+> When applying `"zh"` in language, please also install `nodejieba` in your project, which is required for tokenizing Chinese words. It is removed from peerDependencies since v0.20.0, so you have to install it manually even if you're using npm v7+.
 
 ```shell
 npm install nodejieba

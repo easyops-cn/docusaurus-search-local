@@ -78,8 +78,5 @@
     "rimraf": "^3.0.2",
     "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
-  },
-  "peerDependencies": {
-    "nodejieba": "^2.4.1"
   }
 }
