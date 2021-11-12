@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.20.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.19.1...v0.20.0) (2021-11-12)
+
+
+### Features
+
+* remove nodejieba from peerDependencies ([e76bb64](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e76bb6490b749cab6b17607349ab04f226d8eee4))
+
 ### [0.19.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.19.0...v0.19.1) (2021-08-03)
 
 
