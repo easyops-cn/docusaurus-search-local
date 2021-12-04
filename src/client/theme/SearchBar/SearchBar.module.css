@@ -189,7 +189,7 @@ html[data-theme="dark"] .noResultsIcon {
 .searchBarContainer .searchBarLoadingRing {
   display: none;
   position: absolute;
-  left: calc(var(--ifm-navbar-padding-horizontal) + 10px);
+  left: 10px;
   top: 6px;
 }
 
@@ -205,20 +205,24 @@ html[data-theme="dark"] .noResultsIcon {
   display: inline-block;
 }
 
-.search_hint_container {
-  display: inline-block;
-  background: white;
-  height: 2rem;
-  padding: 5px;
+.searchHintContainer {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  pointer-events: none;
+  gap: 4px;
 }
 
-.search_hint {
-  color: #bec3c8;
-  margin: 2px;
+.searchHint {
+  color: var(--ifm-navbar-search-input-placeholder-color);
 }
 
-@media only screen and (max-width: 600px) {
-  .search_hint_container {
+@media (max-width: 576px) {
+  .searchHintContainer {
     display: none;
   }
 }
