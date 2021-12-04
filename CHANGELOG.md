@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.21.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.20.0...v0.21.0) (2021-12-04)
+
+
+### Features
+
+* add shortcut (cmd/ctrl + K) support ([f12403f](https://www.github.com/easyops-cn/docusaurus-search-local/commit/f12403fc6bc48b489d8ef170aecad2262f3a4ebc))
+
 ## [0.20.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.19.1...v0.20.0) (2021-11-12)
 
 
