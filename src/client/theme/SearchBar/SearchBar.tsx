@@ -58,7 +58,6 @@ export default function SearchBar({
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
   const [inputChanged, setInputChanged] = useState(false);
-  const [modifierKey, setModifierKey] = useState("");
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -201,46 +200,31 @@ export default function SearchBar({
     },
     []
   );
-  //add shortcuts command/ctrl + K
-  function handleShortcut(event: any) {
-    if (event.ctrlKey && event.code === "KeyK") {
-      event.preventDefault();
-      searchBarRef?.current?.focus();
-    }
-  }
 
-  // we added this extra function because "keydown" is the only way to capture the "command" key on mac. Then we use the metaKey boolean prop to see if the "command" key was pressed.
-  function handleShortcutOnMac(event: any) {
-    if (event.metaKey && event.code === "KeyK") {
-      event.preventDefault();
-      searchBarRef?.current?.focus();
-    }
-  }
+  // Implement hint icons for the search shortcuts on mac and the rest operating systems.
+  const isMac = ExecutionEnvironment.canUseDOM
+    ? /mac/i.test(
+        (navigator as any).userAgentData?.platform ?? navigator.platform
+      )
+    : false;
 
   useEffect(() => {
-    const userOS = navigator.platform;
-    setKeyShortcutsPerOS(userOS);
-
-    if (userOS.includes("Mac")) {
-      document.addEventListener("keydown", handleShortcutOnMac);
-    } else {
-      document.addEventListener("keypress", handleShortcut);
+    // Add shortcuts command/ctrl + K
+    function handleShortcut(event: KeyboardEvent): void {
+      if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
+        event.preventDefault();
+        searchBarRef.current?.focus();
+      }
     }
+    // "keydown" is the only way to capture the "command" key on mac.
+    // Then we use the metaKey boolean prop to see if the "command" key was pressed.
+    const eventType = isMac ? "keydown" : "keypress";
+    document.addEventListener(eventType, handleShortcut);
 
     return () => {
-      document.removeEventListener("keydown", handleShortcutOnMac);
-      document.removeEventListener("keypress", handleShortcut);
+      document.removeEventListener(eventType, handleShortcut);
     };
-  }, []);
-
-  //impement hint icons for the search shortcuts on mac and the rest operating systems
-  function setKeyShortcutsPerOS(userOS: string) {
-    if (userOS.includes("Mac")) {
-      setModifierKey("⌘");
-    } else {
-      setModifierKey("ctrl");
-    }
-  }
+  }, [isMac]);
 
   return (
     <div
@@ -259,9 +243,9 @@ export default function SearchBar({
         ref={searchBarRef}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
-      <div className={styles.search_hint_container}>
-        <kbd className={styles.search_hint}>{modifierKey}</kbd>
-        <kbd className={styles.search_hint}>K</kbd>
+      <div className={styles.searchHintContainer}>
+        <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+        <kbd className={styles.searchHint}>K</kbd>
       </div>
     </div>
   );
