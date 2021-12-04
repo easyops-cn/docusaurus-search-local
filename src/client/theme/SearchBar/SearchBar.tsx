@@ -201,6 +201,31 @@ export default function SearchBar({
     []
   );
 
+  // Implement hint icons for the search shortcuts on mac and the rest operating systems.
+  const isMac = ExecutionEnvironment.canUseDOM
+    ? /mac/i.test(
+        (navigator as any).userAgentData?.platform ?? navigator.platform
+      )
+    : false;
+
+  useEffect(() => {
+    // Add shortcuts command/ctrl + K
+    function handleShortcut(event: KeyboardEvent): void {
+      if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
+        event.preventDefault();
+        searchBarRef.current?.focus();
+      }
+    }
+    // "keydown" is the only way to capture the "command" key on mac.
+    // Then we use the metaKey boolean prop to see if the "command" key was pressed.
+    const eventType = isMac ? "keydown" : "keypress";
+    document.addEventListener(eventType, handleShortcut);
+
+    return () => {
+      document.removeEventListener(eventType, handleShortcut);
+    };
+  }, [isMac]);
+
   return (
     <div
       className={clsx("navbar__search", styles.searchBarContainer, {
@@ -218,6 +243,10 @@ export default function SearchBar({
         ref={searchBarRef}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
+      <div className={styles.searchHintContainer}>
+        <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+        <kbd className={styles.searchHint}>K</kbd>
+      </div>
     </div>
   );
 }

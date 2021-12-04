@@ -189,7 +189,7 @@ html[data-theme="dark"] .noResultsIcon {
 .searchBarContainer .searchBarLoadingRing {
   display: none;
   position: absolute;
-  left: calc(var(--ifm-navbar-padding-horizontal) + 10px);
+  left: 10px;
   top: 6px;
 }
 
@@ -203,6 +203,28 @@ html[data-theme="dark"] .noResultsIcon {
 
 .searchBarContainer.searchIndexLoading .searchBarLoadingRing {
   display: inline-block;
+}
+
+.searchHintContainer {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  pointer-events: none;
+  gap: 4px;
+}
+
+.searchHint {
+  color: var(--ifm-navbar-search-input-placeholder-color);
+}
+
+@media (max-width: 576px) {
+  .searchHintContainer {
+    display: none;
+  }
 }
 
 /* For autocomplete.js only. */
