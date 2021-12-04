@@ -7,6 +7,8 @@ yarn
 yarn start
 ```
 
+Note: if you are editing `src/client/theme/**/*.css`, you should run `yarn postbuild` each time you edited these files.
+
 ## Testing
 
 ```shell
