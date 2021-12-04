@@ -1,6 +1,6 @@
 {
   "name": "@easyops-cn/docusaurus-search-local",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "description": "An offline/local search plugin for Docusaurus v2.",
   "repository": "https://github.com/easyops-cn/docusaurus-search-local",
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
@@ -78,8 +78,5 @@
     "rimraf": "^3.0.2",
     "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
-  },
-  "peerDependencies": {
-    "nodejieba": "^2.4.1"
   }
 }
