@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.0...v0.21.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* fix input box style of search page in dark mode ([f233bce](https://www.github.com/easyops-cn/docusaurus-search-local/commit/f233bcedb4d79cba9b8d21f700ca79f2297f0ec9)), closes [#125](https://www.github.com/easyops-cn/docusaurus-search-local/issues/125)
+
 ## [0.21.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.20.0...v0.21.0) (2021-12-04)
 
 
