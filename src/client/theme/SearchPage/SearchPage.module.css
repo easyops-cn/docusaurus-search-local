@@ -5,7 +5,8 @@
   font-size: var(--ifm-font-size-base);
   padding: 0.5rem;
   width: 100%;
-  background: #fff;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
   margin-bottom: 1rem;
 }
 
