@@ -36,6 +36,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
+        searchBarShortcut: true,
       },
     ],
     [
@@ -57,6 +58,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: "file1",
+        searchBarShortcut: true,
       },
     ],
     [
@@ -78,6 +80,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: [/__meta__$/, "file1"],
+        searchBarShortcut: true,
       },
     ],
     [
@@ -99,6 +102,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
+        searchBarShortcut: true,
       },
     ],
     [
@@ -110,6 +114,7 @@ describe("validateOptions", () => {
         searchResultLimits: 5,
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 30,
+        searchBarShortcut: false,
       },
       {
         blogRouteBasePath: ["blog"],
@@ -128,6 +133,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 30,
         ignoreFiles: [],
+        searchBarShortcut: false,
       },
     ],
     [
@@ -152,6 +158,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
+        searchBarShortcut: true,
       },
     ],
     [
@@ -176,6 +183,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
+        searchBarShortcut: true,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

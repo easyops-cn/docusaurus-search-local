@@ -86,6 +86,7 @@ module.exports = {
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                                                                                                                                                |
 | explicitSearchResultPath         | boolean                                  | false        | Whether an explicit path to a heading should be presented on a suggestion template.                                                                                                                                                                            |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                                                                                                                                      |
+| searchBarShortcut                | boolean                                  | `true`       | Whether to enable shortcut for focusing in search bar. |
 
 ### I18N
 

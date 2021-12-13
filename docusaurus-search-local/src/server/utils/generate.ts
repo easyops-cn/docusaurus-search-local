@@ -12,6 +12,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     searchResultLimits,
     searchResultContextMaxLength,
     explicitSearchResultPath,
+    searchBarShortcut,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -83,6 +84,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     `export const explicitSearchResultPath = ${JSON.stringify(
       explicitSearchResultPath
     )};`
+  );
+  contents.push(
+    `export const searchBarShortcut = ${JSON.stringify(searchBarShortcut)};`
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));

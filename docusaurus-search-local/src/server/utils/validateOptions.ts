@@ -34,6 +34,7 @@ const schema = Joi.object<PluginOptions>({
   searchResultContextMaxLength: Joi.number().default(50),
   explicitSearchResultPath: Joi.boolean().default(false),
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
+  searchBarShortcut: Joi.boolean().default(true),
 });
 
 export function validateOptions({
