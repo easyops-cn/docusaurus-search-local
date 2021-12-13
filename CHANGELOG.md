@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.1...v0.21.2) (2021-12-13)
+
+
+### Bug Fixes
+
+* refine styles with dark navbar ([e3c9eef](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e3c9eef41ffd9d51bb57b05fd199f7dc32541e79)), closes [#128](https://www.github.com/easyops-cn/docusaurus-search-local/issues/128)
+
 ### [0.21.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.0...v0.21.1) (2021-12-07)
 
 
