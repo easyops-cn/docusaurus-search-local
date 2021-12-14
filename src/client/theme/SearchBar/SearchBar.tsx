@@ -216,13 +216,10 @@ export default function SearchBar({
         searchBarRef.current?.focus();
       }
     }
-    // "keydown" is the only way to capture the "command" key on mac.
-    // Then we use the metaKey boolean prop to see if the "command" key was pressed.
-    const eventType = isMac ? "keydown" : "keypress";
-    document.addEventListener(eventType, handleShortcut);
 
+    document.addEventListener("keydown", handleShortcut);
     return () => {
-      document.removeEventListener(eventType, handleShortcut);
+      document.removeEventListener("keydown", handleShortcut);
     };
   }, [isMac]);
 
