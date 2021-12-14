@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.2...v0.21.3) (2021-12-14)
+
+
+### Bug Fixes
+
+* use keydown instead of keypress ([d871f0b](https://www.github.com/easyops-cn/docusaurus-search-local/commit/d871f0bbb1e1c6fe191341f7166b89b6aeb11bf2)), closes [#132](https://www.github.com/easyops-cn/docusaurus-search-local/issues/132)
+
 ### [0.21.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.1...v0.21.2) (2021-12-13)
 
 
