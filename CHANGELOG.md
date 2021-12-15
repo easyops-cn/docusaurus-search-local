@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.4](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.3...v0.21.4) (2021-12-15)
+
+
+### Bug Fixes
+
+* set max-width for dropdown on small screen ([cec8c39](https://www.github.com/easyops-cn/docusaurus-search-local/commit/cec8c3924beacd900d880fd66edaf52dbdbdd952)), closes [#135](https://www.github.com/easyops-cn/docusaurus-search-local/issues/135)
+
 ### [0.21.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.2...v0.21.3) (2021-12-14)
 
 
