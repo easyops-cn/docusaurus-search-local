@@ -23,6 +23,7 @@
 
   .searchBar .dropdownMenu {
     width: var(--search-local-modal-width-sm, 340px);
+    max-width: calc(100vw - var(--ifm-navbar-padding-horizontal) * 2);
   }
 }
 
