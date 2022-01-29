@@ -4,7 +4,7 @@
 [![CI Status](https://github.com/easyops-cn/docusaurus-search-local/workflows/CI/badge.svg?event=push)](https://github.com/easyops-cn/docusaurus-search-local/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/easyops-cn/docusaurus-search-local/badge.svg?branch=master)](https://coveralls.io/github/easyops-cn/docusaurus-search-local?branch=master)
 
-An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), which supports multiple languages, especially optimized for language of zh.
+An offline/local search plugin/theme for [Docusaurus v2](https://v2.docusaurus.io/), which supports multiple languages, especially optimized for language of zh.
 
 > Originally forked from [cmfcmf/docusaurus-search-local](https://github.com/cmfcmf/docusaurus-search-local).
 >
@@ -14,7 +14,7 @@ An offline/local search plugin for [Docusaurus v2](https://v2.docusaurus.io/), w
 - [Screen Shots](#screen-shots)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Plugin Options](#plugin-options)
+- [Theme Options](#theme-options)
 - [Custom Styles](#custom-styles)
 - [Trouble Shooting](#trouble-shooting)
 - [Further Reading](#further-reading)
@@ -40,14 +40,14 @@ yarn add @easyops-cn/docusaurus-search-local
 
 ## Usage
 
-Add `@easyops-cn/docusaurus-search-local` into your docusaurus plugins.
+Add `@easyops-cn/docusaurus-search-local` into your docusaurus themes.
 
 ````js
 // In your `docusaurus.config.js`:
 module.exports = {
   // ... Your other configurations.
-  plugins: [
-    // ... Your other plugins.
+  themes: [
+    // ... Your other themes.
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
@@ -67,7 +67,9 @@ module.exports = {
 
 > Notice!
 >
-> When applying `"zh"` in language, please also install `nodejieba` in your project, which is required for tokenizing Chinese words. It is removed from peerDependencies since v0.20.0, so you have to install it manually even if you're using npm v7+.
+> - We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
+>
+> - When applying `"zh"` in language, please also install `nodejieba` in your project, which is required for tokenizing Chinese words. It is removed from peerDependencies since v0.20.0, so you have to install it manually even if you're using npm v7+.
 
 ```shell
 npm install nodejieba
@@ -75,7 +77,7 @@ npm install nodejieba
 yarn add nodejieba
 ```
 
-## Plugin Options
+## Theme Options
 
 | Name                             | Type                                     | Default      | Description                                                                                                                                  |
 | -------------------------------- | ---------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -92,12 +94,12 @@ yarn add nodejieba
 | highlightSearchTermsOnTargetPage | boolean                                  | `false`      | Highlight search terms on target page.                                                                                                       |
 | searchResultLimits               | number                                   | `8`          | Limit the search results.                                                                                                                    |
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                              |
-| translations                     | TranslationMap                           | -            | Set translations of this plugin, see [docs below](#translations).                                                                            |
+| translations                     | TranslationMap                           | -            | Set translations of this theme, see [docs below](#translations).                                                                            |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                    |
 
 ### Translations
 
-To make this plugin localized, pass a `translations` option which defaults to:
+To make this theme localized, pass a `translations` option which defaults to:
 
 ```json
 {
@@ -116,7 +118,7 @@ Note that `*_plural` can be omitted if it is the same as singular.
 
 ## Custom Styles
 
-This plugin is shipped with polished styles just like the Algolia Search on the Docusaurus v2 website. Feel free to override these css custom properties (css variables) below.
+This theme is shipped with polished styles just like the Algolia Search on the Docusaurus v2 website. Feel free to override these css custom properties (css variables) below.
 
 | Var                              | Default (light)                                                        | Default (dark)                                          |
 | -------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------- |
