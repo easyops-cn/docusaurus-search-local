@@ -77,6 +77,7 @@ export default function SearchBar({
       {
         hint: false,
         autoselect: true,
+        openOnFocus: true,
         cssClasses: {
           root: styles.searchBar,
           noPrefix: true,
@@ -123,23 +124,29 @@ export default function SearchBar({
           },
         },
       ]
-    ).on("autocomplete:selected", function (
-      event: any,
-      { document: { u, h }, tokens }: SearchResult
-    ) {
-      let url = u;
-      if (Mark && tokens.length > 0) {
-        const params = new URLSearchParams();
-        for (const token of tokens) {
-          params.append(SEARCH_PARAM_HIGHLIGHT, token);
+    )
+      .on("autocomplete:selected", function (
+        event: any,
+        { document: { u, h }, tokens }: SearchResult
+      ) {
+        searchBarRef.current?.blur();
+
+        let url = u;
+        if (Mark && tokens.length > 0) {
+          const params = new URLSearchParams();
+          for (const token of tokens) {
+            params.append(SEARCH_PARAM_HIGHLIGHT, token);
+          }
+          url += `?${params.toString()}`;
         }
-        url += `?${params.toString()}`;
-      }
-      if (h) {
-        url += h;
-      }
-      history.push(url);
-    });
+        if (h) {
+          url += h;
+        }
+        history.push(url);
+      })
+      .on("autocomplete:closed", () => {
+        searchBarRef.current?.blur();
+      });
 
     indexState.current = "done";
     setLoading(false);
@@ -214,6 +221,7 @@ export default function SearchBar({
       if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
         event.preventDefault();
         searchBarRef.current?.focus();
+        onInputFocus();
       }
     }
 
@@ -221,7 +229,7 @@ export default function SearchBar({
     return () => {
       document.removeEventListener("keydown", handleShortcut);
     };
-  }, [isMac]);
+  }, [isMac, onInputFocus]);
 
   return (
     <div
