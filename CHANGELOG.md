@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.22.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.4...v0.22.0) (2022-02-28)
+
+
+### Features
+
+* improve focus for search bar ([e4ede16](https://www.github.com/easyops-cn/docusaurus-search-local/commit/e4ede1650883e326bcbc7ff17c5ed3d37b279d17))
+
 ### [0.21.4](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.3...v0.21.4) (2021-12-15)
 
 
