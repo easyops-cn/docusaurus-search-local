@@ -6,8 +6,6 @@ import { cutWordByUnderscore } from "./cutWordByUnderscore";
 // https://zhuanlan.zhihu.com/p/33335629
 const RegExpConsecutiveWord = /\w+|\p{Unified_Ideograph}+/u;
 
-jieba.load();
-
 export function tokenizer(
   input: string | string[] | null | undefined,
   metadata: MatchMetadata
