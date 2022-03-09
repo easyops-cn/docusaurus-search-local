@@ -73,7 +73,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.5.3",
     "lint-staged": "^10.4.1",
-    "nodejieba": "^2.4.1",
+    "@node-rs/jieba": "^1.6.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "standard-version": "^9.0.0",

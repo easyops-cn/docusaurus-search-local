@@ -1,11 +1,11 @@
-import nodejieba from "nodejieba";
+import jieba from "@node-rs/jieba";
 import { MatchMetadata } from "../../shared/interfaces";
 import { tokenizer } from "./tokenizer";
 
-jest.mock("nodejieba");
-(nodejieba.cut as jest.MockedFunction<typeof nodejieba.cut>).mockImplementation(
+jest.mock("@node-rs/jieba");
+(jieba.cut as jest.MockedFunction<typeof jieba.cut>).mockImplementation(
   (input) => {
-    return [input.substr(0, 2), input.substr(2)];
+    return [String(input).substr(0, 2), String(input).substr(2)];
   }
 );
 

@@ -1,12 +1,12 @@
 import lunr from "lunr";
-import nodejieba from "nodejieba";
+import jieba from "@node-rs/jieba";
 import { MatchMetadata } from "../../shared/interfaces";
 import { cutWordByUnderscore } from "./cutWordByUnderscore";
 
 // https://zhuanlan.zhihu.com/p/33335629
 const RegExpConsecutiveWord = /\w+|\p{Unified_Ideograph}+/u;
 
-nodejieba.load();
+jieba.load();
 
 export function tokenizer(
   input: string | string[] | null | undefined,
@@ -64,7 +64,7 @@ export function tokenizer(
 
       start += word.length;
     } else {
-      for (const zhWord of nodejieba.cut(word)) {
+      for (const zhWord of jieba.cut(word)) {
         tokens.push(
           new lunr.Token(zhWord, {
             ...(lunr.utils as any).clone(metadata),
