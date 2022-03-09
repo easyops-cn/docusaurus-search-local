@@ -58,24 +58,13 @@ module.exports = {
         // ```
         // language: ["en", "zh"],
         // ```
-        // When applying `zh` in language, please install `@node-rs/jieba` in your project.
       },
     ],
   ],
 };
 ````
 
-> Notice!
->
-> - We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
->
-> - When applying `"zh"` in language, please also install `@node-rs/jieba` in your project, which is required for tokenizing Chinese words. It is removed from peerDependencies since v0.20.0, so you have to install it manually even if you're using npm v7+.
-
-```shell
-npm install @node-rs/jieba
-# or
-yarn add @node-rs/jieba
-```
+> Notice: We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
 
 ## Theme Options
 
