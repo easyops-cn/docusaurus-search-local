@@ -1,13 +1,5 @@
-import nodejieba from "nodejieba";
 import { MatchMetadata } from "../../shared/interfaces";
 import { tokenizer } from "./tokenizer";
-
-jest.mock("nodejieba");
-(nodejieba.cut as jest.MockedFunction<typeof nodejieba.cut>).mockImplementation(
-  (input) => {
-    return [input.substr(0, 2), input.substr(2)];
-  }
-);
 
 describe("tokenizer", () => {
   test.each<[string | string[] | null | undefined, MatchMetadata, any[]]>([
@@ -54,20 +46,27 @@ describe("tokenizer", () => {
         {
           metadata: {
             index: 3,
-            position: [13, 2],
+            position: [13, 1],
           },
-          str: "很好",
+          str: "很",
         },
         {
           metadata: {
             index: 4,
+            position: [14, 1],
+          },
+          str: "好",
+        },
+        {
+          metadata: {
+            index: 5,
             position: [15, 1],
           },
           str: "用",
         },
         {
           metadata: {
-            index: 5,
+            index: 6,
             position: [17, 4],
           },
           str: "good",

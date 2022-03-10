@@ -58,24 +58,13 @@ module.exports = {
         // ```
         // language: ["en", "zh"],
         // ```
-        // When applying `zh` in language, please install `nodejieba` in your project.
       },
     ],
   ],
 };
 ````
 
-> Notice!
->
-> - We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
->
-> - When applying `"zh"` in language, please also install `nodejieba` in your project, which is required for tokenizing Chinese words. It is removed from peerDependencies since v0.20.0, so you have to install it manually even if you're using npm v7+.
-
-```shell
-npm install nodejieba
-# or
-yarn add nodejieba
-```
+> Notice: We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
 
 ## Theme Options
 
@@ -94,7 +83,7 @@ yarn add nodejieba
 | highlightSearchTermsOnTargetPage | boolean                                  | `false`      | Highlight search terms on target page.                                                                                                       |
 | searchResultLimits               | number                                   | `8`          | Limit the search results.                                                                                                                    |
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                              |
-| translations                     | TranslationMap                           | -            | Set translations of this theme, see [docs below](#translations).                                                                            |
+| translations                     | TranslationMap                           | -            | Set translations of this theme, see [docs below](#translations).                                                                             |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                    |
 
 ### Translations
@@ -164,9 +153,6 @@ In case some specific errors occurred:
   - Try using @easyops-cn/docusaurus-search-local >= v0.16.0 with Docusaurus >= v2.0.0-alpha.73
   - Try using @easyops-cn/docusaurus-search-local between v0.14.0 and v0.15.1 with Docusaurus between v2.0.0-alpha.68 and v2.0.0-alpha.72
   - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66
-- `Error: Command failed with signal "SIGSEGV"`:
-  - This is probably caused by a [known issue](https://github.com/yanyiwu/nodejieba/issues/187) introduced by `nodejieba@2.5.2`, if you enabled language of zh.
-  - Try downgrading `nodejieba` to `2.4.2` and it will work again, see discussions in [#47](https://github.com/easyops-cn/docusaurus-search-local/issues/47).
 
 ## Further Reading
 
