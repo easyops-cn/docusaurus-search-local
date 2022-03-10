@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.23.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.22.0...v0.23.0) (2022-03-10)
+
+
+### Features
+
+* replace nodejieba with @node-rs/jieba ([f3f7594](https://www.github.com/easyops-cn/docusaurus-search-local/commit/f3f7594d0a97075a4aefa19e15f2d1f961bbb824))
+
 ## [0.22.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.21.4...v0.22.0) (2022-02-28)
 
 
