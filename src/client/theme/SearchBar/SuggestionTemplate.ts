@@ -1,12 +1,14 @@
 import { SearchDocument, SearchResult } from "../../../shared/interfaces";
+import { concatDocumentPath } from "../../utils/concatDocumentPath";
+import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
-import { getStemmedPositions } from "../../utils/getStemmedPositions";
+import { explicitSearchResultPath } from "../../utils/proxiedGenerated";
 import {
-  iconTitle,
-  iconHeading,
-  iconContent,
   iconAction,
+  iconContent,
+  iconHeading,
+  iconTitle,
   iconTreeInter,
   iconTreeLast,
 } from "./icons";
@@ -42,7 +44,19 @@ export function SuggestionTemplate({
       tokens
     )}</span>`,
   ];
-  if (!isTitle) {
+
+  const needsExplicitHitPath =
+    !isInterOfTree && !isLastOfTree && explicitSearchResultPath;
+  if (needsExplicitHitPath) {
+    const pathItems = page
+      ? page.b?.concat(page.t).concat(document.s ?? [])
+      : document.b;
+    wrapped.push(
+      `<span class="${styles.hitPath}">${concatDocumentPath(
+        pathItems ?? []
+      )}</span>`
+    );
+  } else if (!isTitle) {
     wrapped.push(
       `<span class="${styles.hitPath}">${highlight(
         (page as SearchDocument).t ||
@@ -55,6 +69,7 @@ export function SuggestionTemplate({
       )}</span>`
     );
   }
+
   const action = `<span class="${styles.hitAction}">${iconAction}</span>`;
   return [
     ...treeWrapper,

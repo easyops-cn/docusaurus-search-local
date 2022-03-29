@@ -31,6 +31,7 @@ const schema = Joi.object<PluginOptions>({
   highlightSearchTermsOnTargetPage: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
   searchResultContextMaxLength: Joi.number().default(50),
+  explicitSearchResultPath: Joi.boolean().default(false),
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
   translations: Joi.object<TranslationMap>({
     search_placeholder: Joi.string().default("Search"),

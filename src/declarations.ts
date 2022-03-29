@@ -22,6 +22,7 @@ declare module "*/generated.js" {
   export const indexHash: string | undefined;
   export const searchResultLimits: number;
   export const searchResultContextMaxLength: number;
+  export const explicitSearchResultPath: boolean;
   export const translations: Required<TranslationMap>;
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;

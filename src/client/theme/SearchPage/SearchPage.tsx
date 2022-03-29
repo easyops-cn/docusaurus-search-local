@@ -16,6 +16,7 @@ import { translations } from "../../utils/proxiedGenerated";
 import { simpleTemplate } from "../../utils/simpleTemplate";
 
 import styles from "./SearchPage.module.css";
+import { concatDocumentPath } from "../../utils/concatDocumentPath";
 
 export default function SearchPage(): React.ReactElement {
   const {
@@ -23,9 +24,10 @@ export default function SearchPage(): React.ReactElement {
   } = useDocusaurusContext();
   const { searchValue, updateSearchPath } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
-  const [searchSource, setSearchSource] = useState<
-    (input: string, callback: (results: SearchResult[]) => void) => void
-  >();
+  const [searchSource, setSearchSource] =
+    useState<
+      (input: string, callback: (results: SearchResult[]) => void) => void
+    >();
   const [searchResults, setSearchResults] = useState<SearchResult[]>();
 
   const pageTitle = useMemo(
@@ -76,13 +78,14 @@ export default function SearchPage(): React.ReactElement {
   }, [baseUrl]);
 
   return (
-    <Layout title={pageTitle}>
+    <Layout>
       <Head>
         {/*
          We should not index search pages
           See https://github.com/facebook/docusaurus/pull/3233
         */}
         <meta property="robots" content="noindex, follow" />
+        <title>{pageTitle}</title>
       </Head>
 
       <div className="container margin-vert--lg">
@@ -144,9 +147,9 @@ function SearchResultItem({
 }): React.ReactElement {
   const isTitle = type === 0;
   const isContent = type === 2;
-  const pathItems = ((isTitle
-    ? document.b
-    : (page as SearchDocument).b) as string[]).slice();
+  const pathItems = (
+    (isTitle ? document.b : (page as SearchDocument).b) as string[]
+  ).slice();
   const articleTitle = (isContent ? document.s : document.t) as string;
   if (!isTitle) {
     pathItems.push((page as SearchDocument).t);
@@ -169,7 +172,9 @@ function SearchResultItem({
         ></Link>
       </h2>
       {pathItems.length > 0 && (
-        <p className={styles.searchResultItemPath}>{pathItems.join(" › ")}</p>
+        <p className={styles.searchResultItemPath}>
+          {concatDocumentPath(pathItems)}
+        </p>
       )}
       {isContent && (
         <p

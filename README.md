@@ -83,6 +83,7 @@ module.exports = {
 | highlightSearchTermsOnTargetPage | boolean                                  | `false`      | Highlight search terms on target page.                                                                                                       |
 | searchResultLimits               | number                                   | `8`          | Limit the search results.                                                                                                                    |
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                              |
+| explicitSearchResultPath         | boolean                                  | false        | Whether an explicit path to a heading should be presented on a suggestion template.                                                          |
 | translations                     | TranslationMap                           | -            | Set translations of this theme, see [docs below](#translations).                                                                             |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                    |
 
