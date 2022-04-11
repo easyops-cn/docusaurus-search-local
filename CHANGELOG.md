@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.23.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.0...v0.23.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* parse `h1` from the whole `article` ([aeb063a](https://www.github.com/easyops-cn/docusaurus-search-local/commit/aeb063af9dbac9778e3436aa261e0c131a2ef8c2))
+
 ## [0.23.0](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.22.0...v0.23.0) (2022-03-10)
 
 
