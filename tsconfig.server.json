@@ -3,8 +3,7 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES6",
-    "outDir": "dist/server",
-    "types": ["cheerio"]
+    "outDir": "dist/server"
   },
   "exclude": ["**/*.spec.ts", "src/client"]
 }
