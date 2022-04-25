@@ -146,6 +146,8 @@ export interface PluginOptions {
   searchResultLimits?: number;
   searchResultContextMaxLength?: number;
 
+  explicitSearchResultPath?: boolean;
+
   translations?: TranslationMap;
 
   ignoreFiles?: string | RegExp | (string | RegExp)[];
