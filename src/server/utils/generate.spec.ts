@@ -25,6 +25,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -42,6 +43,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -61,6 +63,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -83,6 +86,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -103,6 +107,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -126,6 +131,7 @@ describe("generate", () => {
         'export const indexHash = "abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
+        "export const explicitSearchResultPath = false;",
         'export const translations = {"hello":"hola"};',
       ],
     ],
@@ -136,8 +142,9 @@ describe("generate", () => {
         removeDefaultStopWordFilter: false,
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
+        explicitSearchResultPath: false,
         translations: {
-          "hello": "hola"
+          hello: "hola",
         },
       } as ProcessedPluginOptions,
       "/tmp"
@@ -160,9 +167,10 @@ describe("generate", () => {
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
+        explicitSearchResultPath: false,
         translations: {
-          "hello": "hola"
-        }
+          hello: "hola",
+        },
       } as ProcessedPluginOptions,
       "/tmp"
     );

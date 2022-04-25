@@ -10,6 +10,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     highlightSearchTermsOnTargetPage,
     searchResultLimits,
     searchResultContextMaxLength,
+    explicitSearchResultPath,
     translations,
   } = config;
   const indexHash = getIndexHash(config);
@@ -74,8 +75,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     )};`
   );
   contents.push(
-    `export const translations = ${JSON.stringify(translations)};`
+    `export const explicitSearchResultPath = ${JSON.stringify(
+      explicitSearchResultPath
+    )};`
   );
+  contents.push(`export const translations = ${JSON.stringify(translations)};`);
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 }
