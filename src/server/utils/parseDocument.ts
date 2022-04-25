@@ -4,7 +4,7 @@ import { getCondensedText } from "./getCondensedText";
 const HEADINGS = "h1, h2, h3";
 
 export function parseDocument($: cheerio.Root): ParsedDocument {
-  const $pageTitle = $("article header h1").first();
+  const $pageTitle = $("article h1").first();
   const pageTitle = $pageTitle.text();
 
   const sections: ParsedDocumentSection[] = [];
