@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.23.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.1...v0.23.2) (2022-04-25)
+
+
+### Bug Fixes
+
+* install cheerio types ([0a45f41](https://www.github.com/easyops-cn/docusaurus-search-local/commit/0a45f41bd02d8305328705bcc6582b92ed2ccf78))
+
 ### [0.23.1](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.0...v0.23.1) (2022-04-07)
 
 
