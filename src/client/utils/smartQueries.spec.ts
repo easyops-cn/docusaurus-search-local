@@ -3,6 +3,7 @@ import { smartQueries } from "./smartQueries";
 import {
   __setLanguage,
   __setRemoveDefaultStopWordFilter,
+  __setRemoveDefaultStemmer,
 } from "./proxiedGenerated";
 import { SmartQuery } from "../../shared/interfaces";
 
@@ -28,6 +29,7 @@ describe("smartQueries", () => {
   beforeEach(() => {
     __setLanguage(["en", "zh"]);
     __setRemoveDefaultStopWordFilter(false);
+    __setRemoveDefaultStemmer(false);
   });
 
   test.each<[string[], TestQuery[]]>([
@@ -236,6 +238,7 @@ describe("smartQueries with no stop words filter", () => {
   beforeEach(() => {
     __setLanguage(["en", "fake"]);
     __setRemoveDefaultStopWordFilter(true);
+    __setRemoveDefaultStemmer(false);
   });
 
   test.each<[string[], TestQuery[]]>([

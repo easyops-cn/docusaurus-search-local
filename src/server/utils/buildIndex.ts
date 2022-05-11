@@ -7,7 +7,11 @@ import {
 
 export function buildIndex(
   allDocuments: SearchDocument[][],
-  { language, removeDefaultStopWordFilter }: ProcessedPluginOptions
+  {
+    language,
+    removeDefaultStopWordFilter,
+    removeDefaultStemmer,
+  }: ProcessedPluginOptions
 ): Omit<WrappedIndex, "type">[] {
   if (language.length > 1 || language.some((item) => item !== "en")) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -49,6 +53,10 @@ export function buildIndex(
         // Sometimes we need no English stop words,
         // since they are almost all programming code.
         this.pipeline.remove(lunr.stopWordFilter);
+      }
+
+      if (removeDefaultStemmer) {
+        this.pipeline.remove(lunr.stemmer);
       }
 
       // Override tokenizer when language `zh` is enabled.
