@@ -194,6 +194,17 @@ html[data-theme="dark"] .noResultsIcon {
   top: 6px;
 }
 
+.searchBarContainer .searchClearButton {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 0;
+  background: none;
+  border: none;
+  line-height: 1rem;
+}
+
 :global(.navbar__search) {
   position: relative;
 }

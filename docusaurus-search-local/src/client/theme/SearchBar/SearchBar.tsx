@@ -50,11 +50,13 @@ export default function SearchBar({
   const history = useHistory();
   const location = useLocation();
   const searchBarRef = useRef<HTMLInputElement>(null);
+  let search: any = null;
   const indexState = useRef("empty"); // empty, loaded, done
   // Should the input be focused after the index is loaded?
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
   const [inputChanged, setInputChanged] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -69,7 +71,7 @@ export default function SearchBar({
       fetchAutoCompleteJS(),
     ]);
 
-    const search = autoComplete(
+    search = autoComplete(
       searchBarRef.current,
       {
         hint: false,
@@ -167,9 +169,6 @@ export default function SearchBar({
     const keywords = ExecutionEnvironment.canUseDOM
       ? new URLSearchParams(location.search).getAll(SEARCH_PARAM_HIGHLIGHT)
       : [];
-    if (keywords.length === 0) {
-      return;
-    }
     // A workaround to fix an issue of highlighting in code blocks.
     // See https://github.com/easyops-cn/docusaurus-search-local/issues/92
     // Code blocks will be re-rendered after this `useEffect` ran.
@@ -181,7 +180,11 @@ export default function SearchBar({
       }
       const mark = new Mark(root);
       mark.unmark();
-      mark.mark(keywords);
+      if (keywords.length !== 0) {
+        mark.mark(keywords);
+      }
+      setInputValue(keywords.join(" "));
+      search?.autocomplete.setVal(keywords.join(" "));
     });
   }, [location.search, location.pathname]);
 
@@ -201,6 +204,7 @@ export default function SearchBar({
 
   const onInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(event.target.value);
       if (event.target.value) {
         setInputChanged(true);
       }
@@ -231,6 +235,16 @@ export default function SearchBar({
     };
   }, [isMac, onInputFocus]);
 
+  const onClearSearch = useCallback(() => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete(SEARCH_PARAM_HIGHLIGHT);
+    history.push(
+      window.location.pathname + `?${params.toString()}` + window.location.hash
+    );
+    setInputValue("");
+    search?.autocomplete.setVal("");
+  }, []);
+
   return (
     <div
       className={clsx("navbar__search", styles.searchBarContainer, {
@@ -250,12 +264,19 @@ export default function SearchBar({
         onBlur={onInputBlur}
         onChange={onInputChange}
         ref={searchBarRef}
+        value={inputValue}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
-      <div className={styles.searchHintContainer}>
-        <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-        <kbd className={styles.searchHint}>K</kbd>
-      </div>
+      {inputValue !== "" ? (
+        <button className={styles.searchClearButton} onClick={onClearSearch}>
+          ✕
+        </button>
+      ) : (
+        <div className={styles.searchHintContainer}>
+          <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+          <kbd className={styles.searchHint}>K</kbd>
+        </div>
+      )}
     </div>
   );
 }
