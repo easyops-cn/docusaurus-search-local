@@ -74,6 +74,28 @@ describe("parsePage", () => {
         breadcrumb: [],
       },
     ],
+    [
+      `<body>
+        <article>
+          <div class="markdown">
+            <h1>Hello World</h1>
+            Peace.
+          </div>
+        </article>
+      </body>`,
+      "/pages/a",
+      {
+        pageTitle: "Hello World",
+        sections: [
+          {
+            title: "Hello World",
+            hash: "",
+            content: "",
+          },
+        ],
+        breadcrumb: [],
+      },
+    ],
   ])("parsePage(...) should work", (html, url, doc) => {
     expect(parsePage(cheerio.load(html), url)).toEqual(doc);
   });

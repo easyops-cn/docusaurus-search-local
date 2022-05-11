@@ -39,13 +39,21 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
 
       let $sectionElements;
       if ($h.is($pageTitle)) {
-        const $firstElement = $("article")
-          .children() // div.markdown, header
-          .not("header") // div.markdown
-          .children() // h1, p, p, h2, ...
-          .first(); // h1 || p
-        if ($firstElement.filter(HEADINGS).length > 0) {
-          return;
+        let $firstElement = $("article").children().first();
+
+        if ($firstElement.filter("header").length > 0) {
+          $firstElement = $("article")
+            .children() // div.markdown, header
+            .not("header") // div.markdown
+            .children() // h1, p, p, h2, ...
+            .first(); // h1 || p
+          if ($firstElement.filter(HEADINGS).length > 0) {
+            return;
+          }
+        } else {
+          $("article > .markdown")
+            .children() // h1, p, p, h2, ...
+            .first(); // h1 || p
         }
         $sectionElements = $firstElement.nextUntil(HEADINGS).addBack();
       } else {
