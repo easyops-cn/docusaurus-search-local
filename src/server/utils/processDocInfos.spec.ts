@@ -226,6 +226,11 @@ describe("processDocInfos", () => {
         },
         [
           {
+            filePath: "/build/index.html",
+            type: "docs",
+            url: "/base/",
+          },
+          {
             filePath: "/build/docs-a/index.html",
             type: "docs",
             url: "/base/docs-a",

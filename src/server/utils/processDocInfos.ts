@@ -28,7 +28,11 @@ export function processDocInfos(
       const route = url.substr(baseUrl.length).replace(/\/$/, "");
 
       // Do not index homepage, error page and search page.
-      if (route === "" || route === "404.html" || route === "search") {
+      if (
+        ((!docsRouteBasePath || docsRouteBasePath[0] !== "") && route === "") ||
+        route === "404.html" ||
+        route === "search"
+      ) {
         return;
       }
 

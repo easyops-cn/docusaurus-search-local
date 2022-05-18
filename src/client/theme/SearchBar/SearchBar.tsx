@@ -183,7 +183,7 @@ export default function SearchBar({
       mark.unmark();
       mark.mark(keywords);
     });
-  }, [location.search]);
+  }, [location.search, location.pathname]);
 
   const onInputFocus = useCallback(() => {
     focusAfterIndexLoaded.current = true;

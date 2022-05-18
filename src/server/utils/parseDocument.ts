@@ -38,8 +38,9 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       const hash = $h.find("a.hash-link").attr("href") || "";
 
       let $sectionElements;
-      if ($h.is($pageTitle)) {
-        const $firstElement = $("article")
+      let $firstElement = $("article").children().first();
+      if ($h.is($pageTitle) && $firstElement.filter("header").length > 0) {
+        $firstElement = $("article")
           .children() // div.markdown, header
           .not("header") // div.markdown
           .children() // h1, p, p, h2, ...

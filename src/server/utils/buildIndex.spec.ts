@@ -42,6 +42,7 @@ describe("buildIndex", () => {
       {
         language: ["en"],
         removeDefaultStopWordFilter: false,
+        removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
 
@@ -69,6 +70,7 @@ describe("buildIndex", () => {
       {
         language: ["zh"],
         removeDefaultStopWordFilter: false,
+        removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
 
@@ -87,6 +89,7 @@ describe("buildIndex", () => {
       {
         language: ["es"],
         removeDefaultStopWordFilter: false,
+        removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
 
@@ -104,6 +107,7 @@ describe("buildIndex", () => {
       {
         language: ["ja"],
         removeDefaultStopWordFilter: false,
+        removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
 
@@ -135,6 +139,7 @@ describe("buildIndex", () => {
       {
         language: ["en", "zh"],
         removeDefaultStopWordFilter: true,
+        removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
 

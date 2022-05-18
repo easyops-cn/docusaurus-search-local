@@ -7,6 +7,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   const {
     language,
     removeDefaultStopWordFilter,
+    removeDefaultStemmer,
     highlightSearchTermsOnTargetPage,
     searchResultLimits,
     searchResultContextMaxLength,
@@ -56,6 +57,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   contents.push(
     `export const removeDefaultStopWordFilter = ${JSON.stringify(
       removeDefaultStopWordFilter
+    )};`
+  );
+  contents.push(
+    `export const removeDefaultStemmer = ${JSON.stringify(
+      removeDefaultStemmer
     )};`
   );
   if (highlightSearchTermsOnTargetPage) {

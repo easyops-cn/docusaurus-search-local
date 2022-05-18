@@ -141,6 +141,7 @@ export interface PluginOptions {
   docsDir?: string | string[];
   blogDir?: string | string[];
   removeDefaultStopWordFilter?: boolean;
+  removeDefaultStemmer?: boolean;
   highlightSearchTermsOnTargetPage?: boolean;
 
   searchResultLimits?: number;
