@@ -38,22 +38,15 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       const hash = $h.find("a.hash-link").attr("href") || "";
 
       let $sectionElements;
-      if ($h.is($pageTitle)) {
-        let $firstElement = $("article").children().first();
-
-        if ($firstElement.filter("header").length > 0) {
-          $firstElement = $("article")
-            .children() // div.markdown, header
-            .not("header") // div.markdown
-            .children() // h1, p, p, h2, ...
-            .first(); // h1 || p
-          if ($firstElement.filter(HEADINGS).length > 0) {
-            return;
-          }
-        } else {
-          $("article > .markdown")
-            .children() // h1, p, p, h2, ...
-            .first(); // h1 || p
+      let $firstElement = $("article").children().first();
+      if ($h.is($pageTitle) && $firstElement.filter("header").length > 0) {
+        $firstElement = $("article")
+          .children() // div.markdown, header
+          .not("header") // div.markdown
+          .children() // h1, p, p, h2, ...
+          .first(); // h1 || p
+        if ($firstElement.filter(HEADINGS).length > 0) {
+          return;
         }
         $sectionElements = $firstElement.nextUntil(HEADINGS).addBack();
       } else {
