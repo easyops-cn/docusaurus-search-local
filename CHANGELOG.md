@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.23.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.23.3...v0.23.4) (2022-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fs-extra to v10 ([96c9220](https://github.com/easyops-cn/docusaurus-search-local/commit/96c92206bcff35b529400c19d5bcf66e1abd4d81))
+
 ### [0.23.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.2...v0.23.3) (2022-05-18)
 
 
