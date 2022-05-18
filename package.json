@@ -55,7 +55,7 @@
     "@types/jest": "^26.0.14",
     "@types/klaw-sync": "^6.0.0",
     "@types/lunr": "^2.3.3",
-    "@types/react": "^16.9.55",
+    "@types/react": "^18.0.0",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.1.0",
     "@types/react-router-dom": "^5.1.6",
