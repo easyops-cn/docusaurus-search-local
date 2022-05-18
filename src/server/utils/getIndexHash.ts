@@ -22,7 +22,7 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
         } else if (!fs.lstatSync(dir).isDirectory()) {
           console.warn(`Warn: \`${dirField}\` is not a directory: "${dir}".`);
         } else {
-          files.push(...klawSync(dir, { nodir: true, filter: markdownFilter }));
+          files.push(...klawSync(dir, { nodir: true, filter: markdownFilter, traverseAll: true }));
         }
       }
     }
@@ -57,5 +57,5 @@ export function getIndexHash(config: ProcessedPluginOptions): string | null {
 }
 
 function markdownFilter(item: klawSync.Item): boolean {
-  return item.path.endsWith(".md");
+  return item.path.endsWith(".md") || item.path.endsWith(".mdx");
 }
