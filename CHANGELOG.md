@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.24.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.23.3...v0.24.0) (2022-05-18)
+
+
+### Features
+
+* Add option to disable the default lunr stemmer ([ff8e9a2](https://github.com/easyops-cn/docusaurus-search-local/commit/ff8e9a2e3162dd847cbef11036772578c41a8828))
+
+
+### Bug Fixes
+
+* **deps:** update dependency fs-extra to v10 ([96c9220](https://github.com/easyops-cn/docusaurus-search-local/commit/96c92206bcff35b529400c19d5bcf66e1abd4d81))
+* Fix parsing of top level pages when using docs only mode ([ff8e9a2](https://github.com/easyops-cn/docusaurus-search-local/commit/ff8e9a2e3162dd847cbef11036772578c41a8828))
+* Fix passing of top sections for versions of docusaurus with breadcrumbs ([ff8e9a2](https://github.com/easyops-cn/docusaurus-search-local/commit/ff8e9a2e3162dd847cbef11036772578c41a8828))
+* Fix search term highlighting when reusing the same search string ([ff8e9a2](https://github.com/easyops-cn/docusaurus-search-local/commit/ff8e9a2e3162dd847cbef11036772578c41a8828))
+
 ### [0.23.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.2...v0.23.3) (2022-05-18)
 
 
