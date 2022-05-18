@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.23.3](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.2...v0.23.3) (2022-05-18)
+
+
+### Bug Fixes
+
+* Update getIndexHash.ts to support mdx and traverseAll ([#172](https://www.github.com/easyops-cn/docusaurus-search-local/issues/172)) ([717942e](https://www.github.com/easyops-cn/docusaurus-search-local/commit/717942e9caf36e37a0f119d9fdaa50e591339d9c))
+
 ### [0.23.2](https://www.github.com/easyops-cn/docusaurus-search-local/compare/v0.23.1...v0.23.2) (2022-04-25)
 
 
