@@ -21,7 +21,7 @@ jobs:
         # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
