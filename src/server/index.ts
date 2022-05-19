@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs-extra";
 import { normalizeUrl } from "@docusaurus/utils";
+import { codeTranslationLocalesToTry } from "@docusaurus/theme-translations";
 import { DocusaurusContext, PluginOptions } from "../shared/interfaces";
 import { processPluginOptions } from "./utils/processPluginOptions";
 import { postBuildFactory } from "./utils/postBuildFactory";
@@ -32,6 +33,23 @@ export default function DocusaurusSearchLocalPlugin(
 
     getPathsToWatch() {
       return [pagePath];
+    },
+
+    async getDefaultCodeTranslationMessages() {
+      const dirPath = path.join(__dirname, "../../locales");
+      const localesToTry = codeTranslationLocalesToTry(
+        context.i18n.currentLocale
+      );
+
+      // Return the content of the first file that match
+      // fr_FR.json => fr.json => nothing
+      for (const locale of localesToTry) {
+        const filePath = path.resolve(dirPath, `${locale}.json`);
+        if (await fs.pathExists(filePath)) {
+          return fs.readJSON(filePath);
+        }
+      }
+      return {};
     },
 
     async contentLoaded({ actions: { addRoute } }: any) {

@@ -149,8 +149,6 @@ export interface PluginOptions {
 
   explicitSearchResultPath?: boolean;
 
-  translations?: TranslationMap;
-
   ignoreFiles?: string | RegExp | (string | RegExp)[];
 
   // searchInputPlaceholder?: string;
@@ -198,4 +196,7 @@ export interface DocusaurusContext {
   baseUrl: string;
   siteDir: string;
   generatedFilesDir: string;
+  i18n: {
+    currentLocale: string;
+  };
 }

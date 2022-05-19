@@ -11,6 +11,7 @@ module.exports = {
   // snapshotSerializers: ["enzyme-to-json/serializer"],
   moduleNameMapper: {
     "\\.module\\.css$": "identity-obj-proxy",
+    "@docusaurus/Translate": "<rootDir>/__mocks__/Translate.js",
   },
   // Ref https://github.com/facebook/jest/issues/2070#issuecomment-431706685
   // Todo(steve): remove next line when issue fixed.

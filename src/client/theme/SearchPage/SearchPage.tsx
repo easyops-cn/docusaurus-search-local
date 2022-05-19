@@ -3,6 +3,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
+import { translate } from "@docusaurus/Translate";
+import { usePluralForm } from "@docusaurus/theme-common";
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -12,8 +14,6 @@ import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
-import { translations } from "../../utils/proxiedGenerated";
-import { simpleTemplate } from "../../utils/simpleTemplate";
 
 import styles from "./SearchPage.module.css";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
@@ -22,6 +22,7 @@ export default function SearchPage(): React.ReactElement {
   const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
+  const { selectMessage } = usePluralForm();
   const { searchValue, updateSearchPath } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const [searchSource, setSearchSource] =
@@ -33,10 +34,21 @@ export default function SearchPage(): React.ReactElement {
   const pageTitle = useMemo(
     () =>
       searchQuery
-        ? simpleTemplate(translations.search_results_for, {
-            keyword: searchQuery,
-          })
-        : translations.search_the_documentation,
+        ? translate(
+            {
+              id: "theme.SearchPage.existingResultsTitle",
+              message: 'Search results for "{query}"',
+              description: "The search page title for non-empty query",
+            },
+            {
+              query: searchQuery,
+            }
+          )
+        : translate({
+            id: "theme.SearchPage.emptyResultsTitle",
+            message: "Search the documentation",
+            description: "The search page title for empty query",
+          }),
     [searchQuery]
   );
 
@@ -111,17 +123,27 @@ export default function SearchPage(): React.ReactElement {
         {searchResults &&
           (searchResults.length > 0 ? (
             <p>
-              {simpleTemplate(
-                searchResults.length === 1
-                  ? translations.count_documents_found
-                  : translations.count_documents_found_plural,
-                {
-                  count: searchResults.length,
-                }
+              {selectMessage(
+                searchResults.length,
+                translate(
+                  {
+                    id: "theme.SearchPage.documentsFound.plurals",
+                    message: "1 document found|{count} documents found",
+                    description:
+                      'Pluralized label for "{count} documents found". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
+                  },
+                  { count: searchResults.length }
+                )
               )}
             </p>
           ) : process.env.NODE_ENV === "production" ? (
-            <p>{translations.no_documents_were_found}</p>
+            <p>
+              {translate({
+                id: "theme.SearchPage.noDocumentsFound",
+                message: "No documents were found",
+                description: "The paragraph for empty search result",
+              })}
+            </p>
           ) : (
             <p>
               ⚠️ The search index is only available when you run docusaurus

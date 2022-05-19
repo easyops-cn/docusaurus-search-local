@@ -34,22 +34,6 @@ const schema = Joi.object<PluginOptions>({
   searchResultContextMaxLength: Joi.number().default(50),
   explicitSearchResultPath: Joi.boolean().default(false),
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
-  translations: Joi.object<TranslationMap>({
-    search_placeholder: Joi.string().default("Search"),
-    see_all_results: Joi.string().default("See all results"),
-    no_results: Joi.string().default("No results."),
-    search_results_for: Joi.string().default(
-      'Search results for "{{ keyword }}"'
-    ),
-    search_the_documentation: Joi.string().default("Search the documentation"),
-    count_documents_found_plural: Joi.string().default(
-      (parent) => parent.count_documents_found ?? "{{ count }} documents found"
-    ),
-    count_documents_found: Joi.string().default("{{ count }} document found"),
-    no_documents_were_found: Joi.string().default("No documents were found"),
-  })
-    .default()
-    .unknown(false),
 });
 
 export function validateOptions({

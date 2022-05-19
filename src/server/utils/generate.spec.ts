@@ -27,7 +27,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
     [
@@ -46,7 +45,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
     [
@@ -67,7 +65,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
     [
@@ -91,7 +88,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
     [
@@ -113,7 +109,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
     [
@@ -138,7 +133,6 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
-        'export const translations = {"hello":"hola"};',
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -150,9 +144,6 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         explicitSearchResultPath: false,
-        translations: {
-          hello: "hola",
-        },
       } as ProcessedPluginOptions,
       "/tmp"
     );
@@ -176,9 +167,6 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         explicitSearchResultPath: false,
-        translations: {
-          hello: "hola",
-        },
       } as ProcessedPluginOptions,
       "/tmp"
     );

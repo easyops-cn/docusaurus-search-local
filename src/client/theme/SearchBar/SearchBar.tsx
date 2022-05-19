@@ -9,17 +9,14 @@ import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
+import { translate } from "@docusaurus/Translate";
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import {
-  searchResultLimits,
-  Mark,
-  translations,
-} from "../../utils/proxiedGenerated";
+import { searchResultLimits, Mark } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
@@ -108,7 +105,10 @@ export default function SearchBar({
               const a = document.createElement("a");
               const url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
               a.href = url;
-              a.textContent = translations.see_all_results;
+              a.textContent = translate({
+                id: "theme.SearchBar.seeAll",
+                message: "See all results",
+              });
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
@@ -125,25 +125,25 @@ export default function SearchBar({
         },
       ]
     )
-      .on("autocomplete:selected", function (
-        event: any,
-        { document: { u, h }, tokens }: SearchResult
-      ) {
-        searchBarRef.current?.blur();
+      .on(
+        "autocomplete:selected",
+        function (event: any, { document: { u, h }, tokens }: SearchResult) {
+          searchBarRef.current?.blur();
 
-        let url = u;
-        if (Mark && tokens.length > 0) {
-          const params = new URLSearchParams();
-          for (const token of tokens) {
-            params.append(SEARCH_PARAM_HIGHLIGHT, token);
+          let url = u;
+          if (Mark && tokens.length > 0) {
+            const params = new URLSearchParams();
+            for (const token of tokens) {
+              params.append(SEARCH_PARAM_HIGHLIGHT, token);
+            }
+            url += `?${params.toString()}`;
           }
-          url += `?${params.toString()}`;
+          if (h) {
+            url += h;
+          }
+          history.push(url);
         }
-        if (h) {
-          url += h;
-        }
-        history.push(url);
-      })
+      )
       .on("autocomplete:closed", () => {
         searchBarRef.current?.blur();
       });
@@ -238,7 +238,11 @@ export default function SearchBar({
       })}
     >
       <input
-        placeholder={translations.search_placeholder}
+        placeholder={translate({
+          id: "theme.SearchBar.label",
+          message: "Search",
+          description: "The ARIA label and placeholder for search button",
+        })}
         aria-label="Search"
         className="navbar__search-input"
         onMouseEnter={onInputMouseEnter}
