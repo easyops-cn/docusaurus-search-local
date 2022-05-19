@@ -54,7 +54,6 @@ module.exports = {
         // ... Your options.
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
-        explicitSearchResultPath: true,
         // For Docs using Chinese, The `language` is recommended to set to:
         // ```
         // language: ["en", "zh"],
@@ -86,27 +85,38 @@ module.exports = {
 | searchResultLimits               | number                                   | `8`          | Limit the search results.                                                                                                                                                                                                                                      |
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                                                                                                                                                |
 | explicitSearchResultPath         | boolean                                  | false        | Whether an explicit path to a heading should be presented on a suggestion template.                                                                                                                                                                            |
-| translations                     | TranslationMap                           | -            | Set translations of this theme, see [docs below](#translations).                                                                                                                                                                                               |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                                                                                                                                      |
 
-### Translations
+### I18N
 
+Since v0.25.0, we support [docusaurus i18n system](<(https://docusaurus.io/docs/i18n/introduction)>), and provided `en` and `zh-CN` translations out of the box.
+
+For other languages, please follow the official tutorial about how to [translate plugin data](https://docusaurus.io/docs/i18n/tutorial#translate-plugin-data). And translate `theme.SearchBar.*` and `theme.SearchPage.*` in `i18n/*/code.json`.
+
+And translations by options is dropped since v0.25.0.
+
+<details>
+<summary>See translation options for &lt;0.25.0</summary>
 To make this theme localized, pass a `translations` option which defaults to:
 
 ```json
 {
-  "search_placeholder": "Search",
-  "see_all_results": "See all results",
-  "no_results": "No results.",
-  "search_results_for": "Search results for \"{{ keyword }}\"",
-  "search_the_documentation": "Search the documentation",
-  "count_documents_found": "{{ count }} document found",
-  "count_documents_found_plural": "{{ count }} documents found",
-  "no_documents_were_found": "No documents were found"
+  "translations": {
+    "search_placeholder": "Search",
+    "see_all_results": "See all results",
+    "no_results": "No results.",
+    "search_results_for": "Search results for \"{{ keyword }}\"",
+    "search_the_documentation": "Search the documentation",
+    "count_documents_found": "{{ count }} document found",
+    "count_documents_found_plural": "{{ count }} documents found",
+    "no_documents_were_found": "No documents were found"
+  }
 }
 ```
 
 Note that `*_plural` can be omitted if it is the same as singular.
+
+</details>
 
 ## Custom Styles
 

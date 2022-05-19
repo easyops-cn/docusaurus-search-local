@@ -1,0 +1,9 @@
+{
+  "theme.SearchBar.label": "搜索",
+  "theme.SearchBar.seeAll": "查看全部结果",
+  "theme.SearchBar.noResultsText": "没有找到任何文档",
+  "theme.SearchPage.existingResultsTitle": "“{query}” 的搜索结果",
+  "theme.SearchPage.emptyResultsTitle": "搜索文档",
+  "theme.SearchPage.documentsFound.plurals": "共找到 {count} 篇文档",
+  "theme.SearchPage.noResultsText": "没有找到任何文档"
+}
