@@ -49,7 +49,7 @@ export function SuggestionTemplate({
     !isInterOfTree && !isLastOfTree && explicitSearchResultPath;
   if (needsExplicitHitPath) {
     const pathItems = page
-      ? (page.b ?? []).concat(page.t).concat(document.s ?? [])
+      ? (page.b ?? []).concat(page.t).concat(!document.s || document.s === page.t ? [] : document.s)
       : document.b;
     wrapped.push(
       `<span class="${styles.hitPath}">${concatDocumentPath(

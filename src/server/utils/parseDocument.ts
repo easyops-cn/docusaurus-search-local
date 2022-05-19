@@ -1,7 +1,9 @@
+import {blogPostContainerID} from '@docusaurus/utils-common';
 import { ParsedDocument, ParsedDocumentSection } from "../../shared/interfaces";
 import { getCondensedText } from "./getCondensedText";
 
 const HEADINGS = "h1, h2, h3";
+// const SUB_HEADINGS = "h2, h3";
 
 export function parseDocument($: cheerio.Root): ParsedDocument {
   const $pageTitle = $("article h1").first();
@@ -37,18 +39,39 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       const title = $h.contents().not("a.hash-link").text().trim();
       const hash = $h.find("a.hash-link").attr("href") || "";
 
-      let $sectionElements;
-      let $firstElement = $("article").children().first();
-      if ($h.is($pageTitle) && $firstElement.filter("header").length > 0) {
-        $firstElement = $("article")
-          .children() // div.markdown, header
-          .not("header") // div.markdown
-          .children() // h1, p, p, h2, ...
-          .first(); // h1 || p
-        if ($firstElement.filter(HEADINGS).length > 0) {
-          return;
+      // Find all content between h1 and h2/h3,
+      // which is considered as the content section of page title.
+      let $sectionElements = $([]);
+      if ($h.is($pageTitle)) {
+        const $header = $h.parent();
+        let $firstElement;
+        if ($header.is("header")) {
+          $firstElement = $header;
+        } else {
+          $firstElement = $h;
         }
-        $sectionElements = $firstElement.nextUntil(HEADINGS).addBack();
+        const blogPost = $(`#${blogPostContainerID}`);
+        if (blogPost.length) {
+          // Simplify blog post.
+          $firstElement = blogPost.children().first();
+          $sectionElements = $firstElement.nextUntil(HEADINGS).addBack();
+        } else {
+          const $nextElements = $firstElement.nextAll();
+          const $headings = $nextElements.filter(HEADINGS);
+          if ($headings.length) {
+            $sectionElements = $firstElement.nextUntil(HEADINGS);
+          } else {
+            for (const next of $nextElements.get()) {
+              const $heading = $(next).find(HEADINGS);
+              if ($heading.length) {
+                $sectionElements = $sectionElements.add($heading.first().prevAll());
+                break;
+              } else {
+                $sectionElements = $sectionElements.add(next);
+              }
+            }
+          }
+        }
       } else {
         $sectionElements = $h.nextUntil(HEADINGS);
       }

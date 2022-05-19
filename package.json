@@ -27,6 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "@docusaurus/utils": "^2.0.0-beta.4",
+    "@docusaurus/utils-common": "^2.0.0-beta.20",
     "@docusaurus/utils-validation": "^2.0.0-beta.4",
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "@node-rs/jieba": "^1.6.0",
@@ -38,7 +39,7 @@
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0",
     "mark.js": "^8.11.1",
-    "tslib": "^2.2.0"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -79,6 +80,9 @@
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "standard-version": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.6.4"
+  },
+  "resolutions": {
+    "joi": "17.6.0"
   }
 }

@@ -52,6 +52,11 @@ describe("parseDocument", () => {
         pageTitle: "Hello World",
         sections: [
           {
+            title: "Hello World",
+            hash: "",
+            content: "",
+          },
+          {
             title: "Hello fruits.",
             hash: "#hello-fruits",
             content: "Apple Orange Pear",
