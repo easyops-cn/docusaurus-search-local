@@ -1734,7 +1734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:2.0.0-beta.20":
+"@docusaurus/types@npm:2.0.0-beta.20, @docusaurus/types@npm:^2.0.0-beta.20":
   version: 2.0.0-beta.20
   resolution: "@docusaurus/types@npm:2.0.0-beta.20"
   dependencies:
@@ -1815,6 +1815,7 @@ __metadata:
     "@docusaurus/module-type-aliases": ^2.0.0-beta.20
     "@docusaurus/theme-common": ^2.0.0-beta.20
     "@docusaurus/theme-translations": ^2.0.0-beta.20
+    "@docusaurus/types": ^2.0.0-beta.20
     "@docusaurus/utils": ^2.0.0-beta.20
     "@docusaurus/utils-common": ^2.0.0-beta.20
     "@docusaurus/utils-validation": ^2.0.0-beta.20
@@ -1829,6 +1830,7 @@ __metadata:
     "@types/jest": ^27.0.0
     "@types/klaw-sync": ^6.0.0
     "@types/lunr": ^2.3.3
+    "@types/node": ^17.0.34
     "@types/react": ^16.9.55
     "@types/react-dom": ^16.9.8
     "@types/react-helmet": ^6.1.0
@@ -3030,6 +3032,13 @@ __metadata:
   version: 14.11.10
   resolution: "@types/node@npm:14.11.10"
   checksum: 2303366e2791464366204f6695db0fd22f9d9023f06e1e736ce4e78a16b5ddea7034e5b9c764173b08c9de0b2623c68ccb5aacaccdeb4103a17fd41a5fd45000
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.34":
+  version: 17.0.34
+  resolution: "@types/node@npm:17.0.34"
+  checksum: eb9a640ab85b62e8f7b9db1f19b674cc4ff49b94d55085ab6c28c997dbe90356631c4df484fe686082c938bfc6fb02c9e85eb805d1415dfe6de7e31f47a09a70
   languageName: node
   linkType: hard
 
