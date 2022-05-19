@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.25.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.24.1...v0.25.0) (2022-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop `translations` in options
+
+### Features
+
+* on board docusaurus i18n system ([70868c3](https://github.com/easyops-cn/docusaurus-search-local/commit/70868c333bace7fbdb27380730031311ae75748a)), closes [#160](https://github.com/easyops-cn/docusaurus-search-local/issues/160)
+
 ### [0.24.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.24.0...v0.24.1) (2022-05-19)
 
 
