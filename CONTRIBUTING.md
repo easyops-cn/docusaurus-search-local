@@ -9,7 +9,7 @@ yarn
 yarn start
 ```
 
-Note: if you are editing `docusaurus/src/client/theme/**/*.css` or ``docusaurus/src/locales/*.json`, you should run `yarn workspace @easyops-cn/docusaurus-search-local run copy-static-files` each time you edited these files.
+Note: if you are editing `docusaurus/src/client/theme/**/*.css` or `docusaurus/src/locales/*.json`, you should run `yarn workspace @easyops-cn/docusaurus-search-local run copy-static-files` each time you edited these files.
 
 The `yarn start` command will watch and run both this theme itself and the example website parallelly. However, the search index is only available when you run build against the website!
 
