@@ -14,10 +14,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@algolia/autocomplete-js@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@algolia/autocomplete-js@npm:1.6.3"
+  dependencies:
+    "@algolia/autocomplete-core": 1.6.3
+    "@algolia/autocomplete-preset-algolia": 1.6.3
+    "@algolia/autocomplete-shared": 1.6.3
+    htm: ^3.0.0
+    preact: ^10.0.0
+  peerDependencies:
+    "@algolia/client-search": ^4.5.1
+  checksum: bdfd54146d9b84b7a5213f4025d78ff05ecd6ea39a5afd58eea13a1f9b16219763b590f379e9bf032b9ec229687c986df30639e0682e9dade1f5bec5991c4a7a
+  languageName: node
+  linkType: hard
+
+"@algolia/autocomplete-preset-algolia@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@algolia/autocomplete-preset-algolia@npm:1.6.3"
+  dependencies:
+    "@algolia/autocomplete-shared": 1.6.3
+  peerDependencies:
+    "@algolia/client-search": ^4.9.1
+    algoliasearch: ^4.9.1
+  checksum: f5b5a3a88353d8a990cf84d11e22c11b21422b565cff0619773162847a7820a1981b57ea948fffd54245f826cbeb650fa9476adc2df691650e864b422ae9d0fe
+  languageName: node
+  linkType: hard
+
 "@algolia/autocomplete-shared@npm:1.6.3":
   version: 1.6.3
   resolution: "@algolia/autocomplete-shared@npm:1.6.3"
   checksum: 2688f54bd82506ac1e6580476772a4d310a9cfa28fbd29c6e207ddc327f62b55e007d5ed5a83af3edd2faf06b09f2e989f9eb7c14d2472fb7a657bb9539fb730
+  languageName: node
+  linkType: hard
+
+"@algolia/autocomplete-theme-classic@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "@algolia/autocomplete-theme-classic@npm:1.6.3"
+  checksum: 7c093668bbf7860a82771de905ff8cee9005ca4308bcc765c7f9bd2279319abd5426fb64f7bbb0b90f20d83a083bacfb478d2929680c489d6807a5ce32946d66
   languageName: node
   linkType: hard
 
@@ -2113,20 +2147,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@easyops-cn/autocomplete.js@npm:^0.38.1":
-  version: 0.38.1
-  resolution: "@easyops-cn/autocomplete.js@npm:0.38.1"
-  dependencies:
-    cssesc: ^3.0.0
-    immediate: ^3.2.3
-  checksum: d88b61f12c383856b8d5cedf176a6d07a21e013dc2c78be029af81e2e026ece2bb988c6ea7f9951a2759c2e6f806ea1d1c9627bf36d9cbe376e897a94ce5da09
-  languageName: node
-  linkType: hard
-
 "@easyops-cn/docusaurus-search-local@workspace:*, @easyops-cn/docusaurus-search-local@workspace:docusaurus-search-local":
   version: 0.0.0-use.local
   resolution: "@easyops-cn/docusaurus-search-local@workspace:docusaurus-search-local"
   dependencies:
+    "@algolia/autocomplete-js": ^1.6.3
+    "@algolia/autocomplete-theme-classic": ^1.6.3
     "@docusaurus/module-type-aliases": ^2.0.0-beta.20
     "@docusaurus/theme-common": ^2.0.0-beta.20
     "@docusaurus/theme-translations": ^2.0.0-beta.20
@@ -2134,7 +2160,6 @@ __metadata:
     "@docusaurus/utils": ^2.0.0-beta.20
     "@docusaurus/utils-common": ^2.0.0-beta.20
     "@docusaurus/utils-validation": ^2.0.0-beta.20
-    "@easyops-cn/autocomplete.js": ^0.38.1
     "@node-rs/jieba": ^1.6.0
     "@tsconfig/docusaurus": ^1.0.2
     "@types/cheerio": ^0.22.31
@@ -7574,6 +7599,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"htm@npm:^3.0.0":
+  version: 3.1.1
+  resolution: "htm@npm:3.1.1"
+  checksum: 1827a0cafffcff69690b048a4df59944086d7503fe5eb7c10b40834439205bdf992941e7aa25e92b3c2c086170565b4ed7c365bc072d31067c6e7a4e478776bd
+  languageName: node
+  linkType: hard
+
 "html-encoding-sniffer@npm:^3.0.0":
   version: 3.0.0
   resolution: "html-encoding-sniffer@npm:3.0.0"
@@ -7841,13 +7873,6 @@ __metadata:
   bin:
     image-size: bin/image-size.js
   checksum: ffa74672dc7a1b6529c66255adbfe4e7865408004db88ed100855816f03175494ec21ef9dad199b8685b5b194996ebe83ab27803af152adb66a301172fdd622d
-  languageName: node
-  linkType: hard
-
-"immediate@npm:^3.2.3":
-  version: 3.3.0
-  resolution: "immediate@npm:3.3.0"
-  checksum: 634b4305101e2452eba6c07d485bf3e415995e533c94b9c3ffbc37026fa1be34def6e4f2276b0dc2162a3f91628564a4bfb26280278b89d3ee54624e854d2f5f
   languageName: node
   linkType: hard
 
@@ -11041,6 +11066,13 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: fe58766ff32e4becf65a7d57678995cfd239df6deed2fe0557f038b47c94e4132e7e5f68b5aa820c13adfec32e523b693efaeb65798efb995ce49ccd83953816
+  languageName: node
+  linkType: hard
+
+"preact@npm:^10.0.0":
+  version: 10.7.2
+  resolution: "preact@npm:10.7.2"
+  checksum: 2f0655e0430f1c6927b40cb4abffb2c0ee4fe63e3201d44e37d0992c0ab534346f206cf23c0405572b70908e3eba2f7f60ab8e4531f409ebcbc35af06920cd60
   languageName: node
   linkType: hard
 

@@ -1,7 +1,3 @@
-declare module "@easyops-cn/autocomplete.js" {
-  export const noConflict: () => void;
-}
-
 declare module "*/generated.js" {
   export const language: string[];
   export const removeDefaultStopWordFilter: string[];
