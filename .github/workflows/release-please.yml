@@ -5,7 +5,14 @@ on:
 name: release-please
 jobs:
   release-please:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.15.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v3
         id: release
@@ -21,35 +28,33 @@ jobs:
         # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
 
-      - uses: actions/setup-node@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-          registry-url: 'https://registry.npmjs.org'
+          node-version: ${{ matrix.node-version }}
         if: ${{ steps.release.outputs.release_created }}
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
         if: ${{ steps.release.outputs.release_created }}
 
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
         if: ${{ steps.release.outputs.release_created }}
 
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
 
       - run: yarn build
         if: ${{ steps.release.outputs.release_created }}
 
-      - run: npm publish
+      - run: yarn npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
