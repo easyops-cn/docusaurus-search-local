@@ -1,16 +1,21 @@
+const buildType = process.env.BUILD_TYPE;
+
 module.exports = {
   title: "Docusaurus Search",
   tagline:
     "An offline/local search example using @easyops-cn/docusaurus-search-local",
   url: "https://easyops-cn.github.io",
-  baseUrl: "/docusaurus-search-local/",
+  baseUrl: buildType === "root" ? "/" : "/docusaurus-search-local/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "easyops-cn", // Usually your GitHub org/user name.
   projectName: "docusaurus-search-local", // Usually your repo name.
   i18n: {
     defaultLocale: "en",
-    locales: ["en", ...(process.env.PR ? [] : ["zh-CN", "zh-TW"])],
+    locales: [
+      "en",
+      ...(buildType === "pr" || buildType === "root" ? [] : ["zh-CN", "zh-TW"]),
+    ],
   },
   themeConfig: {
     navbar: {
