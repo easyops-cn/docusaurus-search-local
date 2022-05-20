@@ -3,15 +3,15 @@ module.exports = {
   tagline:
     "An offline/local search example using @easyops-cn/docusaurus-search-local",
   url: "https://easyops-cn.github.io",
-  baseUrl: "/docusaurus-search-example/",
+  baseUrl: "/docusaurus-search-local/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "easyops-cn", // Usually your GitHub org/user name.
-  projectName: "docusaurus-search-example", // Usually your repo name.
-  // i18n: {
-  //   defaultLocale: 'en',
-  //   locales: ['en', 'zh-CN', 'zh-TW'],
-  // },
+  projectName: "docusaurus-search-local", // Usually your repo name.
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", ...(process.env.CI ? [] : ["zh-CN", "zh-TW"])],
+  },
   themeConfig: {
     navbar: {
       title: "Docusaurus Search",
@@ -96,13 +96,13 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/easyops-cn/docusaurus-search-example/edit/master/",
+            "https://github.com/easyops-cn/docusaurus-search-local/edit/master/website/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            "https://github.com/easyops-cn/docusaurus-search-example/edit/master/blog/",
+            "https://github.com/easyops-cn/docusaurus-search-local/edit/master/website/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

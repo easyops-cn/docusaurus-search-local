@@ -51,7 +51,7 @@ jobs:
       - run: yarn install --immutable
         if: ${{ steps.release.outputs.release_created }}
 
-      - run: yarn build
+      - run: yarn build:theme
         if: ${{ steps.release.outputs.release_created }}
 
       - run: yarn npm publish

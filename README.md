@@ -22,7 +22,7 @@ An offline/local search plugin/theme for [Docusaurus v2](https://v2.docusaurus.i
 
 ## Live Demo
 
-https://easyops-cn.github.io/docusaurus-search-example/
+https://easyops-cn.github.io/docusaurus-search-local/
 
 ## Screen Shots
 
