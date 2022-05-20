@@ -3,4 +3,19 @@ node_modules
 .DS_Store
 .vscode
 yarn-error.log
-/dist
+
+/docusaurus-search-local/dist
+/website/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+.pnp.*
+.yarn/*
+*/.yarn
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
