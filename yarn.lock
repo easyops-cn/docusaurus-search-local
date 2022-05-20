@@ -2145,7 +2145,7 @@ __metadata:
     "@types/lunr": ^2.3.3
     "@types/node": ^17.0.34
     "@types/react": ^16.9.55
-    "@types/react-dom": ^16.9.8
+    "@types/react-dom": ^18.0.0
     "@types/react-helmet": ^6.1.0
     "@types/react-router-dom": ^5.1.6
     cheerio: ^1.0.0-rc.3
@@ -3366,12 +3366,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^16.9.8":
-  version: 16.9.8
-  resolution: "@types/react-dom@npm:16.9.8"
+"@types/react-dom@npm:^18.0.0":
+  version: 18.0.4
+  resolution: "@types/react-dom@npm:18.0.4"
   dependencies:
     "@types/react": "*"
-  checksum: eef9f4ef0c297dd621fc4ab9aa7100ad7d7ccb4a1b8ec04170779b131aa9ea50d76a9ee9cd052cba6ef8389da7e8e8ab718e29fb6662a37d74862794a42094ec
+  checksum: decde42d02a90ac2fe94fd6bfd9c78d002c03762a2d940df9422bf61af89c03d05e2113fd55fe45521fe27fa872a79dfd654b7d6b89652b455425efdcb763c58
   languageName: node
   linkType: hard
 
