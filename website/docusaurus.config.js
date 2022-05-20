@@ -102,7 +102,7 @@ module.exports = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            "https://github.com/easyops-cn/docusaurus-search-local/edit/master/website/blog/",
+            "https://github.com/easyops-cn/docusaurus-search-local/edit/master/website/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
