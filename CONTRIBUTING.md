@@ -4,6 +4,8 @@
 
 ## Development
 
+Before getting started for development, you may need to [setup your IDE](https://yarnpkg.com/getting-started/editor-sdks) for proper type hints since we're using Plug'n'Play installs.
+
 ```shell
 yarn
 yarn start

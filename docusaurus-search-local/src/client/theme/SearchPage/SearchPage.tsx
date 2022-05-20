@@ -69,9 +69,12 @@ export default function SearchPage(): React.ReactElement {
     // otherwise will cause call stack overflow.
   }, [searchQuery, searchSource]);
 
-  const handleSearchInputChange = useCallback((e) => {
-    setSearchQuery(e.target.value);
-  }, []);
+  const handleSearchInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(e.target.value);
+    },
+    []
+  );
 
   useEffect(() => {
     if (searchValue && searchValue !== searchQuery) {
