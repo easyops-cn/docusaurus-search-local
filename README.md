@@ -93,7 +93,7 @@ Since v0.25.0, we support [docusaurus i18n system](<(https://docusaurus.io/docs/
 
 For other languages, please follow the official tutorial about how to [translate plugin data](https://docusaurus.io/docs/i18n/tutorial#translate-plugin-data). And translate `theme.SearchBar.*` and `theme.SearchPage.*` in `i18n/*/code.json`.
 
-And translations by options is dropped since v0.25.0.
+Translations by options is dropped since v0.25.0.
 
 <details>
 <summary>See translation options for &lt;0.25.0</summary>
