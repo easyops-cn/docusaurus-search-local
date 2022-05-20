@@ -1,12 +1,3 @@
-// import { TranslationMap } from "./shared/interfaces";
-
-// declare module "@docusaurus/router" {
-//   export const useHistory: () => {
-//     push: (url: string) => void;
-//     replace: (args: any) => void;
-//   };
-// }
-
 declare module "@easyops-cn/autocomplete.js" {
   export const noConflict: () => void;
 }
