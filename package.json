@@ -8,7 +8,7 @@
     "start:theme": "yarn workspace @easyops-cn/docusaurus-search-local run start",
     "start:website": "yarn workspace website run start",
     "build": "yarn workspaces foreach -tvp run build",
-    "build:ci": "cross-env CI='true' yarn workspaces foreach -tvp run build",
+    "build:pr": "cross-env PR='true' yarn workspaces foreach -tvp run build",
     "build:theme": "yarn workspace @easyops-cn/docusaurus-search-local run build",
     "build:website": "yarn workspace website run build",
     "serve": "yarn workspace website run serve",

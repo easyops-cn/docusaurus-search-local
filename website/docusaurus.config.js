@@ -10,7 +10,7 @@ module.exports = {
   projectName: "docusaurus-search-local", // Usually your repo name.
   i18n: {
     defaultLocale: "en",
-    locales: ["en", ...(process.env.CI ? [] : ["zh-CN", "zh-TW"])],
+    locales: ["en", ...(process.env.PR ? [] : ["zh-CN", "zh-TW"])],
   },
   themeConfig: {
     navbar: {

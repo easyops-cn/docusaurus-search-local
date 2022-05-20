@@ -45,7 +45,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - run: yarn install --immutable
-    - run: yarn build:ci
+    - run: yarn build:pr
     - run: yarn test
 
     - name: Coveralls
