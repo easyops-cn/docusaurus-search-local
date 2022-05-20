@@ -6,7 +6,7 @@ module.exports = {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: "<rootDir>/.coverage",
-  collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}"],
+  collectCoverageFrom: ["docusaurus-search-local/src/**/*.{ts,tsx,js,jsx}"],
   // setupFilesAfterEnv: ["<rootDir>/__jest__/setup.js"],
   // snapshotSerializers: ["enzyme-to-json/serializer"],
   moduleNameMapper: {
