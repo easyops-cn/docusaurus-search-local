@@ -167,6 +167,10 @@ In case some specific errors occurred:
   - Try using @easyops-cn/docusaurus-search-local between v0.14.0 and v0.15.1 with Docusaurus between v2.0.0-alpha.68 and v2.0.0-alpha.72
   - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66
 
+- `Module not found: Error: Can't resolve '@docusaurus/useRouteContext'`:
+  - Try using @easyops-cn/docusaurus-search-local >= v0.25.0 with Docusaurus >= v2.0.0-beta.18
+  - Try using @easyops-cn/docusaurus-search-local < v0.25.0 with Docusaurus < v2.0.0-beta.18
+
 ## Further Reading
 
 - [多语言全文搜索](https://wangshenwei.com/multilingual-full-text-search/)
