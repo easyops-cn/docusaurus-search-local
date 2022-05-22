@@ -5,7 +5,7 @@ module.exports = {
   tagline:
     "An offline/local search example using @easyops-cn/docusaurus-search-local",
   url: "https://easyops-cn.github.io",
-  baseUrl: buildType === "root" ? "/" : "/docusaurus-search-local/",
+  baseUrl: buildType === "preview" ? "/" : "/docusaurus-search-local/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "easyops-cn", // Usually your GitHub org/user name.
@@ -14,7 +14,7 @@ module.exports = {
     defaultLocale: "en",
     locales: [
       "en",
-      ...(buildType === "pr" || buildType === "root" ? [] : ["zh-CN", "zh-TW"]),
+      ...(buildType === "full" ? ["zh-CN", "zh-TW"] : []),
     ],
   },
   themeConfig: {
