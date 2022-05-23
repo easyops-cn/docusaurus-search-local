@@ -50,13 +50,13 @@ export default function SearchBar({
   const history = useHistory();
   const location = useLocation();
   const searchBarRef = useRef<HTMLInputElement>(null);
-  let search: any = null;
   const indexState = useRef("empty"); // empty, loaded, done
   // Should the input be focused after the index is loaded?
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
   const [inputChanged, setInputChanged] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const search = useRef<any>(null);
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -71,7 +71,7 @@ export default function SearchBar({
       fetchAutoCompleteJS(),
     ]);
 
-    search = autoComplete(
+    search.current = autoComplete(
       searchBarRef.current,
       {
         hint: false,
@@ -114,7 +114,7 @@ export default function SearchBar({
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
-                  search.autocomplete.close();
+                  search.current.autocomplete.close();
                   history.push(url);
                 }
               });
@@ -156,7 +156,7 @@ export default function SearchBar({
     if (focusAfterIndexLoaded.current) {
       const input = searchBarRef.current as HTMLInputElement;
       if (input.value) {
-        search.autocomplete.open();
+        search.current.autocomplete.open();
       }
       input.focus();
     }
@@ -183,8 +183,10 @@ export default function SearchBar({
       if (keywords.length !== 0) {
         mark.mark(keywords);
       }
+
+      // Apply any keywords to the search input so that we can clear marks in case we loaded a page with a highlight in the url
       setInputValue(keywords.join(" "));
-      search?.autocomplete.setVal(keywords.join(" "));
+      search.current?.autocomplete.setVal(keywords.join(" "));
     });
   }, [location.search, location.pathname]);
 
@@ -236,14 +238,18 @@ export default function SearchBar({
   }, [isMac, onInputFocus]);
 
   const onClearSearch = useCallback(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     params.delete(SEARCH_PARAM_HIGHLIGHT);
-    history.push(
-      window.location.pathname + `?${params.toString()}` + window.location.hash
-    );
+    let paramsStr = params.toString();
+    let searchUrl = location.pathname + (paramsStr != "" ? `?${paramsStr}` : "") + location.hash;
+    if (searchUrl != location.pathname + location.search + location.hash) {
+      history.push(searchUrl);
+    }
+
+    // We always clear these here because in case no match was selected the above history push wont happen
     setInputValue("");
-    search?.autocomplete.setVal("");
-  }, []);
+    search.current?.autocomplete.setVal("");
+  }, [location.pathname, location.search, location.hash]);
 
   return (
     <div
