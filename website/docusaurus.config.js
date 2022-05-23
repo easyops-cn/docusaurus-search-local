@@ -14,7 +14,7 @@ module.exports = {
     defaultLocale: "en",
     locales: [
       "en",
-      ...(buildType === "full" ? ["zh-CN", "zh-TW"] : []),
+      ...(buildType === "i18n" ? ["zh-CN", "zh-TW"] : []),
     ],
   },
   themeConfig: {
