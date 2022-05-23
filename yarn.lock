@@ -1825,7 +1825,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/plugin-content-docs@npm:2.0.0-beta.20":
+"@docusaurus/plugin-content-docs@npm:2.0.0-beta.20, @docusaurus/plugin-content-docs@npm:^2.0.0-beta.20":
   version: 2.0.0-beta.20
   resolution: "@docusaurus/plugin-content-docs@npm:2.0.0-beta.20"
   dependencies:
@@ -2128,6 +2128,7 @@ __metadata:
   resolution: "@easyops-cn/docusaurus-search-local@workspace:docusaurus-search-local"
   dependencies:
     "@docusaurus/module-type-aliases": ^2.0.0-beta.20
+    "@docusaurus/plugin-content-docs": ^2.0.0-beta.20
     "@docusaurus/theme-common": ^2.0.0-beta.20
     "@docusaurus/theme-translations": ^2.0.0-beta.20
     "@docusaurus/types": ^2.0.0-beta.20

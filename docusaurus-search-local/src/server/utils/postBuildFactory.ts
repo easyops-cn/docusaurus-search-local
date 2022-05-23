@@ -17,21 +17,23 @@ export function postBuildFactory(config: ProcessedPluginOptions) {
 
     debugInfo("parsing documents");
 
-    // Give every index entry a unique id so that the index does not need to store long URLs.
-    const allDocuments = await scanDocuments(data);
+    for (let versionData of data) {
+      // Give every index entry a unique id so that the index does not need to store long URLs.
+      const allDocuments = await scanDocuments(versionData.paths);
 
-    debugInfo("building index");
+      debugInfo("building index");
 
-    const searchIndex = buildIndex(allDocuments, config);
+      const searchIndex = buildIndex(allDocuments, config);
 
-    debugInfo("writing index to disk");
+      debugInfo("writing index to disk");
 
-    await writeFileAsync(
-      path.join(buildData.outDir, "search-index.json"),
-      JSON.stringify(searchIndex),
-      { encoding: "utf8" }
-    );
+      await writeFileAsync(
+        path.join(versionData.outDir, "search-index.json"),
+        JSON.stringify(searchIndex),
+        { encoding: "utf8" }
+      );
 
-    debugInfo("index written to disk successfully!");
+      debugInfo("index written to disk successfully!");
+    }
   };
 }
