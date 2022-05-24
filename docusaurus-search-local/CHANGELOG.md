@@ -4,25 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.26.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.0) (2022-05-24)
 
-
 ### Features
 
-* add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([593bbc5](https://github.com/easyops-cn/docusaurus-search-local/commit/593bbc5d64b23bd5f8c73aea77e5fb4053fd8580))
-* add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([c36ef64](https://github.com/easyops-cn/docusaurus-search-local/commit/c36ef647ccfca979f82fb4477b3f34c78032d50f))
-
-
-### Bug Fixes
-
-* fix highlight not cleared when researching ([37a1a10](https://github.com/easyops-cn/docusaurus-search-local/commit/37a1a104c72f6abded27573fb30a00fc312b4f05))
-* fix types ([d77147a](https://github.com/easyops-cn/docusaurus-search-local/commit/d77147a75db2ed63e912308a95ecf0e7d788e38f))
-* fix types ([da5e37a](https://github.com/easyops-cn/docusaurus-search-local/commit/da5e37a9aaa6a14df82f48cee2eb06a6dd4fbb95))
-
-
-### Miscellaneous Chores
-
-* release 0.16.3 ([b99a906](https://github.com/easyops-cn/docusaurus-search-local/commit/b99a9065af9a7dbfc4f52e52eec0935629ae13c5))
-* release 0.26.0 ([7e1ae43](https://github.com/easyops-cn/docusaurus-search-local/commit/7e1ae43dde93bc7b31ce579da33df0ff3e1ec98d))
-* release 0.26.0 ([625f740](https://github.com/easyops-cn/docusaurus-search-local/commit/625f7409596799bd7b612a43591bade27b8b5914))
+* add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([f516123](https://github.com/easyops-cn/docusaurus-search-local/commit/f5161238cb7466fe7309e9166037d681e647f910))
 
 ## [0.25.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.24.1...v0.25.0) (2022-05-19)
 
