@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.26.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.25.2...v0.26.0) (2022-05-24)
+
+
+### Features
+
+* add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([c36ef64](https://github.com/easyops-cn/docusaurus-search-local/commit/c36ef647ccfca979f82fb4477b3f34c78032d50f))
+
 ### [0.25.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.25.1...v0.25.2) (2022-05-20)
 
 
