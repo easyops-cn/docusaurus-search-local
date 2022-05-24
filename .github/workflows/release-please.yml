@@ -58,5 +58,5 @@ jobs:
       # https://github.com/yarnpkg/berry/issues/2034#issuecomment-715295553
       - run: yarn workspaces foreach --no-private npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          YARN_NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
