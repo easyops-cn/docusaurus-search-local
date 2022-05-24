@@ -55,6 +55,8 @@ export default function SearchBar({
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
   const [inputChanged, setInputChanged] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const search = useRef<any>(null);
 
   const loadIndex = useCallback(async () => {
     if (indexState.current !== "empty") {
@@ -69,7 +71,7 @@ export default function SearchBar({
       fetchAutoCompleteJS(),
     ]);
 
-    const search = autoComplete(
+    search.current = autoComplete(
       searchBarRef.current,
       {
         hint: false,
@@ -112,7 +114,7 @@ export default function SearchBar({
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
-                  search.autocomplete.close();
+                  search.current.autocomplete.close();
                   history.push(url);
                 }
               });
@@ -154,7 +156,7 @@ export default function SearchBar({
     if (focusAfterIndexLoaded.current) {
       const input = searchBarRef.current as HTMLInputElement;
       if (input.value) {
-        search.autocomplete.open();
+        search.current.autocomplete.open();
       }
       input.focus();
     }
@@ -167,9 +169,6 @@ export default function SearchBar({
     const keywords = ExecutionEnvironment.canUseDOM
       ? new URLSearchParams(location.search).getAll(SEARCH_PARAM_HIGHLIGHT)
       : [];
-    if (keywords.length === 0) {
-      return;
-    }
     // A workaround to fix an issue of highlighting in code blocks.
     // See https://github.com/easyops-cn/docusaurus-search-local/issues/92
     // Code blocks will be re-rendered after this `useEffect` ran.
@@ -181,7 +180,13 @@ export default function SearchBar({
       }
       const mark = new Mark(root);
       mark.unmark();
-      mark.mark(keywords);
+      if (keywords.length !== 0) {
+        mark.mark(keywords);
+      }
+
+      // Apply any keywords to the search input so that we can clear marks in case we loaded a page with a highlight in the url
+      setInputValue(keywords.join(" "));
+      search.current?.autocomplete.setVal(keywords.join(" "));
     });
   }, [location.search, location.pathname]);
 
@@ -201,6 +206,7 @@ export default function SearchBar({
 
   const onInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(event.target.value);
       if (event.target.value) {
         setInputChanged(true);
       }
@@ -231,6 +237,20 @@ export default function SearchBar({
     };
   }, [isMac, onInputFocus]);
 
+  const onClearSearch = useCallback(() => {
+    const params = new URLSearchParams(location.search);
+    params.delete(SEARCH_PARAM_HIGHLIGHT);
+    let paramsStr = params.toString();
+    let searchUrl = location.pathname + (paramsStr != "" ? `?${paramsStr}` : "") + location.hash;
+    if (searchUrl != location.pathname + location.search + location.hash) {
+      history.push(searchUrl);
+    }
+
+    // We always clear these here because in case no match was selected the above history push wont happen
+    setInputValue("");
+    search.current?.autocomplete.setVal("");
+  }, [location.pathname, location.search, location.hash]);
+
   return (
     <div
       className={clsx("navbar__search", styles.searchBarContainer, {
@@ -250,12 +270,19 @@ export default function SearchBar({
         onBlur={onInputBlur}
         onChange={onInputChange}
         ref={searchBarRef}
+        value={inputValue}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
-      <div className={styles.searchHintContainer}>
-        <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-        <kbd className={styles.searchHint}>K</kbd>
-      </div>
+      {inputValue !== "" ? (
+        <button className={styles.searchClearButton} onClick={onClearSearch}>
+          ✕
+        </button>
+      ) : (
+        <div className={styles.searchHintContainer}>
+          <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+          <kbd className={styles.searchHint}>K</kbd>
+        </div>
+      )}
     </div>
   );
 }
