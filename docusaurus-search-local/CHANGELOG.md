@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.26.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.1) (2022-05-25)
+
+
+### Bug Fixes
+
+* fix i18n id of `theme.SearchPage.noResultsText` ([fe530f3](https://github.com/easyops-cn/docusaurus-search-local/commit/fe530f35da0b11c78c9d68cb6a7fea5871919e00))
+
 ## [0.26.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.0) (2022-05-24)
 
 ### Features
