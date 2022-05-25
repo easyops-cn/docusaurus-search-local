@@ -142,7 +142,7 @@ export default function SearchPage(): React.ReactElement {
           ) : process.env.NODE_ENV === "production" ? (
             <p>
               {translate({
-                id: "theme.SearchPage.noDocumentsFound",
+                id: "theme.SearchPage.noResultsText",
                 message: "No documents were found",
                 description: "The paragraph for empty search result",
               })}
