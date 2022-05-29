@@ -1,4 +1,4 @@
-import { DocusaurusConfig } from "@docusaurus/types";
+import { DocusaurusConfig, LoadedPlugin } from "@docusaurus/types";
 import lunr from "lunr";
 
 export type SmartTerm = SmartTermItem[];
@@ -128,6 +128,11 @@ export interface DocInfoWithFilePath {
   type: DocInfoType;
 }
 
+export interface VersionDocInfo {
+  outDir: string;
+  paths: DocInfoWithFilePath[];
+}
+
 export type DocInfoType = "docs" | "blog" | "page";
 
 export interface PluginOptions {
@@ -190,6 +195,7 @@ export interface PostBuildData {
   outDir: string;
   baseUrl: string;
   siteConfig: DocusaurusConfig;
+  plugins: LoadedPlugin[];
 }
 
 export interface DocusaurusContext {

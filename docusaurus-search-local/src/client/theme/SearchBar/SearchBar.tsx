@@ -10,6 +10,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
+import { useActiveVersion } from '@docusaurus/plugin-content-docs/client';
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
@@ -44,9 +45,13 @@ interface SearchBarProps {
 export default function SearchBar({
   handleSearchBarToggle,
 }: SearchBarProps): ReactElement {
-  const {
+  let {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
+  const activeVersion = useActiveVersion();
+  if (activeVersion && !activeVersion.isLast) {
+    baseUrl = activeVersion.path + "/";
+  }
   const history = useHistory();
   const location = useLocation();
   const searchBarRef = useRef<HTMLInputElement>(null);
