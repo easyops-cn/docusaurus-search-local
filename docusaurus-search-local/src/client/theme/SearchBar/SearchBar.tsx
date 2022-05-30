@@ -10,7 +10,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
-import { useActiveVersion } from '@docusaurus/plugin-content-docs/client';
+import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
@@ -48,9 +48,10 @@ export default function SearchBar({
   let {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const activeVersion = useActiveVersion();
-  if (activeVersion && !activeVersion.isLast) {
-    baseUrl = activeVersion.path + "/";
+  const { preferredVersion } = useDocsPreferredVersion();
+  let versionUrl = baseUrl;
+  if (preferredVersion && !preferredVersion.isLast) {
+    versionUrl = preferredVersion.path + "/";
   }
   const history = useHistory();
   const location = useLocation();
@@ -72,7 +73,7 @@ export default function SearchBar({
     setLoading(true);
 
     const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
-      fetchIndexes(baseUrl),
+      fetchIndexes(versionUrl),
       fetchAutoCompleteJS(),
     ]);
 
@@ -165,7 +166,7 @@ export default function SearchBar({
       }
       input.focus();
     }
-  }, [baseUrl, history]);
+  }, [baseUrl, versionUrl, history]);
 
   useEffect(() => {
     if (!Mark) {
@@ -254,7 +255,7 @@ export default function SearchBar({
     // We always clear these here because in case no match was selected the above history push wont happen
     setInputValue("");
     search.current?.autocomplete.setVal("");
-  }, [location.pathname, location.search, location.hash]);
+  }, [location.pathname, location.search, location.hash, history]);
 
   return (
     <div

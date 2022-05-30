@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
-import { usePluralForm } from "@docusaurus/theme-common";
+import { usePluralForm, useDocsPreferredVersion } from "@docusaurus/theme-common";
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -19,9 +19,21 @@ import styles from "./SearchPage.module.css";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
 
 export default function SearchPage(): React.ReactElement {
-  const {
+  return (
+    <Layout>
+      <SearchPageContent />
+    </Layout>
+  );
+}
+
+function SearchPageContent(): React.ReactElement {
+  let {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
+  const { preferredVersion } = useDocsPreferredVersion();
+  if (preferredVersion && !preferredVersion.isLast) { 
+    baseUrl = preferredVersion.path + "/";
+  }
   const { selectMessage } = usePluralForm();
   const { searchValue, updateSearchPath } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
@@ -93,7 +105,7 @@ export default function SearchPage(): React.ReactElement {
   }, [baseUrl]);
 
   return (
-    <Layout>
+    <React.Fragment>
       <Head>
         {/*
          We should not index search pages
@@ -161,7 +173,7 @@ export default function SearchPage(): React.ReactElement {
             ))}
         </section>
       </div>
-    </Layout>
+    </React.Fragment>
   );
 }
 
