@@ -5,6 +5,7 @@ import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import { usePluralForm, useDocsPreferredVersion } from "@docusaurus/theme-common";
+import { useActivePlugin } from '@docusaurus/plugin-content-docs/client';
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -30,7 +31,8 @@ function SearchPageContent(): React.ReactElement {
   let {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const { preferredVersion } = useDocsPreferredVersion();
+  const { pluginId } = useActivePlugin({failfast: true})!;
+  const { preferredVersion } = useDocsPreferredVersion(pluginId);
   if (preferredVersion && !preferredVersion.isLast) { 
     baseUrl = preferredVersion.path + "/";
   }

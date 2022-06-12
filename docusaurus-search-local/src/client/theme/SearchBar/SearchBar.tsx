@@ -11,6 +11,7 @@ import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
+import { useActivePlugin } from '@docusaurus/plugin-content-docs/client';
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
@@ -48,7 +49,8 @@ export default function SearchBar({
   let {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const { preferredVersion } = useDocsPreferredVersion();
+  const { pluginId } = useActivePlugin({failfast: true})!;
+  const { preferredVersion } = useDocsPreferredVersion(pluginId);
   let versionUrl = baseUrl;
   if (preferredVersion && !preferredVersion.isLast) {
     versionUrl = preferredVersion.path + "/";
