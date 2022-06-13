@@ -110,7 +110,7 @@ export function processDocInfos(
       .map<DocInfoWithFilePath>(({ route, url, type }) => ({
         filePath: path.join(
           outDir,
-          siteConfig.trailingSlash === false
+          siteConfig.trailingSlash === false && route != ""
             ? `${route}.html`
             : `${route}/index.html`
         ),
