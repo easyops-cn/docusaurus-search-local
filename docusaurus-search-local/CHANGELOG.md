@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.0...v0.27.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* properly support no trailing slashes after fixing indexing top level pages ([999bd8b](https://github.com/easyops-cn/docusaurus-search-local/commit/999bd8bec8abe73f12abe20f58f8030be46c9ecd)), closes [#212](https://github.com/easyops-cn/docusaurus-search-local/issues/212)
+
 ## [0.27.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.1...v0.27.0) (2022-05-29)
 
 
