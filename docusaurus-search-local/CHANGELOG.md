@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.27.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.1...v0.27.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* search page for non latest doc versions ([15f6161](https://github.com/easyops-cn/docusaurus-search-local/commit/15f61612f8d59dde0ba401e15d76d080865d8e8b))
+* use the active plugin id when getting the current docs version ([824e134](https://github.com/easyops-cn/docusaurus-search-local/commit/824e1347f3f571b45e1e39f708ffd75c01f13339))
+* fix active plugin may be undefined ([0bfbbb2](https://github.com/easyops-cn/docusaurus-search-local/commit/0bfbbb29cee66fcbb3be589da226caef6210fa5a))
+* make `@docusaurus/theme-common` as peer ([68dc812](https://github.com/easyops-cn/docusaurus-search-local/commit/68dc812c84451c68dc9f9448c4a2b39a3f8f3bcc))
+
 ## [0.27.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.0...v0.27.1) (2022-06-13)
 
 ### Bug Fixes
