@@ -4,8 +4,11 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
-import { usePluralForm, useDocsPreferredVersion } from "@docusaurus/theme-common";
-import { useActivePlugin } from '@docusaurus/plugin-content-docs/client';
+import {
+  usePluralForm,
+  useDocsPreferredVersion,
+} from "@docusaurus/theme-common";
+import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -28,13 +31,18 @@ export default function SearchPage(): React.ReactElement {
 }
 
 function SearchPageContent(): React.ReactElement {
-  let {
+  const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const { pluginId } = useActivePlugin({failfast: true})!;
-  const { preferredVersion } = useDocsPreferredVersion(pluginId);
-  if (preferredVersion && !preferredVersion.isLast) { 
-    baseUrl = preferredVersion.path + "/";
+
+  // It returns undefined for non-docs pages.
+  const activePlugin = useActivePlugin();
+  let versionUrl = baseUrl;
+
+  // There is an issue, see `SearchBar.tsx`.
+  const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
+  if (preferredVersion && !preferredVersion.isLast) {
+    versionUrl = preferredVersion.path + "/";
   }
   const { selectMessage } = usePluralForm();
   const { searchValue, updateSearchPath } = useSearchQuery();
@@ -98,13 +106,13 @@ function SearchPageContent(): React.ReactElement {
 
   useEffect(() => {
     async function doFetchIndexes() {
-      const { wrappedIndexes, zhDictionary } = await fetchIndexes(baseUrl);
+      const { wrappedIndexes, zhDictionary } = await fetchIndexes(versionUrl);
       setSearchSource(() =>
         SearchSourceFactory(wrappedIndexes, zhDictionary, 100)
       );
     }
     doFetchIndexes();
-  }, [baseUrl]);
+  }, [versionUrl]);
 
   return (
     <React.Fragment>

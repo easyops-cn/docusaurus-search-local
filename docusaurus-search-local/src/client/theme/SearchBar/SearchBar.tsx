@@ -10,8 +10,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
-import { useDocsPreferredVersion } from '@docusaurus/theme-common';
-import { useActivePlugin } from '@docusaurus/plugin-content-docs/client';
+import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
 import { fetchIndexes } from "./fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
@@ -46,12 +46,19 @@ interface SearchBarProps {
 export default function SearchBar({
   handleSearchBarToggle,
 }: SearchBarProps): ReactElement {
-  let {
+  const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
-  const { pluginId } = useActivePlugin({failfast: true})!;
-  const { preferredVersion } = useDocsPreferredVersion(pluginId);
+
+  // It returns undefined for non-docs pages
+  const activePlugin = useActivePlugin();
   let versionUrl = baseUrl;
+
+  // For non-docs pages while using plugin-content-docs with custom ids,
+  // this will throw an error of:
+  //   > Docusaurus plugin global data not found for "docusaurus-plugin-content-docs" plugin with id "default".
+  // It seems that we can not get the correct id for non-docs pages.
+  const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
   if (preferredVersion && !preferredVersion.isLast) {
     versionUrl = preferredVersion.path + "/";
   }
@@ -248,8 +255,11 @@ export default function SearchBar({
   const onClearSearch = useCallback(() => {
     const params = new URLSearchParams(location.search);
     params.delete(SEARCH_PARAM_HIGHLIGHT);
-    let paramsStr = params.toString();
-    let searchUrl = location.pathname + (paramsStr != "" ? `?${paramsStr}` : "") + location.hash;
+    const paramsStr = params.toString();
+    const searchUrl =
+      location.pathname +
+      (paramsStr != "" ? `?${paramsStr}` : "") +
+      location.hash;
     if (searchUrl != location.pathname + location.search + location.hash) {
       history.push(searchUrl);
     }
