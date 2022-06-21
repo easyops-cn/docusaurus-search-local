@@ -2,25 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.27.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.1...v0.27.0) (2022-05-29)
-
-
-### Features
-
-* versioned search ([6865e7c](https://github.com/easyops-cn/docusaurus-search-local/commit/6865e7c3eee416e53648877359cdf206119be043)), closes [#66](https://github.com/easyops-cn/docusaurus-search-local/issues/66)
-
-### [0.26.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.1) (2022-05-25)
-
+## [0.27.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.0...v0.27.1) (2022-06-13)
 
 ### Bug Fixes
 
-* fix i18n id of `theme.SearchPage.noResultsText` ([fe530f3](https://github.com/easyops-cn/docusaurus-search-local/commit/fe530f35da0b11c78c9d68cb6a7fea5871919e00))
+- properly support no trailing slashes after fixing indexing top level pages ([999bd8b](https://github.com/easyops-cn/docusaurus-search-local/commit/999bd8bec8abe73f12abe20f58f8030be46c9ecd)), closes [#212](https://github.com/easyops-cn/docusaurus-search-local/issues/212)
+
+## [0.27.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.1...v0.27.0) (2022-05-29)
+
+### Features
+
+- versioned search ([6865e7c](https://github.com/easyops-cn/docusaurus-search-local/commit/6865e7c3eee416e53648877359cdf206119be043)), closes [#66](https://github.com/easyops-cn/docusaurus-search-local/issues/66)
+
+### [0.26.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.1) (2022-05-25)
+
+### Bug Fixes
+
+- fix i18n id of `theme.SearchPage.noResultsText` ([fe530f3](https://github.com/easyops-cn/docusaurus-search-local/commit/fe530f35da0b11c78c9d68cb6a7fea5871919e00))
 
 ## [0.26.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.26.0...v0.26.0) (2022-05-24)
 
 ### Features
 
-* add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([f516123](https://github.com/easyops-cn/docusaurus-search-local/commit/f5161238cb7466fe7309e9166037d681e647f910))
+- add a clear button to the search bar [#170](https://github.com/easyops-cn/docusaurus-search-local/issues/170) ([f516123](https://github.com/easyops-cn/docusaurus-search-local/commit/f5161238cb7466fe7309e9166037d681e647f910))
 
 ## [0.25.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.24.1...v0.25.0) (2022-05-19)
 
