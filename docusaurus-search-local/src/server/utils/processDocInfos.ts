@@ -6,7 +6,7 @@ import {
   ProcessedPluginOptions,
   PostBuildData,
 } from "../../shared/interfaces";
-import { LoadedContent, LoadedVersion } from "@docusaurus/plugin-content-docs"
+import { LoadedContent, LoadedVersion } from "@docusaurus/plugin-content-docs";
 
 export function processDocInfos(
   { routesPaths, outDir, baseUrl, siteConfig, plugins }: PostBuildData,
@@ -22,12 +22,16 @@ export function processDocInfos(
   const emptySet = new Set();
   let versionData: any = [{ versionOutDir: outDir, docs: emptySet }];
   if (plugins) {
-    const docsPluginData = plugins.find(element => element.name === "docusaurus-plugin-content-docs");
+    const docsPluginData = plugins.find(
+      (element) => element.name === "docusaurus-plugin-content-docs"
+    );
     if (docsPluginData) {
       versionData = [];
-      const loadedVersions:LoadedVersion[] = (docsPluginData.content as LoadedContent).loadedVersions;
+      const loadedVersions: LoadedVersion[] = (
+        docsPluginData.content as LoadedContent
+      ).loadedVersions;
       for (const loadedVersion of loadedVersions) {
-        let docs = new Set();
+        const docs = new Set();
         for (const doc of loadedVersion.docs) {
           docs.add(doc.permalink);
         }
@@ -35,7 +39,10 @@ export function processDocInfos(
         let versionOutDir = outDir;
         // The last versions search-index should always be placed in the root since it is the one used from non-docs pages
         if (!loadedVersion.isLast) {
-          versionOutDir = path.join(outDir, ...route.split("/").filter((i: string) => i));
+          versionOutDir = path.join(
+            outDir,
+            ...route.split("/").filter((i: string) => i)
+          );
         }
         versionData.push({ versionOutDir, docs });
       }
@@ -43,7 +50,7 @@ export function processDocInfos(
   }
 
   // Create a list of files to index per document version. This will always include all pages and blogs.
-  let result = [];
+  const result = [];
   for (const { versionOutDir, docs } of versionData) {
     const versionPaths = routesPaths
       .map<DocInfoWithRoute | undefined>((url: string) => {
@@ -57,7 +64,8 @@ export function processDocInfos(
 
         // Do not index homepage, error page and search page.
         if (
-          ((!docsRouteBasePath || docsRouteBasePath[0] !== "") && route === "") ||
+          ((!docsRouteBasePath || docsRouteBasePath[0] !== "") &&
+            route === "") ||
           route === "404.html" ||
           route === "search"
         ) {
@@ -78,7 +86,9 @@ export function processDocInfos(
 
         if (
           indexBlog &&
-          blogRouteBasePath.some((basePath) => isSameOrSubRoute(route, basePath))
+          blogRouteBasePath.some((basePath) =>
+            isSameOrSubRoute(route, basePath)
+          )
         ) {
           if (
             blogRouteBasePath.some(
@@ -94,7 +104,9 @@ export function processDocInfos(
         }
         if (
           indexDocs &&
-          docsRouteBasePath.some((basePath) => isSameOrSubRoute(route, basePath))
+          docsRouteBasePath.some((basePath) =>
+            isSameOrSubRoute(route, basePath)
+          )
         ) {
           if (docs.size === 0 || docs.has(url)) {
             return { route, url, type: "docs" };

@@ -13,11 +13,13 @@
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.20",
     "@docusaurus/preset-classic": "^2.0.0-beta.20",
+    "@docusaurus/theme-classic": "^2.0.0-beta.20",
+    "@docusaurus/theme-common": "^2.0.0-beta.20",
     "@easyops-cn/docusaurus-search-local": "workspace:*",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "browserslist": {
     "production": [

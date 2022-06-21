@@ -24,7 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.20",
-    "@docusaurus/theme-common": "^2.0.0-beta.20",
     "@docusaurus/theme-translations": "^2.0.0-beta.20",
     "@docusaurus/utils": "^2.0.0-beta.20",
     "@docusaurus/utils-common": "^2.0.0-beta.20",
@@ -43,6 +42,7 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-beta.20",
+    "@docusaurus/theme-common": "^2.0.0-beta.20",
     "@docusaurus/types": "^2.0.0-beta.20",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/cheerio": "^0.22.31",
@@ -61,6 +61,8 @@
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "react": "^16.14.0 || 17 || 18"
+    "@docusaurus/theme-common": "^2.0.0-beta.20",
+    "react": "^16.14.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
   }
 }
