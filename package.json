@@ -1,6 +1,4 @@
 {
-  "name": "docusaurus-search-local",
-  "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "scripts": {
