@@ -1,0 +1,9 @@
+{
+  "theme.SearchBar.label": "Tìm",
+  "theme.SearchBar.seeAll": "Xem tất cả",
+  "theme.SearchBar.noResultsText": "Không tìm thấy",
+  "theme.SearchPage.existingResultsTitle": "“{query}” kết quả",
+  "theme.SearchPage.emptyResultsTitle": "Không tiêu đề",
+  "theme.SearchPage.documentsFound.plurals": "Có {count} kết quả",
+  "theme.SearchPage.noResultsText": "Không tìm thấy kết quả nào"
+}
