@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.28.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.2...v0.28.0) (2022-06-28)
+
+
+### Features
+
+* add locales/vi.json ([#217](https://github.com/easyops-cn/docusaurus-search-local/issues/217)) ([26f9a2a](https://github.com/easyops-cn/docusaurus-search-local/commit/26f9a2aa885cd315254f973f348445a873d98ede))
+
 ## [0.27.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.1...v0.27.2) (2022-06-21)
 
 
