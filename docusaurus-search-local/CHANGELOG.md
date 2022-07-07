@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.28.0...v0.29.0) (2022-07-07)
+
+
+### Features
+
+* support disabling search bar shortcut ([e0ea5ae](https://github.com/easyops-cn/docusaurus-search-local/commit/e0ea5aeab027724083b0f51290d6ea7e4bc89fa6))
+* support hiding search bar shortcut hint ([9344bd2](https://github.com/easyops-cn/docusaurus-search-local/commit/9344bd20e16c3dd60b3d59fc918dca10e8cfd48f))
+
 ## [0.28.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.27.2...v0.28.0) (2022-06-28)
 
 
