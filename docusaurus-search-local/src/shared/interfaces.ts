@@ -157,6 +157,7 @@ export interface PluginOptions {
   ignoreFiles?: string | RegExp | (string | RegExp)[];
 
   searchBarShortcut?: boolean;
+  searchBarShortcutHint?: boolean;
 
   // searchInputPlaceholder?: string;
   // searchNoResults?: string;

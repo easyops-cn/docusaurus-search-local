@@ -12,10 +12,7 @@ module.exports = {
   projectName: "docusaurus-search-local", // Usually your repo name.
   i18n: {
     defaultLocale: "en",
-    locales: [
-      "en",
-      ...(buildType === "i18n" ? ["zh-CN", "zh-TW"] : []),
-    ],
+    locales: ["en", ...(buildType === "i18n" ? ["zh-CN", "zh-TW"] : [])],
   },
   themeConfig: {
     navbar: {
@@ -42,8 +39,8 @@ module.exports = {
           position: "right",
         },
         {
-          type: 'docsVersionDropdown',
-          position: 'right',
+          type: "docsVersionDropdown",
+          position: "right",
         },
       ],
     },

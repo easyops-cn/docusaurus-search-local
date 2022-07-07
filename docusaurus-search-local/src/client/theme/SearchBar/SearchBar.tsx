@@ -18,7 +18,12 @@ import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
-import { searchResultLimits, Mark, searchBarShortcut } from "../../utils/proxiedGenerated";
+import {
+  searchResultLimits,
+  Mark,
+  searchBarShortcut,
+  searchBarShortcutHint,
+} from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
@@ -294,16 +299,18 @@ export default function SearchBar({
         value={inputValue}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
-      {searchBarShortcut && (inputValue !== "" ? (
-        <button className={styles.searchClearButton} onClick={onClearSearch}>
-          ✕
-        </button>
-      ) : (
-        <div className={styles.searchHintContainer}>
-          <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-          <kbd className={styles.searchHint}>K</kbd>
-        </div>
-      ))}
+      {searchBarShortcut &&
+        searchBarShortcutHint &&
+        (inputValue !== "" ? (
+          <button className={styles.searchClearButton} onClick={onClearSearch}>
+            ✕
+          </button>
+        ) : (
+          <div className={styles.searchHintContainer}>
+            <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+            <kbd className={styles.searchHint}>K</kbd>
+          </div>
+        ))}
     </div>
   );
 }

@@ -37,6 +37,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         searchBarShortcut: true,
+        searchBarShortcutHint: true,
       },
     ],
     [
@@ -59,6 +60,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: "file1",
         searchBarShortcut: true,
+        searchBarShortcutHint: true,
       },
     ],
     [
@@ -81,6 +83,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [/__meta__$/, "file1"],
         searchBarShortcut: true,
+        searchBarShortcutHint: true,
       },
     ],
     [
@@ -103,6 +106,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         searchBarShortcut: true,
+        searchBarShortcutHint: true,
       },
     ],
     [
@@ -134,12 +138,14 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 30,
         ignoreFiles: [],
         searchBarShortcut: false,
+        searchBarShortcutHint: true,
       },
     ],
     [
       {
         docsRouteBasePath: "/dev/docs",
         blogRouteBasePath: "/dev/blog",
+        searchBarShortcutHint: false,
       },
       {
         blogRouteBasePath: "/dev/blog",
@@ -159,6 +165,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         searchBarShortcut: true,
+        searchBarShortcutHint: false,
       },
     ],
     [
@@ -184,6 +191,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         searchBarShortcut: true,
+        searchBarShortcutHint: true,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {
