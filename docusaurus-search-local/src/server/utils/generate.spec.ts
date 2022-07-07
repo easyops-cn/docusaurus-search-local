@@ -27,6 +27,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
     [
@@ -45,6 +47,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
     [
@@ -65,6 +69,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
     [
@@ -88,6 +94,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
     [
@@ -109,6 +117,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
     [
@@ -133,6 +143,8 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
+        "export const searchBarShortcut = true;",
+        "export const searchBarShortcutHint = true;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -144,6 +156,8 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         explicitSearchResultPath: false,
+        searchBarShortcut: true,
+        searchBarShortcutHint: true,
       } as ProcessedPluginOptions,
       "/tmp"
     );
@@ -174,6 +188,42 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       "/tmp/generated.js",
       expect.stringContaining("export { default as Mark } from")
+    );
+  });
+
+  test("searchBarShortcut", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchBarShortcut: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      "/tmp/generated.js",
+      expect.stringContaining("export const searchBarShortcut = false")
+    );
+  });
+
+  test("searchBarShortcut", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchBarShortcutHint: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      "/tmp/generated.js",
+      expect.stringContaining("export const searchBarShortcutHint = false")
     );
   });
 });

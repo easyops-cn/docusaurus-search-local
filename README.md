@@ -86,6 +86,8 @@ module.exports = {
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                                                                                                                                                |
 | explicitSearchResultPath         | boolean                                  | false        | Whether an explicit path to a heading should be presented on a suggestion template.                                                                                                                                                                            |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                                                                                                                                      |
+| searchBarShortcut                | boolean                                  | `true`       | Whether to enable keyboard shortcut to focus in search bar.                                                                                                                                                                                                    |
+| searchBarShortcutHint            | boolean                                  | `true`       | Whether to show keyboard shortcut hint in search bar. Disable it if you need to hide the hint while shortcut is still enabled.                                                                                                                                 |
 
 ### I18N
 
@@ -163,6 +165,7 @@ DEBUG=search-local:* yarn build
 In case some specific errors occurred:
 
 - `Error: Cannot mix different versions of joi schemas`:
+
   - Try using @easyops-cn/docusaurus-search-local >= v0.16.0 with Docusaurus >= v2.0.0-alpha.73
   - Try using @easyops-cn/docusaurus-search-local between v0.14.0 and v0.15.1 with Docusaurus between v2.0.0-alpha.68 and v2.0.0-alpha.72
   - Or try using @easyops-cn/docusaurus-search-local <= v0.13.1 with Docusaurus <= v2.0.0-alpha.66

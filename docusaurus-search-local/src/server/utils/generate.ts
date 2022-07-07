@@ -12,6 +12,8 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     searchResultLimits,
     searchResultContextMaxLength,
     explicitSearchResultPath,
+    searchBarShortcut,
+    searchBarShortcutHint,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -82,6 +84,14 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   contents.push(
     `export const explicitSearchResultPath = ${JSON.stringify(
       explicitSearchResultPath
+    )};`
+  );
+  contents.push(
+    `export const searchBarShortcut = ${JSON.stringify(searchBarShortcut)};`
+  );
+  contents.push(
+    `export const searchBarShortcutHint = ${JSON.stringify(
+      searchBarShortcutHint
     )};`
   );
 
