@@ -66,6 +66,7 @@ export default function SearchBar({
   try {
     // The try-catch is a hack because useDocsPreferredVersion just throws an
     // exception when versions are not used.
+    // The same hack is used in SearchPage.tsx
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
     if (preferredVersion && !preferredVersion.isLast) {
