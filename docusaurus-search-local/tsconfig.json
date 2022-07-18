@@ -5,7 +5,10 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
+    // moduleResolution and module are required because Docusaurus uses 'exports' in its package.json
+    // See here for more information: https://github.com/microsoft/TypeScript/issues/33079#issuecomment-1169377037
+    "moduleResolution": "Node16",
+    "module": "Node16",
     "outDir": "dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
