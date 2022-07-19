@@ -7,6 +7,7 @@ import {
   PostBuildData,
 } from "../../shared/interfaces";
 import { LoadedContent, LoadedVersion } from "@docusaurus/plugin-content-docs";
+import { debugVerbose } from "./debug";
 
 export function processDocInfos(
   { routesPaths, outDir, baseUrl, siteConfig, plugins }: PostBuildData,
@@ -19,22 +20,20 @@ export function processDocInfos(
     ignoreFiles,
   }: ProcessedPluginOptions
 ): VersionDocInfo[] {
-  const emptySet = new Set();
-  let versionData: any = [{ versionOutDir: outDir, docs: emptySet }];
+  const emptySet = new Set<string>();
+  let versionData = new Map([[outDir, emptySet]]);
   if (plugins) {
-    const docsPluginData = plugins.find(
-      (element) => element.name === "docusaurus-plugin-content-docs"
+    // Handle docs multi-instance.
+    const docsPlugins = plugins.filter(
+      (item) => item.name === "docusaurus-plugin-content-docs"
     );
-    if (docsPluginData) {
-      versionData = [];
-      const loadedVersions: LoadedVersion[] = (
-        docsPluginData.content as LoadedContent
-      ).loadedVersions;
+    const loadedVersions: LoadedVersion[] = docsPlugins.flatMap(
+      (plugin) => (plugin.content as LoadedContent).loadedVersions
+    );
+    debugVerbose("loadedVersions:", loadedVersions);
+    if (loadedVersions.length > 0) {
+      versionData = new Map();
       for (const loadedVersion of loadedVersions) {
-        const docs = new Set();
-        for (const doc of loadedVersion.docs) {
-          docs.add(doc.permalink);
-        }
         const route = loadedVersion.path.substr(baseUrl.length);
         let versionOutDir = outDir;
         // The last versions search-index should always be placed in the root since it is the one used from non-docs pages
@@ -44,14 +43,23 @@ export function processDocInfos(
             ...route.split("/").filter((i: string) => i)
           );
         }
-        versionData.push({ versionOutDir, docs });
+        // Merge docs which share the same `versionOutDir`.
+        let docs = versionData.get(versionOutDir);
+        if (!docs) {
+          docs = new Set<string>();
+          versionData.set(versionOutDir, docs);
+        }
+        for (const doc of loadedVersion.docs) {
+          docs.add(doc.permalink);
+        }
       }
+      debugVerbose("versionData:", versionData);
     }
   }
 
   // Create a list of files to index per document version. This will always include all pages and blogs.
   const result = [];
-  for (const { versionOutDir, docs } of versionData) {
+  for (const [versionOutDir, docs] of versionData.entries()) {
     const versionPaths = routesPaths
       .map<DocInfoWithRoute | undefined>((url: string) => {
         // istanbul ignore next

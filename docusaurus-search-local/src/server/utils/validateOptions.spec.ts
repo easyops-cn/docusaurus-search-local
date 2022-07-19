@@ -16,7 +16,13 @@ describe("validateOptions", () => {
     return value;
   }
 
-  test.each<[PluginOptions | undefined, Required<PluginOptions>]>([
+  test.each<
+    [
+      PluginOptions | undefined,
+      PluginOptions &
+        Required<Omit<PluginOptions, "docsPluginIdForPreferredVersion">>
+    ]
+  >([
     [
       undefined,
       {
@@ -172,6 +178,7 @@ describe("validateOptions", () => {
       {
         docsRouteBasePath: ["/dev/docs"],
         blogRouteBasePath: ["/dev/blog"],
+        docsPluginIdForPreferredVersion: "product",
       },
       {
         blogRouteBasePath: ["/dev/blog"],
@@ -192,6 +199,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        docsPluginIdForPreferredVersion: "product",
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

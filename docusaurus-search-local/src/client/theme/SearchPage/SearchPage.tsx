@@ -19,9 +19,10 @@ import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
+import { concatDocumentPath } from "../../utils/concatDocumentPath";
+import { docsPluginIdForPreferredVersion } from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
-import { concatDocumentPath } from "../../utils/concatDocumentPath";
 
 export default function SearchPage(): React.ReactElement {
   return (
@@ -46,15 +47,18 @@ function SearchPageContent(): React.ReactElement {
     // exception when versions are not used.
     // The same hack is used in SearchBar.tsx
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
+    const { preferredVersion } = useDocsPreferredVersion(
+      activePlugin?.pluginId ?? docsPluginIdForPreferredVersion
+    );
     if (preferredVersion && !preferredVersion.isLast) {
       versionUrl = preferredVersion.path + "/";
     }
   } catch (e: unknown) {
     if (e instanceof ReactContextError) {
+      console.error("useDocsPreferredVersion", e);
       /* ignore, happens when website doesn't use versions */
     } else {
-      throw e
+      throw e;
     }
   }
   const { selectMessage } = usePluralForm();

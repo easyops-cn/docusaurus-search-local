@@ -5,6 +5,7 @@ export const indexHash = "abc";
 export const searchResultLimits = 8;
 export const searchResultContextMaxLength = 50;
 export const explicitSearchResultPath = false;
+export const docsPluginIdForPreferredVersion = undefined;
 
 export function __setLanguage(value: string[]): void {
   language = value;

@@ -88,6 +88,7 @@ module.exports = {
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                                                                                                                                      |
 | searchBarShortcut                | boolean                                  | `true`       | Whether to enable keyboard shortcut to focus in search bar.                                                                                                                                                                                                    |
 | searchBarShortcutHint            | boolean                                  | `true`       | Whether to show keyboard shortcut hint in search bar. Disable it if you need to hide the hint while shortcut is still enabled.                                                                                                                                 |
+| docsPluginIdForPreferredVersion  | string                                   | `undefined`  | When you're using multi-instance of docs, set the docs plugin id which you'd like to check the preferred version with, for the search index.                                                                                                                   |
 
 ### I18N
 

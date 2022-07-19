@@ -29,6 +29,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
     [
@@ -49,6 +50,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
     [
@@ -71,6 +73,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
     [
@@ -96,6 +99,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
     [
@@ -119,6 +123,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
     [
@@ -145,6 +150,7 @@ describe("generate", () => {
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
+        "export const docsPluginIdForPreferredVersion = undefined;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -224,6 +230,25 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       "/tmp/generated.js",
       expect.stringContaining("export const searchBarShortcutHint = false")
+    );
+  });
+  test("searchBarShortcut", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        docsPluginIdForPreferredVersion: "product",
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      "/tmp/generated.js",
+      expect.stringContaining(
+        'export const docsPluginIdForPreferredVersion = "product"'
+      )
     );
   });
 });

@@ -145,6 +145,7 @@ export interface PluginOptions {
   hashed?: boolean;
   docsDir?: string | string[];
   blogDir?: string | string[];
+  docsPluginIdForPreferredVersion?: string;
   removeDefaultStopWordFilter?: boolean;
   removeDefaultStemmer?: boolean;
   highlightSearchTermsOnTargetPage?: boolean;
