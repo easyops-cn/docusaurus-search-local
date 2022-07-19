@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.0...v0.29.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* require docusaurus v2.0.0-rc.1 ([41a4e67](https://github.com/easyops-cn/docusaurus-search-local/commit/41a4e67543b03f4166589da84cac76a196488e3d))
+* add hack for useDocsPreferredVersion crash in SearchPage ([02fdc42](https://github.com/easyops-cn/docusaurus-search-local/commit/02fdc42a043a4cc1d3fafe9705b478e883543d2b))
+* fix error when not using versions ([f11293f](https://github.com/easyops-cn/docusaurus-search-local/commit/f11293f78c111948c3ea3b8c25a8bb782304ee93))
+
 ## [0.29.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.28.0...v0.29.0) (2022-07-07)
 
 
