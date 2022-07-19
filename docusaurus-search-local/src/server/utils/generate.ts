@@ -14,6 +14,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     explicitSearchResultPath,
     searchBarShortcut,
     searchBarShortcutHint,
+    docsPluginIdForPreferredVersion,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -93,6 +94,13 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     `export const searchBarShortcutHint = ${JSON.stringify(
       searchBarShortcutHint
     )};`
+  );
+  contents.push(
+    `export const docsPluginIdForPreferredVersion = ${
+      docsPluginIdForPreferredVersion === undefined
+        ? "undefined"
+        : JSON.stringify(docsPluginIdForPreferredVersion)
+    };`
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));

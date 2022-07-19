@@ -36,6 +36,7 @@ const schema = Joi.object<PluginOptions>({
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
   searchBarShortcut: Joi.boolean().default(true),
   searchBarShortcutHint: Joi.boolean().default(true),
+  docsPluginIdForPreferredVersion: Joi.string(),
 });
 
 export function validateOptions({

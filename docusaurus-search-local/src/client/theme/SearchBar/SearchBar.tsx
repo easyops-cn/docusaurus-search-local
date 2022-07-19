@@ -10,7 +10,10 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
-import { ReactContextError, useDocsPreferredVersion } from "@docusaurus/theme-common";
+import {
+  ReactContextError,
+  useDocsPreferredVersion,
+} from "@docusaurus/theme-common";
 import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
 import { fetchIndexes } from "./fetchIndexes";
@@ -23,6 +26,7 @@ import {
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
+  docsPluginIdForPreferredVersion,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
@@ -68,15 +72,18 @@ export default function SearchBar({
     // exception when versions are not used.
     // The same hack is used in SearchPage.tsx
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
+    const { preferredVersion } = useDocsPreferredVersion(
+      activePlugin?.pluginId ?? docsPluginIdForPreferredVersion
+    );
     if (preferredVersion && !preferredVersion.isLast) {
       versionUrl = preferredVersion.path + "/";
     }
   } catch (e: unknown) {
     if (e instanceof ReactContextError) {
+      console.error("useDocsPreferredVersion", e);
       /* ignore, happens when website doesn't use versions */
     } else {
-      throw e
+      throw e;
     }
   }
   const history = useHistory();

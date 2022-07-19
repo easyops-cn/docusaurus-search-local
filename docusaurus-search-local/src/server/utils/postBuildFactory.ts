@@ -17,7 +17,7 @@ export function postBuildFactory(config: ProcessedPluginOptions) {
 
     debugInfo("parsing documents");
 
-    for (let versionData of data) {
+    for (const versionData of data) {
       // Give every index entry a unique id so that the index does not need to store long URLs.
       const allDocuments = await scanDocuments(versionData.paths);
 
