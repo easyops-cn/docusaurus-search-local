@@ -2,15 +2,17 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspaces foreach -vp run start",
+    "start": "yarn workspaces foreach --exclude website-multi-docs -vp run start",
     "start:theme": "yarn workspace @easyops-cn/docusaurus-search-local run start",
     "start:website": "yarn workspace website run start",
-    "build": "yarn workspaces foreach -tvp run build",
-    "build:i18n": "cross-env BUILD_TYPE='i18n' yarn workspaces foreach -tvp run build",
-    "build:preview": "cross-env BUILD_TYPE='preview' yarn workspaces foreach -tvp run build",
+    "build": "yarn workspaces foreach --exclude website-multi-docs -tvp run build",
+    "build:i18n": "cross-env BUILD_TYPE='i18n' yarn workspaces foreach --exclude website-multi-docs -tvp run build",
+    "build:preview": "cross-env BUILD_TYPE='preview' yarn workspaces foreach --exclude website-multi-docs -tvp run build",
     "build:theme": "yarn workspace @easyops-cn/docusaurus-search-local run build",
     "build:website": "yarn workspace website run build",
+    "build:website-multi-docs": "yarn workspace website-multi-docs run build",
     "serve": "yarn workspace website run serve",
+    "serve:website-multi-docs": "yarn workspace website-multi-docs run serve",
     "test": "cross-env NODE_ENV='test' jest",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
@@ -38,7 +40,8 @@
   },
   "workspaces": [
     "docusaurus-search-local",
-    "website"
+    "website",
+    "website-multi-docs"
   ],
   "packageManager": "yarn@3.2.1",
   "resolutions": {

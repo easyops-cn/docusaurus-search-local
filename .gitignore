@@ -6,6 +6,7 @@ yarn-error.log
 
 /docusaurus-search-local/dist
 /website/build
+/website-multi-docs/build
 
 # Generated files
 .docusaurus
