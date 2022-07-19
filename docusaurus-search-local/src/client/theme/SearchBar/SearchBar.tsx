@@ -10,7 +10,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
-import { useDocsPreferredVersion } from "@docusaurus/theme-common";
+import { ReactContextError, useDocsPreferredVersion } from "@docusaurus/theme-common";
 import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
 import { fetchIndexes } from "./fetchIndexes";
@@ -63,9 +63,21 @@ export default function SearchBar({
   // this will throw an error of:
   //   > Docusaurus plugin global data not found for "docusaurus-plugin-content-docs" plugin with id "default".
   // It seems that we can not get the correct id for non-docs pages.
-  const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
-  if (preferredVersion && !preferredVersion.isLast) {
-    versionUrl = preferredVersion.path + "/";
+  try {
+    // The try-catch is a hack because useDocsPreferredVersion just throws an
+    // exception when versions are not used.
+    // The same hack is used in SearchPage.tsx
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { preferredVersion } = useDocsPreferredVersion(activePlugin?.pluginId);
+    if (preferredVersion && !preferredVersion.isLast) {
+      versionUrl = preferredVersion.path + "/";
+    }
+  } catch (e: unknown) {
+    if (e instanceof ReactContextError) {
+      /* ignore, happens when website doesn't use versions */
+    } else {
+      throw e
+    }
   }
   const history = useHistory();
   const location = useLocation();
