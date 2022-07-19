@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.1...v0.29.2) (2022-07-19)
+
+
+### Bug Fixes
+
+* fix website with docs multi-instance ([f61304e](https://github.com/easyops-cn/docusaurus-search-local/commit/f61304e5f3318388d56c1ef791881cd3e3c6e331)), closes [#211](https://github.com/easyops-cn/docusaurus-search-local/issues/211)
+
 ## [0.29.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.0...v0.29.1) (2022-07-19)
 
 
