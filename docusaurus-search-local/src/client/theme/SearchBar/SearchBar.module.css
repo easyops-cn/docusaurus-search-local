@@ -237,6 +237,7 @@ html[data-theme="dark"] .noResultsIcon {
 }
 
 @media (max-width: 576px) {
+  .searchBarContainer:not(.focused) .searchClearButton,
   .searchHintContainer {
     display: none;
   }

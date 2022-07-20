@@ -229,13 +229,17 @@ export default function SearchBar({
     });
   }, [location.search, location.pathname]);
 
+  const [focused, setFocused] = useState(false);
+
   const onInputFocus = useCallback(() => {
     focusAfterIndexLoaded.current = true;
     loadIndex();
+    setFocused(true);
     handleSearchBarToggle?.(true);
   }, [handleSearchBarToggle, loadIndex]);
 
   const onInputBlur = useCallback(() => {
+    setFocused(false);
     handleSearchBarToggle?.(false);
   }, [handleSearchBarToggle]);
 
@@ -300,6 +304,7 @@ export default function SearchBar({
     <div
       className={clsx("navbar__search", styles.searchBarContainer, {
         [styles.searchIndexLoading]: loading && inputChanged,
+        [styles.focused]: focused,
       })}
     >
       <input
