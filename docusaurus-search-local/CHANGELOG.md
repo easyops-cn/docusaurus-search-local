@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.2...v0.29.3) (2022-07-20)
+
+
+### Bug Fixes
+
+* hide clear button on small screen when input is not focused ([c69fbf6](https://github.com/easyops-cn/docusaurus-search-local/commit/c69fbf64ff6ba11c32e63d89dada010bb1e521dc)), closes [#230](https://github.com/easyops-cn/docusaurus-search-local/issues/230)
+
 ## [0.29.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.1...v0.29.2) (2022-07-19)
 
 
