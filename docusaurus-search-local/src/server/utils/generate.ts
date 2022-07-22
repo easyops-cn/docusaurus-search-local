@@ -15,6 +15,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     searchBarShortcut,
     searchBarShortcutHint,
     docsPluginIdForPreferredVersion,
+    indexDocs,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -116,6 +117,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
         : JSON.stringify(docsPluginIdForPreferredVersion)
     };`
   );
+  contents.push(`export const indexDocs = ${JSON.stringify(indexDocs)};`);
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
