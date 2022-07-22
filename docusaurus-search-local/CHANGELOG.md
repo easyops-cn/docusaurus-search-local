@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.0...v0.30.1) (2022-07-22)
+
+
+### Bug Fixes
+
+* fix building error when docs disabled ([07b1724](https://github.com/easyops-cn/docusaurus-search-local/commit/07b17245ff526783dfc1469de91928d5a64bb909))
+
 ## [0.30.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.4...v0.30.0) (2022-07-22)
 
 
