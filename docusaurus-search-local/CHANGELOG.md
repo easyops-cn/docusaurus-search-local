@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.4...v0.30.0) (2022-07-22)
+
+
+### Features
+
+* support saving hash in filename instead of query ([4930a88](https://github.com/easyops-cn/docusaurus-search-local/commit/4930a88779813ffcaa932a56f786066f969aff6e)), closes [#171](https://github.com/easyops-cn/docusaurus-search-local/issues/171)
+
 ## [0.29.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.3...v0.29.4) (2022-07-22)
 
 
