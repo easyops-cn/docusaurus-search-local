@@ -27,6 +27,7 @@ import {
   searchBarShortcut,
   searchBarShortcutHint,
   docsPluginIdForPreferredVersion,
+  indexDocs,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
@@ -79,11 +80,13 @@ export default function SearchBar({
       versionUrl = preferredVersion.path + "/";
     }
   } catch (e: unknown) {
-    if (e instanceof ReactContextError) {
-      console.error("useDocsPreferredVersion", e);
-      /* ignore, happens when website doesn't use versions */
-    } else {
-      throw e;
+    if (indexDocs) {
+      if (e instanceof ReactContextError) {
+        console.error("useDocsPreferredVersion", e);
+        /* ignore, happens when website doesn't use versions */
+      } else {
+        throw e;
+      }
     }
   }
   const history = useHistory();

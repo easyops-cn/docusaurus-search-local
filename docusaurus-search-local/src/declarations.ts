@@ -18,6 +18,7 @@ declare module "*/generated.js" {
   export const searchBarShortcut: boolean;
   export const searchBarShortcutHint: boolean;
   export const docsPluginIdForPreferredVersion: string;
+  export const indexDocs: boolean;
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;
   export const __setRemoveDefaultStopWordFilter: (value: boolean) => void;

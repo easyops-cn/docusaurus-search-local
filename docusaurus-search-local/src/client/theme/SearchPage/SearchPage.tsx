@@ -20,7 +20,10 @@ import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
-import { docsPluginIdForPreferredVersion } from "../../utils/proxiedGenerated";
+import {
+  docsPluginIdForPreferredVersion,
+  indexDocs,
+} from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
 
@@ -54,11 +57,13 @@ function SearchPageContent(): React.ReactElement {
       versionUrl = preferredVersion.path + "/";
     }
   } catch (e: unknown) {
-    if (e instanceof ReactContextError) {
-      console.error("useDocsPreferredVersion", e);
-      /* ignore, happens when website doesn't use versions */
-    } else {
-      throw e;
+    if (indexDocs) {
+      if (e instanceof ReactContextError) {
+        console.error("useDocsPreferredVersion", e);
+        /* ignore, happens when website doesn't use versions */
+      } else {
+        throw e;
+      }
     }
   }
   const { selectMessage } = usePluralForm();

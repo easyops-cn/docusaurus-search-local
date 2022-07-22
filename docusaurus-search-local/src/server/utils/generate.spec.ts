@@ -30,6 +30,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
     [
@@ -51,6 +52,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
     [
@@ -74,6 +76,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
     [
@@ -100,6 +103,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
     [
@@ -124,6 +128,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
     [
@@ -151,6 +156,7 @@ describe("generate", () => {
         "export const searchBarShortcut = true;",
         "export const searchBarShortcutHint = true;",
         "export const docsPluginIdForPreferredVersion = undefined;",
+        "export const indexDocs = true;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -164,6 +170,7 @@ describe("generate", () => {
         explicitSearchResultPath: false,
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        indexDocs: true,
       } as ProcessedPluginOptions,
       "/tmp"
     );
