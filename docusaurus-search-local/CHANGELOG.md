@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.29.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.3...v0.29.4) (2022-07-22)
+
+
+### Bug Fixes
+
+* fix call stack overflow with large code blocks ([e0b2cfd](https://github.com/easyops-cn/docusaurus-search-local/commit/e0b2cfd6e21f008609a85c42c0159ae25b575d6b)), closes [#164](https://github.com/easyops-cn/docusaurus-search-local/issues/164)
+
 ## [0.29.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.29.2...v0.29.3) (2022-07-20)
 
 
