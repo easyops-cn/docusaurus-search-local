@@ -11,6 +11,8 @@ const isStringOrArrayOfStrings = Joi.alternatives().try(
   Joi.array().items(Joi.string())
 );
 
+const isBooleanOrString = Joi.alternatives().try(Joi.boolean(), Joi.string());
+
 const isArrayOfStringsOrRegExpsOrStringOrRegExp = Joi.alternatives().try(
   Joi.array().items(Joi.alternatives().try(Joi.string(), Joi.object().regex())),
   Joi.string(),
@@ -24,7 +26,7 @@ const schema = Joi.object<PluginOptions>({
   docsRouteBasePath: isStringOrArrayOfStrings.default(["docs"]),
   blogRouteBasePath: isStringOrArrayOfStrings.default(["blog"]),
   language: isStringOrArrayOfStrings.default(["en"]),
-  hashed: Joi.boolean().default(false),
+  hashed: isBooleanOrString.default(false),
   docsDir: isStringOrArrayOfStrings.default(["docs"]),
   blogDir: isStringOrArrayOfStrings.default(["blog"]),
   removeDefaultStopWordFilter: Joi.boolean().default(false),

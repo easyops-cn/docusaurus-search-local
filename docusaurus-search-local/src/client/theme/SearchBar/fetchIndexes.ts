@@ -4,7 +4,7 @@ import {
   SearchDocumentType,
   WrappedIndex,
 } from "../../../shared/interfaces";
-import { indexHash } from "../../utils/proxiedGenerated";
+import { searchIndexUrl } from "../../utils/proxiedGenerated";
 
 interface SerializedIndex {
   documents: SearchDocument[];
@@ -19,7 +19,7 @@ export async function fetchIndexes(baseUrl: string): Promise<{
 }> {
   if (process.env.NODE_ENV === "production") {
     const json = (await (
-      await fetch(`${baseUrl}search-index.json?_=${indexHash}`)
+      await fetch(`${baseUrl}${searchIndexUrl}`)
     ).json()) as SerializedIndex[];
 
     const wrappedIndexes: WrappedIndex[] = json.map(

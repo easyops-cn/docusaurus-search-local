@@ -17,7 +17,7 @@ export default function DocusaurusSearchLocalPlugin(
 
   const dir = path.join(context.generatedFilesDir, PLUGIN_NAME, "default");
   fs.ensureDirSync(dir);
-  generate(config, dir);
+  const searchIndexFilename = generate(config, dir);
 
   const themePath = path.resolve(__dirname, "../../client/client/theme");
   const pagePath = path.join(themePath, "SearchPage/index.js");
@@ -29,7 +29,7 @@ export default function DocusaurusSearchLocalPlugin(
       return themePath;
     },
 
-    postBuild: postBuildFactory(config),
+    postBuild: postBuildFactory(config, searchIndexFilename),
 
     getPathsToWatch() {
       return [pagePath];
