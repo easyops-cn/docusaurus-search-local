@@ -12,11 +12,11 @@ export function looseTokenize(content: string): string[] {
       break;
     }
     if ((match.index as number) > 0) {
-      tokens.push(text.substr(0, match.index));
+      tokens.push(text.substring(0, match.index));
     }
     tokens.push(match[0]);
     start += (match.index as number) + match[0].length;
-    text = content.substr(start);
+    text = content.substring(start);
   }
   return tokens;
 }
