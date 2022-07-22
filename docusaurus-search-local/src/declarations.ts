@@ -11,7 +11,7 @@ declare module "*/generated.js" {
     mark: (terms: string[], options?: Record<string, unknown>) => void;
     unmark: () => void;
   }
-  export const indexHash: string | undefined;
+  export const searchIndexUrl: string;
   export const searchResultLimits: number;
   export const searchResultContextMaxLength: number;
   export const explicitSearchResultPath: boolean;

@@ -3,7 +3,7 @@ import path from "path";
 import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
 
-export function generate(config: ProcessedPluginOptions, dir: string): void {
+export function generate(config: ProcessedPluginOptions, dir: string): string {
   const {
     language,
     removeDefaultStopWordFilter,
@@ -75,7 +75,21 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   } else {
     contents.push("export const Mark = null;");
   }
-  contents.push(`export const indexHash = ${JSON.stringify(indexHash)};`);
+
+  let searchIndexFilename = "search-index.json";
+  let searchIndexQuery = "";
+
+  if (indexHash) {
+    if (config.hashed === "filename") {
+      searchIndexFilename = `search-index-${indexHash}.json`;
+    } else {
+      searchIndexQuery = `?_=${indexHash}`;
+    }
+  }
+  const searchIndexUrl = searchIndexFilename + searchIndexQuery;
+  contents.push(
+    `export const searchIndexUrl = ${JSON.stringify(searchIndexUrl)};`
+  );
   contents.push(
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
     `export const searchResultContextMaxLength = ${JSON.stringify(
@@ -104,4 +118,6 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
+
+  return searchIndexFilename;
 }

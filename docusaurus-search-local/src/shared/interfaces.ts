@@ -138,7 +138,7 @@ export interface PluginOptions {
   docsRouteBasePath?: string | string[];
   blogRouteBasePath?: string | string[];
   language?: string | string[];
-  hashed?: boolean;
+  hashed?: boolean | "query" | "filename";
   docsDir?: string | string[];
   blogDir?: string | string[];
   docsPluginIdForPreferredVersion?: string;
