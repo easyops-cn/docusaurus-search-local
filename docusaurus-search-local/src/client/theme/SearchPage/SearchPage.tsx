@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import debug from "debug";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
@@ -59,7 +60,7 @@ function SearchPageContent(): React.ReactElement {
   } catch (e: unknown) {
     if (indexDocs) {
       if (e instanceof ReactContextError) {
-        console.error("useDocsPreferredVersion", e);
+        debug("SearchPage")("useDocsPreferredVersion", e);
         /* ignore, happens when website doesn't use versions */
       } else {
         throw e;

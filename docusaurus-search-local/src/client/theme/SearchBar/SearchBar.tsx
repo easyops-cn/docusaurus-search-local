@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import clsx from "clsx";
+import debug from "debug";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useHistory, useLocation } from "@docusaurus/router";
@@ -82,7 +83,7 @@ export default function SearchBar({
   } catch (e: unknown) {
     if (indexDocs) {
       if (e instanceof ReactContextError) {
-        console.error("useDocsPreferredVersion", e);
+        debug("SearchBar")("useDocsPreferredVersion", e);
         /* ignore, happens when website doesn't use versions */
       } else {
         throw e;
