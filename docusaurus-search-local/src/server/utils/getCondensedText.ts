@@ -51,6 +51,9 @@ export function getCondensedText(
       return element.data as string;
     }
     if (element.type === "tag") {
+      if (element.name === "br") {
+        return " ";
+      }
       const content = getText($(element).contents().get());
       if (BLOCK_TAGS.has(element.name)) {
         return " " + content + " ";

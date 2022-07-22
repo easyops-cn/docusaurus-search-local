@@ -1,8 +1,4 @@
-import {
-  MetadataPosition,
-  ChunkIndexRef,
-  HighlightChunk,
-} from "../../shared/interfaces";
+import { MetadataPosition, HighlightChunk } from "../../shared/interfaces";
 import { highlightStemmed, splitIntoChunks } from "./highlightStemmed";
 
 jest.mock("./proxiedGenerated");
@@ -160,11 +156,10 @@ describe("splitIntoChunks", () => {
   ])(
     "splitIntoChunks('%s', %j, %j, 0, 0) should return %j",
     (text, positions, tokens, chunks, chunkIndex) => {
-      const chunkIndexRef = {} as ChunkIndexRef;
-      expect(
-        splitIntoChunks(text, positions, tokens, 0, 0, chunkIndexRef)
-      ).toEqual(chunks);
-      expect(chunkIndexRef.chunkIndex).toBe(chunkIndex);
+      expect(splitIntoChunks(text, positions, tokens)).toEqual({
+        chunkIndex,
+        chunks,
+      });
     }
   );
 });

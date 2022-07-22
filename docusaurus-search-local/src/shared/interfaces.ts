@@ -42,10 +42,6 @@ export interface HighlightChunk {
   textLength: number;
 }
 
-export interface ChunkIndexRef {
-  chunkIndex: number;
-}
-
 /**
  * properties of document is shorten for smaller serialized search index.
  */

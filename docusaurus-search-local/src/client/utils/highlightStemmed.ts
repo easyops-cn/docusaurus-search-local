@@ -1,8 +1,4 @@
-import {
-  HighlightChunk,
-  MetadataPosition,
-  ChunkIndexRef,
-} from "../../shared/interfaces";
+import { HighlightChunk, MetadataPosition } from "../../shared/interfaces";
 import { escapeHtml } from "./escapeHtml";
 import { highlight } from "./highlight";
 import { looseTokenize } from "./looseTokenize";
@@ -14,22 +10,12 @@ export function highlightStemmed(
   tokens: string[],
   maxLength = searchResultContextMaxLength
 ): string {
-  const chunkIndexRef: ChunkIndexRef = {
-    chunkIndex: -1,
-  };
-  const chunks = splitIntoChunks(
-    content,
-    positions,
-    tokens,
-    0,
-    0,
-    chunkIndexRef
-  );
+  const { chunkIndex, chunks } = splitIntoChunks(content, positions, tokens);
 
-  const leadingChunks = chunks.slice(0, chunkIndexRef.chunkIndex);
-  const firstChunk = chunks[chunkIndexRef.chunkIndex];
+  const leadingChunks = chunks.slice(0, chunkIndex);
+  const firstChunk = chunks[chunkIndex];
   const html: string[] = [firstChunk.html];
-  const trailingChunks = chunks.slice(chunkIndexRef.chunkIndex + 1);
+  const trailingChunks = chunks.slice(chunkIndex + 1);
 
   let currentLength = firstChunk.textLength;
   let leftPadding = 0;
@@ -80,58 +66,59 @@ export function highlightStemmed(
 export function splitIntoChunks(
   content: string,
   positions: MetadataPosition[],
-  tokens: string[],
-  positionIndex: number,
-  cursor: number,
-  chunkIndexRef?: ChunkIndexRef
-): HighlightChunk[] {
+  tokens: string[]
+): {
+  chunkIndex: number;
+  chunks: HighlightChunk[];
+} {
   const chunks: HighlightChunk[] = [];
-  const [start, length] = positions[positionIndex];
-  if (start < cursor) {
+  let positionIndex = 0;
+  let cursor = 0;
+  let chunkIndex = -1;
+  while (positionIndex < positions.length) {
+    const [start, length] = positions[positionIndex];
     positionIndex += 1;
-    if (positionIndex < positions.length) {
-      chunks.push(
-        ...splitIntoChunks(content, positions, tokens, positionIndex, cursor)
-      );
+    if (start < cursor) {
+      continue;
     }
-  } else {
+
     if (start > cursor) {
-      chunks.push(
-        ...looseTokenize(content.substring(cursor, start)).map((token) => ({
+      const leadingChunks = looseTokenize(content.substring(cursor, start)).map(
+        (token) => ({
           html: escapeHtml(token),
           textLength: token.length,
-        }))
+        })
       );
-    }
-    if (chunkIndexRef) {
-      chunkIndexRef.chunkIndex = chunks.length;
-    }
-    chunks.push({
-      html: highlight(content.substr(start, length), tokens, true),
-      textLength: length,
-    });
-    const nextCursor = start + length;
-    positionIndex += 1;
-    if (positionIndex < positions.length) {
-      chunks.push(
-        ...splitIntoChunks(
-          content,
-          positions,
-          tokens,
-          positionIndex,
-          nextCursor
-        )
-      );
-    } else {
-      if (nextCursor < content.length) {
-        chunks.push(
-          ...looseTokenize(content.substr(nextCursor)).map((token) => ({
-            html: escapeHtml(token),
-            textLength: token.length,
-          }))
-        );
+      for (const item of leadingChunks) {
+        chunks.push(item);
       }
     }
+
+    if (chunkIndex === -1) {
+      chunkIndex = chunks.length;
+    }
+
+    cursor = start + length;
+    chunks.push({
+      html: highlight(content.substring(start, cursor), tokens, true),
+      textLength: length,
+    });
   }
-  return chunks;
+
+  if (cursor < content.length) {
+    const trailingChunks = looseTokenize(content.substring(cursor)).map(
+      (token) => ({
+        html: escapeHtml(token),
+        textLength: token.length,
+      })
+    );
+    for (const item of trailingChunks) {
+      chunks.push(item);
+    }
+  }
+
+  return {
+    chunkIndex,
+    chunks,
+  };
 }
