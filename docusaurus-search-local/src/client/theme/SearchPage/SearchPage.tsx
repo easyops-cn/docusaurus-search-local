@@ -59,7 +59,6 @@ function SearchPageContent(): React.ReactElement {
   } catch (e: unknown) {
     if (indexDocs) {
       if (e instanceof ReactContextError) {
-        console.error("useDocsPreferredVersion", e);
         /* ignore, happens when website doesn't use versions */
       } else {
         throw e;
