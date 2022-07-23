@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.30.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.1...v0.30.2) (2022-07-23)
+
+
+### Bug Fixes
+
+* remove useDocsPreferredVersion error log entirely ([56f5ab5](https://github.com/easyops-cn/docusaurus-search-local/commit/56f5ab51a77f682c565d357bcbf7a37567c2b21e))
+* use debug instead of console.error for useDocsPreferredVersion message ([3a09e39](https://github.com/easyops-cn/docusaurus-search-local/commit/3a09e39ef569a9dd1d99b1e251fdc79f909cff0f))
+
 ## [0.30.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.0...v0.30.1) (2022-07-22)
 
 
