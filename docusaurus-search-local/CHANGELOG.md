@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.31.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.2...v0.31.0) (2022-08-08)
+
+
+### Features
+
+* support `zhUserDict` and `zhUserDictPath` ([33f1ea4](https://github.com/easyops-cn/docusaurus-search-local/commit/33f1ea4765b0e134689fd65aa655c2bc1b4e6f0b)), closes [#246](https://github.com/easyops-cn/docusaurus-search-local/issues/246)
+
 ## [0.30.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.1...v0.30.2) (2022-07-23)
 
 
