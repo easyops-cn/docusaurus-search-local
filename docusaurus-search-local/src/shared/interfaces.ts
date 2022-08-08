@@ -156,6 +156,9 @@ export interface PluginOptions {
   searchBarShortcut?: boolean;
   searchBarShortcutHint?: boolean;
 
+  zhUserDict?: string;
+  zhUserDictPath?: string;
+
   // searchInputPlaceholder?: string;
   // searchNoResults?: string;
   // searchSeeAllResults?: string;

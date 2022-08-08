@@ -39,6 +39,8 @@ const schema = Joi.object<PluginOptions>({
   searchBarShortcut: Joi.boolean().default(true),
   searchBarShortcutHint: Joi.boolean().default(true),
   docsPluginIdForPreferredVersion: Joi.string(),
+  zhUserDict: Joi.string(),
+  zhUserDictPath: Joi.string(),
 });
 
 export function validateOptions({

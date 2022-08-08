@@ -1,3 +1,4 @@
+import fs from "fs";
 import lunr from "lunr";
 import jieba from "@node-rs/jieba";
 import { MatchMetadata } from "../../shared/interfaces";
@@ -5,6 +6,23 @@ import { cutWordByUnderscore } from "./cutWordByUnderscore";
 
 // https://zhuanlan.zhihu.com/p/33335629
 const RegExpConsecutiveWord = /\w+|\p{Unified_Ideograph}+/u;
+
+let userDictLoaded = false;
+
+export function loadUserDict(
+  zhUserDict: string,
+  zhUserDictPath?: string
+): void {
+  if (userDictLoaded) {
+    return;
+  }
+  if (zhUserDict) {
+    jieba.loadDict(Buffer.from(zhUserDict));
+  } else if (zhUserDictPath) {
+    jieba.loadDict(fs.readFileSync(zhUserDictPath));
+  }
+  userDictLoaded = true;
+}
 
 export function tokenizer(
   input: string | string[] | null | undefined,
