@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-var-requires: 0 */
 import lunr from "lunr";
 import {
   ProcessedPluginOptions,
@@ -11,32 +12,27 @@ export function buildIndex(
     language,
     removeDefaultStopWordFilter,
     removeDefaultStemmer,
+    zhUserDict,
+    zhUserDictPath,
   }: ProcessedPluginOptions
 ): Omit<WrappedIndex, "type">[] {
   if (language.length > 1 || language.some((item) => item !== "en")) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("lunr-languages/lunr.stemmer.support")(lunr);
   }
   if (language.includes("ja") || language.includes("jp")) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("lunr-languages/tinyseg")(lunr);
   }
   for (const lang of language.filter(
     (item) => item !== "en" && item !== "zh"
   )) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require(`lunr-languages/lunr.${lang}`)(lunr);
   }
   if (language.includes("zh")) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require("../../shared/lunrLanguageZh").lunrLanguageZh(
-      lunr,
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      require("./tokenizer").tokenizer
-    );
+    const { tokenizer, loadUserDict } = require("./tokenizer");
+    loadUserDict(zhUserDict, zhUserDictPath);
+    require("../../shared/lunrLanguageZh").lunrLanguageZh(lunr, tokenizer);
   }
   if (language.length > 1) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("lunr-languages/lunr.multi")(lunr);
   }
 
