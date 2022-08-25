@@ -1,0 +1,9 @@
+{
+  "theme.SearchBar.label": "검색",
+  "theme.SearchBar.seeAll": "모두 보기",
+  "theme.SearchBar.noResultsText": "검색 결과가 없습니다.",
+  "theme.SearchPage.existingResultsTitle": "“{query}” 검색 결과",
+  "theme.SearchPage.emptyResultsTitle": "문서 검색",
+  "theme.SearchPage.documentsFound.plurals": "{count}개의 결과를 찾았습니다.",
+  "theme.SearchPage.noResultsText": "검색 결과가 없습니다."
+}
