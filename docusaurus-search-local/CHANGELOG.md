@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.32.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.31.0...v0.32.0) (2022-09-05)
+
+
+### Features
+
+* support setting searchBarPosition ([60b27d4](https://github.com/easyops-cn/docusaurus-search-local/commit/60b27d4a6e1f3342ac7afda586202fc5d7b8a3bc)), closes [#263](https://github.com/easyops-cn/docusaurus-search-local/issues/263)
+
 ## [0.31.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.2...v0.31.0) (2022-08-08)
 
 
