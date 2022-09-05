@@ -155,6 +155,7 @@ export interface PluginOptions {
 
   searchBarShortcut?: boolean;
   searchBarShortcutHint?: boolean;
+  searchBarPosition?: "auto" | "left" | "right";
 
   zhUserDict?: string;
   zhUserDictPath?: string;
@@ -207,5 +208,15 @@ export interface DocusaurusContext {
   generatedFilesDir: string;
   i18n: {
     currentLocale: string;
+  };
+  siteConfig: {
+    themeConfig: {
+      navbar?: {
+        items?: {
+          type: "search" | "doc";
+          position: "left" | "right";
+        }[];
+      };
+    };
   };
 }

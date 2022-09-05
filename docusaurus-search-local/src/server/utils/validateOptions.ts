@@ -38,6 +38,7 @@ const schema = Joi.object<PluginOptions>({
   ignoreFiles: isArrayOfStringsOrRegExpsOrStringOrRegExp.default([]),
   searchBarShortcut: Joi.boolean().default(true),
   searchBarShortcutHint: Joi.boolean().default(true),
+  searchBarPosition: Joi.string().default("auto"),
   docsPluginIdForPreferredVersion: Joi.string(),
   zhUserDict: Joi.string(),
   zhUserDictPath: Joi.string(),
