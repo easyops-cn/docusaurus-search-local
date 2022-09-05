@@ -16,6 +16,13 @@
   padding: var(--search-local-spacing, 12px);
 }
 
+@media not (max-width: 996px) {
+  .searchBar.searchBarLeft .dropdownMenu {
+    left: 0 !important;
+    right: auto !important;
+  }
+}
+
 @media (max-width: 576px) {
   :global(.navbar__search-input):not(:focus) {
     width: 2rem;

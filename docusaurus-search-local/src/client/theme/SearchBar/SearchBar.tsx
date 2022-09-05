@@ -26,6 +26,7 @@ import {
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
+  searchBarPosition,
   docsPluginIdForPreferredVersion,
   indexDocs,
 } from "../../utils/proxiedGenerated";
@@ -119,7 +120,9 @@ export default function SearchBar({
         autoselect: true,
         openOnFocus: true,
         cssClasses: {
-          root: styles.searchBar,
+          root: clsx(styles.searchBar, {
+            [styles.searchBarLeft]: searchBarPosition === "left",
+          }),
           noPrefix: true,
           dropdownMenu: styles.dropdownMenu,
           input: styles.input,

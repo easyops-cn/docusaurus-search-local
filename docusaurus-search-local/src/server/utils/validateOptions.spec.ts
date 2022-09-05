@@ -20,7 +20,12 @@ describe("validateOptions", () => {
     [
       PluginOptions | undefined,
       PluginOptions &
-        Required<Omit<PluginOptions, "docsPluginIdForPreferredVersion">>
+        Required<
+          Omit<
+            PluginOptions,
+            "docsPluginIdForPreferredVersion" | "zhUserDict" | "zhUserDictPath"
+          >
+        >
     ]
   >([
     [
@@ -44,6 +49,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -67,6 +73,7 @@ describe("validateOptions", () => {
         ignoreFiles: "file1",
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -90,6 +97,7 @@ describe("validateOptions", () => {
         ignoreFiles: [/__meta__$/, "file1"],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -113,6 +121,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -145,6 +154,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: false,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -173,6 +183,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: false,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -181,6 +192,7 @@ describe("validateOptions", () => {
         blogRouteBasePath: ["/dev/blog"],
         docsPluginIdForPreferredVersion: "product",
         hashed: "filename",
+        searchBarPosition: "left",
       },
       {
         blogRouteBasePath: ["/dev/blog"],
@@ -201,6 +213,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
       },
     ],

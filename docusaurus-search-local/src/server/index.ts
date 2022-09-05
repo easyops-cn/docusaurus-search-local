@@ -13,7 +13,7 @@ export default function DocusaurusSearchLocalPlugin(
   context: DocusaurusContext,
   options?: PluginOptions
 ): any {
-  const config = processPluginOptions(options, context.siteDir);
+  const config = processPluginOptions(options, context);
 
   const dir = path.join(context.generatedFilesDir, PLUGIN_NAME, "default");
   fs.ensureDirSync(dir);
