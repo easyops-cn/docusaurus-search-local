@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.32.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.32.0...v0.32.1) (2022-10-08)
+
+
+### Bug Fixes
+
+* fix indexing when trailingSlash is explicitly set ([cfc603d](https://github.com/easyops-cn/docusaurus-search-local/commit/cfc603db8f0b2467dca064ec2f2f00b3449f4574))
+
 ## [0.32.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.31.0...v0.32.0) (2022-09-05)
 
 
