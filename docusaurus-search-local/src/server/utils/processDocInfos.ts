@@ -116,8 +116,23 @@ export function processDocInfos(
             isSameOrSubRoute(route, basePath)
           )
         ) {
-          if (docs.size === 0 || docs.has(url)) {
-            return { route, url, type: "docs" };
+          if (docs.size === 0) {
+            return {route, url, type: 'docs'};
+          }
+          if (siteConfig.trailingSlash === true) {
+            // All routePaths have a trailing slash
+            // index.(md|*) permalink has trailing slash, other permalinks don't
+            if (docs.has(url) || docs.has(removeTrailingSlash(url))) {
+              return {route, url, type: 'docs'};
+            }
+          } else if (siteConfig.trailingSlash === false) {
+            // All routePaths don't have a trailing slash
+            // index.(md|*) permalink has trailing slash, other permalinks don't
+            if (docs.has(addTrailingSlash(url)) || docs.has(url)) {
+              return {route, url, type: 'docs'};
+            }
+          } else if (docs.has(url)) {
+            return {route, url, type: 'docs'};
           }
           return;
         }
@@ -159,4 +174,7 @@ function isSameOrSubRoute(childRoute: string, parentRoute: string): boolean {
 // The input route must not end with a slash.
 function addTrailingSlash(route: string): string {
   return `${route}/`;
+}
+function removeTrailingSlash(route: string): string {
+  return route.replace(/\/$/, '');
 }
