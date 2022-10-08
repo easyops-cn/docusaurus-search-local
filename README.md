@@ -17,6 +17,7 @@ An offline/local search plugin/theme for [Docusaurus v2](https://docusaurus.io/)
 - [Theme Options](#theme-options)
 - [Custom Styles](#custom-styles)
 - [Trouble Shooting](#trouble-shooting)
+- [Limitations](#limitations)
 - [Further Reading](#further-reading)
 - [Contributing](#contributing)
 
@@ -79,7 +80,7 @@ module.exports = {
 | hashed                           | boolean \| `"filename"` \| `"query"`     | `false`   | Whether to add a hashed query when fetching index (based on the content hash of all indexed `*.md` in `docsDir` and `blogDir` if applicable). Setting to `"filename"` will save hash in filename instead of query.                                             |
 | docsDir                          | string \| string[]                       | `"docs"`  | The dir(s) of docs to get the content hash, it's relative to the dir of your project.                                                                                                                                                                          |
 | blogDir                          | string \| string[]                       | `"blog"`  | Just like the `docsDir` but applied to blog.                                                                                                                                                                                                                   |
-| removeDefaultStopWordFilter      | boolean                                  | `false`   | Sometimes people (E.g., us) want to keep the English stop words as indexed, since they maybe are relevant in programming docs.                                                                                                                                 |
+| removeDefaultStopWordFilter      | boolean                                  | `false`   | Whether to keep common [English stop words](https://lunrjs.com/docs/stop_word_filter.js.html) (eg. 'if', 'else') as indexed, since they could be relevant in programming docs.                                                                                                                                 |
 | removeDefaultStemmer             | boolean                                  | `false`   | Enable this if you want to be able to search for any partial word at the cost of search performance.                                                                                                                                                           |
 | highlightSearchTermsOnTargetPage | boolean                                  | `false`   | Highlight search terms on target page.                                                                                                                                                                                                                         |
 | searchResultLimits               | number                                   | `8`       | Limit the search results.                                                                                                                                                                                                                                      |
@@ -177,6 +178,11 @@ In case some specific errors occurred:
 - `Module not found: Error: Can't resolve '@docusaurus/useRouteContext'`:
   - Try using @easyops-cn/docusaurus-search-local >= v0.25.0 with Docusaurus >= v2.0.0-beta.18
   - Try using @easyops-cn/docusaurus-search-local < v0.25.0 with Docusaurus < v2.0.0-beta.18
+
+## Limitations
+
+- searching on items using a period `.` is not allowed
+- searching on exact phrases using quotes is not allowed (eg. searching on `"my search term"`)
 
 ## Further Reading
 
