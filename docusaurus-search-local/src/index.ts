@@ -1,0 +1,164 @@
+export interface PluginOptions {
+  /**
+   * Whether to index docs.
+   *
+   * @default true
+   */
+  indexDocs?: boolean;
+
+  /**
+   * Whether to index blog.
+   *
+   * @default true
+   */
+  indexBlog?: boolean;
+
+  /**
+   * Whether to index pages.
+   *
+   * @default false
+   */
+  indexPages?: boolean;
+
+  /**
+   * Base route path(s) of docs. Slash at beginning is not required.
+   *
+   * Note: for [docs-only mode](https://docusaurus.io/docs/docs-introduction#docs-only-mode),
+   * this needs to be the same as `routeBasePath` in your `@docusaurus/preset-classic` config e.g., `"/"`.
+   *
+   * @default "/docs"
+   */
+  docsRouteBasePath?: string | string[];
+
+  /**
+   * Base route path(s) of blog. Slash at beginning is not required.
+   *
+   * @default "/blog"
+   */
+  blogRouteBasePath?: string | string[];
+
+  /**
+   * All [lunr-languages](https://github.com/MihaiValentin/lunr-languages) supported languages, + `zh` 🔥.
+   */
+  language?: string | string[];
+
+  /**
+   * Whether to add a hashed query when fetching index (based on the content hash of all indexed
+   * `*.md` in `docsDir` and `blogDir` if applicable). Setting to `"filename"` will save hash in
+   * filename instead of query.
+   *
+   * @default false
+   */
+  hashed?: boolean | "query" | "filename";
+
+  /**
+   *  The dir(s) of docs to get the content hash, it's relative to the dir of your project.
+   *
+   * @default "docs"
+   */
+  docsDir?: string | string[];
+
+  /**
+   * The dir(s) of blog to get the content hash, it's relative to the dir of your project.
+   *
+   * @default "blog"
+   */
+  blogDir?: string | string[];
+
+  /**
+   * When you're using multi-instance of docs, set the docs plugin id which you'd like to
+   * check the preferred version with, for the search index.
+   */
+  docsPluginIdForPreferredVersion?: string;
+
+  /**
+   * Sometimes people (E.g., us) want to keep the English stop words as indexed, since they
+   * maybe are relevant in programming docs.
+   */
+  removeDefaultStopWordFilter?: boolean;
+
+  /**
+   * Enable this if you want to be able to search for any partial word at the cost of search performance.
+   *
+   * @default false
+   */
+  removeDefaultStemmer?: boolean;
+
+  /**
+   * Highlight search terms on target page.
+   *
+   * @default false
+   */
+  highlightSearchTermsOnTargetPage?: boolean;
+
+  /**
+   * Limit the search results.
+   *
+   * @default 8
+   */
+  searchResultLimits?: number;
+
+  /**
+   * Set the max length of characters of each search result to show.
+   *
+   * @default 50
+   */
+  searchResultContextMaxLength?: number;
+
+  /**
+   * Whether an explicit path to a heading should be presented on a suggestion template.
+   *
+   * @default false
+   */
+  explicitSearchResultPath?: boolean;
+
+  /**
+   * Set the match rules to ignore some routes. Put a string if you want an exact match,
+   * or put a regex if you want a partial match. Note: without the website base url.
+   *
+   * @default []
+   */
+  ignoreFiles?: string | RegExp | (string | RegExp)[];
+
+  /**
+   * Whether to enable keyboard shortcut to focus in search bar.
+   *
+   * @default true
+   */
+  searchBarShortcut?: boolean;
+
+  /**
+   * Whether to show keyboard shortcut hint in search bar. Disable it if you need to
+   * hide the hint while shortcut is still enabled.
+   *
+   * @default true
+   */
+  searchBarShortcutHint?: boolean;
+
+  /**
+   * The side of the navbar the search bar should appear on. By default,
+   * it will try to autodetect based on your docusaurus config according
+   * to [the docs](https://docusaurus.io/docs/api/themes/configuration#navbar-search).
+   *
+   * @default "auto"
+   */
+  searchBarPosition?: "auto" | "left" | "right";
+
+  /**
+   * Provide your custom dict for language of zh,
+   * [see here](https://github.com/fxsjy/jieba#%E8%BD%BD%E5%85%A5%E8%AF%8D%E5%85%B8)
+   */
+  zhUserDict?: string;
+
+  /**
+   * Provide the file path to your custom dict for language of zh,
+   * E.g.: `path.resolve("./src/zh-dict.txt")`
+   */
+  zhUserDictPath?: string;
+
+  /**
+   * Provide an list of sub-paths as separate search context, E.g.: `["docs", "community", "legacy/resources"]`.
+   * It will create multiple search indexes by these paths.
+   */
+  searchContextByPaths?: string[];
+}

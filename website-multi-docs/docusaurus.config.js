@@ -150,13 +150,14 @@ const config = {
   themes: [
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
-      {
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
         hashed: true,
         docsRouteBasePath: ["docs", "community"],
         docsDir: ["docs", "community"],
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
-      },
+      }),
     ],
   ]
 };

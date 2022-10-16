@@ -5,15 +5,18 @@
   "repository": "https://github.com/easyops-cn/docusaurus-search-local",
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
   "scripts": {
-    "start": "concurrently -k -n client,server \"yarn run start:client\" \"yarn run start:server\"",
+    "start": "concurrently -k -n client,server,types \"yarn run start:client\" \"yarn run start:server\" \"yarn run start:types\"",
     "start:client": "tsc --watch --project tsconfig.client.json",
     "start:server": "tsc --watch --project tsconfig.server.json",
-    "build": "rimraf dist && yarn run build:client && yarn run build:server && yarn run copy-static-files",
+    "start:types": "tsc --project tsconfig.types.json --watch",
+    "build": "rimraf dist && yarn run build:client && yarn run build:server && yarn run build:types && yarn run copy-static-files",
     "build:client": "tsc --project tsconfig.client.json",
     "build:server": "tsc --project tsconfig.server.json",
+    "build:types": "tsc --project tsconfig.types.json",
     "copy-static-files": "copyfiles -u 3 \"src/client/theme/**/*.css\" dist/client/client/theme && copyfiles -u 1 \"locales/*.json\" dist/locales"
   },
   "main": "dist/server/server/index.js",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "/dist",
     "!/dist/generated.js"
