@@ -13,13 +13,38 @@ interface SerializedIndex {
   };
 }
 
-export async function fetchIndexes(baseUrl: string): Promise<{
+export interface IndexesData {
   wrappedIndexes: WrappedIndex[];
   zhDictionary: string[];
-}> {
+}
+
+const cache = new Map<string, Promise<IndexesData>>();
+
+export function fetchIndexes(
+  baseUrl: string,
+  searchContext: string
+): Promise<IndexesData> {
+  const cacheKey = `${baseUrl}${searchContext}`;
+  let promise = cache.get(cacheKey);
+  if (!promise) {
+    promise = legacyFetchIndexes(baseUrl, searchContext);
+    cache.set(cacheKey, promise);
+  }
+  return promise;
+}
+
+export async function legacyFetchIndexes(
+  baseUrl: string,
+  searchContext: string
+): Promise<IndexesData> {
   if (process.env.NODE_ENV === "production") {
     const json = (await (
-      await fetch(`${baseUrl}${searchIndexUrl}`)
+      await fetch(
+        `${baseUrl}${searchIndexUrl.replace(
+          "{dir}",
+          searchContext ? `-${searchContext.replace(/\//g, "-")}` : ""
+        )}`
+      )
     ).json()) as SerializedIndex[];
 
     const wrappedIndexes: WrappedIndex[] = json.map(

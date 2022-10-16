@@ -42,6 +42,7 @@ const schema = Joi.object<PluginOptions>({
   docsPluginIdForPreferredVersion: Joi.string(),
   zhUserDict: Joi.string(),
   zhUserDictPath: Joi.string(),
+  searchContextByPaths: Joi.array().items(Joi.string()),
 });
 
 export function validateOptions({

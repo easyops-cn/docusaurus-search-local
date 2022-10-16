@@ -23,6 +23,7 @@ import { concatDocumentPath } from "../../utils/concatDocumentPath";
 import {
   docsPluginIdForPreferredVersion,
   indexDocs,
+  searchContextByPaths,
 } from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
@@ -66,7 +67,7 @@ function SearchPageContent(): React.ReactElement {
     }
   }
   const { selectMessage } = usePluralForm();
-  const { searchValue, updateSearchPath } = useSearchQuery();
+  const { searchValue, searchContext, updateSearchPath } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const [searchSource, setSearchSource] =
     useState<
@@ -127,13 +128,16 @@ function SearchPageContent(): React.ReactElement {
 
   useEffect(() => {
     async function doFetchIndexes() {
-      const { wrappedIndexes, zhDictionary } = await fetchIndexes(versionUrl);
+      const { wrappedIndexes, zhDictionary } = await fetchIndexes(
+        versionUrl,
+        searchContext
+      );
       setSearchSource(() =>
         SearchSourceFactory(wrappedIndexes, zhDictionary, 100)
       );
     }
     doFetchIndexes();
-  }, [versionUrl]);
+  }, [searchContext, versionUrl]);
 
   return (
     <React.Fragment>

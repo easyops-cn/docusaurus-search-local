@@ -160,6 +160,8 @@ export interface PluginOptions {
   zhUserDict?: string;
   zhUserDictPath?: string;
 
+  searchContextByPaths?: string[];
+
   // searchInputPlaceholder?: string;
   // searchNoResults?: string;
   // searchSeeAllResults?: string;

@@ -154,7 +154,8 @@ const config = {
         hashed: true,
         docsRouteBasePath: ["docs", "community"],
         docsDir: ["docs", "community"],
-        docsPluginIdForPreferredVersion: 'product',
+        docsPluginIdForPreferredVersion: "product",
+        searchContextByPaths: ["docs", "community"],
       },
     ],
   ]
