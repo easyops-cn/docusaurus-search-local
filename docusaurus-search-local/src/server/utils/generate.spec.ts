@@ -23,7 +23,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -32,6 +32,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
     [
@@ -46,7 +47,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -55,6 +56,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
     [
@@ -71,7 +73,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -80,6 +82,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
     [
@@ -99,7 +102,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -108,6 +111,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
     [
@@ -125,7 +129,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -134,6 +138,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
     [
@@ -154,7 +159,7 @@ describe("generate", () => {
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index.json?_=abc";',
+        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
@@ -163,6 +168,7 @@ describe("generate", () => {
         'export const searchBarPosition = "auto";',
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
+        "export const searchContextByPaths = null;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -282,7 +288,7 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       "/tmp/generated.js",
       expect.stringContaining(
-        'export const searchIndexUrl = "search-index-abc.json"'
+        'export const searchIndexUrl = "search-index{dir}-abc.json"'
       )
     );
   });

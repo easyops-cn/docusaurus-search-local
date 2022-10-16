@@ -23,7 +23,7 @@ describe("validateOptions", () => {
         Required<
           Omit<
             PluginOptions,
-            "docsPluginIdForPreferredVersion" | "zhUserDict" | "zhUserDictPath"
+            "docsPluginIdForPreferredVersion" | "zhUserDict" | "zhUserDictPath" | "searchContextByPaths"
           >
         >
     ]
@@ -193,6 +193,7 @@ describe("validateOptions", () => {
         docsPluginIdForPreferredVersion: "product",
         hashed: "filename",
         searchBarPosition: "left",
+        searchContextByPaths: ["docs", "community"],
       },
       {
         blogRouteBasePath: ["/dev/blog"],
@@ -215,6 +216,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
+        searchContextByPaths: ["docs", "community"],
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

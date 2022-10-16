@@ -50,7 +50,8 @@ module.exports = {
     // ... Your other themes.
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
-      {
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
         // ... Your options.
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
@@ -58,7 +59,7 @@ module.exports = {
         // ```
         // language: ["en", "zh"],
         // ```
-      },
+      }),
     ],
   ],
 };
@@ -92,6 +93,7 @@ module.exports = {
 | docsPluginIdForPreferredVersion  | string                                   |           | When you're using multi-instance of docs, set the docs plugin id which you'd like to check the preferred version with, for the search index.                                                                                                                   |
 | zhUserDict                       | string                                   |           | Provide your custom dict for language of zh, [see here](https://github.com/fxsjy/jieba#%E8%BD%BD%E5%85%A5%E8%AF%8D%E5%85%B8)                                                                                                                                   |
 | zhUserDictPath                   | string                                   |           | Provide the file path to your custom dict for language of zh, E.g.: `path.resolve("./src/zh-dict.txt")`                                                                                                                                                        |
+| searchContextByPaths                   | string[] |           | Provide an list of sub-paths as separate search context, E.g.: `["docs", "community", "legacy/resources"]`. It will create multiple search indexes by these paths. |
 
 ### I18N
 

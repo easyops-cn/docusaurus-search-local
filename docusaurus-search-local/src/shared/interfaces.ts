@@ -1,5 +1,8 @@
 import { DocusaurusConfig, LoadedPlugin } from "@docusaurus/types";
 import lunr from "lunr";
+import { PluginOptions } from "../";
+
+export type { PluginOptions };
 
 export type SmartTerm = SmartTermItem[];
 
@@ -130,50 +133,6 @@ export interface VersionDocInfo {
 }
 
 export type DocInfoType = "docs" | "blog" | "page";
-
-export interface PluginOptions {
-  indexDocs?: boolean;
-  indexBlog?: boolean;
-  indexPages?: boolean;
-  docsRouteBasePath?: string | string[];
-  blogRouteBasePath?: string | string[];
-  language?: string | string[];
-  hashed?: boolean | "query" | "filename";
-  docsDir?: string | string[];
-  blogDir?: string | string[];
-  docsPluginIdForPreferredVersion?: string;
-  removeDefaultStopWordFilter?: boolean;
-  removeDefaultStemmer?: boolean;
-  highlightSearchTermsOnTargetPage?: boolean;
-
-  searchResultLimits?: number;
-  searchResultContextMaxLength?: number;
-
-  explicitSearchResultPath?: boolean;
-
-  ignoreFiles?: string | RegExp | (string | RegExp)[];
-
-  searchBarShortcut?: boolean;
-  searchBarShortcutHint?: boolean;
-  searchBarPosition?: "auto" | "left" | "right";
-
-  zhUserDict?: string;
-  zhUserDictPath?: string;
-
-  // searchInputPlaceholder?: string;
-  // searchNoResults?: string;
-  // searchSeeAllResults?: string;
-  // searchSeeAllResultsPlural?: string;
-
-  // searchPageResultLimits?: number;
-  // searchPageResultContextMaxLength?: number;
-  // searchPageInputPlaceholder?: string;
-  // searchPageNoResults?: string;
-  // searchPageDefaultTitle?: string;
-  // searchPageTitleWithKeyword?: string;
-  // searchPageResultSummary?: string;
-  // searchPageResultSummaryPlural?: string;
-}
 
 export type ProcessedPluginOptions = Required<
   Omit<
