@@ -161,4 +161,15 @@ export interface PluginOptions {
    * It will create multiple search indexes by these paths.
    */
   searchContextByPaths?: string[];
+
+  /**
+   * Whether to hide the search bar when no search context was matched.
+   *
+   * By default, if `searchContextByPaths` is set, pages which are not matched with it will be considered
+   * as with a search context of ROOT. By setting `hideSearchBarWithNoSearchContext` to false, these pages
+   * will be considered as with NO search context, and the search bar will be hidden.
+   *
+   * @default false
+   */
+  hideSearchBarWithNoSearchContext?: boolean;
 }

@@ -30,6 +30,7 @@ import {
   docsPluginIdForPreferredVersion,
   indexDocs,
   searchContextByPaths,
+  hideSearchBarWithNoSearchContext,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
@@ -110,7 +111,9 @@ export default function SearchBar({
     let nextSearchContext = "";
     if (location.pathname.startsWith(versionUrl)) {
       const uri = location.pathname.substring(versionUrl.length);
-      const matchedPath = searchContextByPaths.find(path => uri === path || uri.startsWith(`${path}/`));
+      const matchedPath = searchContextByPaths.find(
+        (path) => uri === path || uri.startsWith(`${path}/`)
+      );
       if (matchedPath) {
         nextSearchContext = matchedPath;
       }
@@ -118,17 +121,23 @@ export default function SearchBar({
     if (prevSearchContext.current !== nextSearchContext) {
       // Reset index state map once search context is changed.
       indexStateMap.current.delete(nextSearchContext);
+      prevSearchContext.current = nextSearchContext;
     }
     setSearchContext(nextSearchContext);
-  }, [location, setSearchContext, versionUrl]);
+  }, [location.pathname, versionUrl]);
+
+  const hidden =
+    !!hideSearchBarWithNoSearchContext &&
+    Array.isArray(searchContextByPaths) &&
+    searchContext === "";
 
   const loadIndex = useCallback(async () => {
-    if (indexStateMap.current.get(searchContext)) {
+    if (hidden || indexStateMap.current.get(searchContext)) {
       // Do not load the index (again) if its already loaded or in the process of being loaded.
       return;
     }
     indexStateMap.current.set(searchContext, "loading");
-    search.current?.destroy();
+    search.current?.autocomplete.destroy();
     setLoading(true);
 
     const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
@@ -231,7 +240,7 @@ export default function SearchBar({
       }
       input.focus();
     }
-  }, [versionUrl, searchContext, baseUrl, history]);
+  }, [hidden, searchContext, versionUrl, baseUrl, history]);
 
   useEffect(() => {
     if (!Mark) {
@@ -338,6 +347,7 @@ export default function SearchBar({
         [styles.searchIndexLoading]: loading && inputChanged,
         [styles.focused]: focused,
       })}
+      hidden={hidden}
     >
       <input
         placeholder={translate({

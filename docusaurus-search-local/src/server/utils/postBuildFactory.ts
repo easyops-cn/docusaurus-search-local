@@ -31,17 +31,22 @@ export function postBuildFactory(
       debugInfo("building index");
 
       const docsByDirMap = new Map<string, SearchDocument[][]>();
-      if (config.searchContextByPaths) {
+      const { searchContextByPaths, hideSearchBarWithNoSearchContext } = config;
+      if (searchContextByPaths) {
         const { baseUrl } = buildData;
         const rootAllDocs: SearchDocument[][] = [];
-        docsByDirMap.set("", rootAllDocs);
+        if (!hideSearchBarWithNoSearchContext) {
+          docsByDirMap.set("", rootAllDocs);
+        }
         let docIndex = 0;
         for (const documents of allDocuments) {
           rootAllDocs[docIndex] = [];
           for (const doc of documents) {
             if (doc.u.startsWith(baseUrl)) {
               const uri = doc.u.substring(baseUrl.length);
-              const matchedPath = config.searchContextByPaths.find(path => uri === path || uri.startsWith(`${path}/`));
+              const matchedPath = searchContextByPaths.find(
+                (path) => uri === path || uri.startsWith(`${path}/`)
+              );
               if (matchedPath) {
                 let dirAllDocs = docsByDirMap.get(matchedPath);
                 if (!dirAllDocs) {
@@ -61,7 +66,7 @@ export function postBuildFactory(
           docIndex++;
         }
         for (const [k, v] of docsByDirMap) {
-          const docsNotEmpty = v.filter(d => !!d);
+          const docsNotEmpty = v.filter((d) => !!d);
           if (docsNotEmpty.length < v.length) {
             docsByDirMap.set(k, docsNotEmpty);
           }
@@ -78,7 +83,10 @@ export function postBuildFactory(
         await writeFileAsync(
           path.join(
             versionData.outDir,
-            searchIndexFilename.replace("{dir}", k === "" ? "" : `-${k.replace(/\//g, "-")}`)
+            searchIndexFilename.replace(
+              "{dir}",
+              k === "" ? "" : `-${k.replace(/\//g, "-")}`
+            )
           ),
           JSON.stringify(searchIndex),
           { encoding: "utf8" }

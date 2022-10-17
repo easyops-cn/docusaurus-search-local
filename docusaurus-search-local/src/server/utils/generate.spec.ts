@@ -33,6 +33,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
     [
@@ -57,6 +58,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
     [
@@ -83,6 +85,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
     [
@@ -112,6 +115,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
     [
@@ -139,6 +143,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
     [
@@ -169,6 +174,7 @@ describe("generate", () => {
         "export const docsPluginIdForPreferredVersion = undefined;",
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
+        "export const hideSearchBarWithNoSearchContext = false;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
