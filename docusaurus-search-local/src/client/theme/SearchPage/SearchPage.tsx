@@ -222,11 +222,12 @@ function SearchResultItem({
   if (!isTitle) {
     pathItems.push((page as SearchDocument).t);
   }
+  const hightLightWords = tokens.map(x=>"_highlight="+x).join("&");
   return (
     <article className={styles.searchResultItem}>
       <h2>
         <Link
-          to={document.u + (document.h || "")}
+          to={document.u + "?" + hightLightWords + (document.h || "")}
           dangerouslySetInnerHTML={{
             __html: isContent
               ? highlight(articleTitle, tokens)
