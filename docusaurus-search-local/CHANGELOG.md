@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.1...v0.33.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* fix search terms highlighting ([aacc610](https://github.com/easyops-cn/docusaurus-search-local/commit/aacc610db70f60585d883f977ae2da699dde6f29)), closes [#266](https://github.com/easyops-cn/docusaurus-search-local/issues/266)
+
 ## [0.33.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.0...v0.33.1) (2022-10-17)
 
 
