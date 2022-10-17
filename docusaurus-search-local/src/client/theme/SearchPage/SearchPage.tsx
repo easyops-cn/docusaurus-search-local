@@ -21,6 +21,7 @@ import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
 import {
+  Mark,
   docsPluginIdForPreferredVersion,
   indexDocs,
   searchContextByPaths,
@@ -226,11 +227,19 @@ function SearchResultItem({
   if (!isTitle) {
     pathItems.push((page as SearchDocument).t);
   }
+  let search = "";
+  if (Mark && tokens.length > 0) {
+    const params = new URLSearchParams();
+    for (const token of tokens) {
+      params.append("_highlight", token);
+    }
+    search = `?${params.toString()}`;
+  }
   return (
     <article className={styles.searchResultItem}>
       <h2>
         <Link
-          to={document.u + (document.h || "")}
+          to={document.u + search + (document.h || "")}
           dangerouslySetInnerHTML={{
             __html: isContent
               ? highlight(articleTitle, tokens)
