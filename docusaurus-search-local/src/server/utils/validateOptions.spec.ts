@@ -23,7 +23,10 @@ describe("validateOptions", () => {
         Required<
           Omit<
             PluginOptions,
-            "docsPluginIdForPreferredVersion" | "zhUserDict" | "zhUserDictPath" | "searchContextByPaths"
+            | "docsPluginIdForPreferredVersion"
+            | "zhUserDict"
+            | "zhUserDictPath"
+            | "searchContextByPaths"
           >
         >
     ]
@@ -42,6 +45,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -66,6 +70,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -90,6 +95,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -114,6 +120,7 @@ describe("validateOptions", () => {
         language: ["en", "zh"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -129,6 +136,7 @@ describe("validateOptions", () => {
         docsDir: "src/docs",
         blogDir: "src/blog",
         language: "en",
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 5,
         explicitSearchResultPath: false,
@@ -147,6 +155,7 @@ describe("validateOptions", () => {
         language: "en",
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 5,
         explicitSearchResultPath: false,
@@ -176,6 +185,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -194,6 +204,7 @@ describe("validateOptions", () => {
         hashed: "filename",
         searchBarPosition: "left",
         searchContextByPaths: ["docs", "community"],
+        hideSearchBarWithNoSearchContext: true,
       },
       {
         blogRouteBasePath: ["/dev/blog"],
@@ -207,6 +218,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: true,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,

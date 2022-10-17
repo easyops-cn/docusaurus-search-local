@@ -18,6 +18,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     docsPluginIdForPreferredVersion,
     indexDocs,
     searchContextByPaths,
+    hideSearchBarWithNoSearchContext,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -128,6 +129,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       Array.isArray(searchContextByPaths) && searchContextByPaths.length > 0
         ? searchContextByPaths
         : null
+    )};`
+  );
+  contents.push(
+    `export const hideSearchBarWithNoSearchContext = ${JSON.stringify(
+      !!hideSearchBarWithNoSearchContext
     )};`
   );
 

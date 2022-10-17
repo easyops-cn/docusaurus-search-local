@@ -43,6 +43,7 @@ const schema = Joi.object<PluginOptions>({
   zhUserDict: Joi.string(),
   zhUserDictPath: Joi.string(),
   searchContextByPaths: Joi.array().items(Joi.string()),
+  hideSearchBarWithNoSearchContext: Joi.boolean().default(false),
 });
 
 export function validateOptions({
