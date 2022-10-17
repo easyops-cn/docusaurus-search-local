@@ -20,7 +20,15 @@ describe("validateOptions", () => {
     [
       PluginOptions | undefined,
       PluginOptions &
-        Required<Omit<PluginOptions, "docsPluginIdForPreferredVersion">>
+        Required<
+          Omit<
+            PluginOptions,
+            | "docsPluginIdForPreferredVersion"
+            | "zhUserDict"
+            | "zhUserDictPath"
+            | "searchContextByPaths"
+          >
+        >
     ]
   >([
     [
@@ -37,6 +45,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -44,6 +53,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -60,6 +70,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -67,6 +78,7 @@ describe("validateOptions", () => {
         ignoreFiles: "file1",
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -83,6 +95,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -90,6 +103,7 @@ describe("validateOptions", () => {
         ignoreFiles: [/__meta__$/, "file1"],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -106,6 +120,7 @@ describe("validateOptions", () => {
         language: ["en", "zh"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -113,6 +128,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -120,6 +136,7 @@ describe("validateOptions", () => {
         docsDir: "src/docs",
         blogDir: "src/blog",
         language: "en",
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 5,
         explicitSearchResultPath: false,
@@ -138,6 +155,7 @@ describe("validateOptions", () => {
         language: "en",
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 5,
         explicitSearchResultPath: false,
@@ -145,6 +163,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: false,
         searchBarShortcutHint: true,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -166,6 +185,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: false,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -173,6 +193,7 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: false,
+        searchBarPosition: "auto",
       },
     ],
     [
@@ -181,6 +202,9 @@ describe("validateOptions", () => {
         blogRouteBasePath: ["/dev/blog"],
         docsPluginIdForPreferredVersion: "product",
         hashed: "filename",
+        searchBarPosition: "left",
+        searchContextByPaths: ["docs", "community"],
+        hideSearchBarWithNoSearchContext: true,
       },
       {
         blogRouteBasePath: ["/dev/blog"],
@@ -194,6 +218,7 @@ describe("validateOptions", () => {
         language: ["en"],
         removeDefaultStopWordFilter: false,
         removeDefaultStemmer: false,
+        hideSearchBarWithNoSearchContext: true,
         highlightSearchTermsOnTargetPage: false,
         searchResultLimits: 8,
         explicitSearchResultPath: false,
@@ -201,7 +226,9 @@ describe("validateOptions", () => {
         ignoreFiles: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
+        searchContextByPaths: ["docs", "community"],
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

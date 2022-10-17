@@ -43,12 +43,12 @@
     "website",
     "website-multi-docs"
   ],
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "resolutions": {
-    "@docusaurus/core": "2.0.0-rc.1",
-    "@docusaurus/preset-classic": "2.0.0-rc.1",
-    "@docusaurus/theme-classic": "2.0.0-rc.1",
-    "@docusaurus/theme-common": "2.0.0-rc.1",
-    "@docusaurus/plugin-content-docs": "2.0.0-rc.1"
+    "@docusaurus/core": "2.0.1",
+    "@docusaurus/preset-classic": "2.0.1",
+    "@docusaurus/theme-classic": "2.0.1",
+    "@docusaurus/theme-common": "2.0.1",
+    "@docusaurus/plugin-content-docs": "2.0.1"
   }
 }

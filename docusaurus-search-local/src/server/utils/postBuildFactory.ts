@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
 import util from "util";
-import { ProcessedPluginOptions, PostBuildData } from "../../shared/interfaces";
+import {
+  ProcessedPluginOptions,
+  PostBuildData,
+  SearchDocument,
+} from "../../shared/interfaces";
 import { buildIndex } from "./buildIndex";
 import { debugInfo } from "./debug";
 import { processDocInfos } from "./processDocInfos";
@@ -26,17 +30,70 @@ export function postBuildFactory(
 
       debugInfo("building index");
 
-      const searchIndex = buildIndex(allDocuments, config);
+      const docsByDirMap = new Map<string, SearchDocument[][]>();
+      const { searchContextByPaths, hideSearchBarWithNoSearchContext } = config;
+      if (searchContextByPaths) {
+        const { baseUrl } = buildData;
+        const rootAllDocs: SearchDocument[][] = [];
+        if (!hideSearchBarWithNoSearchContext) {
+          docsByDirMap.set("", rootAllDocs);
+        }
+        let docIndex = 0;
+        for (const documents of allDocuments) {
+          rootAllDocs[docIndex] = [];
+          for (const doc of documents) {
+            if (doc.u.startsWith(baseUrl)) {
+              const uri = doc.u.substring(baseUrl.length);
+              const matchedPath = searchContextByPaths.find(
+                (path) => uri === path || uri.startsWith(`${path}/`)
+              );
+              if (matchedPath) {
+                let dirAllDocs = docsByDirMap.get(matchedPath);
+                if (!dirAllDocs) {
+                  dirAllDocs = [];
+                  docsByDirMap.set(matchedPath, dirAllDocs);
+                }
+                let dirDocs = dirAllDocs[docIndex];
+                if (!dirDocs) {
+                  dirAllDocs[docIndex] = dirDocs = [];
+                }
+                dirDocs.push(doc);
+                continue;
+              }
+            }
+            rootAllDocs[docIndex].push(doc);
+          }
+          docIndex++;
+        }
+        for (const [k, v] of docsByDirMap) {
+          const docsNotEmpty = v.filter((d) => !!d);
+          if (docsNotEmpty.length < v.length) {
+            docsByDirMap.set(k, docsNotEmpty);
+          }
+        }
+      } else {
+        docsByDirMap.set("", allDocuments);
+      }
 
-      debugInfo("writing index to disk");
+      for (const [k, allDocs] of docsByDirMap) {
+        const searchIndex = buildIndex(allDocs, config);
 
-      await writeFileAsync(
-        path.join(versionData.outDir, searchIndexFilename),
-        JSON.stringify(searchIndex),
-        { encoding: "utf8" }
-      );
+        debugInfo(`writing index (/${k}) to disk`);
 
-      debugInfo("index written to disk successfully!");
+        await writeFileAsync(
+          path.join(
+            versionData.outDir,
+            searchIndexFilename.replace(
+              "{dir}",
+              k === "" ? "" : `-${k.replace(/\//g, "-")}`
+            )
+          ),
+          JSON.stringify(searchIndex),
+          { encoding: "utf8" }
+        );
+
+        debugInfo(`index (/${k}) written to disk successfully!`);
+      }
     }
   };
 }

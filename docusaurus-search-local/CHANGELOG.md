@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.0...v0.33.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* refine search context, support `hideSearchBarWithNoSearchContext` ([38908ed](https://github.com/easyops-cn/docusaurus-search-local/commit/38908edd8dea6bbf5a38f2ea225f9a9530b406ed))
+
+## [0.33.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.32.1...v0.33.0) (2022-10-16)
+
+
+### Features
+
+* support search context by paths ([aa6de9a](https://github.com/easyops-cn/docusaurus-search-local/commit/aa6de9a2890cad2570bd40f41cccb0626a5163d6))
+
+## [0.32.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.32.0...v0.32.1) (2022-10-08)
+
+
+### Bug Fixes
+
+* fix indexing when trailingSlash is explicitly set ([cfc603d](https://github.com/easyops-cn/docusaurus-search-local/commit/cfc603db8f0b2467dca064ec2f2f00b3449f4574))
+
+## [0.32.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.31.0...v0.32.0) (2022-09-05)
+
+
+### Features
+
+* support setting searchBarPosition ([60b27d4](https://github.com/easyops-cn/docusaurus-search-local/commit/60b27d4a6e1f3342ac7afda586202fc5d7b8a3bc)), closes [#263](https://github.com/easyops-cn/docusaurus-search-local/issues/263)
+
+## [0.31.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.2...v0.31.0) (2022-08-08)
+
+
+### Features
+
+* support `zhUserDict` and `zhUserDictPath` ([33f1ea4](https://github.com/easyops-cn/docusaurus-search-local/commit/33f1ea4765b0e134689fd65aa655c2bc1b4e6f0b)), closes [#246](https://github.com/easyops-cn/docusaurus-search-local/issues/246)
+
 ## [0.30.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.30.1...v0.30.2) (2022-07-23)
 
 

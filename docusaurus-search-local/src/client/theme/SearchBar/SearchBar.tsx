@@ -26,8 +26,11 @@ import {
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
+  searchBarPosition,
   docsPluginIdForPreferredVersion,
   indexDocs,
+  searchContextByPaths,
+  hideSearchBarWithNoSearchContext,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
@@ -91,7 +94,7 @@ export default function SearchBar({
   const history = useHistory();
   const location = useLocation();
   const searchBarRef = useRef<HTMLInputElement>(null);
-  const indexState = useRef("empty"); // empty, loaded, done
+  const indexStateMap = useRef(new Map<string, "loading" | "done">());
   // Should the input be focused after the index is loaded?
   const focusAfterIndexLoaded = useRef(false);
   const [loading, setLoading] = useState(false);
@@ -99,16 +102,46 @@ export default function SearchBar({
   const [inputValue, setInputValue] = useState("");
   const search = useRef<any>(null);
 
+  const prevSearchContext = useRef<string>("");
+  const [searchContext, setSearchContext] = useState<string>("");
+  useEffect(() => {
+    if (!Array.isArray(searchContextByPaths)) {
+      return;
+    }
+    let nextSearchContext = "";
+    if (location.pathname.startsWith(versionUrl)) {
+      const uri = location.pathname.substring(versionUrl.length);
+      const matchedPath = searchContextByPaths.find(
+        (path) => uri === path || uri.startsWith(`${path}/`)
+      );
+      if (matchedPath) {
+        nextSearchContext = matchedPath;
+      }
+    }
+    if (prevSearchContext.current !== nextSearchContext) {
+      // Reset index state map once search context is changed.
+      indexStateMap.current.delete(nextSearchContext);
+      prevSearchContext.current = nextSearchContext;
+    }
+    setSearchContext(nextSearchContext);
+  }, [location.pathname, versionUrl]);
+
+  const hidden =
+    !!hideSearchBarWithNoSearchContext &&
+    Array.isArray(searchContextByPaths) &&
+    searchContext === "";
+
   const loadIndex = useCallback(async () => {
-    if (indexState.current !== "empty") {
+    if (hidden || indexStateMap.current.get(searchContext)) {
       // Do not load the index (again) if its already loaded or in the process of being loaded.
       return;
     }
-    indexState.current = "loading";
+    indexStateMap.current.set(searchContext, "loading");
+    search.current?.autocomplete.destroy();
     setLoading(true);
 
     const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
-      fetchIndexes(versionUrl),
+      fetchIndexes(versionUrl, searchContext),
       fetchAutoCompleteJS(),
     ]);
 
@@ -119,7 +152,9 @@ export default function SearchBar({
         autoselect: true,
         openOnFocus: true,
         cssClasses: {
-          root: styles.searchBar,
+          root: clsx(styles.searchBar, {
+            [styles.searchBarLeft]: searchBarPosition === "left",
+          }),
           noPrefix: true,
           dropdownMenu: styles.dropdownMenu,
           input: styles.input,
@@ -146,7 +181,11 @@ export default function SearchBar({
                 return;
               }
               const a = document.createElement("a");
-              const url = `${baseUrl}search?q=${encodeURIComponent(query)}`;
+              const url = `${baseUrl}search?q=${encodeURIComponent(query)}${
+                Array.isArray(searchContextByPaths)
+                  ? `&ctx=${encodeURIComponent(searchContext)}`
+                  : ""
+              }`;
               a.href = url;
               a.textContent = translate({
                 id: "theme.SearchBar.seeAll",
@@ -155,7 +194,7 @@ export default function SearchBar({
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
-                  search.current.autocomplete.close();
+                  search.current?.autocomplete.close();
                   history.push(url);
                 }
               });
@@ -191,17 +230,17 @@ export default function SearchBar({
         searchBarRef.current?.blur();
       });
 
-    indexState.current = "done";
+    indexStateMap.current.set(searchContext, "done");
     setLoading(false);
 
     if (focusAfterIndexLoaded.current) {
       const input = searchBarRef.current as HTMLInputElement;
       if (input.value) {
-        search.current.autocomplete.open();
+        search.current?.autocomplete.open();
       }
       input.focus();
     }
-  }, [baseUrl, versionUrl, history]);
+  }, [hidden, searchContext, versionUrl, baseUrl, history]);
 
   useEffect(() => {
     if (!Mark) {
@@ -308,6 +347,7 @@ export default function SearchBar({
         [styles.searchIndexLoading]: loading && inputChanged,
         [styles.focused]: focused,
       })}
+      hidden={hidden}
     >
       <input
         placeholder={translate({

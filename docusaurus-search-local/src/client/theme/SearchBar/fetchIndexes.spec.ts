@@ -1,5 +1,5 @@
 import lunr from "lunr";
-import { fetchIndexes } from "./fetchIndexes";
+import { legacyFetchIndexes as fetchIndexes } from "./fetchIndexes";
 
 jest.mock("lunr");
 jest.mock("../../utils/proxiedGenerated");
@@ -29,7 +29,7 @@ describe("fetchIndexes", () => {
     mockFetch.mockResolvedValueOnce({
       json: () => Promise.resolve([]),
     });
-    const result = await fetchIndexes(baseUrl);
+    const result = await fetchIndexes(baseUrl, "");
     expect(mockFetch).toBeCalledWith("/search-index.json?_=abc");
     expect(result).toEqual({
       wrappedIndexes: [],
@@ -58,8 +58,8 @@ describe("fetchIndexes", () => {
           },
         ]),
     });
-    const result = await fetchIndexes(baseUrl);
-    expect(mockFetch).toBeCalledWith("/search-index.json?_=abc");
+    const result = await fetchIndexes(baseUrl, "community");
+    expect(mockFetch).toBeCalledWith("/search-index-community.json?_=abc");
     expect(result).toEqual({
       wrappedIndexes: [
         {
@@ -74,7 +74,7 @@ describe("fetchIndexes", () => {
 
   test("development", async () => {
     process.env.NODE_ENV = "development";
-    const result = await fetchIndexes(baseUrl);
+    const result = await fetchIndexes(baseUrl, "");
     expect(mockFetch).not.toBeCalled();
     expect(result).toEqual({
       wrappedIndexes: [],

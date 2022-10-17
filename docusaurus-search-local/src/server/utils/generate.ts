@@ -14,8 +14,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     explicitSearchResultPath,
     searchBarShortcut,
     searchBarShortcutHint,
+    searchBarPosition,
     docsPluginIdForPreferredVersion,
     indexDocs,
+    searchContextByPaths,
+    hideSearchBarWithNoSearchContext,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -77,12 +80,12 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     contents.push("export const Mark = null;");
   }
 
-  let searchIndexFilename = "search-index.json";
+  let searchIndexFilename = "search-index{dir}.json";
   let searchIndexQuery = "";
 
   if (indexHash) {
     if (config.hashed === "filename") {
-      searchIndexFilename = `search-index-${indexHash}.json`;
+      searchIndexFilename = `search-index{dir}-${indexHash}.json`;
     } else {
       searchIndexQuery = `?_=${indexHash}`;
     }
@@ -111,6 +114,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     )};`
   );
   contents.push(
+    `export const searchBarPosition = ${JSON.stringify(searchBarPosition)};`
+  );
+  contents.push(
     `export const docsPluginIdForPreferredVersion = ${
       docsPluginIdForPreferredVersion === undefined
         ? "undefined"
@@ -118,6 +124,18 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     };`
   );
   contents.push(`export const indexDocs = ${JSON.stringify(indexDocs)};`);
+  contents.push(
+    `export const searchContextByPaths = ${JSON.stringify(
+      Array.isArray(searchContextByPaths) && searchContextByPaths.length > 0
+        ? searchContextByPaths
+        : null
+    )};`
+  );
+  contents.push(
+    `export const hideSearchBarWithNoSearchContext = ${JSON.stringify(
+      !!hideSearchBarWithNoSearchContext
+    )};`
+  );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
