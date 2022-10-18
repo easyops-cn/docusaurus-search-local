@@ -4,12 +4,7 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
-import {
-  usePluralForm,
-  useDocsPreferredVersion,
-  ReactContextError,
-} from "@docusaurus/theme-common";
-import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
+import { usePluralForm } from "@docusaurus/theme-common";
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -20,12 +15,7 @@ import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
-import {
-  Mark,
-  docsPluginIdForPreferredVersion,
-  indexDocs,
-  searchContextByPaths,
-} from "../../utils/proxiedGenerated";
+import { Mark } from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
 
@@ -42,39 +32,15 @@ function SearchPageContent(): React.ReactElement {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
 
-  // It returns undefined for non-docs pages.
-  const activePlugin = useActivePlugin();
-  let versionUrl = baseUrl;
-
-  // There is an issue, see `SearchBar.tsx`.
-  try {
-    // The try-catch is a hack because useDocsPreferredVersion just throws an
-    // exception when versions are not used.
-    // The same hack is used in SearchBar.tsx
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { preferredVersion } = useDocsPreferredVersion(
-      activePlugin?.pluginId ?? docsPluginIdForPreferredVersion
-    );
-    if (preferredVersion && !preferredVersion.isLast) {
-      versionUrl = preferredVersion.path + "/";
-    }
-  } catch (e: unknown) {
-    if (indexDocs) {
-      if (e instanceof ReactContextError) {
-        /* ignore, happens when website doesn't use versions */
-      } else {
-        throw e;
-      }
-    }
-  }
   const { selectMessage } = usePluralForm();
-  const { searchValue, searchContext, updateSearchPath } = useSearchQuery();
+  const { searchValue, searchContext, searchVersion, updateSearchPath } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const [searchSource, setSearchSource] =
     useState<
       (input: string, callback: (results: SearchResult[]) => void) => void
     >();
   const [searchResults, setSearchResults] = useState<SearchResult[]>();
+  const versionUrl = `${baseUrl}${searchVersion}`;
 
   const pageTitle = useMemo(
     () =>
