@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.3...v0.33.4) (2022-10-18)
+
+
+### Bug Fixes
+
+* refine version in search page ([6d091b7](https://github.com/easyops-cn/docusaurus-search-local/commit/6d091b7f1b4294e96dc9a46738920fd5c39b20f8))
+
 ## [0.33.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.2...v0.33.3) (2022-10-18)
 
 
