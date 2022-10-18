@@ -8,12 +8,10 @@
 import { useHistory, useLocation } from "@docusaurus/router";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import {
-  searchContextByPaths,
-} from "../../utils/proxiedGenerated";
 
 const SEARCH_PARAM_QUERY = "q";
 const SEARCH_PARAM_CONTEXT = "ctx";
+const SEARCH_PARAM_VERSION = "version";
 
 function useSearchQuery(): any {
   const history = useHistory();
@@ -25,30 +23,32 @@ function useSearchQuery(): any {
   const params = ExecutionEnvironment.canUseDOM ? new URLSearchParams(location.search) : null;
   const searchValue = params?.get(SEARCH_PARAM_QUERY) || "";
   const searchContext = params?.get(SEARCH_PARAM_CONTEXT) || "";
+  const searchVersion = params?.get(SEARCH_PARAM_VERSION) || "";
+
+  const getSearchParams = (searchValue: string): URLSearchParams => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchValue) {
+      searchParams.set(SEARCH_PARAM_QUERY, searchValue);
+    } else {
+      searchParams.delete(SEARCH_PARAM_QUERY);
+    }
+    return searchParams;
+  }
 
   return {
     searchValue,
     searchContext,
+    searchVersion,
     updateSearchPath: (searchValue: string) => {
-      const searchParams = new URLSearchParams(location.search);
-
-      if (searchValue) {
-        searchParams.set(SEARCH_PARAM_QUERY, searchValue);
-      } else {
-        searchParams.delete(SEARCH_PARAM_QUERY);
-      }
-
+      const searchParams = getSearchParams(searchValue);
       history.replace({
         search: searchParams.toString(),
       });
     },
     generateSearchPageLink: (searchValue: string) => {
-      const searchParams = new URLSearchParams(location.search);
-      const searchContext = searchParams.get(SEARCH_PARAM_CONTEXT) || "";
+      const searchParams = getSearchParams(searchValue);
       // Refer to https://github.com/facebook/docusaurus/pull/2838
-      return `${baseUrl}search?q=${encodeURIComponent(searchValue)}${
-        Array.isArray(searchContextByPaths) ? `&ctx=${encodeURIComponent(searchContext)}` : ""
-      }`;
+      return `${baseUrl}search?${searchParams.toString()}`;
     },
   };
 }
