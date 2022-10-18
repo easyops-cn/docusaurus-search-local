@@ -38,13 +38,19 @@ export async function legacyFetchIndexes(
   searchContext: string
 ): Promise<IndexesData> {
   if (process.env.NODE_ENV === "production") {
+    const url = `${baseUrl}${searchIndexUrl.replace(
+      "{dir}",
+      searchContext ? `-${searchContext.replace(/\//g, "-")}` : ""
+    )}`;
+
+    // Catch potential attacks.
+    const fullUrl = new URL(url, location.origin);
+    if (fullUrl.origin !== location.origin) {
+      throw new Error("Unexpected version url");
+    }
+
     const json = (await (
-      await fetch(
-        `${baseUrl}${searchIndexUrl.replace(
-          "{dir}",
-          searchContext ? `-${searchContext.replace(/\//g, "-")}` : ""
-        )}`
-      )
+      await fetch(url)
     ).json()) as SerializedIndex[];
 
     const wrappedIndexes: WrappedIndex[] = json.map(
