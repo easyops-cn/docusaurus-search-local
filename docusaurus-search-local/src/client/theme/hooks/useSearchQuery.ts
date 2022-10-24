@@ -21,7 +21,7 @@ function useSearchQuery(): any {
   } = useDocusaurusContext();
 
   const params = ExecutionEnvironment.canUseDOM ? new URLSearchParams(location.search) : null;
-  const searchValue = decodeURI(params?.get(SEARCH_PARAM_QUERY) || "");
+  const searchValue = params?.get(SEARCH_PARAM_QUERY) || "";
   const searchContext = params?.get(SEARCH_PARAM_CONTEXT) || "";
   const searchVersion = params?.get(SEARCH_PARAM_VERSION) || "";
 

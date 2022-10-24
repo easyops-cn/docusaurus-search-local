@@ -182,7 +182,7 @@ export default function SearchBar({
               }
               const a = document.createElement("a");
               const params = new URLSearchParams();
-              params.set("q", encodeURIComponent(query));
+              params.set("q", query);
               if (Array.isArray(searchContextByPaths)) {
                 params.set("ctx", searchContext);
               }
