@@ -182,13 +182,15 @@ export default function SearchBar({
               }
               const a = document.createElement("a");
               const params = new URLSearchParams();
-              params.set("q", encodeURIComponent(query));
+              params.set("q", query);
               if (Array.isArray(searchContextByPaths)) {
                 params.set("ctx", searchContext);
               }
               if (versionUrl !== baseUrl) {
                 if (!versionUrl.startsWith(baseUrl)) {
-                  throw new Error(`Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`);
+                  throw new Error(
+                    `Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`
+                  );
                 }
                 params.set("version", versionUrl.substring(baseUrl.length));
               }
