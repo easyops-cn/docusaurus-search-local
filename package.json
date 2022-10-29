@@ -45,10 +45,10 @@
   ],
   "packageManager": "yarn@3.2.4",
   "resolutions": {
-    "@docusaurus/core": "2.1.0",
-    "@docusaurus/preset-classic": "2.1.0",
-    "@docusaurus/theme-classic": "2.1.0",
-    "@docusaurus/theme-common": "2.1.0",
-    "@docusaurus/plugin-content-docs": "2.1.0"
+    "@docusaurus/core": "2.2.0",
+    "@docusaurus/preset-classic": "2.2.0",
+    "@docusaurus/theme-classic": "2.2.0",
+    "@docusaurus/theme-common": "2.2.0",
+    "@docusaurus/plugin-content-docs": "2.2.0"
   }
 }
