@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.33.6](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.5...v0.33.6) (2022-11-28)
+
+
+### Bug Fixes
+
+* use key instead of code for keyboard events ([5e919f4](https://github.com/easyops-cn/docusaurus-search-local/commit/5e919f4e23b2b97380ca6fc8622254bcf3ff4fa0)), closes [#298](https://github.com/easyops-cn/docusaurus-search-local/issues/298)
+
 ## [0.33.5](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.4...v0.33.5) (2022-10-24)
 
 
