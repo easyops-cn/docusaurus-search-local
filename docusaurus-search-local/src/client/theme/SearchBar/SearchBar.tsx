@@ -320,7 +320,10 @@ export default function SearchBar({
     }
     // Add shortcuts command/ctrl + K
     const handleShortcut = (event: KeyboardEvent): void => {
-      if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
+      if (
+        (isMac ? event.metaKey : event.ctrlKey) &&
+        (event.key === "k" || event.key === "K")
+      ) {
         event.preventDefault();
         searchBarRef.current?.focus();
         onInputFocus();
@@ -381,10 +384,12 @@ export default function SearchBar({
             ✕
           </button>
         ) : (
-          <div className={styles.searchHintContainer}>
-            <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-            <kbd className={styles.searchHint}>K</kbd>
-          </div>
+          ExecutionEnvironment.canUseDOM && (
+            <div className={styles.searchHintContainer}>
+              <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+              <kbd className={styles.searchHint}>K</kbd>
+            </div>
+          )
         ))}
     </div>
   );
