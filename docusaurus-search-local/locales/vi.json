@@ -1,9 +1,9 @@
 {
-  "theme.SearchBar.label": "Tìm",
-  "theme.SearchBar.seeAll": "Xem tất cả",
-  "theme.SearchBar.noResultsText": "Không tìm thấy",
-  "theme.SearchPage.existingResultsTitle": "“{query}” kết quả",
-  "theme.SearchPage.emptyResultsTitle": "Không tiêu đề",
-  "theme.SearchPage.documentsFound.plurals": "Có {count} kết quả",
+  "theme.SearchBar.label": "Tìm kiếm...",
+  "theme.SearchBar.seeAll": "Xem tất cả kết quả được tìm thấy",
+  "theme.SearchBar.noResultsText": "Không tìm thấy kết quả nào",
+  "theme.SearchPage.existingResultsTitle": "Tìm kiếm theo tiêu đề: “{query}”",
+  "theme.SearchPage.emptyResultsTitle": "Tìm kiếm theo tiêu đề",
+  "theme.SearchPage.documentsFound.plurals": "Có {count} kết quả được tìm thấy",
   "theme.SearchPage.noResultsText": "Không tìm thấy kết quả nào"
 }
