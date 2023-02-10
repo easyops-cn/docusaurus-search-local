@@ -16,7 +16,11 @@ import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
-import { Mark, searchContextByPaths } from "../../utils/proxiedGenerated";
+import {
+  Mark,
+  searchContextByPaths,
+  useAllContextsWithNoSearchContext,
+} from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
 
@@ -162,10 +166,12 @@ function SearchPageContent(): React.ReactElement {
                 onChange={(e) => updateSearchContext(e.target.value)}
               >
                 <option value="">
-                  {translate({
-                    id: "theme.SearchPage.searchContext.everywhere",
-                    message: "everywhere",
-                  })}
+                  {useAllContextsWithNoSearchContext
+                    ? translate({
+                        id: "theme.SearchPage.searchContext.everywhere",
+                        message: "everywhere",
+                      })
+                    : ""}
                 </option>
                 {searchContextByPaths.map((context: string) => (
                   <option key={context} value={context}>
