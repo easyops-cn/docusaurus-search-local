@@ -45,6 +45,13 @@ function useSearchQuery(): any {
         search: searchParams.toString(),
       });
     },
+    updateSearchContext: (searchContext: string) => {
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set(SEARCH_PARAM_CONTEXT, searchContext);
+      history.replace({
+        search: searchParams.toString(),
+      });
+    },
     generateSearchPageLink: (searchValue: string) => {
       const searchParams = getSearchParams(searchValue);
       // Refer to https://github.com/facebook/docusaurus/pull/2838

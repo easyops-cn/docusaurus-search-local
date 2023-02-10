@@ -5,6 +5,7 @@ import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import { usePluralForm } from "@docusaurus/theme-common";
+import clsx from "clsx";
 
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
@@ -15,7 +16,7 @@ import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
-import { Mark } from "../../utils/proxiedGenerated";
+import { Mark, searchContextByPaths } from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
 
@@ -33,7 +34,13 @@ function SearchPageContent(): React.ReactElement {
   } = useDocusaurusContext();
 
   const { selectMessage } = usePluralForm();
-  const { searchValue, searchContext, searchVersion, updateSearchPath } = useSearchQuery();
+  const {
+    searchValue,
+    searchContext,
+    searchVersion,
+    updateSearchPath,
+    updateSearchContext,
+  } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
   const [searchSource, setSearchSource] =
     useState<
@@ -120,16 +127,55 @@ function SearchPageContent(): React.ReactElement {
       <div className="container margin-vert--lg">
         <h1>{pageTitle}</h1>
 
-        <input
-          type="search"
-          name="q"
-          className={styles.searchQueryInput}
-          aria-label="Search"
-          onChange={handleSearchInputChange}
-          value={searchQuery}
-          autoComplete="off"
-          autoFocus
-        />
+        <div className="row">
+          <div
+            className={clsx("col", styles.searchQueryColumn, {
+              "col--9": Array.isArray(searchContextByPaths),
+              "col--12": !Array.isArray(searchContextByPaths),
+            })}
+          >
+            <input
+              type="search"
+              name="q"
+              className={styles.searchQueryInput}
+              aria-label="Search"
+              onChange={handleSearchInputChange}
+              value={searchQuery}
+              autoComplete="off"
+              autoFocus
+            />
+          </div>
+          {Array.isArray(searchContextByPaths) ? (
+            <div
+              className={clsx(
+                "col",
+                "col--3",
+                "padding-left--none",
+                styles.searchVersionColumn
+              )}
+            >
+              <select
+                name="search-context"
+                className={styles.searchVersionInput}
+                id="context-selector"
+                value={searchContext}
+                onChange={(e) => updateSearchContext(e.target.value)}
+              >
+                <option value="">
+                  {translate({
+                    id: "theme.SearchPage.searchContext.everywhere",
+                    message: "everywhere",
+                  })}
+                </option>
+                {searchContextByPaths.map((context: string) => (
+                  <option key={context} value={context}>
+                    {context}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : null}
+        </div>
 
         {!searchSource && searchQuery && (
           <div>

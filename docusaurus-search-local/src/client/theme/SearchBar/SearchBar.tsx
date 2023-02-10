@@ -196,10 +196,18 @@ export default function SearchBar({
               }
               const url = `${baseUrl}search?${params.toString()}`;
               a.href = url;
-              a.textContent = translate({
-                id: "theme.SearchBar.seeAll",
-                message: "See all results",
-              });
+              a.textContent = searchContext
+                ? translate(
+                    {
+                      id: "theme.SearchBar.searchInContext",
+                      message: "See all results in {context}",
+                    },
+                    { context: searchContext }
+                  )
+                : translate({
+                    id: "theme.SearchBar.seeAll",
+                    message: "See all results",
+                  });
               a.addEventListener("click", (e) => {
                 if (!e.ctrlKey && !e.metaKey) {
                   e.preventDefault();
