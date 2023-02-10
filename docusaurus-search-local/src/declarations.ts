@@ -22,6 +22,7 @@ declare module "*/generated.js" {
   export const indexDocs: boolean;
   export const searchContextByPaths: string[];
   export const hideSearchBarWithNoSearchContext: boolean;
+  export const useAllContextsWithNoSearchContext: boolean;
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;
   export const __setRemoveDefaultStopWordFilter: (value: boolean) => void;

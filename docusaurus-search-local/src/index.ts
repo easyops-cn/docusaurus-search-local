@@ -172,4 +172,14 @@ export interface PluginOptions {
    * @default false
    */
   hideSearchBarWithNoSearchContext?: boolean;
+
+  /**
+   * Whether to show results from all the contexts if no context is provided.
+   *
+   * This option should not be used with `hideSearchBarWithNoSearchContext` set to `true` as this would show results
+   * when there is no search context.
+   *
+   * @default false
+   */
+  useAllContextsWithNoSearchContext?: boolean;
 }
