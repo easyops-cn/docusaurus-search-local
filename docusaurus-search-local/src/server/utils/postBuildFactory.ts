@@ -31,7 +31,11 @@ export function postBuildFactory(
       debugInfo("building index");
 
       const docsByDirMap = new Map<string, SearchDocument[][]>();
-      const { searchContextByPaths, hideSearchBarWithNoSearchContext } = config;
+      const {
+        searchContextByPaths,
+        hideSearchBarWithNoSearchContext,
+        useAllContextsWithNoSearchContext,
+      } = config;
       if (searchContextByPaths) {
         const { baseUrl } = buildData;
         const rootAllDocs: SearchDocument[][] = [];
@@ -58,7 +62,9 @@ export function postBuildFactory(
                   dirAllDocs[docIndex] = dirDocs = [];
                 }
                 dirDocs.push(doc);
-                continue;
+                if (!useAllContextsWithNoSearchContext) {
+                  continue;
+                }
               }
             }
             rootAllDocs[docIndex].push(doc);

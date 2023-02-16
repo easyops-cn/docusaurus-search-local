@@ -34,6 +34,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
     [
@@ -59,6 +60,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
     [
@@ -86,6 +88,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
     [
@@ -116,6 +119,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
     [
@@ -144,6 +148,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
     [
@@ -175,6 +180,7 @@ describe("generate", () => {
         "export const indexDocs = true;",
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
+        "export const useAllContextsWithNoSearchContext = false;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {

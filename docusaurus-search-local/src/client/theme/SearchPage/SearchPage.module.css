@@ -1,3 +1,4 @@
+.searchVersionInput,
 .searchQueryInput {
   border-radius: var(--ifm-global-radius);
   border: var(--ifm-global-border-width) solid

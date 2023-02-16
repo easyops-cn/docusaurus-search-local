@@ -19,6 +19,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     indexDocs,
     searchContextByPaths,
     hideSearchBarWithNoSearchContext,
+    useAllContextsWithNoSearchContext,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -136,7 +137,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       !!hideSearchBarWithNoSearchContext
     )};`
   );
-
+  contents.push(
+    `export const useAllContextsWithNoSearchContext = ${JSON.stringify(
+      !!useAllContextsWithNoSearchContext
+    )};`
+  );
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
   return searchIndexFilename;
