@@ -133,7 +133,8 @@ function SearchPageContent(): React.ReactElement {
 
         <div className="row">
           <div
-            className={clsx("col", styles.searchQueryColumn, {
+            className={clsx("col", {
+              [styles.searchQueryColumn]: Array.isArray(searchContextByPaths),
               "col--9": Array.isArray(searchContextByPaths),
               "col--12": !Array.isArray(searchContextByPaths),
             })}
@@ -155,12 +156,12 @@ function SearchPageContent(): React.ReactElement {
                 "col",
                 "col--3",
                 "padding-left--none",
-                styles.searchVersionColumn
+                styles.searchContextColumn
               )}
             >
               <select
                 name="search-context"
-                className={styles.searchVersionInput}
+                className={styles.searchContextInput}
                 id="context-selector"
                 value={searchContext}
                 onChange={(e) => updateSearchContext(e.target.value)}
