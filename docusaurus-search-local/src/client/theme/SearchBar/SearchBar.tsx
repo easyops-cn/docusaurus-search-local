@@ -145,6 +145,73 @@ export default function SearchBar({
       fetchAutoCompleteJS(),
     ]);
 
+    const searchFooterLinkElement = ({
+      query,
+      isEmpty,
+    }: {
+      query: string;
+      isEmpty: boolean;
+    }): HTMLAnchorElement => {
+      const a = document.createElement("a");
+      const params = new URLSearchParams();
+
+      const seeAllResultsText = translate({
+        id: "theme.SearchBar.seeAll",
+        message: "See all results",
+      });
+
+      const seeAllResultsOutsideContextText = translate(
+        {
+          id: "theme.SearchBar.seeAllOutsideContext",
+          message: "See results outside {context}",
+        },
+        { context: searchContext }
+      );
+
+      const seeAllResultsInContextText = translate(
+        {
+          id: "theme.SearchBar.searchInContext",
+          message: "See all results in {context}",
+        },
+        { context: searchContext }
+      );
+
+      params.set("q", query);
+
+      let linkText;
+      if (searchContext && isEmpty) {
+        linkText = seeAllResultsOutsideContextText;
+      } else if (searchContext) {
+        linkText = seeAllResultsInContextText;
+      } else {
+        linkText = seeAllResultsText;
+      }
+
+      if (Array.isArray(searchContextByPaths) && !isEmpty) {
+        params.set("ctx", searchContext);
+      }
+
+      if (versionUrl !== baseUrl) {
+        if (!versionUrl.startsWith(baseUrl)) {
+          throw new Error(
+            `Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`
+          );
+        }
+        params.set("version", versionUrl.substring(baseUrl.length));
+      }
+      const url = `${baseUrl}search?${params.toString()}`;
+      a.href = url;
+      a.textContent = linkText;
+      a.addEventListener("click", (e) => {
+        if (!e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          search.current?.autocomplete.close();
+          history.push(url);
+        }
+      });
+      return a;
+    };
+
     search.current = autoComplete(
       searchBarRef.current,
       {
@@ -177,44 +244,10 @@ export default function SearchBar({
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
             footer: ({ query, isEmpty }: any) => {
-              if (isEmpty) {
+              if (isEmpty && !searchContext) {
                 return;
               }
-              const a = document.createElement("a");
-              const params = new URLSearchParams();
-              params.set("q", query);
-              if (Array.isArray(searchContextByPaths)) {
-                params.set("ctx", searchContext);
-              }
-              if (versionUrl !== baseUrl) {
-                if (!versionUrl.startsWith(baseUrl)) {
-                  throw new Error(
-                    `Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`
-                  );
-                }
-                params.set("version", versionUrl.substring(baseUrl.length));
-              }
-              const url = `${baseUrl}search?${params.toString()}`;
-              a.href = url;
-              a.textContent = searchContext
-                ? translate(
-                    {
-                      id: "theme.SearchBar.searchInContext",
-                      message: "See all results in {context}",
-                    },
-                    { context: searchContext }
-                  )
-                : translate({
-                    id: "theme.SearchBar.seeAll",
-                    message: "See all results",
-                  });
-              a.addEventListener("click", (e) => {
-                if (!e.ctrlKey && !e.metaKey) {
-                  e.preventDefault();
-                  search.current?.autocomplete.close();
-                  history.push(url);
-                }
-              });
+              const a = searchFooterLinkElement({ query, isEmpty });
               const div = document.createElement("div");
               div.className = styles.hitFooter;
               div.appendChild(a);
