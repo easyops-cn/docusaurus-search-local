@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.35.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.34.0...v0.35.0) (2023-03-04)
+
+
+### Features
+
+* improve no results UI when searching in context ([#323](https://github.com/easyops-cn/docusaurus-search-local/issues/323)) ([1a70835](https://github.com/easyops-cn/docusaurus-search-local/commit/1a708353d5fc6edae0f6e7d16bbd6e32381a9ea1))
+
 ## [0.34.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.33.6...v0.34.0) (2023-02-16)
 
 
