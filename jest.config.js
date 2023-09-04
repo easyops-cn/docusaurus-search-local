@@ -16,4 +16,5 @@ module.exports = {
   // Ref https://github.com/facebook/jest/issues/2070#issuecomment-431706685
   // Todo(steve): remove next line when issue fixed.
   modulePathIgnorePatterns: ["<rootDir>/.*/__mocks__"],
+  setupFilesAfterEnv: ["<rootDir>/jestSetup.js"],
 };

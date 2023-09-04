@@ -50,17 +50,17 @@ describe("processDocInfos", () => {
             outDir: "/build",
             paths: [
               {
-                filePath: "/build/docs/a/index.html",
+                filePath: expect.toMatchPath("/build/docs/a/index.html"),
                 type: "docs",
                 url: "/base/docs/a",
               },
               {
-                filePath: "/build/blog/b/index.html",
+                filePath: expect.toMatchPath("/build/blog/b/index.html"),
                 type: "blog",
                 url: "/base/blog/b",
               },
               {
-                filePath: "/build/page/index.html",
+                filePath: expect.toMatchPath("/build/page/index.html"),
                 type: "page",
                 url: "/base/page",
               },
@@ -120,17 +120,17 @@ describe("processDocInfos", () => {
             outDir: "/build",
             paths: [
               {
-                filePath: "/build/docs/a.html",
+                filePath: expect.toMatchPath("/build/docs/a.html"),
                 type: "docs",
                 url: "/base/docs/a",
               },
               {
-                filePath: "/build/blog/b.html",
+                filePath: expect.toMatchPath("/build/blog/b.html"),
                 type: "blog",
                 url: "/base/blog/b",
               },
               {
-                filePath: "/build/page.html",
+                filePath: expect.toMatchPath("/build/page.html"),
                 type: "page",
                 url: "/base/page",
               },
@@ -190,17 +190,17 @@ describe("processDocInfos", () => {
             outDir: "/build",
             paths: [
               {
-                filePath: "/build/docs/a/index.html",
+                filePath: expect.toMatchPath("/build/docs/a/index.html"),
                 type: "docs",
                 url: "/base/docs/a/",
               },
               {
-                filePath: "/build/blog/b/index.html",
+                filePath: expect.toMatchPath("/build/blog/b/index.html"),
                 type: "blog",
                 url: "/base/blog/b/",
               },
               {
-                filePath: "/build/page/index.html",
+                filePath: expect.toMatchPath("/build/page/index.html"),
                 type: "page",
                 url: "/base/page/",
               },
@@ -244,22 +244,22 @@ describe("processDocInfos", () => {
             outDir: "/build",
             paths: [
               {
-                filePath: "/build/index.html",
+                filePath: expect.toMatchPath("/build/index.html"),
                 type: "docs",
                 url: "/base/",
               },
               {
-                filePath: "/build/docs-a/index.html",
+                filePath: expect.toMatchPath("/build/docs-a/index.html"),
                 type: "docs",
                 url: "/base/docs-a",
               },
               {
-                filePath: "/build/docs-b/c/index.html",
+                filePath: expect.toMatchPath("/build/docs-b/c/index.html"),
                 type: "docs",
                 url: "/base/docs-b/c",
               },
               {
-                filePath: "/build/page/index.html",
+                filePath: expect.toMatchPath("/build/page/index.html"),
                 type: "docs",
                 url: "/base/page",
               },
@@ -303,17 +303,17 @@ describe("processDocInfos", () => {
             outDir: "/build",
             paths: [
               {
-                filePath: "/build/blog-a/index.html",
+                filePath: expect.toMatchPath("/build/blog-a/index.html"),
                 type: "blog",
                 url: "/base/blog-a",
               },
               {
-                filePath: "/build/blog-b/c/index.html",
+                filePath: expect.toMatchPath("/build/blog-b/c/index.html"),
                 type: "blog",
                 url: "/base/blog-b/c",
               },
               {
-                filePath: "/build/page/index.html",
+                filePath: expect.toMatchPath("/build/page/index.html"),
                 type: "blog",
                 url: "/base/page",
               },

@@ -18,8 +18,8 @@ describe("processPluginOptions", () => {
       {
         docsRouteBasePath: ["docs"],
         blogRouteBasePath: ["blog"],
-        blogDir: ["/tmp/blog"],
-        docsDir: ["/tmp/docs"],
+        blogDir: [expect.toMatchPath("/tmp/blog")],
+        docsDir: [expect.toMatchPath("/tmp/docs")],
         language: ["en"],
         ignoreFiles: ["test"],
         searchBarPosition: "right",
@@ -38,8 +38,8 @@ describe("processPluginOptions", () => {
       {
         docsRouteBasePath: ["docs"],
         blogRouteBasePath: ["blog"],
-        blogDir: ["/tmp/blog"],
-        docsDir: ["/tmp/docs"],
+        blogDir: [expect.toMatchPath("/tmp/blog")],
+        docsDir: [expect.toMatchPath("/tmp/docs")],
         language: ["en", "zh"],
         ignoreFiles: [/__meta__$/],
         searchBarPosition: "left",
@@ -91,8 +91,8 @@ describe("processPluginOptions", () => {
     ).toEqual({
       docsRouteBasePath: ["docs"],
       blogRouteBasePath: ["blog"],
-      blogDir: ["/tmp/blog"],
-      docsDir: ["/tmp/docs"],
+      blogDir: [expect.toMatchPath("/tmp/blog")],
+      docsDir: [expect.toMatchPath("/tmp/docs")],
       language: ["en"],
       ignoreFiles: ["test"],
       searchBarPosition: "left",
