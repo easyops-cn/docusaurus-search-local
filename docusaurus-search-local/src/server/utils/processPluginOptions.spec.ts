@@ -13,6 +13,7 @@ describe("processPluginOptions", () => {
         blogDir: "blog",
         language: "en",
         ignoreFiles: "test",
+        ignoreClasses: [],
         searchBarPosition: "auto",
       },
       {
@@ -22,6 +23,7 @@ describe("processPluginOptions", () => {
         docsDir: [expect.toMatchPath("/tmp/docs")],
         language: ["en"],
         ignoreFiles: ["test"],
+        ignoreClasses: [],
         searchBarPosition: "right",
       },
     ],
@@ -33,6 +35,7 @@ describe("processPluginOptions", () => {
         blogDir: "blog",
         language: ["en", "zh"],
         ignoreFiles: [/__meta__$/],
+        ignoreClasses: [],
         searchBarPosition: "left",
       },
       {
@@ -42,6 +45,7 @@ describe("processPluginOptions", () => {
         docsDir: [expect.toMatchPath("/tmp/docs")],
         language: ["en", "zh"],
         ignoreFiles: [/__meta__$/],
+        ignoreClasses: [],
         searchBarPosition: "left",
       },
     ],
@@ -66,6 +70,7 @@ describe("processPluginOptions", () => {
           blogDir: "blog",
           language: "en",
           ignoreFiles: "test",
+          ignoreClasses: [],
           searchBarPosition: "auto",
         },
         {
@@ -95,6 +100,7 @@ describe("processPluginOptions", () => {
       docsDir: [expect.toMatchPath("/tmp/docs")],
       language: ["en"],
       ignoreFiles: ["test"],
+      ignoreClasses: [],
       searchBarPosition: "left",
     });
   });

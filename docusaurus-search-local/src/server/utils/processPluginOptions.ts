@@ -19,6 +19,7 @@ export function processPluginOptions(
   ensureArray(config, "docsDir");
   ensureArray(config, "blogDir");
   ensureArray(config, "ignoreFiles");
+  ensureArray(config, "ignoreClasses");
   config.docsRouteBasePath = config.docsRouteBasePath.map((basePath) =>
     basePath.replace(/^\//, "")
   );

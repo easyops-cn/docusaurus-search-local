@@ -1,4 +1,7 @@
-import { ParsedDocument } from "../../shared/interfaces";
+import {
+  ParsedDocument,
+  ProcessedPluginOptions,
+} from "../../shared/interfaces";
 import { parse } from "./parse";
 
 describe("parse", () => {
@@ -56,7 +59,36 @@ describe("parse", () => {
         breadcrumb: [],
       },
     ],
+    [
+      `<body>
+        <article>
+          <header>
+            <h1>Hello World</h1>
+          </header>
+          <main>
+            <span class="ignore">Test</span>
+            Peace.
+          </main>
+        </article>
+      </body>`,
+      "docs",
+      {
+        pageTitle: "Hello World",
+        sections: [
+          {
+            title: "Hello World",
+            hash: "",
+            content: "Peace.",
+          },
+        ],
+        breadcrumb: [],
+      },
+    ],
   ])("parse(...) should work", (html, type, doc) => {
-    expect(parse(html, type, "")).toEqual(doc);
+    expect(
+      parse(html, type, "", {
+        ignoreClasses: ["ignore"],
+      } as ProcessedPluginOptions)
+    ).toEqual(doc);
   });
 });
