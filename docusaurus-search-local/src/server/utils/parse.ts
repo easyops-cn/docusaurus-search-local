@@ -10,15 +10,15 @@ export function parse(
   html: string,
   type: "docs" | "blog" | "page",
   url: string,
-  { ignoreClasses }: ProcessedPluginOptions
+  { ignoreCssSelectors }: ProcessedPluginOptions
 ): ParsedDocument {
   const $ = cheerio.load(html);
   // Remove copy buttons from code boxes
   $('div[class^="mdxCodeBlock_"] button').remove();
 
-  if (ignoreClasses) {
-    for (const ignoreClass of ignoreClasses) {
-      $("." + ignoreClass).remove();
+  if (ignoreCssSelectors) {
+    for (const ignoreSelector of ignoreCssSelectors) {
+      $(ignoreSelector).remove();
     }
   }
 

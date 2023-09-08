@@ -87,7 +87,7 @@ describe("parse", () => {
   ])("parse(...) should work", (html, type, doc) => {
     expect(
       parse(html, type, "", {
-        ignoreClasses: ["ignore"],
+        ignoreCssSelectors: [".ignore"],
       } as ProcessedPluginOptions)
     ).toEqual(doc);
   });
