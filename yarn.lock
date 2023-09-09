@@ -2469,6 +2469,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jest/schemas@npm:^29.6.3":
+  version: 29.6.3
+  resolution: "@jest/schemas@npm:29.6.3"
+  dependencies:
+    "@sinclair/typebox": ^0.27.8
+  checksum: 910040425f0fc93cd13e68c750b7885590b8839066dfa0cd78e7def07bbb708ad869381f725945d66f2284de5663bbecf63e8fdd856e2ae6e261ba30b1687e93
+  languageName: node
+  linkType: hard
+
 "@jest/source-map@npm:^28.0.2":
   version: 28.0.2
   resolution: "@jest/source-map@npm:28.0.2"
@@ -2863,6 +2872,13 @@ __metadata:
   version: 0.23.5
   resolution: "@sinclair/typebox@npm:0.23.5"
   checksum: c96056d35d9cb862aeb635ff8873e2e7633e668dd544e162aee2690a82c970d0b3f90aa2b3501fe374dfa8e792388559a3e3a86712b23ebaef10061add534f47
+  languageName: node
+  linkType: hard
+
+"@sinclair/typebox@npm:^0.27.8":
+  version: 0.27.8
+  resolution: "@sinclair/typebox@npm:0.27.8"
+  checksum: 00bd7362a3439021aa1ea51b0e0d0a0e8ca1351a3d54c606b115fdcc49b51b16db6e5f43b4fe7a28c38688523e22a94d49dd31168868b655f0d4d50f032d07a1
   languageName: node
   linkType: hard
 
@@ -5891,6 +5907,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"diff-sequences@npm:^29.6.3":
+  version: 29.6.3
+  resolution: "diff-sequences@npm:29.6.3"
+  checksum: f4914158e1f2276343d98ff5b31fc004e7304f5470bf0f1adb2ac6955d85a531a6458d33e87667f98f6ae52ebd3891bb47d420bb48a5bd8b7a27ee25b20e33aa
+  languageName: node
+  linkType: hard
+
 "dir-glob@npm:^3.0.1":
   version: 3.0.1
   resolution: "dir-glob@npm:3.0.1"
@@ -8533,6 +8556,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-diff@npm:^29.6.4":
+  version: 29.6.4
+  resolution: "jest-diff@npm:29.6.4"
+  dependencies:
+    chalk: ^4.0.0
+    diff-sequences: ^29.6.3
+    jest-get-type: ^29.6.3
+    pretty-format: ^29.6.3
+  checksum: e205c45ab6dbcc660dc2a682cddb20f6a3cbbbdecd2821cce2050619f96dbd7560ee25f7f51d42c302596aeaddbea54390b78be3ab639340d24d67e4d270a8b0
+  languageName: node
+  linkType: hard
+
 "jest-docblock@npm:^28.0.2":
   version: 28.0.2
   resolution: "jest-docblock@npm:28.0.2"
@@ -8592,6 +8627,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-get-type@npm:^29.6.3":
+  version: 29.6.3
+  resolution: "jest-get-type@npm:29.6.3"
+  checksum: 88ac9102d4679d768accae29f1e75f592b760b44277df288ad76ce5bf038c3f5ce3719dea8aa0f035dac30e9eb034b848ce716b9183ad7cc222d029f03e92205
+  languageName: node
+  linkType: hard
+
 "jest-haste-map@npm:^28.1.0":
   version: 28.1.0
   resolution: "jest-haste-map@npm:28.1.0"
@@ -8634,6 +8676,18 @@ __metadata:
     jest-get-type: ^28.0.2
     pretty-format: ^28.1.1
   checksum: cb73ccd347638cd761ef7e0b606fbd71c115bd8febe29413f7b105fff6855d4356b8094c6b72393c5457db253b9c163498f188f25f9b6308c39c510e4c2886ee
+  languageName: node
+  linkType: hard
+
+"jest-matcher-utils@npm:^29.6.4":
+  version: 29.6.4
+  resolution: "jest-matcher-utils@npm:29.6.4"
+  dependencies:
+    chalk: ^4.0.0
+    jest-diff: ^29.6.4
+    jest-get-type: ^29.6.3
+    pretty-format: ^29.6.3
+  checksum: 9e17bce282e74bdbba2ce5475c490e0bba4f464cd42132bfc5df0337e0853af4dba925c7f4f61cbb0a4818fa121d28d7ff0196ec8829773a22fce59a822976d2
   languageName: node
   linkType: hard
 
@@ -10970,6 +11024,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pretty-format@npm:^29.6.3":
+  version: 29.6.3
+  resolution: "pretty-format@npm:29.6.3"
+  dependencies:
+    "@jest/schemas": ^29.6.3
+    ansi-styles: ^5.0.0
+    react-is: ^18.0.0
+  checksum: 4e1c0db48e65571c22e80ff92123925ff8b3a2a89b71c3a1683cfde711004d492de32fe60c6bc10eea8bf6c678e5cbe544ac6c56cb8096e1eb7caf856928b1c4
+  languageName: node
+  linkType: hard
+
 "pretty-time@npm:^1.1.0":
   version: 1.1.0
   resolution: "pretty-time@npm:1.1.0"
@@ -11849,6 +11914,7 @@ __metadata:
     identity-obj-proxy: ^3.0.0
     jest: ^28.1.0
     jest-environment-jsdom: ^28.1.0
+    jest-matcher-utils: ^29.6.4
     lint-staged: ^13.0.0
     prettier: ^2.6.2
     typescript: ^4.7.4

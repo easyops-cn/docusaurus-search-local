@@ -143,6 +143,7 @@ export type ProcessedPluginOptions = Required<
     | "docsDir"
     | "blogDir"
     | "ignoreFiles"
+    | "ignoreCssSelectors"
   >
 > & {
   docsRouteBasePath: string[];
@@ -151,6 +152,7 @@ export type ProcessedPluginOptions = Required<
   docsDir: string[];
   blogDir: string[];
   ignoreFiles: (string | RegExp)[];
+  ignoreCssSelectors: string[];
 };
 
 export interface PostBuildData {

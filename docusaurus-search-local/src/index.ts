@@ -121,6 +121,13 @@ export interface PluginOptions {
   ignoreFiles?: string | RegExp | (string | RegExp)[];
 
   /**
+   * A list of css selectors to ignore when indexing each page.
+   *
+   * @default []
+   */
+  ignoreCssSelectors?: string | string[];
+
+  /**
    * Whether to enable keyboard shortcut to focus in search bar.
    *
    * @default true

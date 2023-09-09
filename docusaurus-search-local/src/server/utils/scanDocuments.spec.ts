@@ -1,6 +1,9 @@
 import fs from "fs";
 import { parse } from "./parse";
-import { DocInfoWithFilePath } from "../../shared/interfaces";
+import {
+  DocInfoWithFilePath,
+  ProcessedPluginOptions,
+} from "../../shared/interfaces";
 
 jest.mock("./parse");
 jest.spyOn(fs, "readFile").mockImplementation(((
@@ -63,7 +66,10 @@ describe("scanDocuments", () => {
         };
       }
     });
-    const allDocuments = await scanDocuments(DocInfoWithFilePathList);
+    const allDocuments = await scanDocuments(
+      DocInfoWithFilePathList,
+      {} as ProcessedPluginOptions
+    );
     expect(allDocuments).toMatchInlineSnapshot(`
       Array [
         Array [

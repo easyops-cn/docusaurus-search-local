@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
 import util from "util";
-import { DocInfoWithFilePath, SearchDocument } from "../../shared/interfaces";
+import {
+  DocInfoWithFilePath,
+  SearchDocument,
+  ProcessedPluginOptions,
+} from "../../shared/interfaces";
 import { parse } from "./parse";
 import { debugVerbose } from "./debug";
 
@@ -13,7 +17,8 @@ const getNextDocId = () => {
 };
 
 export async function scanDocuments(
-  DocInfoWithFilePathList: DocInfoWithFilePath[]
+  DocInfoWithFilePathList: DocInfoWithFilePath[],
+  config: ProcessedPluginOptions
 ): Promise<SearchDocument[][]> {
   const titleDocuments: SearchDocument[] = [];
   const headingDocuments: SearchDocument[] = [];
@@ -30,7 +35,12 @@ export async function scanDocuments(
       );
 
       const html = await readFileAsync(filePath, { encoding: "utf8" });
-      const { pageTitle, sections, breadcrumb } = parse(html, type, url);
+      const { pageTitle, sections, breadcrumb } = parse(
+        html,
+        type,
+        url,
+        config
+      );
 
       const titleId = getNextDocId();
 

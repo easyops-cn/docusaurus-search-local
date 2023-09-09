@@ -18,7 +18,7 @@ describe("generate", () => {
     [
       ["en"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         'export const language = ["en"];',
         "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
@@ -40,9 +40,9 @@ describe("generate", () => {
     [
       ["zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         'export const language = ["zh"];',
@@ -66,12 +66,12 @@ describe("generate", () => {
     [
       ["es"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.es\.js"\)\(lunr\);$/
         ),
         'export const language = ["es"];',
         "export const removeDefaultStopWordFilter = false;",
@@ -94,15 +94,15 @@ describe("generate", () => {
     [
       ["ja"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/tinyseg\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\tinyseg\.js"\)\(lunr\);$/
         ),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.ja\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.ja\.js"\)\(lunr\);$/
         ),
         'export const language = ["ja"];',
         "export const removeDefaultStopWordFilter = false;",
@@ -125,13 +125,13 @@ describe("generate", () => {
     [
       ["en", "zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.multi\.js"\)\(lunr\);$/
         ),
         'export const language = ["en","zh"];',
         "export const removeDefaultStopWordFilter = false;",
@@ -154,16 +154,16 @@ describe("generate", () => {
     [
       ["en", "es", "zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/lunr\/lunr\.js";$/),
+        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.stemmer\.support\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
         ),
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.es\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.es\.js"\)\(lunr\);$/
         ),
         'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);',
         expect.stringMatching(
-          /^require\(".+\/lunr-languages\/lunr\.multi\.js"\)\(lunr\);$/
+          /^require\(".+\/|\\lunr-languages\/|\\lunr\.multi\.js"\)\(lunr\);$/
         ),
         'export const language = ["en","es","zh"];',
         "export const removeDefaultStopWordFilter = false;",
@@ -200,7 +200,7 @@ describe("generate", () => {
       "/tmp"
     );
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.any(String)
     );
     const calledContents = (mockWriteFileSync.mock.calls[0][1] as string).split(
@@ -224,7 +224,7 @@ describe("generate", () => {
     );
 
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining("export { default as Mark } from")
     );
   });
@@ -242,7 +242,7 @@ describe("generate", () => {
     );
 
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining("export const searchBarShortcut = false")
     );
   });
@@ -260,7 +260,7 @@ describe("generate", () => {
     );
 
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining("export const searchBarShortcutHint = false")
     );
   });
@@ -278,7 +278,7 @@ describe("generate", () => {
     );
 
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining(
         'export const docsPluginIdForPreferredVersion = "product"'
       )
@@ -298,7 +298,7 @@ describe("generate", () => {
     );
 
     expect(mockWriteFileSync).toBeCalledWith(
-      "/tmp/generated.js",
+      expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining(
         'export const searchIndexUrl = "search-index{dir}-abc.json"'
       )
