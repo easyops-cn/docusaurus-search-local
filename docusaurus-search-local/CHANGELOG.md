@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.36.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.35.0...v0.36.0) (2023-09-09)
+
+
+### Features
+
+* added ignoreClasses option to be able to exclude specific content from indexing ([e9f7794](https://github.com/easyops-cn/docusaurus-search-local/commit/e9f7794f48c7af070c377d56bf3b6dbfccf3b9de))
+
+
+### Bug Fixes
+
+* make tests work on windows ([565199a](https://github.com/easyops-cn/docusaurus-search-local/commit/565199a63760e51f2f5421c8df075aeeb7e54a53))
+
 ## [0.35.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.34.0...v0.35.0) (2023-03-04)
 
 
