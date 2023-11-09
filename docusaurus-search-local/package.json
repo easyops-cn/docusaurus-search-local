@@ -26,11 +26,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@docusaurus/plugin-content-docs": "^2.0.0-rc.1",
-    "@docusaurus/theme-translations": "^2.0.0-rc.1",
-    "@docusaurus/utils": "^2.0.0-rc.1",
-    "@docusaurus/utils-common": "^2.0.0-rc.1",
-    "@docusaurus/utils-validation": "^2.0.0-rc.1",
+    "@docusaurus/plugin-content-docs": "^3.0.0",
+    "@docusaurus/theme-translations": "^3.0.0",
+    "@docusaurus/utils": "^3.0.0",
+    "@docusaurus/utils-common": "^3.0.0",
+    "@docusaurus/utils-validation": "^3.0.0",
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "@node-rs/jieba": "^1.6.0",
     "cheerio": "^1.0.0-rc.3",
@@ -44,10 +44,10 @@
     "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.0.0-rc.1",
-    "@docusaurus/theme-common": "^2.0.0-rc.1",
-    "@docusaurus/types": "^2.0.0-rc.1",
-    "@tsconfig/docusaurus": "^1.0.2",
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@docusaurus/theme-common": "^3.0.0",
+    "@docusaurus/tsconfig": "3.0.0",
+    "@docusaurus/types": "^3.0.0",
     "@types/cheerio": "^0.22.31",
     "@types/debug": "^4.1.5",
     "@types/fs-extra": "^9.0.2",
@@ -55,17 +55,17 @@
     "@types/klaw-sync": "^6.0.0",
     "@types/lunr": "^2.3.3",
     "@types/node": "^18.0.0",
-    "@types/react": "^18.0.0",
+    "@types/react": "^18.2.37",
     "@types/react-helmet": "^6.1.0",
     "@types/react-router-dom": "^5.1.6",
     "concurrently": "^7.0.0",
     "copyfiles": "^2.4.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.7.4"
+    "typescript": "~5.2.2"
   },
   "peerDependencies": {
-    "@docusaurus/theme-common": "^2.0.0-rc.1",
-    "react": "^16.14.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
+    "@docusaurus/theme-common": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
