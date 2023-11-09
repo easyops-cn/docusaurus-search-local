@@ -2,12 +2,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspaces foreach --exclude website-multi-docs -vp run start",
+    "start": "yarn workspaces foreach --all --exclude website-multi-docs -vp run start",
     "start:theme": "yarn workspace @easyops-cn/docusaurus-search-local run start",
     "start:website": "yarn workspace website run start",
-    "build": "yarn workspaces foreach --exclude website-multi-docs -tvp run build",
-    "build:i18n": "cross-env BUILD_TYPE='i18n' yarn workspaces foreach --exclude website-multi-docs -tvp run build",
-    "build:preview": "cross-env BUILD_TYPE='preview' yarn workspaces foreach --exclude website-multi-docs -tvp run build",
+    "build": "yarn workspaces foreach --all --exclude website-multi-docs -tvp run build",
+    "build:i18n": "cross-env BUILD_TYPE='i18n' yarn workspaces foreach --all --exclude website-multi-docs -tvp run build",
+    "build:preview": "cross-env BUILD_TYPE='preview' yarn workspaces foreach --all --exclude website-multi-docs -tvp run build",
     "build:theme": "yarn workspace @easyops-cn/docusaurus-search-local run build",
     "build:website": "yarn workspace website run build",
     "build:website-multi-docs": "yarn workspace website-multi-docs run build",
@@ -22,8 +22,8 @@
     "@babel/preset-env": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "babel-jest": "^28.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
@@ -37,19 +37,24 @@
     "jest-matcher-utils": "^29.6.4",
     "lint-staged": "^13.0.0",
     "prettier": "^2.6.2",
-    "typescript": "^4.7.4"
+    "typescript": "~5.2.2"
   },
   "workspaces": [
     "docusaurus-search-local",
     "website",
     "website-multi-docs"
   ],
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@4.0.1",
   "resolutions": {
-    "@docusaurus/core": "2.2.0",
-    "@docusaurus/preset-classic": "2.2.0",
-    "@docusaurus/theme-classic": "2.2.0",
-    "@docusaurus/theme-common": "2.2.0",
-    "@docusaurus/plugin-content-docs": "2.2.0"
+    "@docusaurus/core": "3.0.0",
+    "@docusaurus/module-type-aliases": "3.0.0",
+    "@docusaurus/preset-classic": "3.0.0",
+    "@docusaurus/theme-classic": "3.0.0",
+    "@docusaurus/theme-common": "3.0.0",
+    "@docusaurus/plugin-content-docs": "3.0.0",
+    "@types/react": "18.2.37"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

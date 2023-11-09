@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES6",
+    "target": "ESNext",
     "outDir": "dist/server",
     "types": ["cheerio"]
   },
