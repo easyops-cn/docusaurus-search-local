@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.0...v0.37.1) (2023-11-09)
+
+
+### Bug Fixes
+
+* update readme and fix release workflow ([e11ad12](https://github.com/easyops-cn/docusaurus-search-local/commit/e11ad1287958e22a16da9309b4070433507233d9))
+
 ## [0.37.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.36.0...v0.37.0) (2023-11-09)
 
 
