@@ -3350,7 +3350,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/theme-translations@npm:3.0.0, @docusaurus/theme-translations@npm:^3.0.0":
+"@docusaurus/theme-translations@npm:3.0.0, @docusaurus/theme-translations@npm:^2 || ^3":
   version: 3.0.0
   resolution: "@docusaurus/theme-translations@npm:3.0.0"
   dependencies:
@@ -3386,7 +3386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils-common@npm:3.0.0, @docusaurus/utils-common@npm:^3.0.0":
+"@docusaurus/utils-common@npm:3.0.0, @docusaurus/utils-common@npm:^2 || ^3":
   version: 3.0.0
   resolution: "@docusaurus/utils-common@npm:3.0.0"
   dependencies:
@@ -3400,7 +3400,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils-validation@npm:3.0.0, @docusaurus/utils-validation@npm:^3.0.0":
+"@docusaurus/utils-validation@npm:3.0.0, @docusaurus/utils-validation@npm:^2 || ^3":
   version: 3.0.0
   resolution: "@docusaurus/utils-validation@npm:3.0.0"
   dependencies:
@@ -3413,7 +3413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils@npm:3.0.0, @docusaurus/utils@npm:^3.0.0":
+"@docusaurus/utils@npm:3.0.0, @docusaurus/utils@npm:^2 || ^3":
   version: 3.0.0
   resolution: "@docusaurus/utils@npm:3.0.0"
   dependencies:
@@ -3458,14 +3458,14 @@ __metadata:
   resolution: "@easyops-cn/docusaurus-search-local@workspace:docusaurus-search-local"
   dependencies:
     "@docusaurus/module-type-aliases": "npm:^3.0.0"
-    "@docusaurus/plugin-content-docs": "npm:^3.0.0"
+    "@docusaurus/plugin-content-docs": "npm:^2 || ^3"
     "@docusaurus/theme-common": "npm:^3.0.0"
-    "@docusaurus/theme-translations": "npm:^3.0.0"
+    "@docusaurus/theme-translations": "npm:^2 || ^3"
     "@docusaurus/tsconfig": "npm:3.0.0"
     "@docusaurus/types": "npm:^3.0.0"
-    "@docusaurus/utils": "npm:^3.0.0"
-    "@docusaurus/utils-common": "npm:^3.0.0"
-    "@docusaurus/utils-validation": "npm:^3.0.0"
+    "@docusaurus/utils": "npm:^2 || ^3"
+    "@docusaurus/utils-common": "npm:^2 || ^3"
+    "@docusaurus/utils-validation": "npm:^2 || ^3"
     "@easyops-cn/autocomplete.js": "npm:^0.38.1"
     "@node-rs/jieba": "npm:^1.6.0"
     "@types/cheerio": "npm:^0.22.31"
@@ -3492,7 +3492,7 @@ __metadata:
     tslib: "npm:^2.4.0"
     typescript: "npm:~5.2.2"
   peerDependencies:
-    "@docusaurus/theme-common": ^3.0.0
+    "@docusaurus/theme-common": ^2 || ^3
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
