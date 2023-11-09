@@ -4,9 +4,7 @@
 [![CI Status](https://github.com/easyops-cn/docusaurus-search-local/workflows/gh-pages/badge.svg?event=push&branch=master)](https://github.com/easyops-cn/docusaurus-search-local/actions?query=workflow%3Agh-pages)
 [![Coverage Status](https://coveralls.io/repos/github/easyops-cn/docusaurus-search-local/badge.svg?branch=master)](https://coveralls.io/github/easyops-cn/docusaurus-search-local?branch=master)
 
-An offline/local search plugin/theme for [Docusaurus v3](https://docusaurus.io/), which supports multiple languages, especially optimized for language of zh.
-
-> Since 0.37.0 @easyops-cn/docusaurus-search-local supports Docusaurus v3 only, for users using Docusaurus v2, try previous versions.
+An offline/local search plugin/theme for [Docusaurus v2/v3](https://docusaurus.io/), which supports multiple languages, especially optimized for language of zh.
 
 > Originally forked from [cmfcmf/docusaurus-search-local](https://github.com/cmfcmf/docusaurus-search-local).
 >

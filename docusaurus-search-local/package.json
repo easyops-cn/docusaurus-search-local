@@ -26,11 +26,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@docusaurus/plugin-content-docs": "^3.0.0",
-    "@docusaurus/theme-translations": "^3.0.0",
-    "@docusaurus/utils": "^3.0.0",
-    "@docusaurus/utils-common": "^3.0.0",
-    "@docusaurus/utils-validation": "^3.0.0",
+    "@docusaurus/plugin-content-docs": "^2 || ^3",
+    "@docusaurus/theme-translations": "^2 || ^3",
+    "@docusaurus/utils": "^2 || ^3",
+    "@docusaurus/utils-common": "^2 || ^3",
+    "@docusaurus/utils-validation": "^2 || ^3",
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "@node-rs/jieba": "^1.6.0",
     "cheerio": "^1.0.0-rc.3",
@@ -64,7 +64,7 @@
     "typescript": "~5.2.2"
   },
   "peerDependencies": {
-    "@docusaurus/theme-common": "^3.0.0",
+    "@docusaurus/theme-common": "^2 || ^3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
