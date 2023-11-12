@@ -6,7 +6,7 @@
  */
 
 import { useHistory, useLocation } from "@docusaurus/router";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const SEARCH_PARAM_QUERY = "q";
@@ -14,13 +14,14 @@ const SEARCH_PARAM_CONTEXT = "ctx";
 const SEARCH_PARAM_VERSION = "version";
 
 function useSearchQuery(): any {
+  const isBrowser = useIsBrowser();
   const history = useHistory();
   const location = useLocation();
   const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
 
-  const params = ExecutionEnvironment.canUseDOM ? new URLSearchParams(location.search) : null;
+  const params = isBrowser ? new URLSearchParams(location.search) : null;
   const searchValue = params?.get(SEARCH_PARAM_QUERY) || "";
   const searchContext = params?.get(SEARCH_PARAM_CONTEXT) || "";
   const searchVersion = params?.get(SEARCH_PARAM_VERSION) || "";

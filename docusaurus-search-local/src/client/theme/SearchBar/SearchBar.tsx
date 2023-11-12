@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
 import {
@@ -59,6 +59,7 @@ interface SearchBarProps {
 export default function SearchBar({
   handleSearchBarToggle,
 }: SearchBarProps): ReactElement {
+  const isBrowser = useIsBrowser();
   const {
     siteConfig: { baseUrl },
   } = useDocusaurusContext();
@@ -296,7 +297,7 @@ export default function SearchBar({
     if (!Mark) {
       return;
     }
-    const keywords = ExecutionEnvironment.canUseDOM
+    const keywords = isBrowser
       ? new URLSearchParams(location.search).getAll(SEARCH_PARAM_HIGHLIGHT)
       : [];
     // A workaround to fix an issue of highlighting in code blocks.
@@ -318,7 +319,7 @@ export default function SearchBar({
       setInputValue(keywords.join(" "));
       search.current?.autocomplete.setVal(keywords.join(" "));
     });
-  }, [location.search, location.pathname]);
+  }, [isBrowser, location.search, location.pathname]);
 
   const [focused, setFocused] = useState(false);
 
@@ -349,7 +350,7 @@ export default function SearchBar({
   );
 
   // Implement hint icons for the search shortcuts on mac and the rest operating systems.
-  const isMac = ExecutionEnvironment.canUseDOM
+  const isMac = isBrowser
     ? /mac/i.test(
         (navigator as any).userAgentData?.platform ?? navigator.platform
       )
@@ -425,7 +426,7 @@ export default function SearchBar({
             ✕
           </button>
         ) : (
-          ExecutionEnvironment.canUseDOM && (
+          isBrowser && (
             <div className={styles.searchHintContainer}>
               <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
               <kbd className={styles.searchHint}>K</kbd>
