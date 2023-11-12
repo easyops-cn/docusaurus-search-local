@@ -3493,8 +3493,8 @@ __metadata:
     typescript: "npm:~5.2.2"
   peerDependencies:
     "@docusaurus/theme-common": ^2 || ^3
-    react: ^18.2.0
-    react-dom: ^18.2.0
+    react: ^16.14.0 || ^17 || ^18
+    react-dom: ^16.14.0 || 17 || ^18
   languageName: unknown
   linkType: soft
 
