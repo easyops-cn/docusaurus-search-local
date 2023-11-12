@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.3...v0.37.4) (2023-11-12)
+
+
+### Bug Fixes
+
+* fix peer deps of react 16/17/18 ([700d640](https://github.com/easyops-cn/docusaurus-search-local/commit/700d64068e2e77ec8aca8dc51666d73d25d165fe))
+
 ## [0.37.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.2...v0.37.3) (2023-11-12)
 
 
