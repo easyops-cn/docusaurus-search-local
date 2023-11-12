@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.2...v0.37.3) (2023-11-12)
+
+
+### Bug Fixes
+
+* fix SSR warning, closes [#364](https://github.com/easyops-cn/docusaurus-search-local/issues/364) ([69378e6](https://github.com/easyops-cn/docusaurus-search-local/commit/69378e67944ca3abd15e179621b5ca53903eecce))
+
 ## [0.37.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.1...v0.37.2) (2023-11-09)
 
 
