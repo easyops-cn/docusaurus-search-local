@@ -34,7 +34,7 @@
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "@node-rs/jieba": "^1.6.0",
     "cheerio": "^1.0.0-rc.3",
-    "clsx": "^1.1.1",
+    "clsx": "^2.0.0",
     "debug": "^4.2.0",
     "fs-extra": "^10.0.0",
     "klaw-sync": "^6.0.0",
