@@ -1,0 +1,9 @@
+{
+  "theme.SearchBar.label": "Suche",
+  "theme.SearchBar.seeAll": "Alle Ergebnisse anzeigen",
+  "theme.SearchBar.noResultsText": "Keine Ergebnisse",
+  "theme.SearchPage.existingResultsTitle": "Suchergebnisse für \"{query}\"",
+  "theme.SearchPage.emptyResultsTitle": "Suche in der Dokumentation",
+  "theme.SearchPage.documentsFound.plurals": "1 Dokument gefunden|{count} Dokumente gefunden",
+  "theme.SearchPage.noResultsText": "Es wurden keine Dokumente gefunden"
+}
