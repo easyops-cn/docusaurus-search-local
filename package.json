@@ -27,7 +27,7 @@
     "babel-jest": "^28.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
     "husky": "^8.0.1",
