@@ -33,6 +33,12 @@ describe("scanDocuments", () => {
         url: "/2",
         type: "page",
       },
+      {
+        // Unlisted
+        filePath: "/tmp/3",
+        url: "/3",
+        type: "docs",
+      },
     ];
     mockParse.mockImplementation((html) => {
       if (html.includes("1")) {
@@ -52,7 +58,7 @@ describe("scanDocuments", () => {
           ],
           breadcrumb: ["Docs"],
         };
-      } else {
+      } else if (html.includes("2")) {
         return {
           pageTitle: "Hello First Page",
           sections: [
@@ -64,6 +70,8 @@ describe("scanDocuments", () => {
           ],
           breadcrumb: [],
         };
+      } else {
+        return null;
       }
     });
     const allDocuments = await scanDocuments(

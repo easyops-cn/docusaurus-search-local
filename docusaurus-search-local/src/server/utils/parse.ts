@@ -11,8 +11,15 @@ export function parse(
   type: "docs" | "blog" | "page",
   url: string,
   { ignoreCssSelectors }: ProcessedPluginOptions
-): ParsedDocument {
+): ParsedDocument | null {
   const $ = cheerio.load(html);
+
+  const robotsMeta = $('meta[name="robots"]');
+  if (robotsMeta.attr("content")?.includes("noindex")) {
+    // Unlisted content
+    return null;
+  }
+
   // Remove copy buttons from code boxes
   $('div[class^="mdxCodeBlock_"] button').remove();
 

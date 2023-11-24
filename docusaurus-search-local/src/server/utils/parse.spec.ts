@@ -5,7 +5,7 @@ import {
 import { parse } from "./parse";
 
 describe("parse", () => {
-  test.each<[string, "docs" | "blog" | "page", ParsedDocument]>([
+  test.each<[string, "docs" | "blog" | "page", ParsedDocument | null]>([
     [
       `<body>
         <article>
@@ -83,6 +83,24 @@ describe("parse", () => {
         ],
         breadcrumb: [],
       },
+    ],
+    [
+      `<head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
+      <body>
+        <article>
+          <header>
+            <h1>Hello World</h1>
+          </header>
+          <main>
+            <span class="ignore">Test</span>
+            Peace.
+          </main>
+        </article>
+      </body>`,
+      "docs",
+      null,
     ],
   ])("parse(...) should work", (html, type, doc) => {
     expect(
