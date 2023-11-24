@@ -35,7 +35,7 @@
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "jest-matcher-utils": "^29.6.4",
-    "lint-staged": "^13.0.0",
+    "lint-staged": "^15.0.0",
     "prettier": "^2.6.2",
     "typescript": "~5.2.2"
   },
