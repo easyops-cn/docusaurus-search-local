@@ -35,12 +35,13 @@ export async function scanDocuments(
       );
 
       const html = await readFileAsync(filePath, { encoding: "utf8" });
-      const { pageTitle, sections, breadcrumb } = parse(
-        html,
-        type,
-        url,
-        config
-      );
+
+      const parsed = parse(html, type, url, config);
+      if (!parsed) {
+        // Unlisted content
+        return;
+      }
+      const { pageTitle, sections, breadcrumb } = parsed;
 
       const titleId = getNextDocId();
 
