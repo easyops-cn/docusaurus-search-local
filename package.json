@@ -44,7 +44,7 @@
     "website",
     "website-multi-docs"
   ],
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@4.0.2",
   "resolutions": {
     "@docusaurus/core": "3.0.0",
     "@docusaurus/module-type-aliases": "3.0.0",
