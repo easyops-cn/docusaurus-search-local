@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.38.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.5...v0.38.0) (2023-11-24)
+
+
+### Features
+
+* do not index unlisted content ([b0c425d](https://github.com/easyops-cn/docusaurus-search-local/commit/b0c425d21e38b3ae065b31635b5e8d4dff3afcbb)), closes [#371](https://github.com/easyops-cn/docusaurus-search-local/issues/371)
+
 ## [0.37.5](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.4...v0.37.5) (2023-11-24)
 
 
