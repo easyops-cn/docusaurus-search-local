@@ -58,7 +58,7 @@
     "@types/react": "^18.2.37",
     "@types/react-helmet": "^6.1.0",
     "@types/react-router-dom": "^5.1.6",
-    "concurrently": "^7.0.0",
+    "concurrently": "^8.0.0",
     "copyfiles": "^2.4.0",
     "rimraf": "^3.0.2",
     "typescript": "~5.2.2"
