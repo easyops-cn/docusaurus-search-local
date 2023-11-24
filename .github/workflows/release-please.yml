@@ -30,7 +30,7 @@ jobs:
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
