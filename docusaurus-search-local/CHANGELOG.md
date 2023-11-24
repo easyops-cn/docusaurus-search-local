@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.37.5](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.4...v0.37.5) (2023-11-24)
+
+
+### Bug Fixes
+
+* set typescript target back to ES6 ([c05151f](https://github.com/easyops-cn/docusaurus-search-local/commit/c05151f6b9c02c585f588fb451bf2fd512261e73))
+
 ## [0.37.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.3...v0.37.4) (2023-11-12)
 
 
