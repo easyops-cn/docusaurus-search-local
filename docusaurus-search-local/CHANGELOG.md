@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.38.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.38.0...v0.38.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* compile to commonjs ([b8dc37d](https://github.com/easyops-cn/docusaurus-search-local/commit/b8dc37d1ea89014ad226883b5cf65cfec92d937a)), closes [#370](https://github.com/easyops-cn/docusaurus-search-local/issues/370)
+
 ## [0.38.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.37.5...v0.38.0) (2023-11-24)
 
 
