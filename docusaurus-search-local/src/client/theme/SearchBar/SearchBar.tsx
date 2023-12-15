@@ -112,9 +112,14 @@ export default function SearchBar({
     let nextSearchContext = "";
     if (location.pathname.startsWith(versionUrl)) {
       const uri = location.pathname.substring(versionUrl.length);
-      const matchedPath = searchContextByPaths.find(
-        (path) => uri === path || uri.startsWith(`${path}/`)
-      );
+      let matchedPath: string | undefined;
+      for (const _path of searchContextByPaths) {
+        const path = typeof _path === "string" ? _path : _path.path;
+        if (uri === path || uri.startsWith(`${path}/`)) {
+          matchedPath = path;
+          break;
+        }
+      }
       if (matchedPath) {
         nextSearchContext = matchedPath;
       }
