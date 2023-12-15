@@ -20,7 +20,10 @@ declare module "*/generated.js" {
   export const searchBarPosition: "left" | "right";
   export const docsPluginIdForPreferredVersion: string;
   export const indexDocs: boolean;
-  export const searchContextByPaths: string[];
+  export const searchContextByPaths: (
+    | string
+    | { label: string; path: string }
+  )[];
   export const hideSearchBarWithNoSearchContext: boolean;
   export const useAllContextsWithNoSearchContext: boolean;
   // These below are for mocking only.

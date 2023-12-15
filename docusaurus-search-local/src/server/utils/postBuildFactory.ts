@@ -48,9 +48,14 @@ export function postBuildFactory(
           for (const doc of documents) {
             if (doc.u.startsWith(baseUrl)) {
               const uri = doc.u.substring(baseUrl.length);
-              const matchedPath = searchContextByPaths.find(
-                (path) => uri === path || uri.startsWith(`${path}/`)
-              );
+              let matchedPath: string | undefined;
+              for (const _path of searchContextByPaths) {
+                const path = typeof _path === "string" ? _path : _path.path;
+                if (uri === path || uri.startsWith(`${path}/`)) {
+                  matchedPath = path;
+                  break;
+                }
+              }
               if (matchedPath) {
                 let dirAllDocs = docsByDirMap.get(matchedPath);
                 if (!dirAllDocs) {

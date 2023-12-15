@@ -174,11 +174,20 @@ function SearchPageContent(): React.ReactElement {
                       })
                     : ""}
                 </option>
-                {searchContextByPaths.map((context: string) => (
-                  <option key={context} value={context}>
-                    {context}
-                  </option>
-                ))}
+                {searchContextByPaths.map((context) => {
+                  let label: string;
+                  let path: string;
+                  if (typeof context === "string") {
+                    label = path = context;
+                  } else {
+                    ({ label, path } = context);
+                  }
+                  return (
+                    <option key={path} value={path}>
+                      {label}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           ) : null}

@@ -43,7 +43,15 @@ const schema = Joi.object<PluginOptions>({
   docsPluginIdForPreferredVersion: Joi.string(),
   zhUserDict: Joi.string(),
   zhUserDictPath: Joi.string(),
-  searchContextByPaths: Joi.array().items(Joi.string()),
+  searchContextByPaths: Joi.array().items(
+    Joi.alternatives().try(
+      Joi.string(),
+      Joi.object<{ label: string; path: string }>({
+        label: Joi.string(),
+        path: Joi.string(),
+      })
+    )
+  ),
   hideSearchBarWithNoSearchContext: Joi.boolean().default(false),
   useAllContextsWithNoSearchContext: Joi.boolean().default(false),
 });

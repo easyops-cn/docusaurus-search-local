@@ -156,7 +156,10 @@ const config = {
         docsRouteBasePath: ["docs", "community"],
         docsDir: ["docs", "community"],
         docsPluginIdForPreferredVersion: "product",
-        searchContextByPaths: ["docs", "community"],
+        searchContextByPaths: [
+          "docs",
+          { label: "Community", path: "community" },
+        ],
         hideSearchBarWithNoSearchContext: true,
       }),
     ],
