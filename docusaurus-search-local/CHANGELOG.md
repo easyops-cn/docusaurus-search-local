@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.40.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.39.0...v0.40.0) (2023-12-19)
+
+
+### Features
+
+* allow force enable search index even if `noIndex: true` is set ([09d0f30](https://github.com/easyops-cn/docusaurus-search-local/commit/09d0f30c0700b72ed3699ef4918d0d6f245bf435)), closes [#385](https://github.com/easyops-cn/docusaurus-search-local/issues/385)
+* support i18n for search context labels ([83b05a2](https://github.com/easyops-cn/docusaurus-search-local/commit/83b05a2ea1b4553b8a95566003647e73de32011a))
+
 ## [0.39.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.38.1...v0.39.0) (2023-12-15)
 
 
