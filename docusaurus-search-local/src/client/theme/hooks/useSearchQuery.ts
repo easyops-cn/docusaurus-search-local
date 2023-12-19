@@ -8,6 +8,7 @@
 import { useHistory, useLocation } from "@docusaurus/router";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { searchContextByPaths } from "../../utils/proxiedGenerated";
 
 const SEARCH_PARAM_QUERY = "q";
 const SEARCH_PARAM_CONTEXT = "ctx";
@@ -34,11 +35,20 @@ function useSearchQuery(): any {
       searchParams.delete(SEARCH_PARAM_QUERY);
     }
     return searchParams;
-  }
+  };
 
   return {
     searchValue,
-    searchContext,
+    searchContext:
+      searchContext &&
+      Array.isArray(searchContextByPaths) &&
+      searchContextByPaths.some((item) =>
+        typeof item === "string"
+          ? item === searchContext
+          : item.path === searchContext
+      )
+        ? searchContext
+        : "",
     searchVersion,
     updateSearchPath: (searchValue: string) => {
       const searchParams = getSearchParams(searchValue);
@@ -46,9 +56,9 @@ function useSearchQuery(): any {
         search: searchParams.toString(),
       });
     },
-    updateSearchContext: (searchContext: string) => {
+    updateSearchContext: (value: string) => {
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set(SEARCH_PARAM_CONTEXT, searchContext);
+      searchParams.set(SEARCH_PARAM_CONTEXT, value);
       history.replace({
         search: searchParams.toString(),
       });

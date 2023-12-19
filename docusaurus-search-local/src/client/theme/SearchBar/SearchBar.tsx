@@ -31,10 +31,12 @@ import {
   indexDocs,
   searchContextByPaths,
   hideSearchBarWithNoSearchContext,
+  useAllContextsWithNoSearchContext,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
 import styles from "./SearchBar.module.css";
+import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 
 async function fetchAutoCompleteJS(): Promise<any> {
   const autoCompleteModule = await import("@easyops-cn/autocomplete.js");
@@ -62,6 +64,7 @@ export default function SearchBar({
   const isBrowser = useIsBrowser();
   const {
     siteConfig: { baseUrl },
+    i18n: { currentLocale },
   } = useDocusaurusContext();
 
   // It returns undefined for non-docs pages
@@ -161,39 +164,51 @@ export default function SearchBar({
       const a = document.createElement("a");
       const params = new URLSearchParams();
 
-      const seeAllResultsText = translate({
-        id: "theme.SearchBar.seeAll",
-        message: "See all results",
-      });
-
-      const seeAllResultsOutsideContextText = translate(
-        {
-          id: "theme.SearchBar.seeAllOutsideContext",
-          message: "See results outside {context}",
-        },
-        { context: searchContext }
-      );
-
-      const seeAllResultsInContextText = translate(
-        {
-          id: "theme.SearchBar.searchInContext",
-          message: "See all results in {context}",
-        },
-        { context: searchContext }
-      );
-
       params.set("q", query);
 
       let linkText;
-      if (searchContext && isEmpty) {
-        linkText = seeAllResultsOutsideContextText;
-      } else if (searchContext) {
-        linkText = seeAllResultsInContextText;
+      if (searchContext) {
+        const detailedSearchContext =
+          searchContext && Array.isArray(searchContextByPaths)
+            ? searchContextByPaths.find((item) =>
+                typeof item === "string"
+                  ? item === searchContext
+                  : item.path === searchContext
+              )
+            : searchContext;
+        const translatedSearchContext = detailedSearchContext
+          ? normalizeContextByPath(detailedSearchContext, currentLocale).label
+          : searchContext;
+
+        if (useAllContextsWithNoSearchContext && isEmpty) {
+          linkText = translate(
+            {
+              id: "theme.SearchBar.seeAllOutsideContext",
+              message: "See results outside {context}",
+            },
+            { context: translatedSearchContext }
+          );
+        } else {
+          linkText = translate(
+            {
+              id: "theme.SearchBar.searchInContext",
+              message: "See all results in {context}",
+            },
+            { context: translatedSearchContext }
+          );
+        }
       } else {
-        linkText = seeAllResultsText;
+        linkText = translate({
+          id: "theme.SearchBar.seeAll",
+          message: "See all results",
+        });
       }
 
-      if (Array.isArray(searchContextByPaths) && !isEmpty) {
+      if (
+        searchContext &&
+        Array.isArray(searchContextByPaths) &&
+        (!useAllContextsWithNoSearchContext || !isEmpty)
+      ) {
         params.set("ctx", searchContext);
       }
 
@@ -250,7 +265,10 @@ export default function SearchBar({
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
             footer: ({ query, isEmpty }: any) => {
-              if (isEmpty && !searchContext) {
+              if (
+                isEmpty &&
+                (!searchContext || !useAllContextsWithNoSearchContext)
+              ) {
                 return;
               }
               const a = searchFooterLinkElement({ query, isEmpty });

@@ -23,6 +23,7 @@ import {
 } from "../../utils/proxiedGenerated";
 
 import styles from "./SearchPage.module.css";
+import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 
 export default function SearchPage(): React.ReactElement {
   return (
@@ -35,6 +36,7 @@ export default function SearchPage(): React.ReactElement {
 function SearchPageContent(): React.ReactElement {
   const {
     siteConfig: { baseUrl },
+    i18n: { currentLocale },
   } = useDocusaurusContext();
 
   const { selectMessage } = usePluralForm();
@@ -106,10 +108,10 @@ function SearchPageContent(): React.ReactElement {
 
   useEffect(() => {
     async function doFetchIndexes() {
-      const { wrappedIndexes, zhDictionary } = await fetchIndexes(
-        versionUrl,
-        searchContext
-      );
+      const { wrappedIndexes, zhDictionary } =
+        searchContext || useAllContextsWithNoSearchContext
+          ? await fetchIndexes(versionUrl, searchContext)
+          : { wrappedIndexes: [], zhDictionary: [] };
       setSearchSource(() =>
         SearchSourceFactory(wrappedIndexes, zhDictionary, 100)
       );
@@ -166,22 +168,19 @@ function SearchPageContent(): React.ReactElement {
                 value={searchContext}
                 onChange={(e) => updateSearchContext(e.target.value)}
               >
-                <option value="">
-                  {useAllContextsWithNoSearchContext
-                    ? translate({
-                        id: "theme.SearchPage.searchContext.everywhere",
-                        message: "everywhere",
-                      })
-                    : ""}
-                </option>
+                {useAllContextsWithNoSearchContext && (
+                  <option value="">
+                    {translate({
+                      id: "theme.SearchPage.searchContext.everywhere",
+                      message: "everywhere",
+                    })}
+                  </option>
+                )}
                 {searchContextByPaths.map((context) => {
-                  let label: string;
-                  let path: string;
-                  if (typeof context === "string") {
-                    label = path = context;
-                  } else {
-                    ({ label, path } = context);
-                  }
+                  const { label, path } = normalizeContextByPath(
+                    context,
+                    currentLocale
+                  );
                   return (
                     <option key={path} value={path}>
                       {label}

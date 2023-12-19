@@ -157,8 +157,17 @@ const config = {
         docsDir: ["docs", "community"],
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: [
-          "docs",
-          { label: "Community", path: "community" },
+          {
+            label: "Tutorial",
+            path: "docs",
+          },
+          {
+            label: {
+              en: "Community",
+              zh: "社区",
+            },
+            path: "community",
+          },
         ],
         hideSearchBarWithNoSearchContext: true,
       }),

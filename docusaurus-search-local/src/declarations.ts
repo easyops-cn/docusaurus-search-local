@@ -22,7 +22,7 @@ declare module "*/generated.js" {
   export const indexDocs: boolean;
   export const searchContextByPaths: (
     | string
-    | { label: string; path: string }
+    | { label: string | Record<string, string>; path: string }
   )[];
   export const hideSearchBarWithNoSearchContext: boolean;
   export const useAllContextsWithNoSearchContext: boolean;

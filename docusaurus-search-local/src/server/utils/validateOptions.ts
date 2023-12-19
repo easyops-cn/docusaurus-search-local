@@ -46,8 +46,14 @@ const schema = Joi.object<PluginOptions>({
   searchContextByPaths: Joi.array().items(
     Joi.alternatives().try(
       Joi.string(),
-      Joi.object<{ label: string; path: string }>({
-        label: Joi.string(),
+      Joi.object<{ label: string | Record<string, string>; path: string }>({
+        label: Joi.alternatives().try(
+          Joi.string(),
+          Joi.object<Record<string, string>>().pattern(
+            Joi.string(),
+            Joi.string()
+          )
+        ),
         path: Joi.string(),
       })
     )

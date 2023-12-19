@@ -167,7 +167,10 @@ export interface PluginOptions {
    * Provide an list of sub-paths as separate search context, E.g.: `["docs", "community", "legacy/resources"]`.
    * It will create multiple search indexes by these paths.
    */
-  searchContextByPaths?: (string | { label: string; path: string })[];
+  searchContextByPaths?: (
+    | string
+    | { label: string | Record<string, string>; path: string }
+  )[];
 
   /**
    * Whether to hide the search bar when no search context was matched.
