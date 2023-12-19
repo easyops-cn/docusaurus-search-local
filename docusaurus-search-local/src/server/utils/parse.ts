@@ -10,12 +10,12 @@ export function parse(
   html: string,
   type: "docs" | "blog" | "page",
   url: string,
-  { ignoreCssSelectors }: ProcessedPluginOptions
+  { ignoreCssSelectors, forceIgnoreNoIndex }: ProcessedPluginOptions
 ): ParsedDocument | null {
   const $ = cheerio.load(html);
 
   const robotsMeta = $('meta[name="robots"]');
-  if (robotsMeta.attr("content")?.includes("noindex")) {
+  if (!forceIgnoreNoIndex && robotsMeta.attr("content")?.includes("noindex")) {
     // Unlisted content
     return null;
   }

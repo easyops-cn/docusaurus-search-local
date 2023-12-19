@@ -167,7 +167,10 @@ export interface PluginOptions {
    * Provide an list of sub-paths as separate search context, E.g.: `["docs", "community", "legacy/resources"]`.
    * It will create multiple search indexes by these paths.
    */
-  searchContextByPaths?: (string | { label: string; path: string })[];
+  searchContextByPaths?: (
+    | string
+    | { label: string | Record<string, string>; path: string }
+  )[];
 
   /**
    * Whether to hide the search bar when no search context was matched.
@@ -189,4 +192,11 @@ export interface PluginOptions {
    * @default false
    */
   useAllContextsWithNoSearchContext?: boolean;
+
+  /**
+   * Force enable search index even if noIndex: true is set, this also affects unlisted articles.
+   *
+   * @default false
+   */
+  forceIgnoreNoIndex?: boolean;
 }
