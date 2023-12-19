@@ -56,6 +56,7 @@ describe("validateOptions", () => {
         searchBarShortcut: true,
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -83,6 +84,7 @@ describe("validateOptions", () => {
         searchBarShortcut: true,
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -110,6 +112,7 @@ describe("validateOptions", () => {
         searchBarShortcut: true,
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -137,6 +140,7 @@ describe("validateOptions", () => {
         searchBarShortcut: true,
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -151,6 +155,7 @@ describe("validateOptions", () => {
         explicitSearchResultPath: false,
         searchResultContextMaxLength: 30,
         searchBarShortcut: false,
+        forceIgnoreNoIndex: true,
       },
       {
         blogRouteBasePath: ["blog"],
@@ -175,6 +180,7 @@ describe("validateOptions", () => {
         searchBarShortcut: false,
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: true,
       },
     ],
     [
@@ -207,6 +213,7 @@ describe("validateOptions", () => {
         searchBarShortcut: true,
         searchBarShortcutHint: false,
         searchBarPosition: "auto",
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -245,6 +252,7 @@ describe("validateOptions", () => {
         searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
+        forceIgnoreNoIndex: false,
       },
     ],
     [
@@ -282,6 +290,7 @@ describe("validateOptions", () => {
         searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
+        forceIgnoreNoIndex: false,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

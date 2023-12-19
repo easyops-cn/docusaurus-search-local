@@ -192,4 +192,11 @@ export interface PluginOptions {
    * @default false
    */
   useAllContextsWithNoSearchContext?: boolean;
+
+  /**
+   * Force enable search index even if noIndex: true is set, this also affects unlisted articles.
+   *
+   * @default false
+   */
+  forceIgnoreNoIndex?: boolean;
 }

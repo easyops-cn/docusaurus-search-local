@@ -60,6 +60,7 @@ const schema = Joi.object<PluginOptions>({
   ),
   hideSearchBarWithNoSearchContext: Joi.boolean().default(false),
   useAllContextsWithNoSearchContext: Joi.boolean().default(false),
+  forceIgnoreNoIndex: Joi.boolean().default(false),
 });
 
 export function validateOptions({
