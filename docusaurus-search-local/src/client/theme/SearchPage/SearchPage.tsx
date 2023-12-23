@@ -109,7 +109,7 @@ function SearchPageContent(): React.ReactElement {
   useEffect(() => {
     async function doFetchIndexes() {
       const { wrappedIndexes, zhDictionary } =
-        searchContext || useAllContextsWithNoSearchContext
+        !Array.isArray(searchContextByPaths) || searchContext || useAllContextsWithNoSearchContext
           ? await fetchIndexes(versionUrl, searchContext)
           : { wrappedIndexes: [], zhDictionary: [] };
       setSearchSource(() =>
