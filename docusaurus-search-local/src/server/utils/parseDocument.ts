@@ -8,6 +8,8 @@ const HEADINGS = "h1, h2, h3";
 export function parseDocument($: cheerio.Root): ParsedDocument {
   const $pageTitle = $("article h1").first();
   const pageTitle = $pageTitle.text();
+  const description = $("meta[name='description']").attr("content") || "";
+  const keywords = $("meta[name='keywords']").attr("content") || "";
 
   const sections: ParsedDocumentSection[] = [];
   const breadcrumb: string[] = [];
@@ -86,5 +88,5 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       });
     });
 
-  return { pageTitle, sections, breadcrumb };
+  return { pageTitle, description, keywords, sections, breadcrumb };
 }

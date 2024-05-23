@@ -71,12 +71,13 @@ export interface SearchDocument {
   s?: string;
 }
 
-/**
- * - 0: Doc title
- * - 1: Doc heading
- * - 2: Doc content
- */
-export type SearchDocumentType = 0 | 1 | 2;
+export enum SearchDocumentType {
+  Title = 0,
+  Heading = 1,
+  Description = 2,
+  Keywords = 3,
+  Content = 4,
+}
 
 export interface SearchResultBase {
   document: SearchDocument;
@@ -105,6 +106,8 @@ export interface WrappedIndex {
 
 export interface ParsedDocument {
   pageTitle: string;
+  description: string;
+  keywords: string;
   sections: ParsedDocumentSection[];
   breadcrumb: string[];
 }

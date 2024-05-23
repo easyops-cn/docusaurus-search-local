@@ -1,5 +1,5 @@
 import lunr from "lunr";
-import { SearchDocument } from "../../shared/interfaces";
+import { SearchDocument, SearchDocumentType } from "../../shared/interfaces";
 import { SearchSourceFactory } from "./SearchSourceFactory";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -32,6 +32,22 @@ describe("SearchSourceFactory", () => {
       p: 1,
     },
   ];
+  const documentsOfDescriptions: SearchDocument[] = [
+    {
+      i: 1,
+      t: "First description",
+      u: "/1",
+      p: 1,
+    },
+  ];
+  const documentsOfKeywords: SearchDocument[] = [
+    {
+      i: 1,
+      t: "First keywords",
+      u: "/1",
+      p: 1,
+    },
+  ];
   const documentsOfContents: SearchDocument[] = [
     {
       i: 3,
@@ -60,17 +76,27 @@ describe("SearchSourceFactory", () => {
       {
         documents: documentsOfTitles,
         index: getIndex(documentsOfTitles),
-        type: 0,
+        type: SearchDocumentType.Title,
       },
       {
         documents: documentsOfHeadings,
         index: getIndex(documentsOfHeadings),
-        type: 1,
+        type: SearchDocumentType.Heading,
+      },
+      {
+        documents: documentsOfDescriptions,
+        index: getIndex(documentsOfDescriptions),
+        type: SearchDocumentType.Description,
+      },
+      {
+        documents: documentsOfKeywords,
+        index: getIndex(documentsOfKeywords),
+        type: SearchDocumentType.Keywords,
       },
       {
         documents: documentsOfContents,
         index: getIndex(documentsOfContents),
-        type: 2,
+        type: SearchDocumentType.Content,
       },
     ],
     [],
@@ -82,6 +108,9 @@ describe("SearchSourceFactory", () => {
     [",", []],
     ["nothing", []],
     ["peace", [4, 2]],
+    ["description", [1]],
+    ["keywords", [1]],
+    ["first", [1, 2]],
   ])(
     "SearchSourceFactory('%s', zhDictionary) should return %j",
     (input, results) => {

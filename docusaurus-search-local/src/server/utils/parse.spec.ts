@@ -7,7 +7,11 @@ import { parse } from "./parse";
 describe("parse", () => {
   test.each<[string, "docs" | "blog" | "page", ParsedDocument | null]>([
     [
-      `<body>
+      `<head>
+        <meta name="description" content="Hello Description">
+        <meta name="keywords" content="Hello,Keywords">
+      </head>
+      <body>
         <article>
           <header>
             <h1>Hello World</h1>
@@ -24,6 +28,8 @@ describe("parse", () => {
       "page",
       {
         pageTitle: "Hello World",
+        description: "Hello Description",
+        keywords: "Hello,Keywords",
         sections: [
           {
             title: "Hello World",
@@ -49,6 +55,8 @@ describe("parse", () => {
       "docs",
       {
         pageTitle: "Hello World",
+        description: "",
+        keywords: "",
         sections: [
           {
             title: "Hello World",
@@ -74,6 +82,8 @@ describe("parse", () => {
       "docs",
       {
         pageTitle: "Hello World",
+        description: "",
+        keywords: "",
         sections: [
           {
             title: "Hello World",

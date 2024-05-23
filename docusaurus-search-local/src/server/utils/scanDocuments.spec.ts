@@ -44,6 +44,8 @@ describe("scanDocuments", () => {
       if (html.includes("1")) {
         return {
           pageTitle: "Hello First Docs",
+          description: "Hello Description",
+          keywords: "Hello,Keywords",
           sections: [
             {
               title: "Hello First Docs",
@@ -102,6 +104,24 @@ describe("scanDocuments", () => {
             "i": 3,
             "p": 1,
             "t": "First heading",
+            "u": "/1",
+          },
+        ],
+        Array [
+          Object {
+            "i": 1,
+            "p": 1,
+            "s": "Hello First Docs",
+            "t": "Hello Description",
+            "u": "/1",
+          },
+        ],
+        Array [
+          Object {
+            "i": 1,
+            "p": 1,
+            "s": "Hello First Docs",
+            "t": "Hello,Keywords",
             "u": "/1",
           },
         ],

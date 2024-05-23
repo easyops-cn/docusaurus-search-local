@@ -22,8 +22,16 @@ export async function scanDocuments(
 ): Promise<SearchDocument[][]> {
   const titleDocuments: SearchDocument[] = [];
   const headingDocuments: SearchDocument[] = [];
+  const descriptionDocuments: SearchDocument[] = [];
+  const keywordsDocuments: SearchDocument[] = [];
   const contentDocuments: SearchDocument[] = [];
-  const allDocuments = [titleDocuments, headingDocuments, contentDocuments];
+  const allDocuments = [
+    titleDocuments,
+    headingDocuments,
+    descriptionDocuments,
+    keywordsDocuments,
+    contentDocuments,
+  ];
 
   await Promise.all(
     DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
@@ -41,7 +49,7 @@ export async function scanDocuments(
         // Unlisted content
         return;
       }
-      const { pageTitle, sections, breadcrumb } = parsed;
+      const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
 
       const titleId = getNextDocId();
 
@@ -51,6 +59,26 @@ export async function scanDocuments(
         u: url,
         b: breadcrumb,
       });
+
+      if (description) {
+        descriptionDocuments.push({
+          i: titleId,
+          t: description,
+          s: pageTitle,
+          u: url,
+          p: titleId,
+        });
+      }
+
+      if (keywords) {
+        keywordsDocuments.push({
+          i: titleId,
+          t: keywords,
+          s: pageTitle,
+          u: url,
+          p: titleId,
+        });
+      }
 
       for (const section of sections) {
         if (section.title !== pageTitle) {

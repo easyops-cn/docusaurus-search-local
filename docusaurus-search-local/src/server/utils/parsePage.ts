@@ -12,6 +12,9 @@ export function parsePage($: cheerio.Root, url: string): ParsedDocument {
 
   const pageTitle = $pageTitle.text();
 
+  const description = $("meta[name='description']").attr("content") || "";
+  const keywords = $("meta[name='keywords']").attr("content") || "";
+
   const $main = $("main");
   if ($main.length === 0) {
     debugWarn(
@@ -22,6 +25,8 @@ export function parsePage($: cheerio.Root, url: string): ParsedDocument {
 
   return {
     pageTitle,
+    description,
+    keywords,
     sections: [
       {
         title: pageTitle,

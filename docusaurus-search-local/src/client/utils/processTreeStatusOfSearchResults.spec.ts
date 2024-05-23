@@ -1,4 +1,7 @@
-import { InitialSearchResult } from "../../shared/interfaces";
+import {
+  InitialSearchResult,
+  SearchDocumentType,
+} from "../../shared/interfaces";
 import { processTreeStatusOfSearchResults } from "./processTreeStatusOfSearchResults";
 
 describe("processTreeStatusOfSearchResults", () => {
@@ -8,14 +11,21 @@ describe("processTreeStatusOfSearchResults", () => {
         document: {
           i: 100,
         },
-        type: 0,
+        type: SearchDocumentType.Title,
         page: undefined,
       },
       {
         document: {
           i: 200,
         },
-        type: 0,
+        type: SearchDocumentType.Title,
+        page: undefined,
+      },
+      {
+        document: {
+          i: 300,
+        },
+        type: SearchDocumentType.Title,
         page: undefined,
       },
     ] as InitialSearchResult[];
@@ -24,14 +34,14 @@ describe("processTreeStatusOfSearchResults", () => {
         document: {
           i: 1,
         },
-        type: 2,
+        type: SearchDocumentType.Content,
         page: {},
       },
       {
         document: {
           i: 2,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: {},
       },
       pageTitles[0],
@@ -39,14 +49,14 @@ describe("processTreeStatusOfSearchResults", () => {
         document: {
           i: 101,
         },
-        type: 2,
+        type: SearchDocumentType.Content,
         page: pageTitles[0].document,
       },
       {
         document: {
           i: 3,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: {},
       },
       pageTitles[1],
@@ -54,19 +64,33 @@ describe("processTreeStatusOfSearchResults", () => {
         document: {
           i: 201,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: pageTitles[1].document,
       },
       {
         document: {
           i: 202,
         },
-        type: 2,
+        type: SearchDocumentType.Content,
         page: pageTitles[1].document,
+      },
+      {
+        document: {
+          i: 301,
+        },
+        type: SearchDocumentType.Keywords,
+        page: pageTitles[2].document,
+      },
+      {
+        document: {
+          i: 302,
+        },
+        type: SearchDocumentType.Description,
+        page: pageTitles[2].document,
       },
     ] as InitialSearchResult[];
     processTreeStatusOfSearchResults(results);
-    const statuses: [boolean, boolean][] = [
+    const statuses: [boolean | undefined, boolean | undefined][] = [
       [undefined, undefined],
       [undefined, undefined],
       [undefined, undefined],
@@ -74,6 +98,8 @@ describe("processTreeStatusOfSearchResults", () => {
       [undefined, undefined],
       [undefined, undefined],
       [true, undefined],
+      [undefined, true],
+      [undefined, undefined],
       [undefined, true],
     ];
     results.forEach((item, i) => {

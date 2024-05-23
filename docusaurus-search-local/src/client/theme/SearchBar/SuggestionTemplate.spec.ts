@@ -1,3 +1,4 @@
+import { SearchDocumentType } from "../../../shared/interfaces";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 
 jest.mock("./icons");
@@ -12,7 +13,7 @@ describe("SuggestionTemplate", () => {
         t: "Hello world",
         u: "/docs/a",
       },
-      type: 0,
+      type: SearchDocumentType.Title,
       page: false,
       metadata: {
         hello: {
@@ -65,7 +66,7 @@ describe("SuggestionTemplate", () => {
         t: "Hello fruits.",
         u: "/docs/b",
       },
-      type: 1,
+      type: SearchDocumentType.Heading,
       page: {
         i: 1,
         t: "Hello world",
@@ -134,7 +135,7 @@ describe("SuggestionTemplate", () => {
         t: "Goodbye fruits.",
         u: "/docs/c",
       },
-      type: 2,
+      type: SearchDocumentType.Content,
       page: {
         i: 1,
         t: "Hello world",
