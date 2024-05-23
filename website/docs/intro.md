@@ -1,5 +1,11 @@
 ---
 sidebar_position: 1
+description: This is description in front matter
+keywords: [Keywords, intro, front matter, template]
+tags:
+  - Test
+  - Keywords
+  - Front matter
 ---
 
 # Tutorial Intro

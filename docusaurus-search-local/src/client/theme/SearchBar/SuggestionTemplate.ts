@@ -1,4 +1,8 @@
-import { SearchDocument, SearchResult } from "../../../shared/interfaces";
+import {
+  SearchDocument,
+  SearchDocumentType,
+  SearchResult,
+} from "../../../shared/interfaces";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import { highlight } from "../../utils/highlight";
@@ -23,8 +27,10 @@ export function SuggestionTemplate({
   isInterOfTree,
   isLastOfTree,
 }: Omit<SearchResult, "score" | "index">): string {
-  const isTitle = type === 0;
-  const isHeading = type === 1;
+  const isTitle = type === SearchDocumentType.Title;
+  const isKeywords = type === SearchDocumentType.Keywords;
+  const isTitleRelated = isTitle || isKeywords;
+  const isHeading = type === SearchDocumentType.Heading;
   const tree: string[] = [];
   if (isInterOfTree) {
     tree.push(iconTreeInter);
@@ -35,22 +41,26 @@ export function SuggestionTemplate({
     (item) => `<span class="${styles.hitTree}">${item}</span>`
   );
   const icon = `<span class="${styles.hitIcon}">${
-    isTitle ? iconTitle : isHeading ? iconHeading : iconContent
+    isTitleRelated ? iconTitle : isHeading ? iconHeading : iconContent
   }</span>`;
   const wrapped = [
-    `<span class="${styles.hitTitle}">${highlightStemmed(
-      document.t,
-      getStemmedPositions(metadata, "t"),
-      tokens
-    )}</span>`,
+    `<span class="${styles.hitTitle}">${
+      isKeywords
+        ? highlight(document.s!, tokens)
+        : highlightStemmed(
+            document.t,
+            getStemmedPositions(metadata, "t"),
+            tokens
+          )
+    }</span>`,
   ];
 
   const needsExplicitHitPath =
     !isInterOfTree && !isLastOfTree && explicitSearchResultPath;
   if (needsExplicitHitPath) {
     const pathItems = page
-      ? (page.b ?? [])
-          .concat(page.t)
+      ? page.b
+          ?.concat(page.t)
           .concat(!document.s || document.s === page.t ? [] : document.s)
       : document.b;
     wrapped.push(
@@ -58,7 +68,7 @@ export function SuggestionTemplate({
         pathItems ?? []
       )}</span>`
     );
-  } else if (!isTitle) {
+  } else if (!isTitleRelated) {
     wrapped.push(
       `<span class="${styles.hitPath}">${highlight(
         (page as SearchDocument).t ||

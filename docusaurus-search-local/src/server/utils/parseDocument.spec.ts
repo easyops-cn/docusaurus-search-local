@@ -5,7 +5,11 @@ import { parseDocument } from "./parseDocument";
 describe("parseDocument", () => {
   test.each<[string, ParsedDocument]>([
     [
-      `<body>
+      `<head>
+        <meta name="description" content="Hello Description">
+        <meta name="keywords" content="Hello,Keywords">
+      </head>
+      <body>
         <nav>
           <a class="navbar__link navbar__link--active">
             Docs
@@ -50,6 +54,8 @@ describe("parseDocument", () => {
       </body>`,
       {
         pageTitle: "Hello World",
+        description: "Hello Description",
+        keywords: "Hello,Keywords",
         sections: [
           {
             title: "Hello World",
@@ -96,6 +102,8 @@ describe("parseDocument", () => {
       </body>`,
       {
         pageTitle: "Hello World",
+        description: "",
+        keywords: "",
         sections: [
           {
             title: "Hello World",
@@ -140,6 +148,8 @@ describe("parseDocument", () => {
       </body>`,
       {
         pageTitle: "Hello World",
+        description: "",
+        keywords: "",
         sections: [
           {
             title: "Hello World",

@@ -6,6 +6,7 @@ import {
   SearchResult,
   SearchDocument,
   InitialSearchResult,
+  SearchDocumentType,
 } from "../../shared/interfaces";
 import { sortSearchResults } from "./sortSearchResults";
 import { processTreeStatusOfSearchResults } from "./processTreeStatusOfSearchResults";
@@ -58,7 +59,7 @@ export function SearchSourceFactory(
                 document,
                 type,
                 page:
-                  type !== 0 &&
+                  type !== SearchDocumentType.Title &&
                   wrappedIndexes[0].documents.find(
                     (doc) => doc.i === document.p
                   ),

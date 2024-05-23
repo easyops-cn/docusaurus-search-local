@@ -10,7 +10,11 @@ import clsx from "clsx";
 import useSearchQuery from "../hooks/useSearchQuery";
 import { fetchIndexes } from "../SearchBar/fetchIndexes";
 import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
-import { SearchDocument, SearchResult } from "../../../shared/interfaces";
+import {
+  SearchDocument,
+  SearchDocumentType,
+  SearchResult,
+} from "../../../shared/interfaces";
 import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
@@ -109,7 +113,9 @@ function SearchPageContent(): React.ReactElement {
   useEffect(() => {
     async function doFetchIndexes() {
       const { wrappedIndexes, zhDictionary } =
-        !Array.isArray(searchContextByPaths) || searchContext || useAllContextsWithNoSearchContext
+        !Array.isArray(searchContextByPaths) ||
+        searchContext ||
+        useAllContextsWithNoSearchContext
           ? await fetchIndexes(versionUrl, searchContext)
           : { wrappedIndexes: [], zhDictionary: [] };
       setSearchSource(() =>
@@ -245,13 +251,19 @@ function SearchResultItem({
 }: {
   searchResult: SearchResult;
 }): React.ReactElement {
-  const isTitle = type === 0;
-  const isContent = type === 2;
+  const isTitle = type === SearchDocumentType.Title;
+  const isKeywords = type === SearchDocumentType.Keywords;
+  const isDescription = type === SearchDocumentType.Description;
+  const isDescriptionOrKeywords = isDescription || isKeywords;
+  const isTitleRelated = isTitle || isDescriptionOrKeywords;
+  const isContent = type === SearchDocumentType.Content;
   const pathItems = (
     (isTitle ? document.b : (page as SearchDocument).b) as string[]
   ).slice();
-  const articleTitle = (isContent ? document.s : document.t) as string;
-  if (!isTitle) {
+  const articleTitle = (
+    isContent || isDescriptionOrKeywords ? document.s : document.t
+  ) as string;
+  if (!isTitleRelated) {
     pathItems.push((page as SearchDocument).t);
   }
   let search = "";
@@ -268,14 +280,15 @@ function SearchResultItem({
         <Link
           to={document.u + search + (document.h || "")}
           dangerouslySetInnerHTML={{
-            __html: isContent
-              ? highlight(articleTitle, tokens)
-              : highlightStemmed(
-                  articleTitle,
-                  getStemmedPositions(metadata, "t"),
-                  tokens,
-                  100
-                ),
+            __html:
+              isContent || isDescriptionOrKeywords
+                ? highlight(articleTitle, tokens)
+                : highlightStemmed(
+                    articleTitle,
+                    getStemmedPositions(metadata, "t"),
+                    tokens,
+                    100
+                  ),
           }}
         ></Link>
       </h2>
@@ -284,7 +297,7 @@ function SearchResultItem({
           {concatDocumentPath(pathItems)}
         </p>
       )}
-      {isContent && (
+      {(isContent || isDescription) && (
         <p
           className={styles.searchResultItemSummary}
           dangerouslySetInnerHTML={{

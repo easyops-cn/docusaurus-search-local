@@ -1,4 +1,7 @@
-import { InitialSearchResult } from "../../shared/interfaces";
+import {
+  InitialSearchResult,
+  SearchDocumentType,
+} from "../../shared/interfaces";
 import { sortSearchResults } from "./sortSearchResults";
 
 describe("sortSearchResults", () => {
@@ -8,14 +11,14 @@ describe("sortSearchResults", () => {
         document: {
           i: 100,
         },
-        type: 0,
+        type: SearchDocumentType.Title,
         page: undefined,
       },
       {
         document: {
           i: 200,
         },
-        type: 0,
+        type: SearchDocumentType.Title,
         page: undefined,
       },
     ] as InitialSearchResult[];
@@ -24,14 +27,14 @@ describe("sortSearchResults", () => {
         document: {
           i: 1,
         },
-        type: 2,
+        type: SearchDocumentType.Content,
         page: {},
       },
       {
         document: {
           i: 2,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: {},
       },
       pageTitles[0],
@@ -39,21 +42,21 @@ describe("sortSearchResults", () => {
         document: {
           i: 3,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: {},
       },
       {
         document: {
           i: 201,
         },
-        type: 1,
+        type: SearchDocumentType.Heading,
         page: pageTitles[1].document,
       },
       {
         document: {
           i: 202,
         },
-        type: 2,
+        type: SearchDocumentType.Content,
         page: pageTitles[1].document,
       },
       pageTitles[1],
@@ -61,7 +64,7 @@ describe("sortSearchResults", () => {
         document: {
           i: 101,
         },
-        type: 2,
+        type: SearchDocumentType.Description,
         page: pageTitles[0].document,
       },
     ] as InitialSearchResult[];
