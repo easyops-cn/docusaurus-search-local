@@ -69,6 +69,16 @@ describe("scanDocuments", () => {
               hash: "",
               content: "",
             },
+            {
+              title: "Second heading",
+              hash: "/2#second-heading",
+              content: "Second content.",
+            },
+            {
+              title: "Third heading",
+              hash: "/3#third-heading",
+              content: "Third content.",
+            },
           ],
           breadcrumb: [],
         };
@@ -106,6 +116,13 @@ describe("scanDocuments", () => {
             "t": "First heading",
             "u": "/1",
           },
+          Object {
+            "h": "#second-heading",
+            "i": 6,
+            "p": 5,
+            "t": "Second heading",
+            "u": "/2",
+          },
         ],
         Array [
           Object {
@@ -141,6 +158,14 @@ describe("scanDocuments", () => {
             "s": "First heading",
             "t": "First content.",
             "u": "/1",
+          },
+          Object {
+            "h": "#second-heading",
+            "i": 7,
+            "p": 5,
+            "s": "Second heading",
+            "t": "Second content.",
+            "u": "/2",
           },
         ],
       ]
