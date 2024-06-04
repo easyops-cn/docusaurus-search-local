@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.42.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.41.1...v0.42.0) (2024-06-04)
+
+
+### Features
+
+* support add document to multiple context paths ([#412](https://github.com/easyops-cn/docusaurus-search-local/issues/412)), closes [#407](https://github.com/easyops-cn/docusaurus-search-local/issues/407) ([0107676](https://github.com/easyops-cn/docusaurus-search-local/commit/010767683331041c68b0dcd5d1b268db1455d9cc))
+
 ## [0.41.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.41.0...v0.41.1) (2024-06-04)
 
 
