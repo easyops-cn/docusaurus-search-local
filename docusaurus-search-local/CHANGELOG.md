@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.41.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.41.0...v0.41.1) (2024-06-04)
+
+
+### Bug Fixes
+
+* bump version only for handling hash link with url path, closes [#408](https://github.com/easyops-cn/docusaurus-search-local/issues/408) via [#410](https://github.com/easyops-cn/docusaurus-search-local/issues/410) ([9d76b81](https://github.com/easyops-cn/docusaurus-search-local/commit/9d76b81be5ac3dad8b32ee66ac24004a1724df16))
+
 ## [0.41.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.40.1...v0.41.0) (2024-05-23)
 
 
