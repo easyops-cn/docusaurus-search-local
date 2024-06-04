@@ -48,15 +48,14 @@ export function postBuildFactory(
           for (const doc of documents) {
             if (doc.u.startsWith(baseUrl)) {
               const uri = doc.u.substring(baseUrl.length);
-              let matchedPath: string | undefined;
+              let matchedPathes: string[] = [];
               for (const _path of searchContextByPaths) {
                 const path = typeof _path === "string" ? _path : _path.path;
                 if (uri === path || uri.startsWith(`${path}/`)) {
-                  matchedPath = path;
-                  break;
+                  matchedPathes.push(path);
                 }
               }
-              if (matchedPath) {
+              for (const matchedPath of matchedPathes) {
                 let dirAllDocs = docsByDirMap.get(matchedPath);
                 if (!dirAllDocs) {
                   dirAllDocs = [];
@@ -67,9 +66,9 @@ export function postBuildFactory(
                   dirAllDocs[docIndex] = dirDocs = [];
                 }
                 dirDocs.push(doc);
-                if (!useAllContextsWithNoSearchContext) {
-                  continue;
-                }
+              }
+              if (matchedPathes.length > 0 && !useAllContextsWithNoSearchContext) {
+                continue;
               }
             }
             rootAllDocs[docIndex].push(doc);
