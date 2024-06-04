@@ -274,10 +274,6 @@ function SearchResultItem({
     }
     search = `?${params.toString()}`;
   }
-  const taglink = String(document.h);
-  if (taglink.includes("#")){
-    document.h = taglink.slice(taglink.lastIndexOf("#") , taglink.length);
-  }
   return (
     <article className={styles.searchResultItem}>
       <h2>

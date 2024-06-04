@@ -295,10 +295,6 @@ export default function SearchBar({
             url += `?${params.toString()}`;
           }
           if (h) {
-            const taglink = String(h);
-            if (taglink.includes("#")){
-              h = taglink.slice(taglink.lastIndexOf("#") , taglink.length);
-            }
             url += h;
           }
           history.push(url);
