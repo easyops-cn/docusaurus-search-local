@@ -1,6 +1,6 @@
 {
   "name": "@easyops-cn/docusaurus-search-local",
-  "version": "0.41.0",
+  "version": "0.41.1",
   "description": "An offline/local search plugin for Docusaurus v3",
   "repository": "https://github.com/easyops-cn/docusaurus-search-local",
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
