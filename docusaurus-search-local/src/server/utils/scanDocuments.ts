@@ -81,23 +81,33 @@ export async function scanDocuments(
       }
 
       for (const section of sections) {
+        const trimmedHash = getTrimmedHash(section.hash, url);
+
         if (section.title !== pageTitle) {
+          if (trimmedHash === false) {
+            continue;
+          }
+
           headingDocuments.push({
             i: getNextDocId(),
             t: section.title,
             u: url,
-            h: section.hash,
+            h: trimmedHash,
             p: titleId,
           });
         }
 
         if (section.content) {
+          if (trimmedHash === false) {
+            continue;
+          }
+
           contentDocuments.push({
             i: getNextDocId(),
             t: section.content,
             s: section.title || pageTitle,
             u: url,
-            h: section.hash,
+            h: trimmedHash,
             p: titleId,
           });
         }
@@ -105,4 +115,19 @@ export async function scanDocuments(
     })
   );
   return allDocuments;
+}
+
+function getTrimmedHash(hash: string, url: string) {
+  if (hash && !hash.startsWith("#") && hash.includes("#")) {
+    // The hash link may contains URL path, we need to remove it.
+    if (hash.startsWith(url) && hash[url.length] === "#") {
+      return hash.slice(url.length);
+    }
+
+    // If the hash doesn't start with the URL, it's likely an external link.
+    // Don't know this will happen or not, but just in case.
+    return false;
+  }
+
+  return hash;
 }
