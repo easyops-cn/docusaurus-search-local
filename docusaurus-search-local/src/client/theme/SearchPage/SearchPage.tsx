@@ -178,7 +178,7 @@ function SearchPageContent(): React.ReactElement {
                   <option value="">
                     {translate({
                       id: "theme.SearchPage.searchContext.everywhere",
-                      message: "everywhere",
+                      message: "Everywhere",
                     })}
                   </option>
                 )}

@@ -101,7 +101,7 @@ module.exports = {
 
 ### I18N
 
-Since v0.25.0, we support [docusaurus i18n system](<(https://docusaurus.io/docs/i18n/introduction)>), and provided `en` and `zh-CN` translations out of the box.
+Since v0.25.0, we support [docusaurus i18n system](<(https://docusaurus.io/docs/i18n/introduction)>), and provided `en` / `de` / `vi` and `zh-CN` translations out of the box.
 
 For other languages, please follow the official tutorial about how to [translate plugin data](https://docusaurus.io/docs/i18n/tutorial#translate-plugin-data). And translate `theme.SearchBar.*` and `theme.SearchPage.*` in `i18n/*/code.json`.
 
