@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.43.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.42.0...v0.43.0) (2024-06-05)
+
+
+### Features
+
+* add theme.SearchPage.searchContext.everywhere to locales ([#414](https://github.com/easyops-cn/docusaurus-search-local/issues/414)) ([5e13bda](https://github.com/easyops-cn/docusaurus-search-local/commit/5e13bdaf5e2c3bcb287f2472a5e3f86649d04844))
+
 ## [0.42.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.41.1...v0.42.0) (2024-06-04)
 
 
