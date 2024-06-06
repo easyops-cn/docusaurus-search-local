@@ -2,6 +2,8 @@
   "theme.SearchBar.label": "Suche",
   "theme.SearchBar.seeAll": "Alle Ergebnisse anzeigen",
   "theme.SearchBar.noResultsText": "Keine Ergebnisse",
+  "theme.SearchBar.searchInContext": "Alle Ergebnisse innerhalb von \"{context}\" anzeigen",
+  "theme.SearchBar.seeAllOutsideContext": "Alle Ergebnisse außerhalb von \"{context}\" anzeigen",
   "theme.SearchPage.existingResultsTitle": "Suchergebnisse für \"{query}\"",
   "theme.SearchPage.emptyResultsTitle": "Suche in der Dokumentation",
   "theme.SearchPage.documentsFound.plurals": "1 Dokument gefunden|{count} Dokumente gefunden",
