@@ -184,7 +184,7 @@ export default function SearchBar({
           linkText = translate(
             {
               id: "theme.SearchBar.seeAllOutsideContext",
-              message: "See results outside {context}",
+              message: 'See all results outside "{context}"',
             },
             { context: translatedSearchContext }
           );
@@ -192,7 +192,7 @@ export default function SearchBar({
           linkText = translate(
             {
               id: "theme.SearchBar.searchInContext",
-              message: "See all results in {context}",
+              message: 'See all results within "{context}"',
             },
             { context: translatedSearchContext }
           );
