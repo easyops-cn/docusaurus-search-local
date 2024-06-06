@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.43.0...v0.44.0) (2024-06-06)
+
+
+### Features
+
+* add more translate to locales ([#417](https://github.com/easyops-cn/docusaurus-search-local/issues/417)) ([0ee814b](https://github.com/easyops-cn/docusaurus-search-local/commit/0ee814b4f4e320ec6a672bef1e04ee6bbe6ba10b))
+
 ## [0.43.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.42.0...v0.43.0) (2024-06-05)
 
 
