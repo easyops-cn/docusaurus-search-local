@@ -48,17 +48,17 @@ export function postBuildFactory(
           for (const doc of documents) {
             if (doc.u.startsWith(baseUrl)) {
               const uri = doc.u.substring(baseUrl.length);
-              let matchedPathes: string[] = [];
+              const matchedPaths: string[] = [];
               for (const _path of searchContextByPaths) {
                 const path = typeof _path === "string" ? _path : _path.path;
                 if (uri === path || uri.startsWith(`${path}/`)) {
-                  matchedPathes.push(path);
+                  matchedPaths.push(path);
                 }
               }
-              for (const matchedPath of matchedPathes) {
+              for (const matchedPath of matchedPaths) {
                 let dirAllDocs = docsByDirMap.get(matchedPath);
                 if (!dirAllDocs) {
-                  dirAllDocs = [];
+                  dirAllDocs = new Array(allDocuments.length);
                   docsByDirMap.set(matchedPath, dirAllDocs);
                 }
                 let dirDocs = dirAllDocs[docIndex];
@@ -67,19 +67,16 @@ export function postBuildFactory(
                 }
                 dirDocs.push(doc);
               }
-              if (matchedPathes.length > 0 && !useAllContextsWithNoSearchContext) {
+              if (
+                matchedPaths.length > 0 &&
+                !useAllContextsWithNoSearchContext
+              ) {
                 continue;
               }
             }
             rootAllDocs[docIndex].push(doc);
           }
           docIndex++;
-        }
-        for (const [k, v] of docsByDirMap) {
-          const docsNotEmpty = v.filter((d) => !!d);
-          if (docsNotEmpty.length < v.length) {
-            docsByDirMap.set(k, docsNotEmpty);
-          }
         }
       } else {
         docsByDirMap.set("", allDocuments);
