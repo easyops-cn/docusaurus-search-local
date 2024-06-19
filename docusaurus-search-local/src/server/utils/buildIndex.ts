@@ -36,41 +36,45 @@ export function buildIndex(
     require("lunr-languages/lunr.multi")(lunr);
   }
 
-  return allDocuments.map((documents) => ({
-    documents,
-    index: lunr(function () {
-      if (language.length > 1) {
-        this.use((lunr as any).multiLanguage(...language));
-      } else if (language[0] !== "en") {
-        this.use((lunr as any)[language[0]]);
-      }
+  // Some documents may be empty (unset array item), which is not mapped.
+  return new Array<SearchDocument[] | null>(allDocuments.length)
+    .fill(null)
+    .map((_doc, index) => allDocuments[index] ?? [])
+    .map((documents) => ({
+      documents,
+      index: lunr(function () {
+        if (language.length > 1) {
+          this.use((lunr as any).multiLanguage(...language));
+        } else if (language[0] !== "en") {
+          this.use((lunr as any)[language[0]]);
+        }
 
-      if (removeDefaultStopWordFilter) {
-        // Sometimes we need no English stop words,
-        // since they are almost all programming code.
-        this.pipeline.remove(lunr.stopWordFilter);
-      }
+        if (removeDefaultStopWordFilter) {
+          // Sometimes we need no English stop words,
+          // since they are almost all programming code.
+          this.pipeline.remove(lunr.stopWordFilter);
+        }
 
-      if (removeDefaultStemmer) {
-        this.pipeline.remove(lunr.stemmer);
-      }
+        if (removeDefaultStemmer) {
+          this.pipeline.remove(lunr.stemmer);
+        }
 
-      // Override tokenizer when language `zh` is enabled.
-      if (language.includes("zh")) {
-        this.tokenizer = (lunr as any).zh.tokenizer;
-      }
+        // Override tokenizer when language `zh` is enabled.
+        if (language.includes("zh")) {
+          this.tokenizer = (lunr as any).zh.tokenizer;
+        }
 
-      this.ref("i");
-      this.field("t");
-      this.metadataWhitelist = ["position"];
+        this.ref("i");
+        this.field("t");
+        this.metadataWhitelist = ["position"];
 
-      documents.forEach((doc) => {
-        this.add({
-          ...doc,
-          // The ref must be a string.
-          i: doc.i.toString(),
+        documents.forEach((doc) => {
+          this.add({
+            ...doc,
+            // The ref must be a string.
+            i: doc.i.toString(),
+          });
         });
-      });
-    }),
-  }));
+      }),
+    }));
 }
