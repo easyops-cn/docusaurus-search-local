@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.1...v0.44.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* manually make the search bar be LTR even if in RTL ([a5c7184](https://github.com/easyops-cn/docusaurus-search-local/commit/a5c7184c77929410732df022ebb3257bdb491074))
+
 ## [0.44.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.0...v0.44.1) (2024-06-19)
 
 
