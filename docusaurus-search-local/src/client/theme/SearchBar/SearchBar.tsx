@@ -425,6 +425,8 @@ export default function SearchBar({
         [styles.focused]: focused,
       })}
       hidden={hidden}
+      // Manually make the search bar be LTR even if in RTL
+      dir="ltr"
     >
       <input
         placeholder={translate({
