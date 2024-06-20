@@ -250,6 +250,26 @@ html[data-theme="dark"] .noResultsIcon {
   }
 }
 
+/* Manually make the search bar be LTR even if in RTL */
+html[dir="rtl"] .searchHintContainer {
+  right: auto;
+  left: 10px;
+}
+
+html[dir="rtl"] .searchBarContainer .searchClearButton {
+  right: auto;
+  left: 0.8rem;
+}
+
+html[dir="rtl"] .searchBarContainer .searchBarLoadingRing {
+  left: auto;
+  right: 10px;
+}
+
+html[dir="rtl"] :global(.navbar__search-input) {
+  padding: 0 2.25em 0 0.5em;
+}
+
 /* For autocomplete.js only. */
 .input {
 }
