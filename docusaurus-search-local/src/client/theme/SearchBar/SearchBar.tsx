@@ -220,7 +220,7 @@ export default function SearchBar({
         }
         params.set("version", versionUrl.substring(baseUrl.length));
       }
-      const url = `${baseUrl}search?${params.toString()}`;
+      const url = `${baseUrl}search/?${params.toString()}`;
       a.href = url;
       a.textContent = linkText;
       a.addEventListener("click", (e) => {
