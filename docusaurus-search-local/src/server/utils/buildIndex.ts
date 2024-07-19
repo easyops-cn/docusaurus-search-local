@@ -1,10 +1,14 @@
 /* eslint @typescript-eslint/no-var-requires: 0 */
 import lunr from "lunr";
 import {
+  LunrWithMultiLanguage,
   ProcessedPluginOptions,
   SearchDocument,
   WrappedIndex,
 } from "../../shared/interfaces";
+
+let pluginInitialized = false;
+let plugin: lunr.Builder.Plugin | undefined;
 
 export function buildIndex(
   allDocuments: SearchDocument[][],
@@ -16,24 +20,33 @@ export function buildIndex(
     zhUserDictPath,
   }: ProcessedPluginOptions
 ): Omit<WrappedIndex, "type">[] {
-  if (language.length > 1 || language.some((item) => item !== "en")) {
-    require("lunr-languages/lunr.stemmer.support")(lunr);
-  }
-  if (language.includes("ja") || language.includes("jp")) {
-    require("lunr-languages/tinyseg")(lunr);
-  }
-  for (const lang of language.filter(
-    (item) => item !== "en" && item !== "zh"
-  )) {
-    require(`lunr-languages/lunr.${lang}`)(lunr);
-  }
-  if (language.includes("zh")) {
-    const { tokenizer, loadUserDict } = require("./tokenizer");
-    loadUserDict(zhUserDict, zhUserDictPath);
-    require("../../shared/lunrLanguageZh").lunrLanguageZh(lunr, tokenizer);
-  }
-  if (language.length > 1) {
-    require("lunr-languages/lunr.multi")(lunr);
+  if (!pluginInitialized) {
+    pluginInitialized = true;
+    if (language.length > 1 || language.some((item) => item !== "en")) {
+      require("lunr-languages/lunr.stemmer.support")(lunr);
+    }
+    if (language.includes("ja") || language.includes("jp")) {
+      require("lunr-languages/tinyseg")(lunr);
+    }
+    for (const lang of language.filter(
+      (item) => item !== "en" && item !== "zh"
+    )) {
+      require(`lunr-languages/lunr.${lang}`)(lunr);
+    }
+    if (language.includes("zh")) {
+      const { tokenizer, loadUserDict } = require("./tokenizer");
+      loadUserDict(zhUserDict, zhUserDictPath);
+      require("../../shared/lunrLanguageZh").lunrLanguageZh(lunr, tokenizer);
+    }
+    if (language.length > 1) {
+      require("lunr-languages/lunr.multi")(lunr);
+    }
+
+    if (language.length > 1) {
+      plugin = (lunr as LunrWithMultiLanguage).multiLanguage(...language);
+    } else if (language[0] !== "en") {
+      plugin = (lunr as LunrWithMultiLanguage)[language[0] as "zh"];
+    }
   }
 
   // Some documents may be empty (unset array item), which is not mapped.
@@ -43,10 +56,8 @@ export function buildIndex(
     .map((documents) => ({
       documents,
       index: lunr(function () {
-        if (language.length > 1) {
-          this.use((lunr as any).multiLanguage(...language));
-        } else if (language[0] !== "en") {
-          this.use((lunr as any)[language[0]]);
+        if (plugin) {
+          this.use(plugin);
         }
 
         if (removeDefaultStopWordFilter) {
