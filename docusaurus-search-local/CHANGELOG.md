@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.3...v0.44.4) (2024-07-19)
+
+
+### Bug Fixes
+
+* do not initialize lunr multiple times, fixes [#155](https://github.com/easyops-cn/docusaurus-search-local/issues/155) ([0b323d9](https://github.com/easyops-cn/docusaurus-search-local/commit/0b323d97fbc238692e68368582bce72908fd66b0))
+
 ## [0.44.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.2...v0.44.3) (2024-07-08)
 
 
