@@ -1,4 +1,8 @@
 import { matcherHint, printExpected, printReceived } from "jest-matcher-utils";
+import { TextEncoder, TextDecoder } from "node:util";
+import { ReadableStream } from "node:stream/web";
+
+Object.assign(global, { TextDecoder, TextEncoder, ReadableStream });
 
 const passMessage = (actual, expected) => () =>
   `${matcherHint(".not.toMatchPath")}
