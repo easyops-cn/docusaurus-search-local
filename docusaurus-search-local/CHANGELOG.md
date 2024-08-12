@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.44.5](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.4...v0.44.5) (2024-08-12)
+
+
+### Bug Fixes
+
+* update cheerio to 1.0.0, closes [#444](https://github.com/easyops-cn/docusaurus-search-local/issues/444) ([0d70f63](https://github.com/easyops-cn/docusaurus-search-local/commit/0d70f63cb170bac2b51461c0dd6f66a53dff4483))
+
 ## [0.44.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.3...v0.44.4) (2024-07-19)
 
 
