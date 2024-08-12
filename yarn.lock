@@ -14909,6 +14909,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.10.0"
     "@typescript-eslint/parser": "npm:^6.10.0"
     babel-jest: "npm:^28.1.0"
+    cheerio: "npm:^1.0.0"
     cross-env: "npm:^7.0.3"
     eslint: "npm:^8.15.0"
     eslint-config-prettier: "npm:^8.5.0"

@@ -24,7 +24,7 @@
   },
   "overrides": [
     {
-      "files": ["*.config.js", "__jest__/**/*.js"],
+      "files": ["jestSetup.js", "*.config.js", "__jest__/**/*.js"],
       "env": {
         "node": true,
         "browser": false
