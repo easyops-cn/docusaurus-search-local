@@ -5,10 +5,10 @@ import { getCondensedText } from "./getCondensedText";
 const HEADINGS = "h1, h2, h3";
 // const SUB_HEADINGS = "h2, h3";
 
-export function parseDocument($: cheerio.Root): ParsedDocument {
-  const $pageTitle = $("article h1").first();
-  const pageTitle = $pageTitle.text();
-  const description = $("meta[name='description']").attr("content") || "";
+export function parseDocument($: cheerio.Root, frontmatter: any): ParsedDocument {
+  const $pageTitle = $("h1").first();
+  const pageTitle = frontmatter.title ?? $pageTitle.text();
+  const description = frontmatter.description ?? ($("p").first().text() || "");
   const keywords = $("meta[name='keywords']").attr("content") || "";
 
   const sections: ParsedDocumentSection[] = [];
@@ -31,15 +31,13 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
     });
   }
 
-  $("article")
-    .find(HEADINGS)
-    .each((_, element) => {
+  $('h2').each((_, element) => {
       const $h = $(element);
       // Remove elements that are marked as aria-hidden.
       // This is mainly done to remove anchors like this:
       // <a aria-hidden="true" tabindex="-1" class="hash-link" href="#first-subheader" title="Direct link to heading">#</a>
-      const title = $h.contents().not("a.hash-link").text().trim();
-      const hash = $h.find("a.hash-link").attr("href") || "";
+      const title = $h.text().trim();
+      const hash = "";
 
       // Find all content between h1 and h2/h3,
       // which is considered as the content section of page title.

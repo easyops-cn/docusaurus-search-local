@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
 import util from "util";
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
+import * as cheerio from 'cheerio';
+import matter from 'gray-matter';
+
 import {
   DocInfoWithFilePath,
   SearchDocument,
@@ -32,7 +37,7 @@ export async function scanDocuments(
     keywordsDocuments,
     contentDocuments,
   ];
-
+  const errorFiles: string[] = [];
   await Promise.all(
     DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
       debugVerbose(
@@ -41,79 +46,105 @@ export async function scanDocuments(
         path.relative(process.cwd(), filePath),
         url
       );
-
-      const html = await readFileAsync(filePath, { encoding: "utf8" });
-
-      const parsed = parse(html, type, url, config);
-      if (!parsed) {
-        // Unlisted content
-        return;
+      let newfilePath = path.join('./docs', path.relative(process.cwd(), filePath).replace('build/', ''))
+      // remove index.html from the end of the url
+      if (newfilePath.endsWith(".html")) {
+        if (newfilePath.endsWith("index.html")) {
+          newfilePath = newfilePath.slice(0, -11);
+        } else {
+          newfilePath = newfilePath.slice(0, -5);
+        }
+        newfilePath = newfilePath + ".md";
       }
-      const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
+      if (!fs.existsSync(newfilePath)) {
+        newfilePath = newfilePath + "x";
+      }
+      if (!fs.existsSync(newfilePath)) {
+        newfilePath = newfilePath.replace('.mdx', '/index.md');
+      }
+      try {
+        const html = await readFileAsync(newfilePath, { encoding: "utf8" });
+        const { data: frontmatter, content: markdownContent } = matter(html)
+        const processedContent = await remark().use(remarkHtml).process(markdownContent);
 
-      const titleId = getNextDocId();
+        const htmlContent = processedContent.toString();
 
-      titleDocuments.push({
-        i: titleId,
-        t: pageTitle,
-        u: url,
-        b: breadcrumb,
-      });
+        const parsed = parse(htmlContent, type, url, config, frontmatter);
+        console.log('parsed', parsed)
+        if (!parsed) {
+          // Unlisted content
+          return;
+        }
+        const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
 
-      if (description) {
-        descriptionDocuments.push({
+        const titleId = getNextDocId();
+
+        titleDocuments.push({
           i: titleId,
-          t: description,
-          s: pageTitle,
+          t: pageTitle,
           u: url,
-          p: titleId,
+          b: breadcrumb,
         });
-      }
 
-      if (keywords) {
-        keywordsDocuments.push({
-          i: titleId,
-          t: keywords,
-          s: pageTitle,
-          u: url,
-          p: titleId,
-        });
-      }
-
-      for (const section of sections) {
-        const trimmedHash = getTrimmedHash(section.hash, url);
-
-        if (section.title !== pageTitle) {
-          if (trimmedHash === false) {
-            continue;
-          }
-
-          headingDocuments.push({
-            i: getNextDocId(),
-            t: section.title,
+        if (description) {
+          descriptionDocuments.push({
+            i: titleId,
+            t: description,
+            s: pageTitle,
             u: url,
-            h: trimmedHash,
             p: titleId,
           });
         }
 
-        if (section.content) {
-          if (trimmedHash === false) {
-            continue;
-          }
-
-          contentDocuments.push({
-            i: getNextDocId(),
-            t: section.content,
-            s: section.title || pageTitle,
+        if (keywords) {
+          keywordsDocuments.push({
+            i: titleId,
+            t: keywords,
+            s: pageTitle,
             u: url,
-            h: trimmedHash,
             p: titleId,
           });
         }
+
+        for (const section of sections) {
+          const trimmedHash = getTrimmedHash(section.hash, url);
+
+          if (section.title !== pageTitle) {
+            if (trimmedHash === false) {
+              continue;
+            }
+
+            headingDocuments.push({
+              i: getNextDocId(),
+              t: section.title,
+              u: url,
+              h: trimmedHash,
+              p: titleId,
+            });
+          }
+
+          if (section.content) {
+            if (trimmedHash === false) {
+              continue;
+            }
+
+            contentDocuments.push({
+              i: getNextDocId(),
+              t: section.content,
+              s: section.title || pageTitle,
+              u: url,
+              h: trimmedHash,
+              p: titleId,
+            });
+          }
+        }
+      } catch (e) {
+        errorFiles.push(newfilePath);
+        // console.error(`Failed to parse ${type} file ${filePath}`, e);
       }
     })
   );
+  console.log('errorFiles', errorFiles.length, errorFiles)
   return allDocuments;
 }
 

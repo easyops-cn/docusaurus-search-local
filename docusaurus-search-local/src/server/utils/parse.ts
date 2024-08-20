@@ -10,7 +10,8 @@ export function parse(
   html: string,
   type: "docs" | "blog" | "page",
   url: string,
-  { ignoreCssSelectors, forceIgnoreNoIndex }: ProcessedPluginOptions
+  { ignoreCssSelectors, forceIgnoreNoIndex }: ProcessedPluginOptions,
+  frontmatter: any
 ): ParsedDocument | null {
   const $ = cheerio.load(html);
 
@@ -21,7 +22,7 @@ export function parse(
   }
 
   // Remove copy buttons from code boxes
-  $('div[class^="mdxCodeBlock_"] button').remove();
+  $('code').remove();
 
   if (ignoreCssSelectors) {
     for (const ignoreSelector of ignoreCssSelectors) {
@@ -31,14 +32,14 @@ export function parse(
 
   if (type === "docs") {
     // Remove version badges
-    $("span.badge")
-      .filter((_, element) => $(element).text().startsWith("Version:"))
-      .remove();
+    // $("span.badge")
+    //   .filter((_, element) => $(element).text().startsWith("Version:"))
+    //   .remove();
   }
 
   if (type === "page") {
     return parsePage($, url);
   }
 
-  return parseDocument($);
+  return parseDocument($, frontmatter);
 }
