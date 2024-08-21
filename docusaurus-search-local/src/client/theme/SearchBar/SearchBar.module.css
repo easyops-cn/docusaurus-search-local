@@ -188,6 +188,7 @@ html[data-theme="dark"] .noResultsIcon {
 
 .suggestion.cursor mark {
   text-decoration: underline;
+  color: var(--search-local-hit-highlight-color) !important;
 }
 
 .searchBarContainer {

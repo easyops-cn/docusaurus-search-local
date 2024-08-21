@@ -56,16 +56,20 @@ const SEARCH_PARAM_HIGHLIGHT = "_highlight";
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
   handleSearchBarToggle?: (expanded: boolean) => void;
+  checkDocsAuthorization?: (docURL: string) => boolean
 }
 
-export default function SearchBar({
-  handleSearchBarToggle,
-}: SearchBarProps): ReactElement {
+export default function SearchBar(props: SearchBarProps): ReactElement {
   const isBrowser = useIsBrowser();
+
+  const {handleSearchBarToggle, checkDocsAuthorization} = props;
+
   const {
-    siteConfig: { baseUrl },
+    siteConfig,
     i18n: { currentLocale },
   } = useDocusaurusContext();
+
+  const { baseUrl} = siteConfig;
 
   // It returns undefined for non-docs pages
   const activePlugin = useActivePlugin();
@@ -259,7 +263,8 @@ export default function SearchBar({
           source: SearchSourceFactory(
             wrappedIndexes,
             zhDictionary,
-            searchResultLimits
+            searchResultLimits,
+            checkDocsAuthorization
           ),
           templates: {
             suggestion: SuggestionTemplate,
@@ -314,7 +319,7 @@ export default function SearchBar({
       }
       input.focus();
     }
-  }, [hidden, searchContext, versionUrl, baseUrl, history]);
+  }, [hidden, searchContext, versionUrl, baseUrl, history, checkDocsAuthorization]);
 
   useEffect(() => {
     if (!Mark) {

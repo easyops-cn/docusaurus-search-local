@@ -15,7 +15,8 @@ import { language } from "./proxiedGenerated";
 export function SearchSourceFactory(
   wrappedIndexes: WrappedIndex[],
   zhDictionary: string[],
-  resultsLimit: number
+  resultsLimit: number,
+  checkDocsAuthorization?: Function
 ) {
   return function searchSource(
     input: string,
@@ -79,6 +80,11 @@ export function SearchSourceFactory(
 
     processTreeStatusOfSearchResults(results);
 
-    callback(results as SearchResult[]);
+    // filtering documents
+    const filteredDocumentsResult = results.filter(result => {
+      return checkDocsAuthorization?.(result.document.u);
+    });
+
+    callback(filteredDocumentsResult as SearchResult[]);
   };
 }
