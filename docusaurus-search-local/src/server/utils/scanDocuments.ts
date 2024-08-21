@@ -21,6 +21,51 @@ const getNextDocId = () => {
   return (nextDocId += 1);
 };
 
+function resolveFilePath(filePath: string): string | null {
+  const dir = path.dirname(filePath);
+  const baseName = path.basename(filePath, path.extname(filePath));
+
+  try {
+      // Recursively search for a matching file
+      const resolvedPath = recursiveSearch(dir, baseName);
+      return resolvedPath ? resolvedPath : null;
+  } catch (err: any) {
+      // Handle errors, such as directory not found
+      if (err.code === 'ENOENT') {
+          console.error(`Error: Directory not found - ${dir}`);
+      } else {
+          console.error(`Error reading directory: ${err.message}`);
+      }
+      return null;
+  }
+}
+
+function recursiveSearch(currentDir: string, baseName: string): string | null {
+  const files = fs.readdirSync(currentDir);
+
+  // Regular expression to match files with an optional prefix followed by the base name
+  const regex = new RegExp(`(^\\d+-)?${baseName}`);
+
+  for (const file of files) {
+      const fullPath = path.join(currentDir, file);
+      const stat = fs.statSync(fullPath);
+
+      if (stat.isDirectory()) {
+          // If the file is a directory, recurse into it
+          const result = recursiveSearch(fullPath, baseName);
+          if (result) {
+              return result;
+          }
+      } else if (regex.test(file)) {
+          // If a matching file is found, return the full path
+          return fullPath;
+      }
+  }
+
+  // If no match is found in this directory or its subdirectories
+  return null;
+}
+
 export async function scanDocuments(
   DocInfoWithFilePathList: DocInfoWithFilePath[],
   config: ProcessedPluginOptions
@@ -38,6 +83,8 @@ export async function scanDocuments(
     contentDocuments,
   ];
   const errorFiles: string[] = [];
+  const unResolvedFiles: string[] = [];
+  let successfullyParsedFilesCount: number = 0;
   await Promise.all(
     DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
       debugVerbose(
@@ -47,34 +94,24 @@ export async function scanDocuments(
         url
       );
       let newfilePath = path.join('./docs', path.relative(process.cwd(), filePath).replace('build/', ''))
-      // remove index.html from the end of the url
-      if (newfilePath.endsWith(".html")) {
-        if (newfilePath.endsWith("index.html")) {
-          newfilePath = newfilePath.slice(0, -11);
-        } else {
-          newfilePath = newfilePath.slice(0, -5);
-        }
-        newfilePath = newfilePath + ".md";
-      }
-      if (!fs.existsSync(newfilePath)) {
-        newfilePath = newfilePath + "x";
-      }
-      if (!fs.existsSync(newfilePath)) {
-        newfilePath = newfilePath.replace('.mdx', '/index.md');
+      const resolvedFilePath = resolveFilePath(newfilePath);
+      if (!resolvedFilePath) {
+        unResolvedFiles.push(newfilePath);
+        return;
       }
       try {
-        const html = await readFileAsync(newfilePath, { encoding: "utf8" });
+        const html = await readFileAsync(resolvedFilePath, { encoding: "utf8" });
         const { data: frontmatter, content: markdownContent } = matter(html)
         const processedContent = await remark().use(remarkHtml).process(markdownContent);
 
         const htmlContent = processedContent.toString();
 
         const parsed = parse(htmlContent, type, url, config, frontmatter);
-        console.log('parsed', parsed)
         if (!parsed) {
           // Unlisted content
           return;
         }
+        successfullyParsedFilesCount += 1;
         const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
 
         const titleId = getNextDocId();
@@ -139,12 +176,12 @@ export async function scanDocuments(
           }
         }
       } catch (e) {
-        errorFiles.push(newfilePath);
+        errorFiles.push(resolvedFilePath);
         // console.error(`Failed to parse ${type} file ${filePath}`, e);
       }
     })
   );
-  console.log('errorFiles', errorFiles.length, errorFiles)
+  console.log('errorFiles', errorFiles, unResolvedFiles, successfullyParsedFilesCount)
   return allDocuments;
 }
 
