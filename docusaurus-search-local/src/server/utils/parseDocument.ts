@@ -2,7 +2,8 @@ import { blogPostContainerID } from "@docusaurus/utils-common";
 import { ParsedDocument, ParsedDocumentSection } from "../../shared/interfaces";
 import { getCondensedText } from "./getCondensedText";
 
-const HEADINGS = "h1, h2, h3";
+const HEADINGS_ARR = ["h2", "h3"];
+const HEADINGS = "h1 h2, h3";
 // const SUB_HEADINGS = "h2, h3";
 
 export function parseDocument($: cheerio.Root, frontmatter: any): ParsedDocument {
@@ -30,14 +31,16 @@ export function parseDocument($: cheerio.Root, frontmatter: any): ParsedDocument
       breadcrumb.push($(element).text().trim());
     });
   }
-
-  $('h2').each((_, element) => {
+  HEADINGS_ARR.forEach((heading) => {
+    $(heading).each((_, element) => {
       const $h = $(element);
       // Remove elements that are marked as aria-hidden.
       // This is mainly done to remove anchors like this:
       // <a aria-hidden="true" tabindex="-1" class="hash-link" href="#first-subheader" title="Direct link to heading">#</a>
       const title = $h.text().trim();
-      const hash = "";
+      // replace all '`' with '' to avoid breaking the search index
+      const sanitizedTitle = title.replace(/`/g, '');
+      const hash = `#${sanitizedTitle.toLocaleLowerCase().split(' ').join('-')}`;
 
       // Find all content between h1 and h2/h3,
       // which is considered as the content section of page title.
@@ -85,6 +88,7 @@ export function parseDocument($: cheerio.Root, frontmatter: any): ParsedDocument
         content,
       });
     });
+  })
 
   return { pageTitle, description, keywords, sections, breadcrumb };
 }
