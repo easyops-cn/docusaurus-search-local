@@ -39,7 +39,7 @@ export function parseDocument($: cheerio.Root, frontmatter: any): ParsedDocument
       // <a aria-hidden="true" tabindex="-1" class="hash-link" href="#first-subheader" title="Direct link to heading">#</a>
       const title = $h.text().trim();
       // replace all '`' with '' to avoid breaking the search index
-      const sanitizedTitle = title.replace(/`/g, '');
+      const sanitizedTitle = title.replace(/`|\?/g, '');
       const hash = `#${sanitizedTitle.toLocaleLowerCase().split(' ').join('-')}`;
 
       // Find all content between h1 and h2/h3,
