@@ -159,10 +159,6 @@ export async function scanDocuments(
         successfullyParsedFilesCount += 1;
         const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
 
-        if (sections.length) {
-          console.log(parsed)
-        }
-
         const titleId = getNextDocId();
 
         titleDocuments.push({
