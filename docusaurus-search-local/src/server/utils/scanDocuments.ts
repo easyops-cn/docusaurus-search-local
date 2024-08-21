@@ -21,11 +21,41 @@ const getNextDocId = () => {
   return (nextDocId += 1);
 };
 
+function removeExtension(filePath: string): string {
+  const dir = path.dirname(filePath);  // Get the directory path
+  const baseName = path.basename(filePath, path.extname(filePath)); // Get the base name without the extension
+  return path.join(dir, baseName); // Join the directory path with the base name
+}
+
+function checkForIndexFile(dirPath: string): string | null {
+  try {
+      const stat = fs.statSync(dirPath);
+      if (stat.isDirectory()) {
+          const files = fs.readdirSync(dirPath);
+          for (const file of files) {
+              if (file.startsWith('index')) {
+                  return path.join(dirPath, file);
+              }
+          }
+      }
+  } catch (err: any) {
+      // Handle errors, such as directory not found
+      if (err.code !== 'ENOENT') {
+          console.error(`Error checking for index file: ${err.message}`);
+      }
+  }
+  return null;
+}
+
 function resolveFilePath(filePath: string): string | null {
   const dir = path.dirname(filePath);
   const baseName = path.basename(filePath, path.extname(filePath));
 
   try {
+      const indexFilePath = checkForIndexFile(removeExtension(filePath));
+      if (indexFilePath) {
+          return indexFilePath;
+      }
       // Recursively search for a matching file
       const resolvedPath = recursiveSearch(dir, baseName);
       return resolvedPath ? resolvedPath : null;
