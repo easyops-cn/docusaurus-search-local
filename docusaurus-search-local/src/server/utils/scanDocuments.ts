@@ -21,12 +21,6 @@ const getNextDocId = () => {
   return (nextDocId += 1);
 };
 
-function removeExtension(filePath: string): string {
-  const dir = path.dirname(filePath);  // Get the directory path
-  const baseName = path.basename(filePath, path.extname(filePath)); // Get the base name without the extension
-  return path.join(dir, baseName); // Join the directory path with the base name
-}
-
 function checkForIndexFile(dirPath: string): string | null {
   try {
       const stat = fs.statSync(dirPath);
@@ -50,14 +44,17 @@ function checkForIndexFile(dirPath: string): string | null {
 function resolveFilePath(filePath: string): string | null {
   const dir = path.dirname(filePath);
   const baseName = path.basename(filePath, path.extname(filePath));
+  const pathWithoutExtension = path.join(dir, baseName);
 
   try {
-      const indexFilePath = checkForIndexFile(removeExtension(filePath));
+      const indexFilePath = checkForIndexFile(pathWithoutExtension);
       if (indexFilePath) {
           return indexFilePath;
       }
+      const itemsInThePath = pathWithoutExtension.split(path.sep);
       // Recursively search for a matching file
-      const resolvedPath = recursiveSearch(dir, baseName);
+      const baseName = itemsInThePath.shift();
+      const resolvedPath = recursiveSearch(itemsInThePath, baseName ?? '');
       return resolvedPath ? resolvedPath : null;
   } catch (err: any) {
       // Handle errors, such as directory not found
@@ -70,25 +67,43 @@ function resolveFilePath(filePath: string): string | null {
   }
 }
 
-function recursiveSearch(currentDir: string, baseName: string): string | null {
-  const files = fs.readdirSync(currentDir);
+function recursiveSearch(itemsInThePath: string[], pathStr: string): string | null {
+  // this function takes an array of items in the path and recursively searches for a matching file
+  // get the first item from itemsInThePath
+  const baseName = itemsInThePath.shift();
+  if (!baseName) {
+      return null;
+  }
+  const files = fs.readdirSync(pathStr);
 
   // Regular expression to match files with an optional prefix followed by the base name
   const regex = new RegExp(`(^\\d+-)?${baseName}`);
 
   for (const file of files) {
-      const fullPath = path.join(currentDir, file);
-      const stat = fs.statSync(fullPath);
-
-      if (stat.isDirectory()) {
-          // If the file is a directory, recurse into it
-          const result = recursiveSearch(fullPath, baseName);
-          if (result) {
-              return result;
+      // ignore temp files and files started with '.'
+      if (file.startsWith('.') || file.endsWith('~')) {
+        continue;
+      }
+      const fullPath = path.join(pathStr, file);
+      try {
+        const stat = fs.statSync(fullPath);
+        if (regex.test(file) && itemsInThePath.length > 0) {
+            const result = recursiveSearch(itemsInThePath, fullPath);
+            if (result) {
+                return result;
+            }
+        } else if (regex.test(file) && itemsInThePath.length === 0) {
+            // If the file is a directory, check for an index file
+            const indexFilePath = checkForIndexFile(fullPath)
+            return indexFilePath ? indexFilePath : fullPath;
+        }
+      } catch (err: any) {
+          // Handle errors, such as directory not found
+          if (err.code === 'ENOENT') {
+              console.error(`Error: Directory not found [recursiveSearch] - ${fullPath}`);
+          } else {
+              console.error(`Error reading directory: ${err.message}`);
           }
-      } else if (regex.test(file)) {
-          // If a matching file is found, return the full path
-          return fullPath;
       }
   }
 
@@ -211,7 +226,8 @@ export async function scanDocuments(
       }
     })
   );
-  console.log('errorFiles', errorFiles, unResolvedFiles, successfullyParsedFilesCount)
+  console.log('Total files', DocInfoWithFilePathList.length)
+  console.log('Successfully parsed files', successfullyParsedFilesCount)
   return allDocuments;
 }
 
