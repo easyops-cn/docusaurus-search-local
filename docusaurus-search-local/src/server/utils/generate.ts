@@ -50,7 +50,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
   }
   if (language.includes("zh")) {
     contents.push(
-      'require("@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh").lunrLanguageZh(lunr);'
+      `require(${JSON.stringify(
+        require.resolve(
+          "@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh"
+        )
+      )}).lunrLanguageZh(lunr);`
     );
   }
   if (language.length > 1) {
