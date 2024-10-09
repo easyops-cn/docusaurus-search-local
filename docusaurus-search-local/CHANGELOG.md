@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.45.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.6...v0.45.0) (2024-10-09)
+
+
+### Features
+
+* fix a perf issue when searching with a large number of Chinese words ([abe720c](https://github.com/easyops-cn/docusaurus-search-local/commit/abe720cd3d521122e3aaa8b2d8ba7d0967fe046d)), closes [#312](https://github.com/easyops-cn/docusaurus-search-local/issues/312)
+
+
+### Bug Fixes
+
+* fix a perf issue that cut zh words unnecessary repeatedly ([870dc88](https://github.com/easyops-cn/docusaurus-search-local/commit/870dc887f85ded4cbf000c2480e9e92c6fa0cad6))
+* limit the number of terms, closes [#312](https://github.com/easyops-cn/docusaurus-search-local/issues/312) ([c889047](https://github.com/easyops-cn/docusaurus-search-local/commit/c8890479914e89f7dea075f5f191bbc76e99d249))
+
 ## [0.44.6](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.5...v0.44.6) (2024-10-08)
 
 
