@@ -14,29 +14,26 @@ export function smartTerms(
   tokens: string[],
   zhDictionary: string[]
 ): SmartTerm[] {
-  const terms: SmartTerm[] = [];
+  const tokenTerms = tokens.map((token) => {
+    if (/\p{Unified_Ideograph}/u.test(token)) {
+      return cutZhWords(token, zhDictionary);
+    } else {
+      return [{ value: token }];
+    }
+  });
 
-  function cutMixedWords(subTokens: string[], carry: SmartTerm): void {
-    if (subTokens.length === 0) {
+  // Get all possible combinations of terms.
+  const terms: SmartTerm[] = [];
+  function combine(index: number, carry: SmartTerm): void {
+    if (index === tokenTerms.length) {
       terms.push(carry);
       return;
     }
-    const token = subTokens[0];
-    if (/\p{Unified_Ideograph}/u.test(token)) {
-      const terms = cutZhWords(token, zhDictionary);
-      for (const term of terms) {
-        const nextCarry = carry.concat(...term);
-        cutMixedWords(subTokens.slice(1), nextCarry);
-      }
-    } else {
-      const nextCarry = carry.concat({
-        value: token,
-      });
-      cutMixedWords(subTokens.slice(1), nextCarry);
+    for (const term of tokenTerms[index]) {
+      combine(index + 1, carry.concat(term));
     }
   }
-
-  cutMixedWords(tokens, []);
+  combine(0, []);
 
   return terms;
 }
