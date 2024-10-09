@@ -81,17 +81,6 @@ export function smartQueries(
     refinedTerms = terms.slice();
   }
 
-  const MAX_TERMS = 10;
-  if (refinedTerms.length > MAX_TERMS) {
-    // Sort terms by length in ascending order.,
-    // And keep the top 10 terms.
-    refinedTerms.sort((a, b) => a.length - b.length);
-    refinedTerms.splice(MAX_TERMS, refinedTerms.length - MAX_TERMS);
-
-    terms.sort((a, b) => a.length - b.length);
-    terms.splice(MAX_TERMS, terms.length - MAX_TERMS);
-  }
-
   // Also try to add extra terms which miss one of the searched tokens,
   // when the term contains 3 or more tokens,
   // to improve the search precision.
