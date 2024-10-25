@@ -1,6 +1,10 @@
 const buildType = process.env.BUILD_TYPE;
 
 module.exports = {
+  future: {
+    experimental_faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
+  },
+
   title: "Docusaurus Search",
   tagline:
     "An offline/local search example using @easyops-cn/docusaurus-search-local",
