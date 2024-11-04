@@ -2,7 +2,14 @@ const buildType = process.env.BUILD_TYPE;
 
 module.exports = {
   future: {
-    experimental_faster: true,
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: false,
+      mdxCrossCompilerCache: true,
+    },
   },
 
   title: "Docusaurus Search",
