@@ -2,7 +2,7 @@ const buildType = process.env.BUILD_TYPE;
 
 module.exports = {
   future: {
-    experimental_faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
+    experimental_faster: true,
   },
 
   title: "Docusaurus Search",

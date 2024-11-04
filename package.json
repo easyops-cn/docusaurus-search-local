@@ -47,12 +47,12 @@
   ],
   "packageManager": "yarn@4.0.1",
   "resolutions": {
-    "@docusaurus/core": "3.5.2-canary-6122",
-    "@docusaurus/module-type-aliases": "3.5.2-canary-6122",
-    "@docusaurus/preset-classic": "3.5.2-canary-6122",
-    "@docusaurus/theme-classic": "3.5.2-canary-6122",
-    "@docusaurus/theme-common": "3.5.2-canary-6122",
-    "@docusaurus/plugin-content-docs": "3.5.2-canary-6122",
+    "@docusaurus/core": "3.6.0",
+    "@docusaurus/module-type-aliases": "3.6.0",
+    "@docusaurus/preset-classic": "3.6.0",
+    "@docusaurus/theme-classic": "3.6.0",
+    "@docusaurus/theme-common": "3.6.0",
+    "@docusaurus/plugin-content-docs": "3.6.0",
     "@types/react": "18.2.37"
   },
   "engines": {
