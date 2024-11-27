@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.46.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.45.0...v0.46.0) (2024-11-27)
+
+
+### Features
+
+* move search to Web Worker ([15b7fba](https://github.com/easyops-cn/docusaurus-search-local/commit/15b7fba2537d12eb1674611948e363723dcedae4))
+
 ## [0.45.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.6...v0.45.0) (2024-10-09)
 
 
