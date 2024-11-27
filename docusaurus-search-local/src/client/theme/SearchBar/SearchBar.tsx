@@ -16,13 +16,11 @@ import {
 } from "@docusaurus/theme-common";
 import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
-import { fetchIndexes } from "./fetchIndexes";
-import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
+import { fetchIndexesByWorker, searchByWorker } from "../searchByWorker";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
 import {
-  searchResultLimits,
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
@@ -149,9 +147,9 @@ export default function SearchBar({
     search.current?.autocomplete.destroy();
     setLoading(true);
 
-    const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
-      fetchIndexes(versionUrl, searchContext),
+    const [autoComplete] = await Promise.all([
       fetchAutoCompleteJS(),
+      fetchIndexesByWorker(versionUrl, searchContext),
     ]);
 
     const searchFooterLinkElement = ({
@@ -256,11 +254,17 @@ export default function SearchBar({
       },
       [
         {
-          source: SearchSourceFactory(
-            wrappedIndexes,
-            zhDictionary,
-            searchResultLimits
-          ),
+          source: async (
+            input: string,
+            callback: (output: SearchResult[]) => void
+          ) => {
+            const result = await searchByWorker(
+              versionUrl,
+              searchContext,
+              input
+            );
+            callback(result);
+          },
           templates: {
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
