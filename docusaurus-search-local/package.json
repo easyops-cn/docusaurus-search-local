@@ -39,6 +39,7 @@
     "@node-rs/jieba": "^1.6.0",
     "cheerio": "^1.0.0",
     "clsx": "^1.1.1",
+    "comlink": "^4.4.2",
     "debug": "^4.2.0",
     "fs-extra": "^10.0.0",
     "klaw-sync": "^6.0.0",
