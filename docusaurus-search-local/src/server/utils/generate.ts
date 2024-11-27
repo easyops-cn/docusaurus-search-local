@@ -22,54 +22,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     useAllContextsWithNoSearchContext,
   } = config;
   const indexHash = getIndexHash(config);
-  const contents: string[] = [
-    `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
-  ];
-  if (language.length > 1 || language.some((item) => item !== "en")) {
-    contents.push(
-      `require(${JSON.stringify(
-        require.resolve("lunr-languages/lunr.stemmer.support")
-      )})(lunr);`
-    );
-  }
-  if (language.includes("ja") || language.includes("jp")) {
-    contents.push(
-      `require(${JSON.stringify(
-        require.resolve("lunr-languages/tinyseg")
-      )})(lunr);`
-    );
-  }
-  for (const lang of language.filter(
-    (item) => item !== "en" && item !== "zh"
-  )) {
-    contents.push(
-      `require(${JSON.stringify(
-        require.resolve(`lunr-languages/lunr.${lang}`)
-      )})(lunr);`
-    );
-  }
-  if (language.includes("zh")) {
-    contents.push(
-      `require(${JSON.stringify(
-        require.resolve(
-          "@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh"
-        )
-      )}).lunrLanguageZh(lunr);`
-    );
-  }
-  if (language.length > 1) {
-    contents.push(
-      `require(${JSON.stringify(
-        require.resolve("lunr-languages/lunr.multi")
-      )})(lunr);`
-    );
-  }
-  contents.push(`export const language = ${JSON.stringify(language)};`);
-  contents.push(
-    `export const removeDefaultStopWordFilter = ${JSON.stringify(
-      removeDefaultStopWordFilter
-    )};`
-  );
+  const contents: string[] = [];
   contents.push(
     `export const removeDefaultStemmer = ${JSON.stringify(
       removeDefaultStemmer
@@ -95,12 +48,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       searchIndexQuery = `?_=${indexHash}`;
     }
   }
-  const searchIndexUrl = searchIndexFilename + searchIndexQuery;
   contents.push(
-    `export const searchIndexUrl = ${JSON.stringify(searchIndexUrl)};`
-  );
-  contents.push(
-    `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
     `export const searchResultContextMaxLength = ${JSON.stringify(
       searchResultContextMaxLength
     )};`
@@ -147,6 +95,61 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     )};`
   );
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
+
+  const constantContents: string[] = [
+    `import lunr from ${JSON.stringify(require.resolve("lunr"))};`,
+  ];
+  if (language.length > 1 || language.some((item) => item !== "en")) {
+    constantContents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/lunr.stemmer.support")
+      )})(lunr);`
+    );
+  }
+  if (language.includes("ja") || language.includes("jp")) {
+    constantContents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/tinyseg")
+      )})(lunr);`
+    );
+  }
+  for (const lang of language.filter(
+    (item) => item !== "en" && item !== "zh"
+  )) {
+    constantContents.push(
+      `require(${JSON.stringify(
+        require.resolve(`lunr-languages/lunr.${lang}`)
+      )})(lunr);`
+    );
+  }
+  if (language.includes("zh")) {
+    constantContents.push(
+      `require(${JSON.stringify(
+        require.resolve(
+          "@easyops-cn/docusaurus-search-local/dist/client/shared/lunrLanguageZh"
+        )
+      )}).lunrLanguageZh(lunr);`
+    );
+  }
+  if (language.length > 1) {
+    constantContents.push(
+      `require(${JSON.stringify(
+        require.resolve("lunr-languages/lunr.multi")
+      )})(lunr);`
+    );
+  }
+  constantContents.push(
+    `export const removeDefaultStopWordFilter = ${JSON.stringify(
+      removeDefaultStopWordFilter
+    )};`
+  );
+  constantContents.push(`export const language = ${JSON.stringify(language)};`);
+  const searchIndexUrl = searchIndexFilename + searchIndexQuery;
+  constantContents.push(
+    `export const searchIndexUrl = ${JSON.stringify(searchIndexUrl)};`,
+    `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
+  );
+  fs.writeFileSync(path.join(dir, "generated-constants.js"), constantContents.join("\n"));
 
   return searchIndexFilename;
 }

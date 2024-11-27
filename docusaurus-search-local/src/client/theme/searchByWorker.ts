@@ -13,7 +13,7 @@ interface RemoteWorker {
 let remoteWorkerPromise: Promise<RemoteWorker> | undefined;
 
 function getRemoteWorker() {
-  if (!remoteWorkerPromise) {
+  if (process.env.NODE_ENV === "production" && !remoteWorkerPromise) {
     remoteWorkerPromise = (async () => {
       const Remote = Comlink.wrap(
         new Worker(new URL("./worker.js", import.meta.url))

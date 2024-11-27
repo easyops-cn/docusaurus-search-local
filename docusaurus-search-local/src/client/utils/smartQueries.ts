@@ -1,7 +1,7 @@
 import lunr from "lunr";
 import { SmartQuery, SmartTerm } from "../../shared/interfaces";
 import { smartTerms } from "./smartTerms";
-import { language, removeDefaultStopWordFilter } from "./proxiedGenerated";
+import { language, removeDefaultStopWordFilter } from "./proxiedGeneratedConstants";
 
 /**
  * Get all possible queries for a list of tokens consists of words mixed English and Chinese,

@@ -1,6 +1,6 @@
 import * as Comlink from "comlink";
 import lunr from "lunr";
-import { searchIndexUrl, searchResultLimits } from "../utils/proxiedGenerated";
+import { searchIndexUrl, searchResultLimits, language } from "../utils/proxiedGeneratedConstants";
 import { tokenize } from "../utils/tokenize";
 import { smartQueries } from "../utils/smartQueries";
 import {
@@ -13,7 +13,6 @@ import {
 } from "../../shared/interfaces";
 import { sortSearchResults } from "../utils/sortSearchResults";
 import { processTreeStatusOfSearchResults } from "../utils/processTreeStatusOfSearchResults";
-import { language } from "../utils/proxiedGenerated";
 
 interface SerializedIndex {
   documents: SearchDocument[];
