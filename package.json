@@ -47,15 +47,15 @@
   ],
   "packageManager": "yarn@4.0.1",
   "resolutions": {
-    "@docusaurus/core": "3.0.0",
-    "@docusaurus/module-type-aliases": "3.0.0",
-    "@docusaurus/preset-classic": "3.0.0",
-    "@docusaurus/theme-classic": "3.0.0",
-    "@docusaurus/theme-common": "3.0.0",
-    "@docusaurus/plugin-content-docs": "3.0.0",
-    "@types/react": "18.2.37"
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/theme-classic": "3.7.0",
+    "@docusaurus/theme-common": "3.7.0",
+    "@docusaurus/plugin-content-docs": "3.7.0",
+    "@types/react": "19.0.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }

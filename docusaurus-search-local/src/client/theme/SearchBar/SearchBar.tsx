@@ -80,7 +80,7 @@ export default function SearchBar({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { preferredVersion } = useDocsPreferredVersion(
       activePlugin?.pluginId ?? docsPluginIdForPreferredVersion
-    );
+    ) as { preferredVersion: { path: string; isLast: boolean } };
     if (preferredVersion && !preferredVersion.isLast) {
       versionUrl = preferredVersion.path + "/";
     }
