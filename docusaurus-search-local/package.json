@@ -38,7 +38,7 @@
     "@easyops-cn/autocomplete.js": "^0.38.1",
     "@node-rs/jieba": "^1.6.0",
     "cheerio": "^1.0.0",
-    "clsx": "^1.1.1",
+    "clsx": "^2.1.1",
     "comlink": "^4.4.2",
     "debug": "^4.2.0",
     "fs-extra": "^10.0.0",
@@ -60,8 +60,8 @@
     "@types/klaw-sync": "^6.0.0",
     "@types/lunr": "^2.3.3",
     "@types/node": "^18.0.0",
-    "@types/react": "^18.2.37",
-    "@types/react-helmet": "^6.1.0",
+    "@types/react": "^19.0.3",
+    "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.6",
     "concurrently": "^7.0.0",
     "copyfiles": "^2.4.0",
@@ -70,7 +70,7 @@
   },
   "peerDependencies": {
     "@docusaurus/theme-common": "^2 || ^3",
-    "react": "^16.14.0 || ^17 || ^18",
-    "react-dom": "^16.14.0 || 17 || ^18"
+    "react": "^16.14.0 || ^17 || ^18 || ^19",
+    "react-dom": "^16.14.0 || 17 || ^18 || ^19"
   }
 }
