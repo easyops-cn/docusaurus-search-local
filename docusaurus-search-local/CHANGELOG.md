@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.47.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.46.1...v0.47.0) (2025-01-07)
+
+
+### Features
+
+* support React 19 ([725074e](https://github.com/easyops-cn/docusaurus-search-local/commit/725074eb84f153f84974cd6f4bac21d8aee79187)), closes [#474](https://github.com/easyops-cn/docusaurus-search-local/issues/474)
+
 ## [0.46.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.46.0...v0.46.1) (2024-11-27)
 
 
