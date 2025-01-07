@@ -10,11 +10,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.GH_TOKEN_EVE }}
@@ -24,13 +24,13 @@ jobs:
           bump-minor-pre-major: true
 
       # The logic below handles the npm publication:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         # these if statements ensure that a publication only occurs when
         # a new release is created:
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
@@ -40,7 +40,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
         if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
