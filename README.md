@@ -149,6 +149,7 @@ This theme is shipped with polished styles just like the Algolia Search on the D
 | --search-local-muted-color       | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
 | --search-local-icon-stroke-width | `1.4`                                                                  | -                                                       |
 | --search-local-hit-active-color  | `var(--ifm-color-white)`                                               | -                                                       |
+| --search-bar-active-border-highlight  | `var(--ifm-color-primary)`   | -              | The outline color of the search input when focused. Uses the theme's primary color by default. |
 
 E.g.:
 

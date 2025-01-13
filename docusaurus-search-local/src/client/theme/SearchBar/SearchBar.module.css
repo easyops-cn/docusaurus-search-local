@@ -16,6 +16,25 @@
   padding: var(--search-local-spacing, 12px);
 }
 
+
+:root {
+  --search-bar-active-border-highlight: var(--ifm-color-primary);
+}
+
+.searchInput {
+  outline: 2px solid transparent; 
+  box-shadow: none;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  transition: all 0.2s ease; 
+  --search-bar-active-border-highlight: var(--ifm-color-primary);
+}
+
+.searchInput:focus {
+  border-color: transparent;
+  outline: 2px solid var(--search-bar-active-border-highlight);
+  outline-offset: 0px;
+}
+
 @media not (max-width: 996px) {
   .searchBar.searchBarLeft .dropdownMenu {
     left: 0 !important;
