@@ -432,14 +432,14 @@ export default function SearchBar({
       // Manually make the search bar be LTR even if in RTL
       dir="ltr"
     >
-      <input
+    <input
         placeholder={translate({
           id: "theme.SearchBar.label",
           message: "Search",
           description: "The ARIA label and placeholder for search button",
         })}
         aria-label="Search"
-        className="navbar__search-input"
+        className={`navbar__search-input ${styles.searchInput}`}
         onMouseEnter={onInputMouseEnter}
         onFocus={onInputFocus}
         onBlur={onInputBlur}

@@ -16,6 +16,11 @@
   padding: var(--search-local-spacing, 12px);
 }
 
+.searchInput:focus {
+  outline: 2px solid var(--search-local-input-active-border-color, var(--ifm-color-primary));
+  outline-offset: 0px;
+}
+
 @media not (max-width: 996px) {
   .searchBar.searchBarLeft .dropdownMenu {
     left: 0 !important;

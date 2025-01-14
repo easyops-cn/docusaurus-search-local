@@ -151,6 +151,7 @@ This theme is shipped with polished styles just like the Algolia Search on the D
 | --search-local-muted-color       | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
 | --search-local-icon-stroke-width | `1.4`                                                                  | -                                                       |
 | --search-local-hit-active-color  | `var(--ifm-color-white)`                                               | -                                                       |
+| --search-local-input-active-border-color  | `var(--ifm-color-primary)`   | -              | 
 
 E.g.:
 
