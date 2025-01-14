@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.47.0...v0.48.0) (2025-01-14)
+
+
+### Features
+
+* add active border highlight for search bar input ([f311908](https://github.com/easyops-cn/docusaurus-search-local/commit/f311908706c7b7a9b3105aaee775d5c42d2812bf))
+
 ## [0.47.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.46.1...v0.47.0) (2025-01-07)
 
 
