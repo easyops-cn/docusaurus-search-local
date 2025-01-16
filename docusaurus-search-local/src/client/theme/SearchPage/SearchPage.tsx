@@ -83,7 +83,8 @@ function SearchPageContent(): React.ReactElement {
         const results = await searchByWorker(
           versionUrl,
           searchContext,
-          searchQuery
+          searchQuery,
+          100
         );
         setSearchResults(results);
       })();

@@ -1,6 +1,6 @@
 import * as Comlink from "comlink";
 import lunr from "lunr";
-import { searchIndexUrl, searchResultLimits, language } from "../utils/proxiedGeneratedConstants";
+import { searchIndexUrl, language } from "../utils/proxiedGeneratedConstants";
 import { tokenize } from "../utils/tokenize";
 import { smartQueries } from "../utils/smartQueries";
 import {
@@ -49,7 +49,8 @@ export class SearchWorker {
   async search(
     baseUrl: string,
     searchContext: string,
-    input: string
+    input: string,
+    limit: number
   ): Promise<SearchResult[]> {
     const rawTokens = tokenize(input, language);
     if (rawTokens.length === 0) {
@@ -76,7 +77,7 @@ export class SearchWorker {
                 });
               }
             })
-            .slice(0, searchResultLimits)
+            .slice(0, limit)
             // Remove duplicated results.
             .filter(
               (result) =>
@@ -84,7 +85,7 @@ export class SearchWorker {
                   (item) => item.document.i.toString() === result.ref
                 )
             )
-            .slice(0, searchResultLimits - results.length)
+            .slice(0, limit - results.length)
             .map((result) => {
               const document = documents.find(
                 (doc) => doc.i.toString() === result.ref
@@ -103,7 +104,7 @@ export class SearchWorker {
               };
             })
         );
-        if (results.length >= searchResultLimits) {
+        if (results.length >= limit) {
           break search;
         }
       }

@@ -6,7 +6,8 @@ interface RemoteWorker {
   search(
     baseUrl: string,
     searchContext: string,
-    input: string
+    input: string,
+    limit: number
   ): Promise<SearchResult[]>;
 }
 
@@ -37,11 +38,12 @@ export async function fetchIndexesByWorker(
 export async function searchByWorker(
   baseUrl: string,
   searchContext: string,
-  input: string
+  input: string,
+  limit: number
 ): Promise<SearchResult[]> {
   if (process.env.NODE_ENV === "production") {
     const remoteWorker = await getRemoteWorker();
-    return remoteWorker!.search(baseUrl, searchContext, input);
+    return remoteWorker!.search(baseUrl, searchContext, input, limit);
   }
   return [];
 }
