@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.1...v0.48.2) (2025-01-16)
+
+
+### Bug Fixes
+
+* excludes mobile toc button for search marks, fixes [#473](https://github.com/easyops-cn/docusaurus-search-local/issues/473) ([b8dd155](https://github.com/easyops-cn/docusaurus-search-local/commit/b8dd15559f22b7f914af8123ed7eaa60c0beac3b))
+
 ## [0.48.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.0...v0.48.1) (2025-01-16)
 
 
