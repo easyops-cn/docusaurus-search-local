@@ -341,7 +341,9 @@ export default function SearchBar({
       const mark = new Mark(root);
       mark.unmark();
       if (keywords.length !== 0) {
-        mark.mark(keywords);
+        mark.mark(keywords, {
+          exclude: [".theme-doc-toc-mobile > button"],
+        });
       }
 
       // Apply any keywords to the search input so that we can clear marks in case we loaded a page with a highlight in the url
