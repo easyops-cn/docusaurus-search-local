@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.2...v0.48.3) (2025-01-16)
+
+
+### Bug Fixes
+
+* sync ssr the input value and focus state for SSR ([be7c125](https://github.com/easyops-cn/docusaurus-search-local/commit/be7c125d72f7274eabc8d377809cddfd85fb1db1))
+
 ## [0.48.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.1...v0.48.2) (2025-01-16)
 
 
