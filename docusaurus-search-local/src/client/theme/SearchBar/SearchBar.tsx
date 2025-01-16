@@ -387,6 +387,26 @@ export default function SearchBar({
       )
     : false;
 
+  // Sync the input value and focus state for SSR
+  useEffect(
+    () => {
+      const searchBar = searchBarRef.current;
+      const domValue = searchBar?.value;
+      if (domValue) {
+        setInputValue(domValue);
+      }
+      if (searchBar && document.activeElement === searchBar) {
+        focusAfterIndexLoaded.current = true;
+        loadIndex();
+        setFocused(true);
+        handleSearchBarToggle?.(true);
+      }
+    },
+    // Only run this effect on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   useEffect(() => {
     if (!searchBarShortcut) {
       return;
