@@ -32,9 +32,10 @@ import {
   useAllContextsWithNoSearchContext,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
+import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
+import { searchResultLimits } from "../../utils/proxiedGeneratedConstants";
 
 import styles from "./SearchBar.module.css";
-import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 
 async function fetchAutoCompleteJS(): Promise<any> {
   const autoCompleteModule = await import("@easyops-cn/autocomplete.js");
@@ -261,7 +262,8 @@ export default function SearchBar({
             const result = await searchByWorker(
               versionUrl,
               searchContext,
-              input
+              input,
+              searchResultLimits
             );
             callback(result);
           },
@@ -432,7 +434,7 @@ export default function SearchBar({
       // Manually make the search bar be LTR even if in RTL
       dir="ltr"
     >
-    <input
+      <input
         placeholder={translate({
           id: "theme.SearchBar.label",
           message: "Search",
