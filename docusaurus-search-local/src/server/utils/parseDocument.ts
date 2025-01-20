@@ -9,7 +9,10 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
   const $pageTitle = $("article h1").first();
   const pageTitle = $pageTitle.text();
   const description = $("meta[name='description']").attr("content") || "";
-  const keywords = $("meta[name='keywords']").attr("content") || "";
+  const keywords = ($("meta[name='keywords']").attr("content") || "").replace(
+    /,/g,
+    ", "
+  );
 
   const sections: ParsedDocumentSection[] = [];
   const breadcrumb: string[] = [];
