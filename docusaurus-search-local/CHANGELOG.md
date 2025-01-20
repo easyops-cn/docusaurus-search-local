@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.3...v0.48.4) (2025-01-20)
+
+
+### Bug Fixes
+
+* handle keywords stemmer, fix [#487](https://github.com/easyops-cn/docusaurus-search-local/issues/487) ([23ba48d](https://github.com/easyops-cn/docusaurus-search-local/commit/23ba48deef88b6dc081b986bda47c938bec26119))
+
 ## [0.48.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.2...v0.48.3) (2025-01-16)
 
 
