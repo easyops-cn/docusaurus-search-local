@@ -199,4 +199,11 @@ export interface PluginOptions {
    * @default false
    */
   forceIgnoreNoIndex?: boolean;
+
+  /**
+   * Whether to remove the see all results button.
+   * 
+   * @default false
+   */
+  removeSeeAllResults?: boolean;
 }

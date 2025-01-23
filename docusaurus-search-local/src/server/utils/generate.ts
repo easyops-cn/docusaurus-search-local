@@ -20,6 +20,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     searchContextByPaths,
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
+    removeSeeAllResults,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [];
@@ -28,6 +29,13 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       removeDefaultStemmer
     )};`
   );
+
+  contents.push(
+    `export const removeSeeAllResults = ${JSON.stringify(
+      removeSeeAllResults
+    )};`
+  );
+  
   if (highlightSearchTermsOnTargetPage) {
     contents.push(
       `export { default as Mark } from ${JSON.stringify(
