@@ -30,6 +30,7 @@ import {
   searchContextByPaths,
   hideSearchBarWithNoSearchContext,
   useAllContextsWithNoSearchContext,
+  removeSeeAllResults,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
@@ -280,7 +281,9 @@ export default function SearchBar({
               const a = searchFooterLinkElement({ query, isEmpty });
               const div = document.createElement("div");
               div.className = styles.hitFooter;
-              div.appendChild(a);
+              if(removeSeeAllResults === false){
+                div.appendChild(a);
+              }
               return div;
             },
           },
