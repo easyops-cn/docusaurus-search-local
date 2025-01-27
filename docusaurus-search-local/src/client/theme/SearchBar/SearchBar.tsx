@@ -16,13 +16,11 @@ import {
 } from "@docusaurus/theme-common";
 import { useActivePlugin } from "@docusaurus/plugin-content-docs/client";
 
-import { fetchIndexes } from "./fetchIndexes";
-import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
+import { fetchIndexesByWorker, searchByWorker } from "../searchByWorker";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
 import { SearchResult } from "../../../shared/interfaces";
 import {
-  searchResultLimits,
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
@@ -34,9 +32,10 @@ import {
   useAllContextsWithNoSearchContext,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
+import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
+import { searchResultLimits } from "../../utils/proxiedGeneratedConstants";
 
 import styles from "./SearchBar.module.css";
-import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 
 async function fetchAutoCompleteJS(): Promise<any> {
   const autoCompleteModule = await import("@easyops-cn/autocomplete.js");
@@ -82,7 +81,7 @@ export default function SearchBar({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { preferredVersion } = useDocsPreferredVersion(
       activePlugin?.pluginId ?? docsPluginIdForPreferredVersion
-    );
+    ) as { preferredVersion: { path: string; isLast: boolean } };
     if (preferredVersion && !preferredVersion.isLast) {
       versionUrl = preferredVersion.path + "/";
     }
@@ -149,9 +148,9 @@ export default function SearchBar({
     search.current?.autocomplete.destroy();
     setLoading(true);
 
-    const [{ wrappedIndexes, zhDictionary }, autoComplete] = await Promise.all([
-      fetchIndexes(versionUrl, searchContext),
+    const [autoComplete] = await Promise.all([
       fetchAutoCompleteJS(),
+      fetchIndexesByWorker(versionUrl, searchContext),
     ]);
 
     const searchFooterLinkElement = ({
@@ -256,11 +255,18 @@ export default function SearchBar({
       },
       [
         {
-          source: SearchSourceFactory(
-            wrappedIndexes,
-            zhDictionary,
-            searchResultLimits
-          ),
+          source: async (
+            input: string,
+            callback: (output: SearchResult[]) => void
+          ) => {
+            const result = await searchByWorker(
+              versionUrl,
+              searchContext,
+              input,
+              searchResultLimits
+            );
+            callback(result);
+          },
           templates: {
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
@@ -335,7 +341,9 @@ export default function SearchBar({
       const mark = new Mark(root);
       mark.unmark();
       if (keywords.length !== 0) {
-        mark.mark(keywords);
+        mark.mark(keywords, {
+          exclude: [".theme-doc-toc-mobile > button"],
+        });
       }
 
       // Apply any keywords to the search input so that we can clear marks in case we loaded a page with a highlight in the url
@@ -378,6 +386,26 @@ export default function SearchBar({
         (navigator as any).userAgentData?.platform ?? navigator.platform
       )
     : false;
+
+  // Sync the input value and focus state for SSR
+  useEffect(
+    () => {
+      const searchBar = searchBarRef.current;
+      const domValue = searchBar?.value;
+      if (domValue) {
+        setInputValue(domValue);
+      }
+      if (searchBar && document.activeElement === searchBar) {
+        focusAfterIndexLoaded.current = true;
+        loadIndex();
+        setFocused(true);
+        handleSearchBarToggle?.(true);
+      }
+    },
+    // Only run this effect on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useEffect(() => {
     if (!searchBarShortcut) {
@@ -435,7 +463,7 @@ export default function SearchBar({
           description: "The ARIA label and placeholder for search button",
         })}
         aria-label="Search"
-        className="navbar__search-input"
+        className={`navbar__search-input ${styles.searchInput}`}
         onMouseEnter={onInputMouseEnter}
         onFocus={onInputFocus}
         onBlur={onInputBlur}

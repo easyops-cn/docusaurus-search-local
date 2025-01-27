@@ -1,0 +1,6 @@
+{
+  "packages": {
+    "docusaurus-search-local": {}
+  },
+  "bump-minor-pre-major": true
+}

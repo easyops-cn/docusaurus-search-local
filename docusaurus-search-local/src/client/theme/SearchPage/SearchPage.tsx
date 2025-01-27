@@ -8,8 +8,7 @@ import { usePluralForm } from "@docusaurus/theme-common";
 import clsx from "clsx";
 
 import useSearchQuery from "../hooks/useSearchQuery";
-import { fetchIndexes } from "../SearchBar/fetchIndexes";
-import { SearchSourceFactory } from "../../utils/SearchSourceFactory";
+import { fetchIndexesByWorker, searchByWorker } from "../searchByWorker";
 import {
   SearchDocument,
   SearchDocumentType,
@@ -52,10 +51,6 @@ function SearchPageContent(): React.ReactElement {
     updateSearchContext,
   } = useSearchQuery();
   const [searchQuery, setSearchQuery] = useState(searchValue);
-  const [searchSource, setSearchSource] =
-    useState<
-      (input: string, callback: (results: SearchResult[]) => void) => void
-    >();
   const [searchResults, setSearchResults] = useState<SearchResult[]>();
   const versionUrl = `${baseUrl}${searchVersion}`;
 
@@ -83,19 +78,23 @@ function SearchPageContent(): React.ReactElement {
   useEffect(() => {
     updateSearchPath(searchQuery);
 
-    if (searchSource) {
-      if (searchQuery) {
-        searchSource(searchQuery, (results) => {
-          setSearchResults(results);
-        });
-      } else {
-        setSearchResults(undefined);
-      }
+    if (searchQuery) {
+      (async () => {
+        const results = await searchByWorker(
+          versionUrl,
+          searchContext,
+          searchQuery,
+          100
+        );
+        setSearchResults(results);
+      })();
+    } else {
+      setSearchResults(undefined);
     }
 
     // `updateSearchPath` should not be in the deps,
     // otherwise will cause call stack overflow.
-  }, [searchQuery, searchSource]);
+  }, [searchQuery, versionUrl, searchContext]);
 
   const handleSearchInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,17 +109,18 @@ function SearchPageContent(): React.ReactElement {
     }
   }, [searchValue]);
 
+  const [searchWorkerReady, setSearchWorkerReady] = useState(false);
+
   useEffect(() => {
     async function doFetchIndexes() {
-      const { wrappedIndexes, zhDictionary } =
+      if (
         !Array.isArray(searchContextByPaths) ||
         searchContext ||
         useAllContextsWithNoSearchContext
-          ? await fetchIndexes(versionUrl, searchContext)
-          : { wrappedIndexes: [], zhDictionary: [] };
-      setSearchSource(() =>
-        SearchSourceFactory(wrappedIndexes, zhDictionary, 100)
-      );
+      ) {
+        await fetchIndexesByWorker(versionUrl, searchContext);
+      }
+      setSearchWorkerReady(true);
     }
     doFetchIndexes();
   }, [searchContext, versionUrl]);
@@ -198,7 +198,7 @@ function SearchPageContent(): React.ReactElement {
           ) : null}
         </div>
 
-        {!searchSource && searchQuery && (
+        {!searchWorkerReady && searchQuery && (
           <div>
             <LoadingRing />
           </div>

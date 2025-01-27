@@ -3,9 +3,10 @@ import { smartQueries } from "./smartQueries";
 import {
   __setLanguage,
   __setRemoveDefaultStopWordFilter,
-  __setRemoveDefaultStemmer,
-} from "./proxiedGenerated";
+} from "./proxiedGeneratedConstants";
 import { SmartQuery } from "../../shared/interfaces";
+
+jest.mock("./proxiedGeneratedConstants");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("lunr-languages/lunr.stemmer.support")(lunr);
@@ -15,8 +16,6 @@ require("../../shared/lunrLanguageZh").lunrLanguageZh(lunr);
 require("lunr-languages/lunr.multi")(lunr);
 
 (lunr as any).fake = {};
-
-jest.mock("./proxiedGenerated");
 
 const zhDictionary = ["研究生", "研究", "生命", "科学", "生命科学"];
 
@@ -29,7 +28,6 @@ describe("smartQueries", () => {
   beforeEach(() => {
     __setLanguage(["en", "zh"]);
     __setRemoveDefaultStopWordFilter(false);
-    __setRemoveDefaultStemmer(false);
   });
 
   test.each<[string[], TestQuery[]]>([
@@ -238,7 +236,6 @@ describe("smartQueries with no stop words filter", () => {
   beforeEach(() => {
     __setLanguage(["en", "fake"]);
     __setRemoveDefaultStopWordFilter(true);
-    __setRemoveDefaultStemmer(false);
   });
 
   test.each<[string[], TestQuery[]]>([

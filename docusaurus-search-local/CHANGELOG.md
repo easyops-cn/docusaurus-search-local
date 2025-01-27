@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.48.4](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.3...v0.48.4) (2025-01-20)
+
+
+### Bug Fixes
+
+* handle keywords stemmer, fix [#487](https://github.com/easyops-cn/docusaurus-search-local/issues/487) ([23ba48d](https://github.com/easyops-cn/docusaurus-search-local/commit/23ba48deef88b6dc081b986bda47c938bec26119))
+
+## [0.48.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.2...v0.48.3) (2025-01-16)
+
+
+### Bug Fixes
+
+* sync ssr the input value and focus state for SSR ([be7c125](https://github.com/easyops-cn/docusaurus-search-local/commit/be7c125d72f7274eabc8d377809cddfd85fb1db1))
+
+## [0.48.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.1...v0.48.2) (2025-01-16)
+
+
+### Bug Fixes
+
+* excludes mobile toc button for search marks, fixes [#473](https://github.com/easyops-cn/docusaurus-search-local/issues/473) ([b8dd155](https://github.com/easyops-cn/docusaurus-search-local/commit/b8dd15559f22b7f914af8123ed7eaa60c0beac3b))
+
+## [0.48.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.0...v0.48.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* do not limit the search page result by searchResultLimits ([29f6d69](https://github.com/easyops-cn/docusaurus-search-local/commit/29f6d6962e69d38089a45961ae8dc62636838494))
+
+## [0.48.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.47.0...v0.48.0) (2025-01-14)
+
+
+### Features
+
+* add active border highlight for search bar input ([f311908](https://github.com/easyops-cn/docusaurus-search-local/commit/f311908706c7b7a9b3105aaee775d5c42d2812bf))
+
+## [0.47.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.46.1...v0.47.0) (2025-01-07)
+
+
+### Features
+
+* support React 19 ([725074e](https://github.com/easyops-cn/docusaurus-search-local/commit/725074eb84f153f84974cd6f4bac21d8aee79187)), closes [#474](https://github.com/easyops-cn/docusaurus-search-local/issues/474)
+
+## [0.46.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.46.0...v0.46.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* fix Uncaught ReferenceError: importScripts is not defined ([139b82b](https://github.com/easyops-cn/docusaurus-search-local/commit/139b82befc22a574d71eb307b3a79afb2984ea69))
+
+## [0.46.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.45.0...v0.46.0) (2024-11-27)
+
+
+### Features
+
+* move search to Web Worker ([15b7fba](https://github.com/easyops-cn/docusaurus-search-local/commit/15b7fba2537d12eb1674611948e363723dcedae4))
+
 ## [0.45.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.44.6...v0.45.0) (2024-10-09)
 
 

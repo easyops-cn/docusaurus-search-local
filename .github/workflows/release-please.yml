@@ -10,53 +10,59 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    outputs:
+      release_created: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
+
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.GH_TOKEN_EVE }}
           release-type: node
-          package-name: "@easyops-cn/docusaurus-search-local"
           path: docusaurus-search-local
-          bump-minor-pre-major: true
 
-      # The logic below handles the npm publication:
-      - uses: actions/checkout@v3
-        # these if statements ensure that a publication only occurs when
-        # a new release is created:
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
+  npm-publish:
+
+    needs: release-please
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    # Ensure that a publication only occurs when a new release is created:
+    if: ${{ needs.release-please.outputs.release_created }}
+
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: actions/cache@v4
+        # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       - run: yarn install --immutable
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       - run: yarn build:theme
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}
 
       # https://github.com/yarnpkg/berry/issues/2034#issuecomment-715295553
       - run: yarn workspaces foreach --all --no-private npm publish
         env:
           YARN_NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        if: ${{ steps.release.outputs.docusaurus-search-local--release_created }}

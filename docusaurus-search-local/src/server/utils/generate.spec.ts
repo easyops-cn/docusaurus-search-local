@@ -18,13 +18,8 @@ describe("generate", () => {
     [
       ["en"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        'export const language = ["en"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -40,19 +35,8 @@ describe("generate", () => {
     [
       ["zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/lunrLanguageZh\.js"\)\.lunrLanguageZh\(lunr\);$/
-        ),
-        'export const language = ["zh"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -68,19 +52,8 @@ describe("generate", () => {
     [
       ["es"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.es\.js"\)\(lunr\);$/
-        ),
-        'export const language = ["es"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -96,22 +69,8 @@ describe("generate", () => {
     [
       ["ja"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\tinyseg\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.ja\.js"\)\(lunr\);$/
-        ),
-        'export const language = ["ja"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -127,22 +86,8 @@ describe("generate", () => {
     [
       ["en", "zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/lunrLanguageZh\.js"\)\.lunrLanguageZh\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.multi\.js"\)\(lunr\);$/
-        ),
-        'export const language = ["en","zh"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -158,25 +103,8 @@ describe("generate", () => {
     [
       ["en", "es", "zh"],
       [
-        expect.stringMatching(/^import lunr from ".+\/|\\lunr\/|\\lunr\.js";$/),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.stemmer\.support\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.es\.js"\)\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/lunrLanguageZh\.js"\)\.lunrLanguageZh\(lunr\);$/
-        ),
-        expect.stringMatching(
-          /^require\(".+\/|\\lunr-languages\/|\\lunr\.multi\.js"\)\(lunr\);$/
-        ),
-        'export const language = ["en","es","zh"];',
-        "export const removeDefaultStopWordFilter = false;",
         "export const removeDefaultStemmer = false;",
         "export const Mark = null;",
-        'export const searchIndexUrl = "search-index{dir}.json?_=abc";',
-        "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         "export const explicitSearchResultPath = false;",
         "export const searchBarShortcut = true;",
@@ -306,7 +234,7 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       expect.toMatchPath("/tmp/generated.js"),
       expect.stringContaining(
-        'export const searchIndexUrl = "search-index{dir}-abc.json"'
+        'export const Mark = null;'
       )
     );
   });

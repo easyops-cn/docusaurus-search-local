@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 description: This is description in front matter
-keywords: [Keywords, intro, front matter, template]
+keywords: [Keywords, intro, front matter, template, turtles, rabbit]
 tags:
   - Test
   - Keywords

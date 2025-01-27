@@ -55,7 +55,7 @@ describe("parseDocument", () => {
       {
         pageTitle: "Hello World",
         description: "Hello Description",
-        keywords: "Hello,Keywords",
+        keywords: "Hello, Keywords",
         sections: [
           {
             title: "Hello World",

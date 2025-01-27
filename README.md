@@ -55,10 +55,12 @@ module.exports = {
         // ... Your options.
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
-        // For Docs using Chinese, The `language` is recommended to set to:
-        // ```
+
+        // For Docs using Chinese, it is recomended to set:
         // language: ["en", "zh"],
-        // ```
+
+        // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
+        // forceIgnoreNoIndex: true,
       }),
     ],
   ],
@@ -149,6 +151,7 @@ This theme is shipped with polished styles just like the Algolia Search on the D
 | --search-local-muted-color       | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
 | --search-local-icon-stroke-width | `1.4`                                                                  | -                                                       |
 | --search-local-hit-active-color  | `var(--ifm-color-white)`                                               | -                                                       |
+| --search-local-input-active-border-color  | `var(--ifm-color-primary)`   | -              | 
 
 E.g.:
 
