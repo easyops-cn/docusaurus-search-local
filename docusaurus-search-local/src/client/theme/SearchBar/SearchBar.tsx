@@ -107,8 +107,14 @@ export default function SearchBar({
 
   const prevSearchContext = useRef<string>("");
   const [searchContext, setSearchContext] = useState<string>("");
+  const prevVersionUrl = useRef<string>(baseUrl);
   useEffect(() => {
     if (!Array.isArray(searchContextByPaths)) {
+      if (prevVersionUrl.current !== versionUrl) {
+        // Reset index state map once version url is changed.
+        indexStateMap.current.delete("");
+        prevVersionUrl.current = versionUrl;
+      }
       return;
     }
     let nextSearchContext = "";
