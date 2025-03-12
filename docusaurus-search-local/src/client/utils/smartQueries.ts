@@ -97,22 +97,17 @@ export function smartQueries(
     }
   }
 
-  return getQueriesMaybeTyping(terms).concat(
-    fuzzyMatchingDistance > 0
-      ? getQueriesMaybeTyping(terms, fuzzyMatchingDistance)
-      : [],
-    getQueriesMaybeTyping(extraTerms),
-    fuzzyMatchingDistance > 0
-      ? getQueriesMaybeTyping(extraTerms, fuzzyMatchingDistance)
-      : []
+  const distance = Math.max(0, fuzzyMatchingDistance);
+  return getDistanceMatrix(terms, distance).concat(
+    getDistanceMatrix(extraTerms, distance)
   );
 }
 
 function getQueriesMaybeTyping(
   terms: SmartTerm[],
-  editDistance?: number
+  editDistance: number
 ): SmartQuery[] {
-  return termsToQueries(terms, false, editDistance).concat(
+  return termsToQueries(terms, editDistance).concat(
     termsToQueries(
       // Ignore terms whose last token already has a trailing wildcard,
       // or the last token is not `maybeTyping`.
@@ -120,35 +115,39 @@ function getQueriesMaybeTyping(
         const token = term[term.length - 1];
         return !token.trailing && token.maybeTyping;
       }),
-      true,
-      editDistance
+      editDistance,
+      true
     )
   );
 }
 
 function termsToQueries(
   terms: SmartTerm[],
-  maybeTyping?: boolean,
-  editDistance?: number
+  editDistance: number,
+  maybeTyping?: boolean
 ): SmartQuery[] {
   return terms.flatMap((term) => {
     const query = {
       tokens: term.map((item) => item.value),
-      term: term.map((item) => ({
-        value: item.value,
-        presence: lunr.Query.presence.REQUIRED,
+      term: term.map((item) => {
         // The last token of a term maybe incomplete while user is typing.
         // So append more queries with trailing wildcard added.
-        wildcard: (
-          maybeTyping ? item.trailing || item.maybeTyping : item.trailing
-        )
-          ? lunr.Query.wildcard.TRAILING
-          : lunr.Query.wildcard.NONE,
-        editDistance:
-          editDistance && item.value.length > editDistance
+        const trailing = maybeTyping
+          ? item.trailing || item.maybeTyping
+          : item.trailing;
+        const distance =
+          editDistance > 0 && item.value.length > editDistance
             ? editDistance
-            : undefined,
-      })),
+            : undefined;
+        return {
+          value: item.value,
+          presence: lunr.Query.presence.REQUIRED,
+          wildcard: trailing
+            ? lunr.Query.wildcard.TRAILING
+            : lunr.Query.wildcard.NONE,
+          editDistance: distance,
+        };
+      }),
     };
 
     // Ignore queries that all terms ignored edit distance due to too short tokens.
@@ -158,4 +157,10 @@ function termsToQueries(
 
     return query;
   });
+}
+
+function getDistanceMatrix(terms: SmartTerm[], distance: number) {
+  return Array.from({ length: distance + 1 }, (_, i) =>
+    getQueriesMaybeTyping(terms, i)
+  ).flat();
 }

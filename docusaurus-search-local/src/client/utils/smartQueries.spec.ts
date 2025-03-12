@@ -260,7 +260,7 @@ describe("smartQueries with no stop words filter", () => {
   });
 });
 
-describe("smartQueries with fuzzy matching", () => {
+describe("smartQueries with fuzzy matching distance 1", () => {
   beforeEach(() => {
     __setFuzzyMatchingDistance(1);
   });
@@ -297,6 +297,48 @@ describe("smartQueries with fuzzy matching", () => {
         {
           tokens: ["a", "b"],
           keyword: "+a +b*",
+        },
+      ],
+    ],
+  ])("smartQueries(%j, zhDictionary) should work", (tokens, queries) => {
+    expect(smartQueries(tokens, zhDictionary).map(transformQuery)).toEqual(
+      queries
+    );
+  });
+});
+
+describe("smartQueries with fuzzy matching distance 2", () => {
+  beforeEach(() => {
+    __setFuzzyMatchingDistance(2);
+  });
+
+  test.each<[string[], TestQuery[]]>([
+    [
+      ["a", "hello"],
+      [
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello*",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello~1",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello*~1",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello~2",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello*~2",
         },
       ],
     ],
