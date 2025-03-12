@@ -3,6 +3,7 @@ import { smartQueries } from "./smartQueries";
 import {
   __setLanguage,
   __setRemoveDefaultStopWordFilter,
+  __setFuzzyMatchingDistance,
 } from "./proxiedGeneratedConstants";
 import { SmartQuery } from "../../shared/interfaces";
 
@@ -259,6 +260,53 @@ describe("smartQueries with no stop words filter", () => {
   });
 });
 
+describe("smartQueries with fuzzy matching", () => {
+  beforeEach(() => {
+    __setFuzzyMatchingDistance(1);
+  });
+
+  test.each<[string[], TestQuery[]]>([
+    [
+      ["a", "hello"],
+      [
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello*",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello~1",
+        },
+        {
+          tokens: ["a", "hello"],
+          keyword: "+a +hello*~1",
+        },
+      ],
+    ],
+    [
+      ["a", "b"],
+      [
+        {
+          tokens: ["a", "b"],
+          keyword: "+a +b",
+        },
+        {
+          tokens: ["a", "b"],
+          keyword: "+a +b*",
+        },
+      ],
+    ],
+  ])("smartQueries(%j, zhDictionary) should work", (tokens, queries) => {
+    expect(smartQueries(tokens, zhDictionary).map(transformQuery)).toEqual(
+      queries
+    );
+  });
+});
+
 function transformQuery(query: SmartQuery): TestQuery {
   return {
     tokens: query.tokens,
@@ -274,6 +322,10 @@ function transformQuery(query: SmartQuery): TestQuery {
             (item.wildcard & lunr.Query.wildcard.TRAILING) ===
             lunr.Query.wildcard.TRAILING
               ? "*"
+              : ""
+          }${
+            typeof item.editDistance === "number" && item.editDistance > 0
+              ? `~${item.editDistance}`
               : ""
           }`
       )

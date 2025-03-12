@@ -57,6 +57,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -85,6 +86,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -113,6 +115,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -141,6 +144,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -156,6 +160,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 30,
         searchBarShortcut: false,
         forceIgnoreNoIndex: true,
+        fuzzyMatchingDistance: 0,
       },
       {
         blogRouteBasePath: ["blog"],
@@ -181,6 +186,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: true,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: true,
+        fuzzyMatchingDistance: 0,
       },
     ],
     [
@@ -214,6 +220,7 @@ describe("validateOptions", () => {
         searchBarShortcutHint: false,
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -253,6 +260,7 @@ describe("validateOptions", () => {
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
     [
@@ -291,6 +299,7 @@ describe("validateOptions", () => {
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
         forceIgnoreNoIndex: false,
+        fuzzyMatchingDistance: 1,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

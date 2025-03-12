@@ -74,6 +74,9 @@ export class SearchWorker {
                 query.term(item.value, {
                   wildcard: item.wildcard,
                   presence: item.presence,
+                  ...(item.editDistance
+                    ? { editDistance: item.editDistance }
+                    : null),
                 });
               }
             })

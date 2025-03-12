@@ -23,6 +23,7 @@ export interface QueryTermItem {
   value: string;
   presence: lunr.Query.presence;
   wildcard: lunr.Query.wildcard;
+  editDistance?: number;
 }
 
 export interface WrappedTerm {

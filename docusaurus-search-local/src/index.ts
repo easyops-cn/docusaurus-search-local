@@ -199,4 +199,12 @@ export interface PluginOptions {
    * @default false
    */
   forceIgnoreNoIndex?: boolean;
+
+  /**
+   * Set the edit distance for fuzzy matching during searches. Lower values will result in stricter matches,
+   * while higher values will allow for more lenient matches. Set 0 to disable fuzzy matching.
+   *
+   * @default 1
+   */
+  fuzzyMatchingDistance?: number;
 }

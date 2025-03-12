@@ -42,7 +42,7 @@ yarn add @easyops-cn/docusaurus-search-local
 
 Add `@easyops-cn/docusaurus-search-local` into your docusaurus themes.
 
-````js
+```js
 // In your `docusaurus.config.js`:
 module.exports = {
   // ... Your other configurations.
@@ -65,7 +65,7 @@ module.exports = {
     ],
   ],
 };
-````
+```
 
 > Notice: We present this as a theme instead of plugin now, see [this comment](https://github.com/facebook/docusaurus/issues/6488#issuecomment-1024124096).
 
@@ -100,6 +100,7 @@ module.exports = {
 | hideSearchBarWithNoSearchContext  | boolean                                                                     | `false`   | Whether to hide the search bar when no search context was matched. By default, if `searchContextByPaths` is set, pages which are not matched with it will be considered as with a search context of ROOT. By setting `hideSearchBarWithNoSearchContext: true`, these pages will be considered as with NO search context, and the search bar will be hidden. |
 | useAllContextsWithNoSearchContext | boolean                                                                     | `false`   | Whether to show results from all the contexts if no context is provided. This option should not be used with `hideSearchBarWithNoSearchContext: true` as this would show results when there is no search context. This will duplicate indexes and might have a performance cost depending on the index sizes.                                               |
 | `forceIgnoreNoIndex`              | boolean                                                                     | `false`   | Force enable search index even if `noIndex: true` is set, this also affects unlisted articles.                                                                                                                                                                                                                                                              |
+| `fuzzyMatchingDistance`           | number                                                                      | `1`       | Set the edit distance for fuzzy matching during searches.                                                                                                                                                                                                                                                                                                   |
 
 ### I18N
 
@@ -136,22 +137,22 @@ Note that `*_plural` can be omitted if it is the same as singular.
 
 This theme is shipped with polished styles just like the Algolia Search on the Docusaurus v2 website. Feel free to override these css custom properties (css variables) below.
 
-| Var                              | Default (light)                                                        | Default (dark)                                          |
-| -------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------- |
-| --search-local-modal-background  | `#f5f6f7`                                                              | `var(--ifm-background-color)`                           |
-| --search-local-modal-shadow      | `inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5),`<br />`0 3px 8px 0 #555a64` | `inset 1px 1px 0 0 #2c2e40,`<br />`0 3px 8px 0 #000309` |
-| --search-local-modal-width       | `560px`                                                                | -                                                       |
-| --search-local-modal-width-sm    | `340px`                                                                | -                                                       |
-| --search-local-spacing           | `12px`                                                                 | -                                                       |
-| --search-local-hit-background    | `#fff`                                                                 | `var(--ifm-color-emphasis-100)`                         |
-| --search-local-hit-shadow        | `0 1px 3px 0 #d4d9e1`                                                  | `none`                                                  |
-| --search-local-hit-color         | `#444950`                                                              | `var(--ifm-font-color-base)`                            |
-| --search-local-hit-height        | `56px`                                                                 | -                                                       |
-| --search-local-highlight-color   | `var(--ifm-color-primary)`                                             | -                                                       |
-| --search-local-muted-color       | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
-| --search-local-icon-stroke-width | `1.4`                                                                  | -                                                       |
-| --search-local-hit-active-color  | `var(--ifm-color-white)`                                               | -                                                       |
-| --search-local-input-active-border-color  | `var(--ifm-color-primary)`   | -              | 
+| Var                                      | Default (light)                                                        | Default (dark)                                          |
+| ---------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------- |
+| --search-local-modal-background          | `#f5f6f7`                                                              | `var(--ifm-background-color)`                           |
+| --search-local-modal-shadow              | `inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5),`<br />`0 3px 8px 0 #555a64` | `inset 1px 1px 0 0 #2c2e40,`<br />`0 3px 8px 0 #000309` |
+| --search-local-modal-width               | `560px`                                                                | -                                                       |
+| --search-local-modal-width-sm            | `340px`                                                                | -                                                       |
+| --search-local-spacing                   | `12px`                                                                 | -                                                       |
+| --search-local-hit-background            | `#fff`                                                                 | `var(--ifm-color-emphasis-100)`                         |
+| --search-local-hit-shadow                | `0 1px 3px 0 #d4d9e1`                                                  | `none`                                                  |
+| --search-local-hit-color                 | `#444950`                                                              | `var(--ifm-font-color-base)`                            |
+| --search-local-hit-height                | `56px`                                                                 | -                                                       |
+| --search-local-highlight-color           | `var(--ifm-color-primary)`                                             | -                                                       |
+| --search-local-muted-color               | `#969faf`                                                              | `var(--ifm-color-secondary-darkest)`                    |
+| --search-local-icon-stroke-width         | `1.4`                                                                  | -                                                       |
+| --search-local-hit-active-color          | `var(--ifm-color-white)`                                               | -                                                       |
+| --search-local-input-active-border-color | `var(--ifm-color-primary)`                                             | -                                                       |
 
 E.g.:
 
