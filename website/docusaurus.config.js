@@ -128,14 +128,4 @@ module.exports = {
       }),
     ],
   ],
-  plugins: [
-    () => ({
-      name: "docusaurus-source-map",
-      configureWebpack(config, isServer, { currentBundler }) {
-        return {
-          devtool: "source-map",
-        };
-      },
-    }),
-  ],
 };
