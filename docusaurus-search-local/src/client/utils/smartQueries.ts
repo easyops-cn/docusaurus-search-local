@@ -1,7 +1,11 @@
 import lunr from "lunr";
 import { SmartQuery, SmartTerm } from "../../shared/interfaces";
 import { smartTerms } from "./smartTerms";
-import { language, removeDefaultStopWordFilter } from "./proxiedGeneratedConstants";
+import {
+  language,
+  removeDefaultStopWordFilter,
+  fuzzyMatchingDistance,
+} from "./proxiedGeneratedConstants";
 
 /**
  * Get all possible queries for a list of tokens consists of words mixed English and Chinese,
@@ -93,11 +97,22 @@ export function smartQueries(
     }
   }
 
-  return getQueriesMaybeTyping(terms).concat(getQueriesMaybeTyping(extraTerms));
+  return getQueriesMaybeTyping(terms).concat(
+    fuzzyMatchingDistance > 0
+      ? getQueriesMaybeTyping(terms, fuzzyMatchingDistance)
+      : [],
+    getQueriesMaybeTyping(extraTerms),
+    fuzzyMatchingDistance > 0
+      ? getQueriesMaybeTyping(extraTerms, fuzzyMatchingDistance)
+      : []
+  );
 }
 
-function getQueriesMaybeTyping(terms: SmartTerm[]): SmartQuery[] {
-  return termsToQueries(terms).concat(
+function getQueriesMaybeTyping(
+  terms: SmartTerm[],
+  editDistance?: number
+): SmartQuery[] {
+  return termsToQueries(terms, false, editDistance).concat(
     termsToQueries(
       // Ignore terms whose last token already has a trailing wildcard,
       // or the last token is not `maybeTyping`.
@@ -105,27 +120,42 @@ function getQueriesMaybeTyping(terms: SmartTerm[]): SmartQuery[] {
         const token = term[term.length - 1];
         return !token.trailing && token.maybeTyping;
       }),
-      true
+      true,
+      editDistance
     )
   );
 }
 
 function termsToQueries(
   terms: SmartTerm[],
-  maybeTyping?: boolean
+  maybeTyping?: boolean,
+  editDistance?: number
 ): SmartQuery[] {
-  return terms.map((term) => ({
-    tokens: term.map((item) => item.value),
-    term: term.map((item) => ({
-      value: item.value,
-      presence: lunr.Query.presence.REQUIRED,
-      // The last token of a term maybe incomplete while user is typing.
-      // So append more queries with trailing wildcard added.
-      wildcard: (
-        maybeTyping ? item.trailing || item.maybeTyping : item.trailing
-      )
-        ? lunr.Query.wildcard.TRAILING
-        : lunr.Query.wildcard.NONE,
-    })),
-  }));
+  return terms.flatMap((term) => {
+    const query = {
+      tokens: term.map((item) => item.value),
+      term: term.map((item) => ({
+        value: item.value,
+        presence: lunr.Query.presence.REQUIRED,
+        // The last token of a term maybe incomplete while user is typing.
+        // So append more queries with trailing wildcard added.
+        wildcard: (
+          maybeTyping ? item.trailing || item.maybeTyping : item.trailing
+        )
+          ? lunr.Query.wildcard.TRAILING
+          : lunr.Query.wildcard.NONE,
+        editDistance:
+          editDistance && item.value.length > editDistance
+            ? editDistance
+            : undefined,
+      })),
+    };
+
+    // Ignore queries that all terms ignored edit distance due to too short tokens.
+    if (editDistance && query.term.every((item) => !item.editDistance)) {
+      return [];
+    }
+
+    return query;
+  });
 }

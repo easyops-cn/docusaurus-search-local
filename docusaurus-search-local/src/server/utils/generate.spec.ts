@@ -233,9 +233,25 @@ describe("generate", () => {
 
     expect(mockWriteFileSync).toBeCalledWith(
       expect.toMatchPath("/tmp/generated.js"),
-      expect.stringContaining(
-        'export const Mark = null;'
-      )
+      expect.stringContaining("export const Mark = null;")
+    );
+  });
+
+  test("fuzzy matching distance", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        fuzzyMatchingDistance: 2,
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated-constants.js"),
+      expect.stringContaining("export const fuzzyMatchingDistance = 2;")
     );
   });
 });

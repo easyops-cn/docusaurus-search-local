@@ -20,6 +20,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     searchContextByPaths,
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
+    fuzzyMatchingDistance,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [];
@@ -148,8 +149,14 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
   constantContents.push(
     `export const searchIndexUrl = ${JSON.stringify(searchIndexUrl)};`,
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
+    `export const fuzzyMatchingDistance = ${JSON.stringify(
+      fuzzyMatchingDistance
+    )};`
   );
-  fs.writeFileSync(path.join(dir, "generated-constants.js"), constantContents.join("\n"));
+  fs.writeFileSync(
+    path.join(dir, "generated-constants.js"),
+    constantContents.join("\n")
+  );
 
   return searchIndexFilename;
 }
