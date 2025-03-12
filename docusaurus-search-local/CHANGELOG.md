@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.49.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.0...v0.49.1) (2025-03-12)
+
+
+### Bug Fixes
+
+* refine fuzzy matching order ([60d2b0b](https://github.com/easyops-cn/docusaurus-search-local/commit/60d2b0bab03ebcb9d969ac0fabaf2deaa76eef13)), closes [#504](https://github.com/easyops-cn/docusaurus-search-local/issues/504)
+* refine fuzzy matching order ([#507](https://github.com/easyops-cn/docusaurus-search-local/issues/507)) ([646b5a0](https://github.com/easyops-cn/docusaurus-search-local/commit/646b5a0fb20933c86972047ec940a51270bf96ba)), closes [#504](https://github.com/easyops-cn/docusaurus-search-local/issues/504)
+
 ## [0.49.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.48.5...v0.49.0) (2025-03-12)
 
 
