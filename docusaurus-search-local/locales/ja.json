@@ -1,0 +1,12 @@
+{
+    "theme.SearchBar.label": "検索...",
+    "theme.SearchBar.seeAll": "見つかったすべての結果を見る",
+    "theme.SearchBar.noResultsText": "結果が見つかりません",
+    "theme.SearchBar.searchInContext": "「{context}」内のすべての結果を見る",
+    "theme.SearchBar.seeAllOutsideContext": "「{context}」外のすべての結果を見る",
+    "theme.SearchPage.existingResultsTitle": "「{query}」のタイトルで検索",
+    "theme.SearchPage.emptyResultsTitle": "タイトルで検索",
+    "theme.SearchPage.documentsFound.plurals": "{count}件の結果が見つかりました",
+    "theme.SearchPage.noResultsText": "結果が見つかりません",
+    "theme.SearchPage.searchContext.everywhere": "すべての場所"
+}
