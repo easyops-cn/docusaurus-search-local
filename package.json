@@ -48,11 +48,13 @@
   "packageManager": "yarn@4.0.1",
   "resolutions": {
     "@docusaurus/core": "3.7.0",
+    "@docusaurus/faster": "3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-classic": "3.7.0",
     "@docusaurus/theme-common": "3.7.0",
     "@docusaurus/plugin-content-docs": "3.7.0",
+    "@rspack/core": "1.2.2",
     "@types/react": "19.0.3"
   },
   "engines": {
