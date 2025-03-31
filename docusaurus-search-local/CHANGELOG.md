@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.49.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.1...v0.49.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* Add Japanese locale ([9a920db](https://github.com/easyops-cn/docusaurus-search-local/commit/9a920db9c91f4ce7f13227c8109874e5deec9d21))
+
 ## [0.49.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.0...v0.49.1) (2025-03-12)
 
 
