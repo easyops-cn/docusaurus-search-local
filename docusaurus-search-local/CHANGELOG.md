@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.50.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.2...v0.50.0) (2025-06-03)
+
+
+### Features
+
+* support setting a language list to remove their default stop word filter ([3b5fe70](https://github.com/easyops-cn/docusaurus-search-local/commit/3b5fe7066e8138d6317bc3f3325ec0d84a9c21ce))
+* support setting a language list to remove their default stop word filter ([e7ce7ac](https://github.com/easyops-cn/docusaurus-search-local/commit/e7ce7ac88484b0e738562a79e9d9f2a81ed6e162)), closes [#517](https://github.com/easyops-cn/docusaurus-search-local/issues/517)
+
 ## [0.49.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.1...v0.49.2) (2025-03-31)
 
 
