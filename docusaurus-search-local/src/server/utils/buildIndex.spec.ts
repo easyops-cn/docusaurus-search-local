@@ -41,7 +41,7 @@ describe("buildIndex", () => {
       allDocuments as SearchDocument[][],
       {
         language: ["en"],
-        removeDefaultStopWordFilter: false,
+        removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
@@ -69,7 +69,7 @@ describe("buildIndex", () => {
       allDocuments as SearchDocument[][],
       {
         language: ["zh"],
-        removeDefaultStopWordFilter: false,
+        removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
@@ -88,7 +88,7 @@ describe("buildIndex", () => {
       allDocuments as SearchDocument[][],
       {
         language: ["es"],
-        removeDefaultStopWordFilter: false,
+        removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
@@ -106,7 +106,7 @@ describe("buildIndex", () => {
       allDocuments as SearchDocument[][],
       {
         language: ["ja"],
-        removeDefaultStopWordFilter: false,
+        removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
@@ -138,7 +138,7 @@ describe("buildIndex", () => {
       allDocuments as SearchDocument[][],
       {
         language: ["en", "zh"],
-        removeDefaultStopWordFilter: true,
+        removeDefaultStopWordFilter: ["en"],
         removeDefaultStemmer: false,
       } as ProcessedPluginOptions
     );
