@@ -74,8 +74,10 @@ export interface PluginOptions {
   /**
    * Sometimes people (E.g., us) want to keep the English stop words as indexed, since they
    * maybe are relevant in programming docs.
+   *
+   * Set a language list to remove their default stop word filter, `true` is equivalent to `["en"]`.
    */
-  removeDefaultStopWordFilter?: boolean;
+  removeDefaultStopWordFilter?: boolean | string[];
 
   /**
    * Enable this if you want to be able to search for any partial word at the cost of search performance.

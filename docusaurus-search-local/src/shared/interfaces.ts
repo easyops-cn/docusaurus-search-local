@@ -148,6 +148,7 @@ export type ProcessedPluginOptions = Required<
     | "blogDir"
     | "ignoreFiles"
     | "ignoreCssSelectors"
+    | "removeDefaultStopWordFilter"
   >
 > & {
   docsRouteBasePath: string[];
@@ -157,6 +158,7 @@ export type ProcessedPluginOptions = Required<
   blogDir: string[];
   ignoreFiles: (string | RegExp)[];
   ignoreCssSelectors: string[];
+  removeDefaultStopWordFilter: string[];
 };
 
 export interface PostBuildData {

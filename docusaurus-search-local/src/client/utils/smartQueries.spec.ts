@@ -28,7 +28,7 @@ interface TestQuery {
 describe("smartQueries", () => {
   beforeEach(() => {
     __setLanguage(["en", "zh"]);
-    __setRemoveDefaultStopWordFilter(false);
+    __setRemoveDefaultStopWordFilter([]);
   });
 
   test.each<[string[], TestQuery[]]>([
@@ -236,7 +236,7 @@ describe("smartQueries", () => {
 describe("smartQueries with no stop words filter", () => {
   beforeEach(() => {
     __setLanguage(["en", "fake"]);
-    __setRemoveDefaultStopWordFilter(true);
+    __setRemoveDefaultStopWordFilter(["en"]);
   });
 
   test.each<[string[], TestQuery[]]>([

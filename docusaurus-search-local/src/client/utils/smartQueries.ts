@@ -47,12 +47,15 @@ export function smartQueries(
   const stopWordPipelines: lunr.PipelineFunction[] = [];
   for (const lang of language) {
     if (lang === "en") {
-      if (!removeDefaultStopWordFilter) {
+      if (!removeDefaultStopWordFilter.includes(lang)) {
         stopWordPipelines.unshift(lunr.stopWordFilter);
       }
     } else {
       const lunrLang = (lunr as any)[lang] as typeof lunr;
-      if (lunrLang.stopWordFilter) {
+      if (
+        lunrLang.stopWordFilter &&
+        !removeDefaultStopWordFilter.includes(lang)
+      ) {
         stopWordPipelines.unshift(lunrLang.stopWordFilter);
       }
     }

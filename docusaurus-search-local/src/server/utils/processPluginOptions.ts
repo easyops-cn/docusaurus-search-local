@@ -35,6 +35,11 @@ export function processPluginOptions(
     config.searchBarPosition =
       search && search.position === "left" ? "left" : "right";
   }
+  if (!Array.isArray(config.removeDefaultStopWordFilter)) {
+    config.removeDefaultStopWordFilter = config.removeDefaultStopWordFilter
+      ? ["en"]
+      : [];
+  }
   return config;
 }
 

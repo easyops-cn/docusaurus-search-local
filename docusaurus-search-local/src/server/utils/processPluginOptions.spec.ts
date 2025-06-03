@@ -25,6 +25,7 @@ describe("processPluginOptions", () => {
         ignoreFiles: ["test"],
         ignoreCssSelectors: [],
         searchBarPosition: "right",
+        removeDefaultStopWordFilter: [],
       },
     ],
     [
@@ -37,6 +38,7 @@ describe("processPluginOptions", () => {
         ignoreFiles: [/__meta__$/],
         ignoreCssSelectors: [],
         searchBarPosition: "left",
+        removeDefaultStopWordFilter: true,
       },
       {
         docsRouteBasePath: ["docs"],
@@ -47,6 +49,7 @@ describe("processPluginOptions", () => {
         ignoreFiles: [/__meta__$/],
         ignoreCssSelectors: [],
         searchBarPosition: "left",
+        removeDefaultStopWordFilter: ["en"],
       },
     ],
   ])("processPluginOptions(...) should work", (options, config) => {
@@ -72,6 +75,7 @@ describe("processPluginOptions", () => {
           ignoreFiles: "test",
           ignoreCssSelectors: [],
           searchBarPosition: "auto",
+          removeDefaultStopWordFilter: ["en", "zh"],
         },
         {
           siteDir,
@@ -102,6 +106,7 @@ describe("processPluginOptions", () => {
       ignoreFiles: ["test"],
       ignoreCssSelectors: [],
       searchBarPosition: "left",
+      removeDefaultStopWordFilter: ["en", "zh"],
     });
   });
 });

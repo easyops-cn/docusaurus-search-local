@@ -33,7 +33,7 @@ declare module "*/generated-constants.js" {
   export const fuzzyMatchingDistance: number;
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;
-  export const __setRemoveDefaultStopWordFilter: (value: boolean) => void;
+  export const __setRemoveDefaultStopWordFilter: (value: string[]) => void;
 }
 
 declare module "@docusaurus/Head";

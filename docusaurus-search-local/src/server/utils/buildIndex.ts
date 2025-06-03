@@ -60,10 +60,19 @@ export function buildIndex(
           this.use(plugin);
         }
 
-        if (removeDefaultStopWordFilter) {
-          // Sometimes we need no English stop words,
-          // since they are almost all programming code.
-          this.pipeline.remove(lunr.stopWordFilter);
+        // Sometimes we need no English stop words,
+        // since they are almost all programming code.
+        for (const lang of language) {
+          if (removeDefaultStopWordFilter.includes(lang)) {
+            if (lang === "en") {
+              this.pipeline.remove(lunr.stopWordFilter);
+            } else {
+              const stopWordFilter = (lunr as any)[lang]?.stopWordFilter;
+              if (stopWordFilter) {
+                this.pipeline.remove(stopWordFilter);
+              }
+            }
+          }
         }
 
         if (removeDefaultStemmer) {

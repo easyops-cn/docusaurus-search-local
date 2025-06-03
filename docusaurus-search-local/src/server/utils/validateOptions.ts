@@ -29,7 +29,9 @@ const schema = Joi.object<PluginOptions>({
   hashed: isBooleanOrString.default(false),
   docsDir: isStringOrArrayOfStrings.default(["docs"]),
   blogDir: isStringOrArrayOfStrings.default(["blog"]),
-  removeDefaultStopWordFilter: Joi.boolean().default(false),
+  removeDefaultStopWordFilter: Joi.alternatives()
+    .try(Joi.boolean(), Joi.array().items(Joi.string()))
+    .default([]),
   removeDefaultStemmer: Joi.boolean().default(false),
   highlightSearchTermsOnTargetPage: Joi.boolean().default(false),
   searchResultLimits: Joi.number().default(8),
