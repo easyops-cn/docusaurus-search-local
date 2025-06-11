@@ -1,0 +1,12 @@
+{
+  "theme.SearchBar.label": "بحث...",
+  "theme.SearchBar.seeAll": "عرض كل النتائج",
+  "theme.SearchBar.noResultsText": "لا توجد نتائج",
+  "theme.SearchBar.searchInContext": "عرض النتائج ضمن \"{context}\"",
+  "theme.SearchBar.seeAllOutsideContext": "عرض النتائج خارج \"{context}\"",
+  "theme.SearchPage.existingResultsTitle": "النتائج لـ \"{query}\"",
+  "theme.SearchPage.emptyResultsTitle": "ابحث في المستندات",
+  "theme.SearchPage.documentsFound.plurals": "{count} نتيجة",
+  "theme.SearchPage.noResultsText": "لا توجد نتائج",
+  "theme.SearchPage.searchContext.everywhere": "كل الأماكن"
+}
