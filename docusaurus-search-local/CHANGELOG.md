@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.51.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.50.0...v0.51.0) (2025-06-11)
+
+
+### Features
+
+* Added Arabic 🇸🇦 translations ([#521](https://github.com/easyops-cn/docusaurus-search-local/issues/521)) ([c167a89](https://github.com/easyops-cn/docusaurus-search-local/commit/c167a89e881d2ab3d6042111dd25ff885e1ba153))
+
 ## [0.50.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.49.2...v0.50.0) (2025-06-03)
 
 
