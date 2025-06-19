@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.51.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.51.0...v0.51.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* fix active menu item matching for categories with collapsible disabled ([725bbb1](https://github.com/easyops-cn/docusaurus-search-local/commit/725bbb1396a89d5bdd45ef0db0bc635c81b69312))
+* fix active menu item matching for categories with collapsible disabled ([3b69844](https://github.com/easyops-cn/docusaurus-search-local/commit/3b698444163ecd79bfbc395fcc6373d5d7028459)), closes [#524](https://github.com/easyops-cn/docusaurus-search-local/issues/524)
+
 ## [0.51.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.50.0...v0.51.0) (2025-06-11)
 
 
