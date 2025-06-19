@@ -17,15 +17,21 @@ describe("parseDocument", () => {
         </nav>
         <div class="main-wrapper">
           <div class="menu">
-            <a class="menu__link menu__link--sublist">
-              API
-            </a>
-            <a class="menu__link menu__link--sublist menu__link--active">
-              Guide
-            </a>
-            <a class="menu__link menu__link--sublist menu__link--active">
-              Advanced
-            </a>
+            <div class="menu__list-item-collapsible">
+              <a class="menu__link">
+                API
+              </a>
+            </div>
+            <div class="menu__list-item-collapsible">
+              <a class="menu__link menu__link--active">
+                Guide
+              </a>
+            </div>
+            <div class="menu__list-item-collapsible">
+              <a class="menu__link menu__link--active">
+                Advanced
+              </a>
+            </div>
             <a class="menu__link menu__link--active">
               First Doc
             </a>
