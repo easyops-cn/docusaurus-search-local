@@ -27,7 +27,7 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
   if (menu.length > 0) {
     const activeMenuItem = menu
       .eq(0)
-      .find(".menu__link--sublist.menu__link--active");
+      .find(".menu__list-item-collapsible .menu__link--active");
     // console.log("activeMenuItem.length", activeMenuItem.length);
     activeMenuItem.each((_, element) => {
       breadcrumb.push($(element).text().trim());
