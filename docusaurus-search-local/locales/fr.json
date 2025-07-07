@@ -1,0 +1,12 @@
+{
+  "theme.SearchBar.label": "Rechercher",
+  "theme.SearchBar.seeAll": "Afficher tous les résultats",
+  "theme.SearchBar.noResultsText": "Aucun résultat",
+  "theme.SearchBar.searchInContext": "Afficher tous les résultats dans \"{context}\" ",
+  "theme.SearchBar.seeAllOutsideContext": "Afficher tous les résultats en dehors de \"{context}\" ",
+  "theme.SearchPage.existingResultsTitle": "Résultats de recherche pour \"{query}\"",
+  "theme.SearchPage.emptyResultsTitle": "Rechercher dans le site",
+  "theme.SearchPage.documentsFound.plurals": "1 document trouvé|{count} documents trouvés",
+  "theme.SearchPage.noResultsText": "Aucun document trouvé",
+  "theme.SearchPage.searchContext.everywhere": "Partout"
+}
