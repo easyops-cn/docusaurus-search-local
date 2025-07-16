@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.52.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.51.1...v0.52.0) (2025-07-16)
+
+
+### Features
+
+* Add configurable keyboard shortcut for search bar focus ([92b32ee](https://github.com/easyops-cn/docusaurus-search-local/commit/92b32ee0ba0ee63664b3ae2cae9aa92b433025cf)), closes [#516](https://github.com/easyops-cn/docusaurus-search-local/issues/516)
+
 ## [0.51.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.51.0...v0.51.1) (2025-06-19)
 
 
