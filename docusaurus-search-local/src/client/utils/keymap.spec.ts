@@ -35,6 +35,54 @@ describe('keymap utility functions', () => {
       });
     });
 
+    test('should parse mod+k on Mac-like platform', () => {
+      // Mock navigator.platform to simulate Mac
+      const originalNavigator = global.navigator;
+      Object.defineProperty(global, 'navigator', {
+        value: { platform: 'MacIntel' },
+        configurable: true
+      });
+
+      const result = parseKeymap('mod+k');
+      expect(result).toEqual({
+        key: 'k',
+        ctrl: false,
+        alt: false,
+        shift: false,
+        meta: true,
+      });
+
+      // Restore original navigator
+      Object.defineProperty(global, 'navigator', {
+        value: originalNavigator,
+        configurable: true
+      });
+    });
+
+    test('should parse mod+k on non-Mac platform', () => {
+      // Mock navigator.platform to simulate non-Mac
+      const originalNavigator = global.navigator;
+      Object.defineProperty(global, 'navigator', {
+        value: { platform: 'Win32' },
+        configurable: true
+      });
+
+      const result = parseKeymap('mod+k');
+      expect(result).toEqual({
+        key: 'k',
+        ctrl: true,
+        alt: false,
+        shift: false,
+        meta: false,
+      });
+
+      // Restore original navigator
+      Object.defineProperty(global, 'navigator', {
+        value: originalNavigator,
+        configurable: true
+      });
+    });
+
     test('should parse complex combination', () => {
       const result = parseKeymap('ctrl+shift+alt+f');
       expect(result).toEqual({
@@ -126,6 +174,16 @@ describe('keymap utility functions', () => {
     test('should generate hints for cmd+k on Mac', () => {
       const hints = getKeymapHints('cmd+k', true);
       expect(hints).toEqual(['⌘', 'K']);
+    });
+
+    test('should generate hints for mod+k on Mac', () => {
+      const hints = getKeymapHints('mod+k', true);
+      expect(hints).toEqual(['⌘', 'K']);
+    });
+
+    test('should generate hints for mod+k on non-Mac', () => {
+      const hints = getKeymapHints('mod+k', false);
+      expect(hints).toEqual(['ctrl', 'K']);
     });
 
     test('should generate hints for complex combination on Mac', () => {

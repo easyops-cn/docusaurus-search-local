@@ -16,6 +16,9 @@ export function parseKeymap(keymap: string): ParsedKeymap {
     meta: false,
   };
 
+  // Detect if we're on Mac to handle 'mod' appropriately
+  const isMac = typeof navigator !== 'undefined' && navigator.platform.toLowerCase().includes('mac');
+
   for (const part of parts) {
     const trimmed = part.trim();
     switch (trimmed) {
@@ -24,6 +27,13 @@ export function parseKeymap(keymap: string): ParsedKeymap {
         break;
       case 'cmd':
         result.meta = true;
+        break;
+      case 'mod':
+        if (isMac) {
+          result.meta = true;
+        } else {
+          result.ctrl = true;
+        }
         break;
       case 'alt':
         result.alt = true;
@@ -54,11 +64,18 @@ export function getKeymapHints(keymap: string, isMac: boolean): string[] {
   const parsedKeymap = parseKeymap(keymap);
   const hints: string[] = [];
 
-  if (parsedKeymap.ctrl) {
+  // Handle original keymap string to detect 'mod' for proper hint display
+  const parts = keymap.toLowerCase().split('+').map(p => p.trim());
+  const hasMod = parts.includes('mod');
+
+  if (parsedKeymap.ctrl && !hasMod) {
     hints.push('ctrl');
   }
-  if (parsedKeymap.meta) {
+  if (parsedKeymap.meta && !hasMod) {
     hints.push(isMac ? '⌘' : 'cmd');
+  }
+  if (hasMod) {
+    hints.push(isMac ? '⌘' : 'ctrl');
   }
   if (parsedKeymap.alt) {
     hints.push(isMac ? '⌥' : 'alt');

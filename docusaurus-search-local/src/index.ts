@@ -149,9 +149,10 @@ export interface PluginOptions {
    * - "s" for single key
    * - "ctrl+k" for key combinations
    * - "cmd+k" for Command+K (Mac) / Ctrl+K (others)
+   * - "mod+k" for Command+K (Mac) / Ctrl+K (others) - recommended cross-platform option
    * - "ctrl+shift+k" for multiple modifiers
    *
-   * @default "ctrl+k"
+   * @default "mod+k"
    */
   searchBarShortcutKeymap?: string;
 
