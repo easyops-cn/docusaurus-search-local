@@ -41,6 +41,7 @@ const schema = Joi.object<PluginOptions>({
   ignoreCssSelectors: isStringOrArrayOfStrings.default([]),
   searchBarShortcut: Joi.boolean().default(true),
   searchBarShortcutHint: Joi.boolean().default(true),
+  searchBarShortcutKeymap: Joi.string().default("mod+k"),
   searchBarPosition: Joi.string().default("auto"),
   docsPluginIdForPreferredVersion: Joi.string(),
   zhUserDict: Joi.string(),

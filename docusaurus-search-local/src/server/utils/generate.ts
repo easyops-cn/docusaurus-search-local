@@ -14,6 +14,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     explicitSearchResultPath,
     searchBarShortcut,
     searchBarShortcutHint,
+    searchBarShortcutKeymap,
     searchBarPosition,
     docsPluginIdForPreferredVersion,
     indexDocs,
@@ -65,6 +66,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
   contents.push(
     `export const searchBarShortcutHint = ${JSON.stringify(
       searchBarShortcutHint
+    )};`
+  );
+  contents.push(
+    `export const searchBarShortcutKeymap = ${JSON.stringify(
+      searchBarShortcutKeymap
     )};`
   );
   contents.push(

@@ -145,6 +145,18 @@ export interface PluginOptions {
   searchBarShortcutHint?: boolean;
 
   /**
+   * Custom keyboard shortcut to focus the search bar. Supports formats like:
+   * - "s" for single key
+   * - "ctrl+k" for key combinations
+   * - "cmd+k" for Command+K (Mac) / Ctrl+K (others)
+   * - "mod+k" for Command+K (Mac) / Ctrl+K (others) - recommended cross-platform option
+   * - "ctrl+shift+k" for multiple modifiers
+   *
+   * @default "mod+k"
+   */
+  searchBarShortcutKeymap?: string;
+
+  /**
    * The side of the navbar the search bar should appear on. By default,
    * it will try to autodetect based on your docusaurus config according
    * to [the docs](https://docusaurus.io/docs/api/themes/configuration#navbar-search).
