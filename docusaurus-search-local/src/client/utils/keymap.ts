@@ -1,3 +1,5 @@
+import { isMacPlatform } from './platform';
+
 export interface ParsedKeymap {
   key: string;
   ctrl: boolean;
@@ -17,7 +19,7 @@ export function parseKeymap(keymap: string): ParsedKeymap {
   };
 
   // Detect if we're on Mac to handle 'mod' appropriately
-  const isMac = typeof navigator !== 'undefined' && navigator.platform.toLowerCase().includes('mac');
+  const isMac = isMacPlatform();
 
   for (const part of parts) {
     const trimmed = part.trim();

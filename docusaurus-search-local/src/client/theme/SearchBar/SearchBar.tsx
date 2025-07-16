@@ -36,6 +36,7 @@ import LoadingRing from "../LoadingRing/LoadingRing";
 import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 import { searchResultLimits } from "../../utils/proxiedGeneratedConstants";
 import { parseKeymap, matchesKeymap, getKeymapHints } from "../../utils/keymap";
+import { isMacPlatform } from "../../utils/platform";
 
 import styles from "./SearchBar.module.css";
 
@@ -389,11 +390,7 @@ export default function SearchBar({
   );
 
   // Implement hint icons for the search shortcuts on mac and the rest operating systems.
-  const isMac = isBrowser
-    ? /mac/i.test(
-        (navigator as any).userAgentData?.platform ?? navigator.platform
-      )
-    : false;
+  const isMac = isBrowser ? isMacPlatform() : false;
 
   // Sync the input value and focus state for SSR
   useEffect(

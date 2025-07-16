@@ -1,6 +1,15 @@
 import { parseKeymap, matchesKeymap, getKeymapHints } from './keymap';
+import * as platformModule from './platform';
+
+// Mock the platform module
+jest.mock('./platform');
 
 describe('keymap utility functions', () => {
+  const mockIsMacPlatform = jest.mocked(platformModule.isMacPlatform);
+
+  beforeEach(() => {
+    mockIsMacPlatform.mockClear();
+  });
   describe('parseKeymap', () => {
     test('should parse single key', () => {
       const result = parseKeymap('s');
@@ -36,12 +45,7 @@ describe('keymap utility functions', () => {
     });
 
     test('should parse mod+k on Mac-like platform', () => {
-      // Mock navigator.platform to simulate Mac
-      const originalNavigator = global.navigator;
-      Object.defineProperty(global, 'navigator', {
-        value: { platform: 'MacIntel' },
-        configurable: true
-      });
+      mockIsMacPlatform.mockReturnValue(true);
 
       const result = parseKeymap('mod+k');
       expect(result).toEqual({
@@ -51,21 +55,10 @@ describe('keymap utility functions', () => {
         shift: false,
         meta: true,
       });
-
-      // Restore original navigator
-      Object.defineProperty(global, 'navigator', {
-        value: originalNavigator,
-        configurable: true
-      });
     });
 
     test('should parse mod+k on non-Mac platform', () => {
-      // Mock navigator.platform to simulate non-Mac
-      const originalNavigator = global.navigator;
-      Object.defineProperty(global, 'navigator', {
-        value: { platform: 'Win32' },
-        configurable: true
-      });
+      mockIsMacPlatform.mockReturnValue(false);
 
       const result = parseKeymap('mod+k');
       expect(result).toEqual({
@@ -74,12 +67,6 @@ describe('keymap utility functions', () => {
         alt: false,
         shift: false,
         meta: false,
-      });
-
-      // Restore original navigator
-      Object.defineProperty(global, 'navigator', {
-        value: originalNavigator,
-        configurable: true
       });
     });
 
