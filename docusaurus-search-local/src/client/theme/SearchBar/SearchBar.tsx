@@ -24,6 +24,7 @@ import {
   Mark,
   searchBarShortcut,
   searchBarShortcutHint,
+  searchBarShortcutKeymap,
   searchBarPosition,
   docsPluginIdForPreferredVersion,
   indexDocs,
@@ -34,6 +35,7 @@ import {
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
 import { searchResultLimits } from "../../utils/proxiedGeneratedConstants";
+import { parseKeymap, matchesKeymap, getKeymapHints } from "../../utils/keymap";
 
 import styles from "./SearchBar.module.css";
 
@@ -414,15 +416,15 @@ export default function SearchBar({
   );
 
   useEffect(() => {
-    if (!searchBarShortcut) {
+    if (!searchBarShortcut || !searchBarShortcutKeymap) {
       return;
     }
-    // Add shortcuts command/ctrl + K
+    
+    const parsedKeymap = parseKeymap(searchBarShortcutKeymap);
+    
+    // Add shortcuts based on custom keymap
     const handleShortcut = (event: KeyboardEvent): void => {
-      if (
-        (isMac ? event.metaKey : event.ctrlKey) &&
-        (event.key === "k" || event.key === "K")
-      ) {
+      if (matchesKeymap(event, parsedKeymap)) {
         event.preventDefault();
         searchBarRef.current?.focus();
         onInputFocus();
@@ -433,7 +435,7 @@ export default function SearchBar({
     return () => {
       document.removeEventListener("keydown", handleShortcut);
     };
-  }, [isMac, onInputFocus]);
+  }, [onInputFocus, searchBarShortcutKeymap]);
 
   const onClearSearch = useCallback(() => {
     const params = new URLSearchParams(location.search);
@@ -485,10 +487,11 @@ export default function SearchBar({
             ✕
           </button>
         ) : (
-          isBrowser && (
+          isBrowser && searchBarShortcutKeymap && (
             <div className={styles.searchHintContainer}>
-              <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-              <kbd className={styles.searchHint}>K</kbd>
+              {getKeymapHints(searchBarShortcutKeymap, isMac).map((hint, index) => (
+                <kbd key={index} className={styles.searchHint}>{hint}</kbd>
+              ))}
             </div>
           )
         ))}

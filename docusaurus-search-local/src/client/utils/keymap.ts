@@ -1,0 +1,74 @@
+export interface ParsedKeymap {
+  key: string;
+  ctrl: boolean;
+  alt: boolean;
+  shift: boolean;
+  meta: boolean;
+}
+
+export function parseKeymap(keymap: string): ParsedKeymap {
+  const parts = keymap.toLowerCase().split('+');
+  const result: ParsedKeymap = {
+    key: '',
+    ctrl: false,
+    alt: false,
+    shift: false,
+    meta: false,
+  };
+
+  for (const part of parts) {
+    const trimmed = part.trim();
+    switch (trimmed) {
+      case 'ctrl':
+        result.ctrl = true;
+        break;
+      case 'cmd':
+        result.meta = true;
+        break;
+      case 'alt':
+        result.alt = true;
+        break;
+      case 'shift':
+        result.shift = true;
+        break;
+      default:
+        result.key = trimmed;
+        break;
+    }
+  }
+
+  return result;
+}
+
+export function matchesKeymap(event: KeyboardEvent, keymap: ParsedKeymap): boolean {
+  return (
+    event.key.toLowerCase() === keymap.key &&
+    event.ctrlKey === keymap.ctrl &&
+    event.altKey === keymap.alt &&
+    event.shiftKey === keymap.shift &&
+    event.metaKey === keymap.meta
+  );
+}
+
+export function getKeymapHints(keymap: string, isMac: boolean): string[] {
+  const parsedKeymap = parseKeymap(keymap);
+  const hints: string[] = [];
+
+  if (parsedKeymap.ctrl) {
+    hints.push('ctrl');
+  }
+  if (parsedKeymap.meta) {
+    hints.push(isMac ? '⌘' : 'cmd');
+  }
+  if (parsedKeymap.alt) {
+    hints.push(isMac ? '⌥' : 'alt');
+  }
+  if (parsedKeymap.shift) {
+    hints.push(isMac ? '⇧' : 'shift');
+  }
+  if (parsedKeymap.key) {
+    hints.push(parsedKeymap.key.toUpperCase());
+  }
+
+  return hints;
+}

@@ -13,6 +13,7 @@ declare module "*/generated.js" {
   export const explicitSearchResultPath: boolean;
   export const searchBarShortcut: boolean;
   export const searchBarShortcutHint: boolean;
+  export const searchBarShortcutKeymap: string;
   export const searchBarPosition: "left" | "right";
   export const docsPluginIdForPreferredVersion: string;
   export const indexDocs: boolean;

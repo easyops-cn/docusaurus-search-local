@@ -55,6 +55,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
@@ -84,6 +85,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
@@ -113,6 +115,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
@@ -142,6 +145,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
@@ -184,6 +188,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: false,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: true,
         fuzzyMatchingDistance: 0,
@@ -218,6 +223,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: false,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
@@ -257,6 +263,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
@@ -297,6 +304,7 @@ describe("validateOptions", () => {
         ignoreCssSelectors: [],
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarShortcutKeymap: "ctrl+k",
         searchBarPosition: "left",
         docsPluginIdForPreferredVersion: "product",
         searchContextByPaths: ["docs", "community"],
@@ -317,5 +325,25 @@ describe("validateOptions", () => {
         validate,
       });
     }).toThrow();
+  });
+
+  test("should work with custom searchBarShortcutKeymap", () => {
+    expect(validateOptions({ 
+      options: { 
+        searchBarShortcutKeymap: "s" 
+      }, 
+      validate 
+    })).toEqual(expect.objectContaining({
+      searchBarShortcutKeymap: "s",
+    }));
+
+    expect(validateOptions({ 
+      options: { 
+        searchBarShortcutKeymap: "ctrl+shift+f" 
+      }, 
+      validate 
+    })).toEqual(expect.objectContaining({
+      searchBarShortcutKeymap: "ctrl+shift+f",
+    }));
   });
 });
