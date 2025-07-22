@@ -59,8 +59,11 @@ export function processDocInfos(
 
   // Create a list of files to index per document version. This will always include all pages and blogs.
   const result = [];
-  for (const [versionOutDir, docs] of versionData.entries()) {
-    const versionPaths = routesPaths
+  for (const [versionOutDir, docs] of Array.from(versionData.entries()).sort(([a], [b]) => a.localeCompare(b))) {
+    // Sort routesPaths to ensure deterministic processing order
+    const sortedRoutesPaths = routesPaths.slice().sort();
+    
+    const versionPaths = sortedRoutesPaths
       .map<DocInfoWithRoute | undefined>((url: string) => {
         // istanbul ignore next
         if (!url.startsWith(baseUrl)) {

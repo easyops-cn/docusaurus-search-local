@@ -82,7 +82,7 @@ export function postBuildFactory(
         docsByDirMap.set("", allDocuments);
       }
 
-      for (const [k, allDocs] of docsByDirMap) {
+      for (const [k, allDocs] of Array.from(docsByDirMap.entries()).sort(([a], [b]) => a.localeCompare(b))) {
         const searchIndex = buildIndex(allDocs, config);
 
         debugInfo(`writing index (/${k}) to disk`);
