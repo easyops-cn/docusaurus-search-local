@@ -16,11 +16,6 @@ const getNextDocId = () => {
   return (nextDocId += 1);
 };
 
-// Export for testing
-export const resetDocId = () => {
-  nextDocId = 0;
-};
-
 export async function scanDocuments(
   DocInfoWithFilePathList: DocInfoWithFilePath[],
   config: ProcessedPluginOptions
