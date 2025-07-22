@@ -33,8 +33,9 @@ export async function scanDocuments(
     contentDocuments,
   ];
 
-  await Promise.all(
-    DocInfoWithFilePathList.map(async ({ filePath, url, type }) => {
+  // Process documents in parallel but assign IDs deterministically based on input order
+  const processedDocs = await Promise.all(
+    DocInfoWithFilePathList.map(async ({ filePath, url, type }, index) => {
       debugVerbose(
         `parsing %s file %o of %o`,
         type,
@@ -47,73 +48,82 @@ export async function scanDocuments(
       const parsed = parse(html, type, url, config);
       if (!parsed) {
         // Unlisted content
-        return;
+        return null;
       }
-      const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
-
-      const titleId = getNextDocId();
-
-      titleDocuments.push({
-        i: titleId,
-        t: pageTitle,
-        u: url,
-        b: breadcrumb,
-      });
-
-      if (description) {
-        descriptionDocuments.push({
-          i: titleId,
-          t: description,
-          s: pageTitle,
-          u: url,
-          p: titleId,
-        });
-      }
-
-      if (keywords) {
-        keywordsDocuments.push({
-          i: titleId,
-          t: keywords,
-          s: pageTitle,
-          u: url,
-          p: titleId,
-        });
-      }
-
-      for (const section of sections) {
-        const trimmedHash = getTrimmedHash(section.hash, url);
-
-        if (section.title !== pageTitle) {
-          if (trimmedHash === false) {
-            continue;
-          }
-
-          headingDocuments.push({
-            i: getNextDocId(),
-            t: section.title,
-            u: url,
-            h: trimmedHash,
-            p: titleId,
-          });
-        }
-
-        if (section.content) {
-          if (trimmedHash === false) {
-            continue;
-          }
-
-          contentDocuments.push({
-            i: getNextDocId(),
-            t: section.content,
-            s: section.title || pageTitle,
-            u: url,
-            h: trimmedHash,
-            p: titleId,
-          });
-        }
-      }
+      return { parsed, url, index };
     })
   );
+
+  // Process results in input order to ensure deterministic ID assignment
+  for (let i = 0; i < processedDocs.length; i++) {
+    const result = processedDocs[i];
+    if (!result) continue;
+    
+    const { parsed, url } = result;
+    const { pageTitle, description, keywords, sections, breadcrumb } = parsed;
+
+    const titleId = getNextDocId();
+
+    titleDocuments.push({
+      i: titleId,
+      t: pageTitle,
+      u: url,
+      b: breadcrumb,
+    });
+
+    if (description) {
+      descriptionDocuments.push({
+        i: titleId,
+        t: description,
+        s: pageTitle,
+        u: url,
+        p: titleId,
+      });
+    }
+
+    if (keywords) {
+      keywordsDocuments.push({
+        i: titleId,
+        t: keywords,
+        s: pageTitle,
+        u: url,
+        p: titleId,
+      });
+    }
+
+    for (const section of sections) {
+      const trimmedHash = getTrimmedHash(section.hash, url);
+
+      if (section.title !== pageTitle) {
+        if (trimmedHash === false) {
+          continue;
+        }
+
+        headingDocuments.push({
+          i: getNextDocId(),
+          t: section.title,
+          u: url,
+          h: trimmedHash,
+          p: titleId,
+        });
+      }
+
+      if (section.content) {
+        if (trimmedHash === false) {
+          continue;
+        }
+
+        contentDocuments.push({
+          i: getNextDocId(),
+          t: section.content,
+          s: section.title || pageTitle,
+          u: url,
+          h: trimmedHash,
+          p: titleId,
+        });
+      }
+    }
+  }
   return allDocuments;
 }
 
