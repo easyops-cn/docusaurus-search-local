@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.52.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.0...v0.52.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* Fix non-deterministic search-index.json generation ([964f84a](https://github.com/easyops-cn/docusaurus-search-local/commit/964f84a32e7e683e4e557688764690dbc04d1b87))
+
 ## [0.52.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.51.1...v0.52.0) (2025-07-16)
 
 
