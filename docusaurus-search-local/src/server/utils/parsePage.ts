@@ -2,7 +2,7 @@ import { ParsedDocument } from "../../shared/interfaces";
 import { debugWarn } from "./debug";
 import { getCondensedText } from "./getCondensedText";
 
-export function parsePage($: cheerio.Root, url: string): ParsedDocument {
+export function parsePage($: any, url: string): ParsedDocument {
   $("a[aria-hidden=true]").remove();
 
   let $pageTitle = $("h1").first();

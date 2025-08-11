@@ -40,10 +40,10 @@ const BLOCK_TAGS = new Set([
 ]);
 
 export function getCondensedText(
-  element: cheerio.Element | cheerio.Element[],
-  $: cheerio.Root
+  element: any,
+  $: any
 ): string {
-  const getText = (element: cheerio.Element | cheerio.Element[]): string => {
+  const getText = (element: any): string => {
     if (Array.isArray(element)) {
       return element.map((item) => getText(item)).join("");
     }

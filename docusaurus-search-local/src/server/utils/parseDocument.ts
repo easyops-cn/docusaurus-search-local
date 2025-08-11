@@ -5,7 +5,7 @@ import { getCondensedText } from "./getCondensedText";
 const HEADINGS = "h1, h2, h3";
 // const SUB_HEADINGS = "h2, h3";
 
-export function parseDocument($: cheerio.Root): ParsedDocument {
+export function parseDocument($: any): ParsedDocument {
   const $pageTitle = $("article h1").first();
   const pageTitle = $pageTitle.text();
   const description = $("meta[name='description']").attr("content") || "";
@@ -29,14 +29,14 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       .eq(0)
       .find(".menu__list-item-collapsible .menu__link--active");
     // console.log("activeMenuItem.length", activeMenuItem.length);
-    activeMenuItem.each((_, element) => {
+    activeMenuItem.each((_: number, element: any) => {
       breadcrumb.push($(element).text().trim());
     });
   }
 
   $("article")
     .find(HEADINGS)
-    .each((_, element) => {
+    .each((_: number, element: any) => {
       const $h = $(element);
       // Remove elements that are marked as aria-hidden.
       // This is mainly done to remove anchors like this:
@@ -46,7 +46,7 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
 
       // Find all content between h1 and h2/h3,
       // which is considered as the content section of page title.
-      let $sectionElements = $([]);
+      let $sectionElements: any = $([]);
       if ($h.is($pageTitle)) {
         const $header = $h.parent();
         let $firstElement;

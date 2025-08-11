@@ -4,8 +4,8 @@
     "moduleResolution": "Node",
     "target": "ES6",
     "module": "CommonJS",
-    "outDir": "dist/server",
-    "types": ["cheerio"]
+    "outDir": "dist",
+    "types": ["cheerio", "node", "@docusaurus/module-type-aliases"]
   },
   "exclude": ["**/*.spec.ts", "src/client"]
 }

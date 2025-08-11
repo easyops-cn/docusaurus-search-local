@@ -1,3 +1,6 @@
+// Re-export the server plugin as the default export
+export { default, validateOptions } from "./server";
+
 export interface PluginOptions {
   /**
    * Whether to index docs.

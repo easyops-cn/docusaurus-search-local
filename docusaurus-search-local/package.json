@@ -19,7 +19,7 @@
     "build:types": "tsc --project tsconfig.types.json",
     "copy-static-files": "copyfiles -u 3 \"src/client/theme/**/*.css\" dist/client/client/theme && copyfiles -u 1 \"locales/*.json\" dist/locales"
   },
-  "main": "dist/server/server/index.js",
+  "main": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "files": [
     "/dist",
