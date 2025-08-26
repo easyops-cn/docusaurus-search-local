@@ -1,0 +1,12 @@
+{
+  "theme.SearchBar.label": "搜尋",
+  "theme.SearchBar.seeAll": "查看全部搜尋結果",
+  "theme.SearchBar.noResultsText": "沒有找到任何結果",
+  "theme.SearchBar.searchInContext": "“查看{context}”內的全部結果",
+  "theme.SearchBar.seeAllOutsideContext": "查看“{context}”以外的全部結果",
+  "theme.SearchPage.existingResultsTitle": "“{query}”的搜尋結果",
+  "theme.SearchPage.emptyResultsTitle": "搜尋文件",
+  "theme.SearchPage.documentsFound.plurals": "共找到 {count} 篇文件",
+  "theme.SearchPage.noResultsText": "沒有找到任何結果",
+  "theme.SearchPage.searchContext.everywhere": "所有"
+}
