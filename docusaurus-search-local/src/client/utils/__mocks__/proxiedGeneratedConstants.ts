@@ -3,6 +3,7 @@ export let removeDefaultStopWordFilter: string[] = [];
 export const searchIndexUrl = "search-index{dir}.json?_=abc";
 export const searchResultLimits = 8;
 export let fuzzyMatchingDistance = 0;
+export let synonyms: string[][] = [];
 
 export function __setLanguage(value: string[]): void {
   language = value;
@@ -14,4 +15,8 @@ export function __setRemoveDefaultStopWordFilter(value: string[]): void {
 
 export function __setFuzzyMatchingDistance(value: number): void {
   fuzzyMatchingDistance = value;
+}
+
+export function __setSynonyms(value: string[][]): void {
+  synonyms = value;
 }

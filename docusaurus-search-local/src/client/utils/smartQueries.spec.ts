@@ -4,6 +4,7 @@ import {
   __setLanguage,
   __setRemoveDefaultStopWordFilter,
   __setFuzzyMatchingDistance,
+  __setSynonyms,
 } from "./proxiedGeneratedConstants";
 import { SmartQuery } from "../../shared/interfaces";
 
@@ -374,3 +375,89 @@ function transformQuery(query: SmartQuery): TestQuery {
       .join(" "),
   };
 }
+
+describe("smartQueries with synonyms", () => {
+  beforeEach(() => {
+    __setLanguage(["en"]);
+    __setRemoveDefaultStopWordFilter([]);
+    __setFuzzyMatchingDistance(0);
+    __setSynonyms([["CSS", "styles"], ["JavaScript", "JS"]]);
+  });
+
+  test.each<[string[], TestQuery[]]>([
+    [
+      ["CSS"],
+      [
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles",
+        },
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles*",
+        },
+      ],
+    ],
+    [
+      ["styles"],
+      [
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles",
+        },
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles*",
+        },
+      ],
+    ],
+    [
+      ["JavaScript"],
+      [
+        {
+          tokens: ["javascript", "js"],
+          keyword: "+javascript +js",
+        },
+        {
+          tokens: ["javascript", "js"],
+          keyword: "+javascript +js*",
+        },
+      ],
+    ],
+    [
+      ["guide", "CSS"],
+      [
+        {
+          tokens: ["guide", "css", "styles"],
+          keyword: "+guide +css +styles",
+        },
+        {
+          tokens: ["guide", "css", "styles"],
+          keyword: "+guide +css +styles*",
+        },
+        {
+          tokens: ["guide", "css"],
+          keyword: "+guide +css",
+        },
+        {
+          tokens: ["guide", "styles"],
+          keyword: "+guide +styles",
+        },
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles",
+        },
+        {
+          tokens: ["guide", "styles"],
+          keyword: "+guide +styles*",
+        },
+        {
+          tokens: ["css", "styles"],
+          keyword: "+css +styles*",
+        },
+      ],
+    ],
+  ])("smartQueries(%j, []) with synonyms should work", (tokens, queries) => {
+    expect(smartQueries(tokens, []).map(transformQuery)).toEqual(queries);
+  });
+});

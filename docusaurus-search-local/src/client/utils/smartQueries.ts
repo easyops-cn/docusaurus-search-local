@@ -5,7 +5,9 @@ import {
   language,
   removeDefaultStopWordFilter,
   fuzzyMatchingDistance,
+  synonyms,
 } from "./proxiedGeneratedConstants";
+import { createSynonymsMap, expandTokens } from "../../shared/synonymsUtils";
 
 /**
  * Get all possible queries for a list of tokens consists of words mixed English and Chinese,
@@ -20,15 +22,22 @@ export function smartQueries(
   tokens: string[],
   zhDictionary: string[]
 ): SmartQuery[] {
-  const terms = smartTerms(tokens, zhDictionary);
+  // Expand tokens with synonyms if configured
+  let expandedTokens = tokens;
+  if (synonyms && synonyms.length > 0) {
+    const synonymsMap = createSynonymsMap(synonyms);
+    expandedTokens = expandTokens(tokens, synonymsMap);
+  }
+
+  const terms = smartTerms(expandedTokens, zhDictionary);
 
   if (terms.length === 0) {
     // There are no matched terms.
     // All tokens are considered required and with wildcard.
     return [
       {
-        tokens,
-        term: tokens.map((value) => ({
+        tokens: expandedTokens,
+        term: expandedTokens.map((value) => ({
           value,
           presence: lunr.Query.presence.REQUIRED,
           wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING,

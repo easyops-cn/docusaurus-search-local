@@ -22,6 +22,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
     fuzzyMatchingDistance,
+    synonyms,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [];
@@ -100,6 +101,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     `export const useAllContextsWithNoSearchContext = ${JSON.stringify(
       !!useAllContextsWithNoSearchContext
     )};`
+  );
+  contents.push(
+    `export const synonyms = ${JSON.stringify(synonyms)};`
   );
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
