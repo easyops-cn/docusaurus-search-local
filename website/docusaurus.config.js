@@ -125,6 +125,7 @@ module.exports = {
         language: ["en", "zh"],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
+        synonyms: [["CSS", "styles"], ["JS", "JavaScript"]],
       }),
     ],
   ],

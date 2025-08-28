@@ -106,6 +106,37 @@ module.exports = {
 | useAllContextsWithNoSearchContext | boolean                                                                     | `false`   | Whether to show results from all the contexts if no context is provided. This option should not be used with `hideSearchBarWithNoSearchContext: true` as this would show results when there is no search context. This will duplicate indexes and might have a performance cost depending on the index sizes.                                               |
 | `forceIgnoreNoIndex`              | boolean                                                                     | `false`   | Force enable search index even if `noIndex: true` is set, this also affects unlisted articles.                                                                                                                                                                                                                                                              |
 | `fuzzyMatchingDistance`           | number                                                                      | `1`       | Set the edit distance for fuzzy matching during searches.                                                                                                                                                                                                                                                                                                   |
+| `synonyms`                        | string[][]                                                                  | `[]`      | Configure synonyms for search queries. Each inner array contains terms that should be treated as equivalent during search. Example: `[["CSS", "styles"], ["JS", "JavaScript"]]`. Search for any term will match documents containing other terms in the same group. Case-insensitive and bidirectional.                                               |
+
+### Synonyms
+
+The `synonyms` option allows you to configure terms that should be treated as equivalent during search operations. This is particularly useful for technical documentation where multiple terms refer to the same concept.
+
+```js
+// In your `docusaurus.config.js`:
+module.exports = {
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        synonyms: [
+          ["CSS", "styles", "stylesheets"],
+          ["JavaScript", "JS", "ECMAScript"],
+          ["React", "ReactJS"],
+          ["documentation", "docs"],
+        ],
+        // ... other options
+      },
+    ],
+  ],
+};
+```
+
+With this configuration:
+- Searching for "CSS tutorial" will also match documents containing "styles tutorial" or "stylesheets tutorial"
+- Searching for "JS guide" will match documents with "JavaScript guide" or "ECMAScript guide"  
+- All synonym relationships are bidirectional and case-insensitive
+- Each term in a synonym group will expand to match all other terms in that group
 
 ### I18N
 
