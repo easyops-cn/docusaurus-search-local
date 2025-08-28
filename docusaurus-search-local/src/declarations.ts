@@ -32,6 +32,7 @@ declare module "*/generated-constants.js" {
   export const searchIndexUrl: string;
   export const searchResultLimits: number;
   export const fuzzyMatchingDistance: number;
+  export const synonyms: string[][];
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;
   export const __setRemoveDefaultStopWordFilter: (value: string[]) => void;
