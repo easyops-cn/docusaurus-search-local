@@ -161,7 +161,8 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
     `export const fuzzyMatchingDistance = ${JSON.stringify(
       fuzzyMatchingDistance
-    )};`
+    )};`,
+    `export const synonyms = ${JSON.stringify(synonyms)};`
   );
   fs.writeFileSync(
     path.join(dir, "generated-constants.js"),
