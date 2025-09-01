@@ -4,6 +4,7 @@ import { smartTerms } from "./smartTerms";
 import {
   language,
   removeDefaultStopWordFilter,
+  removeDefaultStemmer,
   fuzzyMatchingDistance,
   synonyms,
 } from "./proxiedGeneratedConstants";
@@ -25,8 +26,12 @@ export function smartQueries(
   // Expand tokens with synonyms if configured
   let expandedTokens = tokens;
   if (synonyms && synonyms.length > 0) {
-    const synonymsMap = createSynonymsMap(synonyms);
-    expandedTokens = expandTokens(tokens, synonymsMap);
+    // Get the stemmer function if stemming is not disabled
+    const stemmerFn = !removeDefaultStemmer ? 
+      (word: string) => (lunr as any).stemmer(word) : undefined;
+    
+    const synonymsMap = createSynonymsMap(synonyms, stemmerFn);
+    expandedTokens = expandTokens(tokens, synonymsMap, stemmerFn);
   }
 
   const terms = smartTerms(expandedTokens, zhDictionary);

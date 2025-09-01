@@ -154,6 +154,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       removeDefaultStopWordFilter
     )};`
   );
+  constantContents.push(
+    `export const removeDefaultStemmer = ${JSON.stringify(
+      removeDefaultStemmer
+    )};`
+  );
   constantContents.push(`export const language = ${JSON.stringify(language)};`);
   const searchIndexUrl = searchIndexFilename + searchIndexQuery;
   constantContents.push(
