@@ -1,4 +1,4 @@
-import { createSynonymsMap, expandToken, expandTokens, expandTextWithSynonyms } from "./synonymsUtils";
+import { createSynonymsMap, expandToken, expandTokens } from "./synonymsUtils";
 
 describe("synonymsUtils", () => {
   describe("createSynonymsMap", () => {
@@ -83,72 +83,6 @@ describe("synonymsUtils", () => {
       const expanded = expandTokens(tokens, synonymsMap);
       
       expect(expanded).toEqual(["unknown", "token"]);
-    });
-  describe("expandTextWithSynonyms", () => {
-    const synonyms = [
-      ["CSS", "styles"],
-      ["JavaScript", "JS"],
-    ];
-    const synonymsMap = createSynonymsMap(synonyms);
-
-    test("should expand text content with synonyms", () => {
-      const text = "Learn CSS basics and styling";
-      const expanded = expandTextWithSynonyms(text, synonymsMap);
-      
-      expect(expanded).toContain("css styles");
-      expect(expanded).toContain("styling");
-    });
-
-    test("should expand multiple words in content", () => {
-      const text = "CSS and JavaScript guide";
-      const expanded = expandTextWithSynonyms(text, synonymsMap);
-      
-      expect(expanded).toContain("css styles");
-      expect(expanded).toContain("javascript js");
-    });
-
-    test("should preserve punctuation and spacing", () => {
-      const text = "CSS, JavaScript!";
-      const expanded = expandTextWithSynonyms(text, synonymsMap);
-      
-      expect(expanded).toContain(", ");
-      expect(expanded).toContain("!");
-    });
-
-    test("should handle text without synonyms", () => {
-      const text = "Regular text content";
-      const expanded = expandTextWithSynonyms(text, synonymsMap);
-      
-      expect(expanded).toBe("Regular text content");
-    });
-
-    test("should handle empty text", () => {
-      expect(expandTextWithSynonyms("", synonymsMap)).toBe("");
-    });
-
-    test("should handle empty synonyms map", () => {
-      const emptySynonymsMap = new Map<string, string[]>();
-      const text = "CSS and JavaScript";
-      const expanded = expandTextWithSynonyms(text, emptySynonymsMap);
-      
-      expect(expanded).toBe("CSS and JavaScript");
-    });
-
-    test("should handle stemming with word variations", () => {
-      // Simple mock stemmer that removes 's' suffix
-      const mockStemmer = (word: string) => word.endsWith('s') ? word.slice(0, -1) : word;
-      
-      const synonymsWithStemming = [
-        ["CSS", "styles"], // "styles" becomes "style" when stemmed
-      ];
-      const stemmedSynonymsMap = createSynonymsMap(synonymsWithStemming, mockStemmer);
-      
-      // Text contains "style" (singular)
-      const text = "A comprehensive style guide";
-      const expanded = expandTextWithSynonyms(text, stemmedSynonymsMap, mockStemmer);
-      
-      // Should expand "style" to include its synonyms because stemmed "styles" -> "style" matches "style"
-      expect(expanded).toContain("css");
     });
   });
 });

@@ -62,7 +62,11 @@ export function buildIndex(
       if (synonyms && synonyms.length > 0) {
         // Get the stemmer function if stemming is enabled
         const stemmerFn = !removeDefaultStemmer ? 
-          (word: string) => (lunr as any).stemmer(word) : undefined;
+          (word: string) => {
+            const token = new lunr.Token(word, {});
+            const stemmedToken = lunr.stemmer(token);
+            return stemmedToken.toString();
+          } : undefined;
         
         synonymsMap = createSynonymsMap(synonyms, stemmerFn);
       }
@@ -107,7 +111,11 @@ export function buildIndex(
             let expandedText = doc.t;
             if (synonymsMap) {
               const stemmerFn = !removeDefaultStemmer ? 
-                (word: string) => (lunr as any).stemmer(word) : undefined;
+                (word: string) => {
+                  const token = new lunr.Token(word, {});
+                  const stemmedToken = lunr.stemmer(token);
+                  return stemmedToken.toString();
+                } : undefined;
               expandedText = expandTextWithSynonyms(doc.t, synonymsMap, stemmerFn);
             }
             

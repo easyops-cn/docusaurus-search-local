@@ -193,14 +193,16 @@ describe("buildIndex", () => {
       } as ProcessedPluginOptions
     );
 
-    // Without synonyms expansion in query, search should work for original terms
+    // With synonyms expansion during indexing, searches work bidirectionally
     const cssResults = wrappedIndexes[0].index.search("CSS");
-    expect(cssResults.length).toBe(1);
-    expect(cssResults[0].ref).toBe("1");
+    expect(cssResults.length).toBe(2); // Should find both CSS document and styles document
+    expect(cssResults.map(r => r.ref)).toContain("1"); // CSS tutorial guide
+    expect(cssResults.map(r => r.ref)).toContain("3"); // Modern styles implementation
 
     const stylesResults = wrappedIndexes[0].index.search("styles");
-    expect(stylesResults.length).toBe(1);
-    expect(stylesResults[0].ref).toBe("3");
+    expect(stylesResults.length).toBe(2); // Should find both styles document and CSS document
+    expect(stylesResults.map(r => r.ref)).toContain("1"); // CSS tutorial guide 
+    expect(stylesResults.map(r => r.ref)).toContain("3"); // Modern styles implementation
 
     // Test that query expansion would find both (this mimics client-side behavior)
     const synonymsQuery = "CSS OR styles";

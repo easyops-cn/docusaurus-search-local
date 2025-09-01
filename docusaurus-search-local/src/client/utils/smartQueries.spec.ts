@@ -389,12 +389,12 @@ describe("smartQueries with synonyms", () => {
       ["CSS"],
       [
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles",
+          tokens: ["css", "style"],
+          keyword: "+css +style",
         },
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles*",
+          tokens: ["css", "style"],
+          keyword: "+css +style*",
         },
       ],
     ],
@@ -402,12 +402,12 @@ describe("smartQueries with synonyms", () => {
       ["styles"],
       [
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles",
+          tokens: ["css", "style"],
+          keyword: "+css +style",
         },
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles*",
+          tokens: ["css", "style"],
+          keyword: "+css +style*",
         },
       ],
     ],
@@ -428,32 +428,32 @@ describe("smartQueries with synonyms", () => {
       ["guide", "CSS"],
       [
         {
-          tokens: ["guide", "css", "styles"],
-          keyword: "+guide +css +styles",
+          tokens: ["guid", "css", "style"],
+          keyword: "+guid +css +style",
         },
         {
-          tokens: ["guide", "css", "styles"],
-          keyword: "+guide +css +styles*",
+          tokens: ["guid", "css", "style"],
+          keyword: "+guid +css +style*",
         },
         {
-          tokens: ["guide", "css"],
-          keyword: "+guide +css",
+          tokens: ["guid", "css"],
+          keyword: "+guid +css",
         },
         {
-          tokens: ["guide", "styles"],
-          keyword: "+guide +styles",
+          tokens: ["guid", "style"],
+          keyword: "+guid +style",
         },
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles",
+          tokens: ["css", "style"],
+          keyword: "+css +style",
         },
         {
-          tokens: ["guide", "styles"],
-          keyword: "+guide +styles*",
+          tokens: ["guid", "style"],
+          keyword: "+guid +style*",
         },
         {
-          tokens: ["css", "styles"],
-          keyword: "+css +styles*",
+          tokens: ["css", "style"],
+          keyword: "+css +style*",
         },
       ],
     ],

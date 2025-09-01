@@ -28,7 +28,11 @@ export function smartQueries(
   if (synonyms && synonyms.length > 0) {
     // Get the stemmer function if stemming is not disabled
     const stemmerFn = !removeDefaultStemmer ? 
-      (word: string) => (lunr as any).stemmer(word) : undefined;
+      (word: string) => {
+        const token = new lunr.Token(word, {});
+        const stemmedToken = lunr.stemmer(token);
+        return stemmedToken.toString();
+      } : undefined;
     
     const synonymsMap = createSynonymsMap(synonyms, stemmerFn);
     expandedTokens = expandTokens(tokens, synonymsMap, stemmerFn);
