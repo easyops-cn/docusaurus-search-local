@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.52.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.1...v0.52.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* wrap SearchBar with DocsPreferredVersionContextProvider for Docusaurus 3.9+ compatibility ([5aedc2e](https://github.com/easyops-cn/docusaurus-search-local/commit/5aedc2e7c4f2672d90d793d1a13e75bb5386e15b))
+* wrap SearchBar with DocsPreferredVersionContextProvider for Docusaurus 3.9+ compatibility ([1b4f011](https://github.com/easyops-cn/docusaurus-search-local/commit/1b4f01139be07ba7cfa502db01aef61dd5e97929))
+
 ## [0.52.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.0...v0.52.1) (2025-07-22)
 
 
