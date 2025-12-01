@@ -45,14 +45,14 @@
     "website",
     "website-multi-docs"
   ],
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@4.12.0",
   "resolutions": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/module-type-aliases": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
-    "@docusaurus/theme-classic": "3.7.0",
-    "@docusaurus/theme-common": "3.7.0",
-    "@docusaurus/plugin-content-docs": "3.7.0",
+    "@docusaurus/core": "3.9.2",
+    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/preset-classic": "3.9.2",
+    "@docusaurus/theme-classic": "3.9.2",
+    "@docusaurus/theme-common": "3.9.2",
+    "@docusaurus/plugin-content-docs": "3.9.2",
     "@types/react": "19.0.3"
   },
   "engines": {
