@@ -22,6 +22,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
     fuzzyMatchingDistance,
+    synonyms,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [];
@@ -101,6 +102,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       !!useAllContextsWithNoSearchContext
     )};`
   );
+  contents.push(
+    `export const synonyms = ${JSON.stringify(synonyms)};`
+  );
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
   const constantContents: string[] = [
@@ -150,6 +154,11 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       removeDefaultStopWordFilter
     )};`
   );
+  constantContents.push(
+    `export const removeDefaultStemmer = ${JSON.stringify(
+      removeDefaultStemmer
+    )};`
+  );
   constantContents.push(`export const language = ${JSON.stringify(language)};`);
   const searchIndexUrl = searchIndexFilename + searchIndexQuery;
   constantContents.push(
@@ -157,7 +166,8 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
     `export const fuzzyMatchingDistance = ${JSON.stringify(
       fuzzyMatchingDistance
-    )};`
+    )};`,
+    `export const synonyms = ${JSON.stringify(synonyms)};`
   );
   fs.writeFileSync(
     path.join(dir, "generated-constants.js"),

@@ -65,6 +65,7 @@ const schema = Joi.object<PluginOptions>({
   useAllContextsWithNoSearchContext: Joi.boolean().default(false),
   forceIgnoreNoIndex: Joi.boolean().default(false),
   fuzzyMatchingDistance: Joi.number().default(1),
+  synonyms: Joi.array().items(Joi.array().items(Joi.string())).default([]),
 });
 
 export function validateOptions({

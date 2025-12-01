@@ -6,6 +6,7 @@ import {
   SearchDocument,
   WrappedIndex,
 } from "../../shared/interfaces";
+import { createSynonymsMap, expandTextWithSynonyms } from "../../shared/synonymsUtils";
 
 let pluginInitialized = false;
 let plugin: lunr.Builder.Plugin | undefined;
@@ -18,6 +19,7 @@ export function buildIndex(
     removeDefaultStemmer,
     zhUserDict,
     zhUserDictPath,
+    synonyms,
   }: ProcessedPluginOptions
 ): Omit<WrappedIndex, "type">[] {
   if (!pluginInitialized) {
@@ -53,48 +55,79 @@ export function buildIndex(
   return new Array<SearchDocument[] | null>(allDocuments.length)
     .fill(null)
     .map((_doc, index) => allDocuments[index] ?? [])
-    .map((documents) => ({
-      documents,
-      index: lunr(function () {
-        if (plugin) {
-          this.use(plugin);
-        }
+    .map((documents) => {
+      // Create synonyms map for content expansion if synonyms are configured
+      let synonymsMap: Map<string, string[]> | null = null;
+      
+      if (synonyms && synonyms.length > 0) {
+        // Get the stemmer function if stemming is enabled
+        const stemmerFn = !removeDefaultStemmer ? 
+          (word: string) => {
+            const token = new lunr.Token(word, {});
+            const stemmedToken = lunr.stemmer(token);
+            return stemmedToken.toString();
+          } : undefined;
+        
+        synonymsMap = createSynonymsMap(synonyms, stemmerFn);
+      }
+      
+      return {
+        documents,
+        index: lunr(function () {
+          if (plugin) {
+            this.use(plugin);
+          }
 
-        // Sometimes we need no English stop words,
-        // since they are almost all programming code.
-        for (const lang of language) {
-          if (removeDefaultStopWordFilter.includes(lang)) {
-            if (lang === "en") {
-              this.pipeline.remove(lunr.stopWordFilter);
-            } else {
-              const stopWordFilter = (lunr as any)[lang]?.stopWordFilter;
-              if (stopWordFilter) {
-                this.pipeline.remove(stopWordFilter);
+          // Sometimes we need no English stop words,
+          // since they are almost all programming code.
+          for (const lang of language) {
+            if (removeDefaultStopWordFilter.includes(lang)) {
+              if (lang === "en") {
+                this.pipeline.remove(lunr.stopWordFilter);
+              } else {
+                const stopWordFilter = (lunr as any)[lang]?.stopWordFilter;
+                if (stopWordFilter) {
+                  this.pipeline.remove(stopWordFilter);
+                }
               }
             }
           }
-        }
 
-        if (removeDefaultStemmer) {
-          this.pipeline.remove(lunr.stemmer);
-        }
+          if (removeDefaultStemmer) {
+            this.pipeline.remove(lunr.stemmer);
+          }
 
-        // Override tokenizer when language `zh` is enabled.
-        if (language.includes("zh")) {
-          this.tokenizer = (lunr as any).zh.tokenizer;
-        }
+          // Override tokenizer when language `zh` is enabled.
+          if (language.includes("zh")) {
+            this.tokenizer = (lunr as any).zh.tokenizer;
+          }
 
-        this.ref("i");
-        this.field("t");
-        this.metadataWhitelist = ["position"];
+          this.ref("i");
+          this.field("t");
+          this.metadataWhitelist = ["position"];
 
-        documents.forEach((doc) => {
-          this.add({
-            ...doc,
-            // The ref must be a string.
-            i: doc.i.toString(),
+          documents.forEach((doc) => {
+            // Expand document content with synonyms if configured
+            let expandedText = doc.t;
+            if (synonymsMap) {
+              const stemmerFn = !removeDefaultStemmer ? 
+                (word: string) => {
+                  const token = new lunr.Token(word, {});
+                  const stemmedToken = lunr.stemmer(token);
+                  return stemmedToken.toString();
+                } : undefined;
+              expandedText = expandTextWithSynonyms(doc.t, synonymsMap, stemmerFn);
+            }
+            
+            this.add({
+              ...doc,
+              // The ref must be a string.
+              i: doc.i.toString(),
+              // Use expanded text for indexing
+              t: expandedText,
+            });
           });
-        });
-      }),
-    }));
+        }),
+      };
+    });
 }
