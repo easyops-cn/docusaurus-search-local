@@ -6,12 +6,14 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "clear": "docusaurus clear",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
+    "@docusaurus/faster": "^3.7.0",
     "@docusaurus/plugin-content-docs": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
     "@docusaurus/theme-classic": "^3.7.0",

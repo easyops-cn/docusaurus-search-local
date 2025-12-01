@@ -1,6 +1,17 @@
 const buildType = process.env.BUILD_TYPE;
 
 module.exports = {
+  future: {
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: false,
+      mdxCrossCompilerCache: true,
+    },
+  },
+
   title: "Docusaurus Search",
   tagline:
     "An offline/local search example using @easyops-cn/docusaurus-search-local",
