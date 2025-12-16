@@ -43,6 +43,7 @@ describe("buildIndex", () => {
         language: ["en"],
         removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
+        synonyms: [],
       } as ProcessedPluginOptions
     );
 
@@ -71,6 +72,7 @@ describe("buildIndex", () => {
         language: ["zh"],
         removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
+        synonyms: [],
       } as ProcessedPluginOptions
     );
 
@@ -90,6 +92,7 @@ describe("buildIndex", () => {
         language: ["es"],
         removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
+        synonyms: [],
       } as ProcessedPluginOptions
     );
 
@@ -108,6 +111,7 @@ describe("buildIndex", () => {
         language: ["ja"],
         removeDefaultStopWordFilter: [] as string[],
         removeDefaultStemmer: false,
+        synonyms: [],
       } as ProcessedPluginOptions
     );
 
@@ -140,6 +144,7 @@ describe("buildIndex", () => {
         language: ["en", "zh"],
         removeDefaultStopWordFilter: ["en"],
         removeDefaultStemmer: false,
+        synonyms: [],
       } as ProcessedPluginOptions
     );
 
@@ -158,5 +163,52 @@ describe("buildIndex", () => {
         ref: "2",
       }),
     ]);
+  });
+
+  test("should work with synonyms", () => {
+    const synonymsTestDocuments: Partial<SearchDocument>[][] = [
+      [
+        {
+          i: 1,
+          t: "CSS tutorial guide",
+        },
+        {
+          i: 2,
+          t: "JavaScript manual",
+        },
+        {
+          i: 3,
+          t: "Modern styles implementation",
+        },
+      ],
+    ];
+
+    const wrappedIndexes = buildIndex(
+      synonymsTestDocuments as SearchDocument[][],
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: [] as string[],
+        removeDefaultStemmer: false,
+        synonyms: [["CSS", "styles"], ["JavaScript", "JS"]],
+      } as ProcessedPluginOptions
+    );
+
+    // With synonyms expansion during indexing, searches work bidirectionally
+    const cssResults = wrappedIndexes[0].index.search("CSS");
+    expect(cssResults.length).toBe(2); // Should find both CSS document and styles document
+    expect(cssResults.map(r => r.ref)).toContain("1"); // CSS tutorial guide
+    expect(cssResults.map(r => r.ref)).toContain("3"); // Modern styles implementation
+
+    const stylesResults = wrappedIndexes[0].index.search("styles");
+    expect(stylesResults.length).toBe(2); // Should find both styles document and CSS document
+    expect(stylesResults.map(r => r.ref)).toContain("1"); // CSS tutorial guide 
+    expect(stylesResults.map(r => r.ref)).toContain("3"); // Modern styles implementation
+
+    // Test that query expansion would find both (this mimics client-side behavior)
+    const synonymsQuery = "CSS OR styles";
+    const expandedResults = wrappedIndexes[0].index.search(synonymsQuery);
+    expect(expandedResults.length).toBe(2);
+    expect(expandedResults.map(r => r.ref)).toContain("1");
+    expect(expandedResults.map(r => r.ref)).toContain("3");
   });
 });

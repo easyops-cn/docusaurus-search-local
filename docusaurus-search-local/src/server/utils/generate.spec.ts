@@ -31,6 +31,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
     [
@@ -49,6 +50,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
     [
@@ -67,6 +69,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
     [
@@ -85,6 +88,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
     [
@@ -103,6 +107,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
     [
@@ -121,6 +126,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const synonyms = undefined;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
