@@ -1,0 +1,12 @@
+{
+  "theme.SearchBar.label": "Поиск",
+  "theme.SearchBar.seeAll": "Показать все результаты",
+  "theme.SearchBar.noResultsText": "Ничего не найдено",
+  "theme.SearchBar.searchInContext": "Показать все результаты в «{context}»",
+  "theme.SearchBar.seeAllOutsideContext": "Показать все результаты вне «{context}»",
+  "theme.SearchPage.existingResultsTitle": "Результаты поиска по запросу «{query}»",
+  "theme.SearchPage.emptyResultsTitle": "Поиск по документации",
+  "theme.SearchPage.documentsFound.plurals": "Найден 1 документ|Найдено {count} документа|Найдено {count} документов",
+  "theme.SearchPage.noResultsText": "Документы не найдены",
+  "theme.SearchPage.searchContext.everywhere": "Везде"
+}
