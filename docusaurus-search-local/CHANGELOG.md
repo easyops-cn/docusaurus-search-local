@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.52.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.2...v0.52.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* replace useDocsPreferredVersion with useActiveVersion ([7e72ef4](https://github.com/easyops-cn/docusaurus-search-local/commit/7e72ef42c8605f4f4147b2227decc9865ac41afd))
+* replace useDocsPreferredVersion with useActiveVersion ([15ba30d](https://github.com/easyops-cn/docusaurus-search-local/commit/15ba30d8c4aab85984be337f227b3ab166daa93e))
+
 ## [0.52.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.1...v0.52.2) (2025-12-01)
 
 
