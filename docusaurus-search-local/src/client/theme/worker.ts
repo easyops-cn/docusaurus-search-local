@@ -102,7 +102,7 @@ export class SearchWorker {
                     (doc) => doc.i === document.p
                   ),
                 metadata: result.matchData.metadata as MatchMetadata,
-                tokens,
+                tokens: rawTokens, // Use original search tokens for highlighting, not expanded synonyms
                 score: result.score,
               };
             })

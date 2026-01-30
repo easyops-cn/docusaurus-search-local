@@ -59,6 +59,8 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
+        synonyms: [],
       },
     ],
     [
@@ -89,6 +91,8 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
+        synonyms: [],
       },
     ],
     [
@@ -119,6 +123,7 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
       },
     ],
     [
@@ -149,6 +154,7 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
       },
     ],
     [
@@ -165,6 +171,7 @@ describe("validateOptions", () => {
         searchBarShortcut: false,
         forceIgnoreNoIndex: true,
         fuzzyMatchingDistance: 0,
+        synonyms: [],
       },
       {
         blogRouteBasePath: ["blog"],
@@ -192,6 +199,7 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: true,
         fuzzyMatchingDistance: 0,
+        synonyms: [],
       },
     ],
     [
@@ -227,6 +235,7 @@ describe("validateOptions", () => {
         searchBarPosition: "auto",
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
       },
     ],
     [
@@ -269,6 +278,7 @@ describe("validateOptions", () => {
         searchContextByPaths: ["docs", "community"],
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
       },
     ],
     [
@@ -310,6 +320,7 @@ describe("validateOptions", () => {
         searchContextByPaths: ["docs", "community"],
         forceIgnoreNoIndex: false,
         fuzzyMatchingDistance: 1,
+        synonyms: [],
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

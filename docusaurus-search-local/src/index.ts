@@ -221,4 +221,15 @@ export interface PluginOptions {
    * @default 1
    */
   fuzzyMatchingDistance?: number;
+
+  /**
+   * Synonyms configuration for search indexing and querying. Each array contains terms that should be 
+   * treated as equivalent during both indexing and searching.
+   * 
+   * Example: [["CSS", "styles"], ["JS", "JavaScript"]]
+   * A search for "CSS" will also match documents containing "styles" and vice versa.
+   *
+   * @default []
+   */
+  synonyms?: string[][];
 }
