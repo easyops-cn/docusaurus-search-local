@@ -54,6 +54,7 @@ export function parseKeymap(keymap: string): ParsedKeymap {
 
 export function matchesKeymap(event: KeyboardEvent, keymap: ParsedKeymap): boolean {
   return (
+    !!event.key &&
     event.key.toLowerCase() === keymap.key &&
     event.ctrlKey === keymap.ctrl &&
     event.altKey === keymap.alt &&
