@@ -4,12 +4,14 @@ import {
   SearchResult,
 } from "../../../shared/interfaces";
 import { concatDocumentPath } from "../../utils/concatDocumentPath";
+import { escapeHtml } from "../../utils/escapeHtml";
 import { getStemmedPositions } from "../../utils/getStemmedPositions";
 import { highlight } from "../../utils/highlight";
 import { highlightStemmed } from "../../utils/highlightStemmed";
 import { explicitSearchResultPath } from "../../utils/proxiedGenerated";
 import {
   iconAction,
+  iconAskAI,
   iconContent,
   iconHeading,
   iconTitle,
@@ -27,6 +29,17 @@ export function SuggestionTemplate({
   isInterOfTree,
   isLastOfTree,
 }: Omit<SearchResult, "score" | "index">): string {
+  if (type === SearchDocumentType.AskAI) {
+    return [
+      `<span class="${styles.hitIcon}">${iconAskAI}</span>`,
+      `<span class="${styles.hitWrapper}">`,
+      `<span class="${styles.hitTitle}">Ask AI: <mark>${escapeHtml(
+        tokens.join(" ")
+      )}</mark></span>`,
+      `</span>`,
+    ].join("");
+  }
+
   const isTitle = type === SearchDocumentType.Title;
   const isKeywords = type === SearchDocumentType.Keywords;
   const isTitleRelated = isTitle || isKeywords;

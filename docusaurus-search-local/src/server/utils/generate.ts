@@ -22,6 +22,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
     fuzzyMatchingDistance,
+    askAi,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [];
@@ -101,6 +102,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       !!useAllContextsWithNoSearchContext
     )};`
   );
+  contents.push(`export const askAi = ${JSON.stringify(askAi ?? null)};`);
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));
 
   const constantContents: string[] = [

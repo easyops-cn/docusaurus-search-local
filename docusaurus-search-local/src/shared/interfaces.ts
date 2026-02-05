@@ -78,6 +78,7 @@ export enum SearchDocumentType {
   Description = 2,
   Keywords = 3,
   Content = 4,
+  AskAI = 5,
 }
 
 export interface SearchResultBase {

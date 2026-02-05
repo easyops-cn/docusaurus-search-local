@@ -4,5 +4,5 @@
     "declaration": true,
     "declarationDir": "dist/types"
   },
-  "include": ["src/index.ts"],
+  "include": ["src/index.ts", "src/declarations.ts"]
 }

@@ -1,3 +1,8 @@
+declare module "ai" {
+  export interface UIMessage {}
+  export interface UIMessageChunk {}
+}
+
 declare module "@easyops-cn/autocomplete.js" {
   export const noConflict: () => void;
 }
@@ -24,6 +29,7 @@ declare module "*/generated.js" {
   export const hideSearchBarWithNoSearchContext: boolean;
   export const useAllContextsWithNoSearchContext: boolean;
   export const forceIgnoreNoIndex: boolean;
+  export const askAi: import("open-ask-ai").AskAIWidgetProps;
 }
 
 declare module "*/generated-constants.js" {
