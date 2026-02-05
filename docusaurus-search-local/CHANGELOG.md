@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.53.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.3...v0.53.0) (2026-02-05)
+
+
+### Features
+
+* support Ask AI ([8a5d29e](https://github.com/easyops-cn/docusaurus-search-local/commit/8a5d29e2e5b3b1cb534b1bbf13075f6824307d2e))
+* support Ask AI ([3b2e339](https://github.com/easyops-cn/docusaurus-search-local/commit/3b2e339a04ac9347e73fe39d63237ffa3e63242a))
+
 ## [0.52.3](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.2...v0.52.3) (2026-01-29)
 
 
