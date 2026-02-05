@@ -14,11 +14,13 @@ import {
   useActivePlugin,
   useActiveVersion,
 } from "@docusaurus/plugin-content-docs/client";
+import { AskAIWidget, AskAIWidgetRef } from "open-ask-ai";
+import "open-ask-ai/styles.css";
 
 import { fetchIndexesByWorker, searchByWorker } from "../searchByWorker";
 import { SuggestionTemplate } from "./SuggestionTemplate";
 import { EmptyTemplate } from "./EmptyTemplate";
-import { SearchResult } from "../../../shared/interfaces";
+import { SearchDocumentType, SearchResult } from "../../../shared/interfaces";
 import {
   Mark,
   searchBarShortcut,
@@ -29,6 +31,7 @@ import {
   searchContextByPaths,
   hideSearchBarWithNoSearchContext,
   useAllContextsWithNoSearchContext,
+  askAi,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 import { normalizeContextByPath } from "../../utils/normalizeContextByPath";
@@ -56,6 +59,11 @@ const SEARCH_PARAM_HIGHLIGHT = "_highlight";
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
   handleSearchBarToggle?: (expanded: boolean) => void;
+}
+
+interface TemplateProps {
+  query: string;
+  isEmpty: boolean;
 }
 
 export default function SearchBar({
@@ -88,6 +96,7 @@ export default function SearchBar({
   const [inputChanged, setInputChanged] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const search = useRef<any>(null);
+  const askAIWidgetRef = useRef<AskAIWidgetRef>(null);
 
   const prevSearchContext = useRef<string>("");
   const [searchContext, setSearchContext] = useState<string>("");
@@ -146,10 +155,7 @@ export default function SearchBar({
     const searchFooterLinkElement = ({
       query,
       isEmpty,
-    }: {
-      query: string;
-      isEmpty: boolean;
-    }): HTMLAnchorElement => {
+    }: TemplateProps): HTMLAnchorElement => {
       const a = document.createElement("a");
       const params = new URLSearchParams();
 
@@ -255,12 +261,29 @@ export default function SearchBar({
               input,
               searchResultLimits
             );
-            callback(result);
+            if (input && askAi) {
+              callback([
+                {
+                  document: {
+                    i: -1,
+                    t: "",
+                    u: "",
+                  },
+                  type: SearchDocumentType.AskAI,
+                  page: undefined,
+                  metadata: {},
+                  tokens: [input],
+                } as Partial<SearchResult> as SearchResult,
+                ...result,
+              ]);
+            } else {
+              callback(result);
+            }
           },
           templates: {
             suggestion: SuggestionTemplate,
             empty: EmptyTemplate,
-            footer: ({ query, isEmpty }: any) => {
+            footer: ({ query, isEmpty }: TemplateProps) => {
               if (
                 isEmpty &&
                 (!searchContext || !useAllContextsWithNoSearchContext)
@@ -279,8 +302,16 @@ export default function SearchBar({
     )
       .on(
         "autocomplete:selected",
-        function (event: any, { document: { u, h }, tokens }: SearchResult) {
+        function (
+          event: any,
+          { document: { u, h }, type, tokens }: SearchResult
+        ) {
           searchBarRef.current?.blur();
+
+          if (type === SearchDocumentType.AskAI && askAi) {
+            askAIWidgetRef.current?.openWithNewSession(tokens.join(""));
+            return;
+          }
 
           let url = u;
           if (Mark && tokens.length > 0) {
@@ -457,6 +488,11 @@ export default function SearchBar({
         ref={searchBarRef}
         value={inputValue}
       />
+      {askAi && (
+        <AskAIWidget ref={askAIWidgetRef} {...askAi}>
+          <span hidden></span>
+        </AskAIWidget>
+      )}
       <LoadingRing className={styles.searchBarLoadingRing} />
       {searchBarShortcut &&
         searchBarShortcutHint &&

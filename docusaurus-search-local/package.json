@@ -46,6 +46,7 @@
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0",
     "mark.js": "^8.11.1",
+    "open-ask-ai": "^0.7.3",
     "tslib": "^2.4.0"
   },
   "devDependencies": {

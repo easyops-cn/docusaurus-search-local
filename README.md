@@ -26,9 +26,35 @@ https://easyops-cn.github.io/docusaurus-search-local/
 
 ## Screen Shots
 
-![Screen Shot EN](screen-shots/screen-shot-en.png)
+<p align="center">
+  <img src="screen-shots/screen-shot-en.png" alt="Screen Shot EN" width="591" />
+</p>
 
-![Screen Shot ZH](screen-shots/screen-shot-zh.png)
+<p align="center">
+  <img src="screen-shots/screen-shot-zh.png" alt="Screen Shot ZH" width="602" />
+</p>
+
+## ✨ Ask AI Support
+
+This plugin now supports **Ask AI** integration! Enable AI-powered assistance directly in your documentation site to help users get instant, context-aware answers.
+
+NOTE: Ask AI feature requires an external AI service. Please refer to the [Open Ask AI Server](https://github.com/easyops-cn/open-ask-ai-server), which is a serverless solution, and can be used **for free** using Vercel Hobby Plan!
+
+<p align="center">
+  <img src="screen-shots/ask-ai-01.png" alt="Ask AI Screenshot 1" width="602" />
+</p>
+
+<p align="center">
+  <img src="screen-shots/ask-ai-02.png" alt="Ask AI Screenshot 2" width="631" />
+</p>
+
+With Ask AI enabled, users can:
+
+- Get intelligent answers based on your documentation
+- Access AI assistance with a simple keyboard shortcut
+- Receive context-aware responses tailored to your content
+
+See the [askAi option](#theme-options) in Theme Options below for configuration details.
 
 ## Installation
 
@@ -65,6 +91,13 @@ module.exports = {
 
         // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
         // forceIgnoreNoIndex: true,
+
+        // Enable Ask AI integration:
+        // askAi: {
+        //   project: "your-project-name",
+        //   apiUrl: "https://your-api-url.com/api/stream",
+        //   hotkey: "cmd+I", // Optional: keyboard shortcut to trigger Ask AI
+        // },
       }),
     ],
   ],
@@ -96,7 +129,7 @@ module.exports = {
 | ignoreCssSelectors                | string \| string[]                                                          | `[]`      | A list of css selectors to ignore when indexing each page.                                                                                                                                                                                                                                                                                                  |
 | searchBarShortcut                 | boolean                                                                     | `true`    | Whether to enable keyboard shortcut to focus in search bar.                                                                                                                                                                                                                                                                                                 |
 | searchBarShortcutHint             | boolean                                                                     | `true`    | Whether to show keyboard shortcut hint in search bar. Disable it if you need to hide the hint while shortcut is still enabled.                                                                                                                                                                                                                              |
-| searchBarShortcutKeymap           | string                                                                      | `"mod+k"` | Custom keyboard shortcut to focus the search bar. Supports formats like: `"s"` for single key, `"ctrl+k"` for key combinations, `"mod+k"` for Command+K (Mac) / Ctrl+K (others) - recommended cross-platform option, `"ctrl+shift+k"` for multiple modifiers.                                                                                            |
+| searchBarShortcutKeymap           | string                                                                      | `"mod+k"` | Custom keyboard shortcut to focus the search bar. Supports formats like: `"s"` for single key, `"ctrl+k"` for key combinations, `"mod+k"` for Command+K (Mac) / Ctrl+K (others) - recommended cross-platform option, `"ctrl+shift+k"` for multiple modifiers.                                                                                               |
 | searchBarPosition                 | `"auto"` \| `"left"` \| `"right"`                                           | `"auto"`  | The side of the navbar the search bar should appear on. By default, it will try to autodetect based on your docusaurus config according to [the docs](https://docusaurus.io/docs/api/themes/configuration#navbar-search).                                                                                                                                   |
 | docsPluginIdForPreferredVersion   | string                                                                      |           | When you're using multi-instance of docs, set the docs plugin id which you'd like to check the preferred version with, for the search index.                                                                                                                                                                                                                |
 | zhUserDict                        | string                                                                      |           | Provide your custom dict for language of zh, [see here](https://github.com/fxsjy/jieba#%E8%BD%BD%E5%85%A5%E8%AF%8D%E5%85%B8)                                                                                                                                                                                                                                |
@@ -106,6 +139,7 @@ module.exports = {
 | useAllContextsWithNoSearchContext | boolean                                                                     | `false`   | Whether to show results from all the contexts if no context is provided. This option should not be used with `hideSearchBarWithNoSearchContext: true` as this would show results when there is no search context. This will duplicate indexes and might have a performance cost depending on the index sizes.                                               |
 | `forceIgnoreNoIndex`              | boolean                                                                     | `false`   | Force enable search index even if `noIndex: true` is set, this also affects unlisted articles.                                                                                                                                                                                                                                                              |
 | `fuzzyMatchingDistance`           | number                                                                      | `1`       | Set the edit distance for fuzzy matching during searches.                                                                                                                                                                                                                                                                                                   |
+| `askAi`                           | object                                                                      |           | Configuration for Ask AI widget integration. When not set, the Ask AI feature will be disabled. Required properties: `project` (string), `apiUrl` (string). Optional: `hotkey` (string, e.g., "cmd+I"). See [Ask AI Support](#-ask-ai-support) for more details.                                                                                            |
 
 ### I18N
 

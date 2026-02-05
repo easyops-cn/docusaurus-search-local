@@ -31,6 +31,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
     [
@@ -49,6 +50,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
     [
@@ -67,6 +69,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
     [
@@ -85,6 +88,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
     [
@@ -103,6 +107,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
     [
@@ -121,6 +126,7 @@ describe("generate", () => {
         "export const searchContextByPaths = null;",
         "export const hideSearchBarWithNoSearchContext = false;",
         "export const useAllContextsWithNoSearchContext = false;",
+        "export const askAi = null;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -259,6 +265,70 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       expect.toMatchPath("/tmp/generated-constants.js"),
       expect.stringContaining("export const fuzzyMatchingDistance = 2;")
+    );
+  });
+
+  test("askAi not configured", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated.js"),
+      expect.stringContaining("export const askAi = null;")
+    );
+  });
+
+  test("askAi configured with all options", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        askAi: {
+          project: "test-project",
+          apiUrl: "https://example.com/api/stream",
+          hotkey: "cmd+I",
+          exampleQuestions: ["Question 1", "Question 2"],
+        },
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated.js"),
+      expect.stringContaining(
+        'export const askAi = {"project":"test-project","apiUrl":"https://example.com/api/stream","hotkey":"cmd+I","exampleQuestions":["Question 1","Question 2"]};'
+      )
+    );
+  });
+
+  test("askAi configured with partial options", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        askAi: {
+          apiUrl: "https://example.com/api/stream",
+        },
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated.js"),
+      expect.stringContaining(
+        'export const askAi = {"apiUrl":"https://example.com/api/stream"};'
+      )
     );
   });
 });

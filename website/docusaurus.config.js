@@ -125,6 +125,18 @@ module.exports = {
         language: ["en", "zh"],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
+        askAi: {
+          project: "docusaurus-search-local",
+          apiUrl: "https://ask-ai.shenwei.xyz/api/stream",
+          hotkey: "cmd+I",
+          exampleQuestions: [
+            "How to install and configure docusaurus-search-local?",
+            "How to enable multi-language search support?",
+            "How to customize search behavior and styling?",
+            "What are the differences between hashed and non-hashed options?",
+            "How to highlight search terms on target pages?",
+          ],
+        },
       }),
     ],
   ],

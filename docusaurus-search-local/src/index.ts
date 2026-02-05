@@ -1,3 +1,5 @@
+import { AskAIWidgetProps } from "open-ask-ai";
+
 export interface PluginOptions {
   /**
    * Whether to index docs.
@@ -221,4 +223,9 @@ export interface PluginOptions {
    * @default 1
    */
   fuzzyMatchingDistance?: number;
+
+  /**
+   * Configuration for Ask AI widget integration. When not set, the Ask AI feature will be disabled.
+   */
+  askAi?: AskAIWidgetProps;
 }
