@@ -7,6 +7,22 @@ declare module "@easyops-cn/autocomplete.js" {
   export const noConflict: () => void;
 }
 
+// Type definition for open-ask-ai (optional dependency)
+declare module "open-ask-ai" {
+  export interface AskAIWidgetProps {
+    [key: string]: any;
+  }
+  export interface AskAIWidgetRef {
+    openWithNewSession: (query: string) => void;
+  }
+  export const AskAIWidget: any;
+}
+
+// Local interface for askAi config
+interface AskAIConfig {
+  [key: string]: any;
+}
+
 declare module "*/generated.js" {
   export const removeDefaultStemmer: string[];
   export class Mark {
@@ -29,7 +45,7 @@ declare module "*/generated.js" {
   export const hideSearchBarWithNoSearchContext: boolean;
   export const useAllContextsWithNoSearchContext: boolean;
   export const forceIgnoreNoIndex: boolean;
-  export const askAi: import("open-ask-ai").AskAIWidgetProps;
+  export const askAi: AskAIConfig | undefined;
 }
 
 declare module "*/generated-constants.js" {
