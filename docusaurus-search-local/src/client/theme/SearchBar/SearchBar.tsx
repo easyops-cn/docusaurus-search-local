@@ -14,8 +14,6 @@ import {
   useActivePlugin,
   useActiveVersion,
 } from "@docusaurus/plugin-content-docs/client";
-import { AskAIWidget, AskAIWidgetRef } from "open-ask-ai";
-import "open-ask-ai/styles.css";
 
 import { fetchIndexesByWorker, searchByWorker } from "../searchByWorker";
 import { SuggestionTemplate } from "./SuggestionTemplate";
@@ -52,6 +50,21 @@ async function fetchAutoCompleteJS(): Promise<any> {
     autoCompleteModule.noConflict();
   }
   return autoComplete;
+}
+
+async function fetchOpenAskAI(): Promise<{
+  AskAIWidget: any;
+} | null> {
+  try {
+    const openAskAIModule = await import("open-ask-ai");
+    await import("open-ask-ai/styles.css");
+    return {
+      AskAIWidget: openAskAIModule.AskAIWidget,
+    };
+  } catch (error) {
+    // open-ask-ai is optional, return null if not available
+    return null;
+  }
 }
 
 const SEARCH_PARAM_HIGHLIGHT = "_highlight";
@@ -96,7 +109,8 @@ export default function SearchBar({
   const [inputChanged, setInputChanged] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const search = useRef<any>(null);
-  const askAIWidgetRef = useRef<AskAIWidgetRef>(null);
+  const askAIWidgetRef = useRef<any>(null);
+  const [AskAIWidgetComponent, setAskAIWidgetComponent] = useState<any>(null);
 
   const prevSearchContext = useRef<string>("");
   const [searchContext, setSearchContext] = useState<string>("");
@@ -147,10 +161,15 @@ export default function SearchBar({
     search.current?.autocomplete.destroy();
     setLoading(true);
 
-    const [autoComplete] = await Promise.all([
+    const [autoComplete, openAskAIModule] = await Promise.all([
       fetchAutoCompleteJS(),
+      askAi ? fetchOpenAskAI() : Promise.resolve(null),
       fetchIndexesByWorker(versionUrl, searchContext),
     ]);
+
+    if (openAskAIModule) {
+      setAskAIWidgetComponent(() => openAskAIModule.AskAIWidget);
+    }
 
     const searchFooterLinkElement = ({
       query,
@@ -488,10 +507,10 @@ export default function SearchBar({
         ref={searchBarRef}
         value={inputValue}
       />
-      {askAi && (
-        <AskAIWidget ref={askAIWidgetRef} {...askAi}>
+      {askAi && AskAIWidgetComponent && (
+        <AskAIWidgetComponent ref={askAIWidgetRef} {...askAi}>
           <span hidden></span>
-        </AskAIWidget>
+        </AskAIWidgetComponent>
       )}
       <LoadingRing className={styles.searchBarLoadingRing} />
       {searchBarShortcut &&

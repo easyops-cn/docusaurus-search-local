@@ -2912,6 +2912,9 @@ __metadata:
     "@docusaurus/theme-common": ^2 || ^3
     react: ^16.14.0 || ^17 || ^18 || ^19
     react-dom: ^16.14.0 || 17 || ^18 || ^19
+  dependenciesMeta:
+    open-ask-ai:
+      optional: true
   languageName: unknown
   linkType: soft
 
