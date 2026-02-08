@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.54.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.53.0...v0.54.0) (2026-02-08)
+
+
+### Features
+
+* make open-ask-ai async and optional ([4c404ab](https://github.com/easyops-cn/docusaurus-search-local/commit/4c404ab21a6ea232d82e9bdd3041d6a1c7ac73d1))
+* make open-ask-ai async and optional ([e031739](https://github.com/easyops-cn/docusaurus-search-local/commit/e031739116d9cc1eee18ecb13e6752474fdd2f79)), closes [#558](https://github.com/easyops-cn/docusaurus-search-local/issues/558)
+
 ## [0.53.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.52.3...v0.53.0) (2026-02-05)
 
 
