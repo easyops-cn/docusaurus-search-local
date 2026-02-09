@@ -149,8 +149,12 @@ describe('keymap utility functions', () => {
     test('should not throw Error on empty Key', () => {
       const keymap = parseKeymap('ctrl+k');
       const event = {
-        key: undefined
-      }
+        key: undefined,
+        ctrlKey: false,
+        altKey: false,
+        shiftKey: false,
+        metaKey: false,
+      } as KeyboardEvent;
       expect(matchesKeymap(event, keymap)).toBe(false);
     });
   });
