@@ -103,7 +103,7 @@ describe('keymap utility functions', () => {
         shiftKey: false,
         metaKey: false,
       } as KeyboardEvent;
-      
+
       expect(matchesKeymap(event, keymap)).toBe(true);
     });
 
@@ -116,7 +116,7 @@ describe('keymap utility functions', () => {
         shiftKey: false,
         metaKey: false,
       } as KeyboardEvent;
-      
+
       expect(matchesKeymap(event, keymap)).toBe(true);
     });
 
@@ -129,7 +129,7 @@ describe('keymap utility functions', () => {
         shiftKey: false,
         metaKey: false,
       } as KeyboardEvent;
-      
+
       expect(matchesKeymap(event, keymap)).toBe(false);
     });
 
@@ -142,8 +142,20 @@ describe('keymap utility functions', () => {
         shiftKey: false,
         metaKey: false,
       } as KeyboardEvent;
-      
+
       expect(matchesKeymap(event, keymap)).toBe(true);
+    });
+
+    test('should not throw Error on empty Key', () => {
+      const keymap = parseKeymap('ctrl+k');
+      const event = {
+        key: undefined,
+        ctrlKey: false,
+        altKey: false,
+        shiftKey: false,
+        metaKey: false,
+      } as KeyboardEvent;
+      expect(matchesKeymap(event, keymap)).toBe(false);
     });
   });
 
