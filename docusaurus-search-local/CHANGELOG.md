@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.54.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.54.0...v0.54.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* Cannot read properties of undefined (reading 'toLowerCase') ([3f45515](https://github.com/easyops-cn/docusaurus-search-local/commit/3f45515b4dd52d782f7c2a2337c73c0f72fc8290))
+
 ## [0.54.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.53.0...v0.54.0) (2026-02-08)
 
 
