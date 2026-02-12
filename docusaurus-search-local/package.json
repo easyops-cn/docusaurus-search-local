@@ -70,9 +70,9 @@
   },
   "peerDependencies": {
     "@docusaurus/theme-common": "^2 || ^3",
+    "open-ask-ai": "^0.7.3",
     "react": "^16.14.0 || ^17 || ^18 || ^19",
-    "react-dom": "^16.14.0 || 17 || ^18 || ^19",
-    "open-ask-ai": "^0.7.3"
+    "react-dom": "^16.14.0 || 17 || ^18 || ^19"
   },
   "peerDependenciesMeta": {
     "open-ask-ai": {

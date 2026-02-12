@@ -2904,15 +2904,15 @@ __metadata:
     lunr: "npm:^2.3.9"
     lunr-languages: "npm:^1.4.0"
     mark.js: "npm:^8.11.1"
-    open-ask-ai: "npm:^0.7.3"
     rimraf: "npm:^3.0.2"
     tslib: "npm:^2.4.0"
     typescript: "npm:~5.2.2"
   peerDependencies:
     "@docusaurus/theme-common": ^2 || ^3
+    open-ask-ai: ^0.7.3
     react: ^16.14.0 || ^17 || ^18 || ^19
     react-dom: ^16.14.0 || 17 || ^18 || ^19
-  dependenciesMeta:
+  peerDependenciesMeta:
     open-ask-ai:
       optional: true
   languageName: unknown
@@ -16634,6 +16634,7 @@ __metadata:
     "@easyops-cn/docusaurus-search-local": "workspace:*"
     "@mdx-js/react": "npm:^3.1.0"
     clsx: "npm:^2.1.1"
+    open-ask-ai: "npm:^0.7.3"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
   languageName: unknown
