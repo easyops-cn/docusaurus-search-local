@@ -48,9 +48,6 @@
     "mark.js": "^8.11.1",
     "tslib": "^2.4.0"
   },
-  "optionalDependencies": {
-    "open-ask-ai": "^0.7.3"
-  },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.0.0",
     "@docusaurus/theme-common": "^3.0.0",
@@ -74,6 +71,12 @@
   "peerDependencies": {
     "@docusaurus/theme-common": "^2 || ^3",
     "react": "^16.14.0 || ^17 || ^18 || ^19",
-    "react-dom": "^16.14.0 || 17 || ^18 || ^19"
+    "react-dom": "^16.14.0 || 17 || ^18 || ^19",
+    "open-ask-ai": "^0.7.3"
+  },
+  "peerDependenciesMeta": {
+    "open-ask-ai": {
+      "optional": true
+    }
   }
 }
