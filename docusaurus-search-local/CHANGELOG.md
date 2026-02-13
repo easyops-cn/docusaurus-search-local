@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.55.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.54.1...v0.55.0) (2026-02-13)
+
+
+### Features
+
+* make open-ask-ai opt-in via optional peer dependency ([#563](https://github.com/easyops-cn/docusaurus-search-local/issues/563)) ([98d7888](https://github.com/easyops-cn/docusaurus-search-local/commit/98d788844fcace17aab1262b577a1a6c46a227a1))
+
 ## [0.54.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.54.0...v0.54.1) (2026-02-10)
 
 
