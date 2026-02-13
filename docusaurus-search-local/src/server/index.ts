@@ -59,6 +59,20 @@ export default function DocusaurusSearchLocalPlugin(
         exact: true,
       });
     },
+
+    configureWebpack() {
+      if (!options?.askAi) {
+        // When askAi is not enabled, treat open-ask-ai as an external
+        // to prevent bundling it unnecessarily
+        return {
+          externals: {
+            "open-ask-ai": "open-ask-ai",
+            "open-ask-ai/styles.css": "open-ask-ai/styles.css",
+          },
+        };
+      }
+      return {};
+    },
   };
 }
 

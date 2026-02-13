@@ -56,6 +56,11 @@ async function fetchOpenAskAI(): Promise<{
   AskAIWidget: any;
 } | null> {
   try {
+    // Dynamic import of open-ask-ai (optional peer dependency)
+    // This creates a separate webpack chunk that is only loaded when:
+    // 1. The askAi option is configured
+    // 2. This function is called (when user interacts with search)
+    // If open-ask-ai is not installed, the import will fail and be caught gracefully
     const openAskAIModule = await import("open-ask-ai");
     await import("open-ask-ai/styles.css");
     return {

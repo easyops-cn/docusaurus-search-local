@@ -40,6 +40,16 @@ This plugin now supports **Ask AI** integration! Enable AI-powered assistance di
 
 NOTE: Ask AI feature requires an external AI service. Please refer to the [Open Ask AI Server](https://github.com/easyops-cn/open-ask-ai-server), which is a serverless solution, and can be used **for free** using Vercel Hobby Plan!
 
+### Installing Ask AI
+
+The Ask AI feature is **opt-in**. To enable it, you need to install the `open-ask-ai` package separately:
+
+```shell
+npm install --save open-ask-ai
+# or
+yarn add open-ask-ai
+```
+
 <p align="center">
   <img src="screen-shots/ask-ai-01.png" alt="Ask AI Screenshot 1" width="602" />
 </p>
