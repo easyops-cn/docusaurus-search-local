@@ -364,6 +364,7 @@ export default function SearchBar({
         search.current?.autocomplete.open();
       }
       input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
     }
   }, [hidden, searchContext, versionUrl, baseUrl, history]);
 
@@ -404,6 +405,12 @@ export default function SearchBar({
     loadIndex();
     setFocused(true);
     handleSearchBarToggle?.(true);
+    const input = searchBarRef.current;
+    if (input) {
+      setTimeout(() => {
+        input.setSelectionRange(input.value.length, input.value.length);
+      }, 0);
+    }
   }, [handleSearchBarToggle, loadIndex]);
 
   const onInputBlur = useCallback(() => {
