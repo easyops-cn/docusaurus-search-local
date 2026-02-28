@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.55.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.55.0...v0.55.1) (2026-02-28)
+
+
+### Bug Fixes
+
+* limit caret-to-end fix to small screens (max-width: 576px) only ([d1d6e08](https://github.com/easyops-cn/docusaurus-search-local/commit/d1d6e08d21e02b80b78bf7cf3c73493cd4fdde01))
+* move caret to end of input when re-opening search bar on mobile ([47692df](https://github.com/easyops-cn/docusaurus-search-local/commit/47692df69ecb1fd067d7636a199b693ee71e57f1))
+* move search caret to end on focus, small screens only ([69c24f1](https://github.com/easyops-cn/docusaurus-search-local/commit/69c24f15a3c1b32dd55bb0aaf6c0acb294abf26a))
+
 ## [0.55.0](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.54.1...v0.55.0) (2026-02-13)
 
 
