@@ -364,6 +364,11 @@ export default function SearchBar({
         search.current?.autocomplete.open();
       }
       input.focus();
+      // On small screens the input is collapsed by default; after expanding via
+      // focus, move the caret to the end so backspace works as expected.
+      if (window.matchMedia("(max-width: 576px)").matches) {
+        input.setSelectionRange(input.value.length, input.value.length);
+      }
     }
   }, [hidden, searchContext, versionUrl, baseUrl, history]);
 
@@ -404,6 +409,17 @@ export default function SearchBar({
     loadIndex();
     setFocused(true);
     handleSearchBarToggle?.(true);
+    // On small screens the input is collapsed by default; after expanding via
+    // focus, move the caret to the end so backspace works as expected.
+    // On large screens we leave the native caret behaviour untouched.
+    if (window.matchMedia("(max-width: 576px)").matches) {
+      const input = searchBarRef.current;
+      if (input) {
+        setTimeout(() => {
+          input.setSelectionRange(input.value.length, input.value.length);
+        }, 0);
+      }
+    }
   }, [handleSearchBarToggle, loadIndex]);
 
   const onInputBlur = useCallback(() => {
