@@ -22,6 +22,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     hideSearchBarWithNoSearchContext,
     useAllContextsWithNoSearchContext,
     fuzzyMatchingDistance,
+    searchIndexBaseUrl,
     askAi,
   } = config;
   const indexHash = getIndexHash(config);
@@ -78,10 +79,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     `export const searchBarPosition = ${JSON.stringify(searchBarPosition)};`
   );
   contents.push(
-    `export const docsPluginIdForPreferredVersion = ${
-      docsPluginIdForPreferredVersion === undefined
-        ? "undefined"
-        : JSON.stringify(docsPluginIdForPreferredVersion)
+    `export const docsPluginIdForPreferredVersion = ${docsPluginIdForPreferredVersion === undefined
+      ? "undefined"
+      : JSON.stringify(docsPluginIdForPreferredVersion)
     };`
   );
   contents.push(`export const indexDocs = ${JSON.stringify(indexDocs)};`);
@@ -159,6 +159,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
     `export const searchResultLimits = ${JSON.stringify(searchResultLimits)};`,
     `export const fuzzyMatchingDistance = ${JSON.stringify(
       fuzzyMatchingDistance
+    )};`,
+    `export const searchIndexBaseUrl = ${JSON.stringify(
+      searchIndexBaseUrl ?? null
     )};`
   );
   fs.writeFileSync(
