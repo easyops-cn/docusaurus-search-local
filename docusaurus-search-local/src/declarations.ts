@@ -52,6 +52,7 @@ declare module "*/generated-constants.js" {
   export const removeDefaultStopWordFilter: string[];
   export const language: string[];
   export const searchIndexUrl: string;
+  export const searchIndexBaseUrl: string | null;
   export const searchResultLimits: number;
   export const fuzzyMatchingDistance: number;
   // These below are for mocking only.
