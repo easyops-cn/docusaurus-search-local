@@ -6,6 +6,7 @@ import {
   SearchDocument,
   WrappedIndex,
 } from "../../shared/interfaces";
+import { LANGUAGES_NEED_WORDCUT } from "../../shared/constants";
 
 let pluginInitialized = false;
 let plugin: lunr.Builder.Plugin | undefined;
@@ -27,6 +28,9 @@ export function buildIndex(
     }
     if (language.includes("ja") || language.includes("jp")) {
       require("lunr-languages/tinyseg")(lunr);
+    }
+    if (LANGUAGES_NEED_WORDCUT.some((item) => language.includes(item))) {
+      (lunr as any).wordcut = require("lunr-languages/wordcut");
     }
     for (const lang of language.filter(
       (item) => item !== "en" && item !== "zh"

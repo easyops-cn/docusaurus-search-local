@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { ProcessedPluginOptions } from "../../shared/interfaces";
 import { getIndexHash } from "./getIndexHash";
+import { LANGUAGES_NEED_WORDCUT } from "../../shared/constants";
 
 export function generate(config: ProcessedPluginOptions, dir: string): string {
   const {
@@ -120,6 +121,13 @@ export function generate(config: ProcessedPluginOptions, dir: string): string {
       `require(${JSON.stringify(
         require.resolve("lunr-languages/tinyseg")
       )})(lunr);`
+    );
+  }
+  if (language.some((item) => LANGUAGES_NEED_WORDCUT.includes(item))) {
+    constantContents.push(
+      `lunr.wordcut = require(${JSON.stringify(
+        require.resolve("lunr-languages/wordcut")
+      )});`
     );
   }
   for (const lang of language.filter(
