@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.55.2](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.55.1...v0.55.2) (2026-05-31)
+
+
+### Bug Fixes
+
+* some languages need lunr wordcut ([1e60641](https://github.com/easyops-cn/docusaurus-search-local/commit/1e60641f5d26399ec2407f5c36ea28f6a3048028))
+* some languages need lunr wordcut ([d871555](https://github.com/easyops-cn/docusaurus-search-local/commit/d87155582f62b1fb42377f3af0cfc17f8784ff47)), closes [#438](https://github.com/easyops-cn/docusaurus-search-local/issues/438)
+
 ## [0.55.1](https://github.com/easyops-cn/docusaurus-search-local/compare/v0.55.0...v0.55.1) (2026-02-28)
 
 
