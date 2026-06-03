@@ -1,6 +1,7 @@
 export let language = ["en", "zh"];
 export let removeDefaultStopWordFilter: string[] = [];
 export const searchIndexUrl = "search-index{dir}.json?_=abc";
+export const searchIndexBaseUrl: string | null = null;
 export const searchResultLimits = 8;
 export let fuzzyMatchingDistance = 0;
 

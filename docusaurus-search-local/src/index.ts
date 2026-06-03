@@ -225,6 +225,20 @@ export interface PluginOptions {
   fuzzyMatchingDistance?: number;
 
   /**
+   * Base URL from which search index files are served. Useful when your documentation site assets
+   * are hosted on a separate CDN domain (different origin from the site itself).
+   *
+   * When set, the search worker will fetch index files from this URL instead of the site's own
+   * `baseUrl`. The provided origin is treated as a trusted allowlist entry so the existing
+   * cross-origin security check still applies to any other unexpected URLs.
+   *
+   * **Note:** The CDN server must respond with an appropriate `Access-Control-Allow-Origin` header.
+   *
+   * @example "https://cdn.example.com/docs/"
+   */
+  searchIndexBaseUrl?: string;
+
+  /**
    * Configuration for Ask AI widget integration. When not set, the Ask AI feature will be disabled.
    */
   askAi?: AskAIWidgetProps;

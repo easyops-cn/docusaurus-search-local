@@ -268,6 +268,43 @@ describe("generate", () => {
     );
   });
 
+  test("searchIndexBaseUrl not configured", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated-constants.js"),
+      expect.stringContaining("export const searchIndexBaseUrl = null;")
+    );
+  });
+
+  test("searchIndexBaseUrl configured", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        searchIndexBaseUrl: "https://cdn.example.com/docs/",
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      expect.toMatchPath("/tmp/generated-constants.js"),
+      expect.stringContaining(
+        'export const searchIndexBaseUrl = "https://cdn.example.com/docs/";'
+      )
+    );
+  });
+
   test("askAi not configured", () => {
     generate(
       {
