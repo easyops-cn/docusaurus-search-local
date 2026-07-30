@@ -57,5 +57,8 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "bugs": {
+    "url": "https://github.com/easyops-cn/docusaurus-search-local/issues"
   }
 }
