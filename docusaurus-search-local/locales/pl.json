@@ -1,0 +1,12 @@
+{
+  "theme.SearchBar.label": "Szukaj...",
+  "theme.SearchBar.seeAll": "Zobacz wszystkie wyniki",
+  "theme.SearchBar.noResultsText": "Brak wyników",
+  "theme.SearchBar.searchInContext": "Zobacz wszystkie wyniki w \"{context}\"",
+  "theme.SearchBar.seeAllOutsideContext": "Zobacz wszystkie wyniki poza \"{context}\"",
+  "theme.SearchPage.existingResultsTitle": "Wyniki wyszukiwania dla \"{query}\"",
+  "theme.SearchPage.emptyResultsTitle": "Przeszukaj dokumentację",
+  "theme.SearchPage.documentsFound.plurals": "Znaleziono 1 dokument|Znaleziono {count} dokumenty|Znaleziono {count} dokumentów",
+  "theme.SearchPage.noResultsText": "Nie znaleziono żadnych dokumentów",
+  "theme.SearchPage.searchContext.everywhere": "Wszędzie"
+}
