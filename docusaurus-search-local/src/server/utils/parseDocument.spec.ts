@@ -177,6 +177,6 @@ describe("parseDocument", () => {
       },
     ],
   ])("parseDocument(...) should work", (html, doc) => {
-    expect(parseDocument(cheerio.load(html))).toEqual(doc);
+    expect(parseDocument(cheerio.load(html), 3)).toEqual(doc);
   });
 });

@@ -225,6 +225,14 @@ export interface PluginOptions {
   fuzzyMatchingDistance?: number;
 
   /**
+   * Set HTML header tags from level 1 to x to be indexed. The default is 3, i.e., <h1> <h2> <h3>.
+   * The value should be between 1 and 6.
+   *
+   * @default 3
+   */
+  maxIndexableHeaderTagLevel?: number;
+
+  /**
    * Configuration for Ask AI widget integration. When not set, the Ask AI feature will be disabled.
    */
   askAi?: AskAIWidgetProps;

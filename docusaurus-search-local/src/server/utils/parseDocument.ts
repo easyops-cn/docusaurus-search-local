@@ -2,10 +2,12 @@ import { blogPostContainerID } from "@docusaurus/utils-common";
 import { ParsedDocument, ParsedDocumentSection } from "../../shared/interfaces";
 import { getCondensedText } from "./getCondensedText";
 
-const HEADINGS = "h1, h2, h3";
 // const SUB_HEADINGS = "h2, h3";
 
-export function parseDocument($: cheerio.Root): ParsedDocument {
+export function parseDocument(
+  $: cheerio.Root,
+  maxIndexableHeaderTagLevel?: number
+): ParsedDocument {
   const $pageTitle = $("article h1").first();
   const pageTitle = $pageTitle.text();
   const description = $("meta[name='description']").attr("content") || "";
@@ -33,6 +35,8 @@ export function parseDocument($: cheerio.Root): ParsedDocument {
       breadcrumb.push($(element).text().trim());
     });
   }
+
+  const HEADINGS = Array.from({ length: maxIndexableHeaderTagLevel ?? 3 }, (_, i) => `h${i + 1}`).join(", ");
 
   $("article")
     .find(HEADINGS)
