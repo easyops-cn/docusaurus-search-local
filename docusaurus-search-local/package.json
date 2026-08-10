@@ -8,6 +8,9 @@
     "directory": "packages/docusaurus-search-local"
   },
   "homepage": "https://github.com/easyops-cn/docusaurus-search-local",
+  "bugs": {
+    "url": "https://github.com/easyops-cn/docusaurus-search-local/issues"
+  },
   "scripts": {
     "start": "concurrently -k -n client,server,types \"yarn run start:client\" \"yarn run start:server\" \"yarn run start:types\"",
     "start:client": "tsc --watch --project tsconfig.client.json",
