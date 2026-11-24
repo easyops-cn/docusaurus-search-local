@@ -1,5 +1,6 @@
 {
     "theme.SearchBar.label": "検索",
+    "theme.SearchBar.clearButtonLabel": "検索をクリア",
     "theme.SearchBar.seeAll": "すべての結果を見る",
     "theme.SearchBar.noResultsText": "結果が見つかりません。",
     "theme.SearchBar.searchInContext": "「{context}」のすべての結果を見る",

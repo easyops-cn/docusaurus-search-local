@@ -1,5 +1,6 @@
 {
   "theme.SearchBar.label": "搜索",
+  "theme.SearchBar.clearButtonLabel": "清除搜索",
   "theme.SearchBar.seeAll": "查看全部结果",
   "theme.SearchBar.noResultsText": "没有找到任何文档",
   "theme.SearchBar.searchInContext": "查看“{context}”以内的全部结果",

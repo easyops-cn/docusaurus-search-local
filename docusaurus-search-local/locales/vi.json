@@ -1,5 +1,6 @@
 {
   "theme.SearchBar.label": "Tìm kiếm...",
+  "theme.SearchBar.clearButtonLabel": "Xóa tìm kiếm",
   "theme.SearchBar.seeAll": "Xem tất cả kết quả được tìm thấy",
   "theme.SearchBar.noResultsText": "Không tìm thấy kết quả nào",
   "theme.SearchBar.searchInContext": "Xem tất cả kết quả bên trong \"{context}\"",
