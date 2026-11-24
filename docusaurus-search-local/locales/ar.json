@@ -1,5 +1,6 @@
 {
   "theme.SearchBar.label": "بحث...",
+  "theme.SearchBar.clearButtonLabel": "مسح البحث",
   "theme.SearchBar.seeAll": "عرض كل النتائج",
   "theme.SearchBar.noResultsText": "لا توجد نتائج",
   "theme.SearchBar.searchInContext": "عرض النتائج ضمن \"{context}\"",

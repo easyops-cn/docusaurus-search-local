@@ -548,7 +548,16 @@ export default function SearchBar({
       {searchBarShortcut &&
         searchBarShortcutHint &&
         (inputValue !== "" ? (
-          <button className={styles.searchClearButton} onClick={onClearSearch}>
+          <button
+            className={styles.searchClearButton}
+            onClick={onClearSearch}
+            aria-label={translate({
+              id: "theme.SearchBar.clearButtonLabel",
+              message: "Clear search",
+              description:
+                "The ARIA label for the button that clears the search input",
+            })}
+          >
             ✕
           </button>
         ) : (

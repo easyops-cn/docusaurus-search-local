@@ -1,5 +1,6 @@
 {
   "theme.SearchBar.label": "Suche",
+  "theme.SearchBar.clearButtonLabel": "Suche löschen",
   "theme.SearchBar.seeAll": "Alle Ergebnisse anzeigen",
   "theme.SearchBar.noResultsText": "Keine Ergebnisse",
   "theme.SearchBar.searchInContext": "Alle Ergebnisse innerhalb von \"{context}\" anzeigen",
